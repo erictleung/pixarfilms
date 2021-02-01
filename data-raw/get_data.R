@@ -4,6 +4,7 @@ library(dplyr)
 library(rvest)
 library(tidyr)
 library(janitor)
+library(here)
 library(usethis)
 
 # Extract data
@@ -19,6 +20,8 @@ boxoffice <- tbls[[2]]       #  Box office
 publicresponse <- tbls[[3]]  # Critical and public response
 academy <- tbls[[4]]         # Academy awards
 
+# Get OMDb key to query movie information
+config <- read.delim(here("config.txt"), header = FALSE)[1, 1]
 
 
 # Clean films -------------------------------------------------------------
@@ -34,6 +37,9 @@ academy <- tbls[[4]]         # Academy awards
 # - Create table of film-people rows
 
 films
+
+# Add IMDb information
+# - Genres
 
 
 # Clean box office information --------------------------------------------
@@ -52,6 +58,7 @@ films
 # - Clean Rotten Tomatoes
 # - Clean Metacritic
 # - Clean Critics' Choice
+# - Add IMDb score
 
 
 # Clean academy data ------------------------------------------------------
