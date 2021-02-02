@@ -1,11 +1,17 @@
 # Load packages and data --------------------------------------------------
 
-library(dplyr)
-library(rvest)
-library(tidyr)
-library(janitor)
+# Utility pacakges
 library(here)
+library(janitor)
 library(usethis)
+
+# Data wrangling packages
+library(dplyr)
+library(tidyr)
+library(purrr)
+
+# Web scraping
+library(rvest)
 
 # Extract data
 page <- read_html("https://en.wikipedia.org/wiki/List_of_Pixar_films")
