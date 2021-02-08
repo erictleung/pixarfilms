@@ -4,6 +4,7 @@
 library(here)
 library(janitor)
 library(usethis)
+library(lubridate)
 
 # Data wrangling packages
 library(dplyr)
@@ -37,17 +38,47 @@ config <- read.delim(here("config.txt"), header = FALSE)[1, 1]
 # - Rename and clean column names
 # - Remove random rows
 # - Remove square brackets from all data
+# - Replace TBA with NA
 # - Process release date into dates
-# - Create table of just films
-# - Create table of film-people rows
 
-# films <-
+
+films <-
   films %>%
+  # Clean column names
   clean_names() %>%
+
+  # Remove rows that are odd because of how Wikipedia formats tables
   filter(!number %in% c("Released films", "Upcoming films")) %>%
+
+  # Remove citations for data because unneeded for our data
   mutate_all(function(x) {
     str_replace_all(x, "\\[[A-Za-z0-9]\\]", "")
-    })
+    }) %>%
+
+  # Replace TBA with NA for now
+  mutate_all(function(x) { ifelse(x == "TBA", NA, x) }) %>%
+
+  # Clean up and format release date
+  mutate(release_date = str_extract(release_date, "\\(.*\\)")) %>%
+  mutate(release_date = str_replace_all(release_date, "\\(|\\)", "")) %>%
+  mutate(release_date = ymd(release_date))
+
+
+# Create table of just films
+pixar_films <-
+  films %>%
+  select( number, film, release_date)
+
+# Create table of film-people rows
+pixar_directors <-
+  films %>%
+  select(film, directed_by) %>%
+  separate_rows(directed_by, sep = " & ") %>%
+  pivot_longer(
+    cols = directed_by,
+    names_to = "role_type",
+    values_to = "name") %>%
+  mutate(role_type = "Director")
 
 
 # Add IMDb information from OMDb
