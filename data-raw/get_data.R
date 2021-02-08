@@ -79,6 +79,15 @@ pixar_directors <-
     names_to = "role_type",
     values_to = "name") %>%
   mutate(role_type = "Director")
+pixar_screenwriters <-
+  films %>%
+  select(film, screenplay_by) %>%
+  separate_rows(screenplay_by, sep = "(, )|( & )") %>%
+  pivot_longer(
+    cols = screenplay_by,
+    names_to = "role_type",
+    values_to = "name") %>%
+  mutate(role_type = "Screenwriter")
 
 
 # Add IMDb information from OMDb
