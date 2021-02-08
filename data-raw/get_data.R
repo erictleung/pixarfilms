@@ -93,6 +93,16 @@ pixar_people <-
   mutate(data = map(data, separate_names)) %>%
   unnest(data)
 
+# Fix abbreviation in table
+pixar_people <-
+  pixar_people %>%
+  mutate(name = if_else(name == "Jeff", "Jeff Danna", name))
+
+# Remove rows with no movie
+pixar_people <-
+  pixar_people %>%
+  drop_na(film)
+
 
 # Add IMDb information from OMDb
 # - Genres
