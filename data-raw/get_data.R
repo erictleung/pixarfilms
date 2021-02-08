@@ -1,6 +1,6 @@
 # Load packages and data --------------------------------------------------
 
-# Utility pacakges
+# Utility packages
 library(here)
 library(janitor)
 library(usethis)
