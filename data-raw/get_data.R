@@ -70,24 +70,28 @@ pixar_films <-
   select( number, film, release_date)
 
 # Create table of film-people rows
-pixar_directors <-
+# - Directors
+# - Screenwriters
+# - Story writer
+# - Producer
+# - Musician
+separate_names <- function(df) {
+  df %>%
+    separate_rows(name, sep = "(, )|( & )")
+}
+
+pixar_people <-
   films %>%
-  select(film, directed_by) %>%
-  separate_rows(directed_by, sep = " & ") %>%
+  select(-c(number, release_date)) %>%
   pivot_longer(
-    cols = directed_by,
+    cols = -film,
     names_to = "role_type",
-    values_to = "name") %>%
-  mutate(role_type = "Director")
-pixar_screenwriters <-
-  films %>%
-  select(film, screenplay_by) %>%
-  separate_rows(screenplay_by, sep = "(, )|( & )") %>%
-  pivot_longer(
-    cols = screenplay_by,
-    names_to = "role_type",
-    values_to = "name") %>%
-  mutate(role_type = "Screenwriter")
+    values_to = "name"
+  ) %>%
+  group_by(role_type) %>%
+  nest() %>%
+  mutate(data = map(data, separate_names)) %>%
+  unnest(data)
 
 
 # Add IMDb information from OMDb
