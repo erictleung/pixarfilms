@@ -75,11 +75,6 @@ pixar_films <-
 # - Story writer
 # - Producer
 # - Musician
-separate_names <- function(df) {
-  df %>%
-    separate_rows(name, sep = "(, )|( & )")
-}
-
 pixar_people <-
   films %>%
   select(-c(number, release_date)) %>%
@@ -88,10 +83,7 @@ pixar_people <-
     names_to = "role_type",
     values_to = "name"
   ) %>%
-  group_by(role_type) %>%
-  nest() %>%
-  mutate(data = map(data, separate_names)) %>%
-  unnest(data)
+  separate_rows(name, sep = "(, )|( & )")
 
 # Fix abbreviation in table
 pixar_people <-
