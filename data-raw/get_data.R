@@ -12,6 +12,7 @@ library(purrr)
 
 # Web scraping
 library(rvest)
+library(httr)
 
 # Extract data
 page <- read_html("https://en.wikipedia.org/wiki/List_of_Pixar_films")
@@ -33,20 +34,33 @@ config <- read.delim(here("config.txt"), header = FALSE)[1, 1]
 # Clean films -------------------------------------------------------------
 
 # Steps
-# - Remove random rows
 # - Rename and clean column names
+# - Remove random rows
+# - Remove square brackets from all data
 # - Process release date into dates
-# - Remove square bracket information from films
-# - Remove square bracket information from directed by
-# - Remove square bracket information from screenplay by
 # - Create table of just films
 # - Create table of film-people rows
 
-films
+# films <-
+  films %>%
+  clean_names() %>%
+  filter(!number %in% c("Released films", "Upcoming films")) %>%
+  mutate_all(function(x) {
+    str_replace_all(x, "\\[[A-Za-z0-9]\\]", "")
+    })
 
-# Add IMDb information
+
+# Add IMDb information from OMDb
 # - Genres
+omdb_url <- "https://www.omdbapi.com/"
+omdb_w_key <- paste0(omdb_url, "?apikey=", config, "&")
+query_str <- str_replace("Toy Story", " ", "+")
+omdb_data <- content(GET(url = paste0(omdb_w_key, "t=", query_str)))
+genre <- omdb_data$Genre
 
+genres <-
+  films %>%
+  select(film)
 
 # Clean box office information --------------------------------------------
 
