@@ -5,6 +5,7 @@ library(here)
 library(janitor)
 library(usethis)
 library(lubridate)
+library(progress)
 
 # Data wrangling packages
 library(dplyr)
@@ -95,18 +96,41 @@ pixar_people <-
   pixar_people %>%
   drop_na(film)
 
+# Rename role types
+pixar_people <-
+  pixar_people %>%
+  mutate(role_type = case_when(
+    role_type == "directed_by" ~ "Director",
+    role_type == "screenplay_by" ~ "Screenwriter",
+    role_type == "story_by" ~ "Storywriter",
+    role_type == "music_by" ~ "Musician",
+    role_type == "produced_by" ~ "Producer"
+  ))
+
 
 # Add IMDb information from OMDb
 # - Genres
 omdb_url <- "https://www.omdbapi.com/"
 omdb_w_key <- paste0(omdb_url, "?apikey=", config, "&")
-query_str <- str_replace("Toy Story", " ", "+")
-omdb_data <- content(GET(url = paste0(omdb_w_key, "t=", query_str)))
-genre <- omdb_data$Genre
 
 genres <-
   films %>%
-  select(film)
+  select(film) %>%
+  mutate(genre = NA)
+pb <- progress_bar$new(total = nrow(genres))
+pb$tick(0)  # Start progress
+for (film in 1:nrow(genres)) {
+  pb$tick()
+  query_str <- str_replace_all(genres$film[film], " ", "+")
+  omdb_data <- tryCatch(
+    {
+      content(GET(url = paste0(omdb_w_key, "t=", query_str)))
+    }
+  )
+  genres[film, "genre"] <- omdb_data$Genre
+}
+
+
 
 # Clean box office information --------------------------------------------
 
