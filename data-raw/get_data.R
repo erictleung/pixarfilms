@@ -190,6 +190,24 @@ boxoffice %>%
 # - Clean Critics' Choice
 # - Add IMDb score
 
+colnames(publicresponse) <-
+  publicresponse %>%
+  colnames() %>%
+  str_replace_all("\\[|[0-9]|\\]", "")
+
+publicresponse <-
+  publicresponse %>%
+  clean_names() %>%
+  mutate_all(function(x) { ifelse(x == "N/A", NA, x) }) %>%
+  mutate(
+    rotten_tomatoes = str_replace(rotten_tomatoes, "%", ""),
+    critics_choice = str_replace(critics_choice, "\\/100", ""),
+    metacritic = str_replace(metacritic, "\\/100", "")) %>%
+  mutate(
+    rotten_tomatoes = as.numeric(rotten_tomatoes),
+    metacritic = as.numeric(metacritic),
+    critics_choice = as.numeric(critics_choice))
+
 
 # Clean academy data ------------------------------------------------------
 
