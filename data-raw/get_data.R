@@ -130,6 +130,11 @@ for (film in 1:nrow(genres)) {
   genres[film, "genre"] <- omdb_data$Genre
 }
 
+# Clean up multi-genre rows
+genres <-
+  genres %>%
+  separate_rows(genre, sep = ", ") %>%
+  drop_na(film)
 
 
 # Clean box office information --------------------------------------------
