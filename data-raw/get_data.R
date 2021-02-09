@@ -10,18 +10,17 @@ library(progress)
 # Data wrangling packages
 library(dplyr)
 library(tidyr)
-library(purrr)
 
 # Web scraping
 library(rvest)
 library(httr)
 
+
+# Extract data ------------------------------------------------------------
+
 # Extract data
 page <- read_html("https://en.wikipedia.org/wiki/List_of_Pixar_films")
 tbls <- html_table(page, fill = TRUE)
-
-
-# Extract data ------------------------------------------------------------
 
 # Extract actual tables
 films <- tbls[[1]]           # Films
@@ -70,6 +69,7 @@ pixar_films <-
   films %>%
   select( number, film, release_date)
 
+
 # Create table of film-people rows
 # - Directors
 # - Screenwriters
@@ -113,6 +113,7 @@ pixar_people <-
 omdb_url <- "https://www.omdbapi.com/"
 omdb_w_key <- paste0(omdb_url, "?apikey=", config, "&")
 
+# Query genres and add to film table
 genres <-
   films %>%
   select(film) %>%
@@ -145,7 +146,8 @@ genres <-
 # - Clean column names
 # - Format money
 
-boxoffice %>%
+boxoffice <-
+  boxoffice %>%
   clean_names() %>%
   filter(film != "Film") %>%
   select(-ref_s) %>%
@@ -216,6 +218,24 @@ publicresponse <-
 # - Clean columns
 # - Melt to longer data
 # - Remove missing data
+
+academy <-
+  academy %>%
+  clean_names() %>%
+  filter(film != "Film") %>%
+  mutate_all(function(x) { ifelse(x == "", NA, x) }) %>%
+  pivot_longer(
+    cols = -film,
+    names_to = "award_type",
+    values_to = "status") %>%
+  drop_na(status) %>%
+  mutate(award_type = str_replace_all(award_type, "_", " ")) %>%
+  mutate(award_type = str_to_title(award_type)) %>%
+  mutate(award_type = case_when(
+    award_type == "Sound A" ~ "Sound Editing",
+    award_type == "Sound A 2" ~ "Sound Mixing",
+    TRUE ~ award_type
+  ))
 
 
 # Save out data for use ---------------------------------------------------
