@@ -146,8 +146,8 @@ genres <-
 # - Clean column names
 # - Format money
 
-boxoffice <-
-  boxoffice %>%
+box_office <-
+  box_office %>%
   clean_names() %>%
   filter(film != "Film") %>%
   select(-ref_s) %>%
@@ -192,13 +192,13 @@ boxoffice <-
 # - Clean Critics' Choice
 # - Add IMDb score
 
-colnames(publicresponse) <-
-  publicresponse %>%
+colnames(public_response) <-
+  public_response %>%
   colnames() %>%
   str_replace_all("\\[|[0-9]|\\]", "")
 
-publicresponse <-
-  publicresponse %>%
+public_response <-
+  public_response %>%
   clean_names() %>%
   mutate_all(function(x) { ifelse(x == "N/A", NA, x) }) %>%
   mutate(
@@ -239,5 +239,4 @@ academy <-
 
 
 # Save out data for use ---------------------------------------------------
-
 
