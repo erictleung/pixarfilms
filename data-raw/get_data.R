@@ -145,6 +145,41 @@ genres <-
 # - Clean column names
 # - Format money
 
+boxoffice %>%
+  clean_names() %>%
+  filter(film != "Film") %>%
+  select(-ref_s) %>%
+  rename(
+    box_office_us_canada = box_office_gross,
+    box_office_other = box_office_gross_2,
+    box_office_worldwide = box_office_gross_3
+  ) %>%
+  mutate(budget = as.numeric(str_extract(budget, "[0-9-]+")) * 1e6) %>%
+
+  # Convert US and Canada box office information
+  mutate(box_office_us_canada = str_replace_all(box_office_us_canada,
+                                                "(\\$)|(,)", "")) %>%
+  mutate(box_office_us_canada = if_else(box_office_us_canada == "N/A",
+                                        NA_character_,
+                                        box_office_us_canada)) %>%
+  mutate(box_office_us_canada = as.numeric(box_office_us_canada)) %>%
+
+  # Convert other territory information
+  mutate(box_office_other = str_replace_all(box_office_other,
+                                                "(\\$)|(,)", "")) %>%
+  mutate(box_office_other = if_else(box_office_other == "N/A",
+                                        NA_character_,
+                                        box_office_other)) %>%
+  mutate(box_office_other = as.numeric(box_office_other)) %>%
+
+  # Convert worldwide box office information
+  mutate(box_office_worldwide = str_replace_all(box_office_worldwide,
+                                                "(\\$)|(,)", "")) %>%
+  mutate(box_office_worldwide = if_else(box_office_worldwide == "N/A",
+                                        NA_character_,
+                                        box_office_worldwide)) %>%
+  mutate(box_office_worldwide = as.numeric(box_office_worldwide))
+
 
 # Clean public response data ----------------------------------------------
 
