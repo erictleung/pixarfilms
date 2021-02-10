@@ -1,4 +1,5 @@
 # Load packages and data --------------------------------------------------
+# Last run: 2021-02-09
 
 # Utility packages
 library(here)
