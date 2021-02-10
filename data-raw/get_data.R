@@ -70,6 +70,9 @@ pixar_films <-
   films %>%
   select(number, film, release_date)
 
+# Convert to tibble for easier viewing
+pixar_films <- as_tibble(pixar_films)
+
 
 # Create table of film-people rows
 # - Directors
@@ -186,6 +189,9 @@ box_office <-
                                         box_office_worldwide)) %>%
   mutate(box_office_worldwide = as.numeric(box_office_worldwide))
 
+# Convert to tibble for easier viewing
+box_office <- as_tibble(box_office)
+
 
 # Clean public response data ----------------------------------------------
 
@@ -213,6 +219,9 @@ public_response <-
     rotten_tomatoes = as.numeric(rotten_tomatoes),
     metacritic = as.numeric(metacritic),
     critics_choice = as.numeric(critics_choice))
+
+# Convert to tibble for easier viewing
+public_response <- as_tibble(public_response)
 
 
 # Clean academy data ------------------------------------------------------
@@ -249,5 +258,6 @@ use_data(
   pixar_people,
   genres,
   box_office,
+  public_response,
   academy,
   overwrite = TRUE)
