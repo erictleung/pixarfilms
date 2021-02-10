@@ -1,0 +1,26 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# pixar
+
+> R data package to explore Pixar films, team, and reception data
+
+## Installation
+
+```{r, eval = FALSE}
+# Instal from CRAN (WIP)
+install.packages("pixar")
+
+# Or install directly from GitHub
+remotes::install_github("erictleung/pixar")
+```
