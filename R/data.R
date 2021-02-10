@@ -4,7 +4,7 @@ NULL
 
 #' Pixar films
 #'
-#' A dataset containing Pixar films, their release order, and release date.
+#' A data set containing Pixar films, their release order, and release date.
 #'
 #' @format A data frame with 27 rows and 3 variables:
 #' \describe{
@@ -20,9 +20,9 @@ NULL
 
 #' People behind Pixar
 #'
-#' A dataset containing the main people involved in each Pixar film.
+#' A data set containing the main people involved in each Pixar film.
 #'
-#' This dataset is put into a tidy format, where each row is a film-role data
+#' This data set is put into a tidy format, where each row is a film-role data
 #' point. Each film can have multiple individuals per role. For example, Toy
 #' Story has four screenwriters.
 #'
@@ -41,9 +41,9 @@ NULL
 
 #' Genres describing Pixar films
 #'
-#' A dataset with the different genre categories for each Pixar film.
+#' A data set with the different genre categories for each Pixar film.
 #'
-#' This dataset is put into a tidy format, where each row is a film-genre data
+#' This data set is put into a tidy format, where each row is a film-genre data
 #' point. Each film can have multiple genres. For example, Toy Story is
 #' categorized into five genres.
 #'
@@ -60,7 +60,7 @@ NULL
 
 #' Box office reception numbers
 #'
-#' A dataset with financial and box office gross numbers for each film.
+#' A data set with financial and box office gross numbers for each film.
 #'
 #' @format A data frame with 23 rows and 5 variables:
 #' \describe{
@@ -81,7 +81,7 @@ NULL
 
 #' Critical and public response
 #'
-#' A dataset with scores of critical and public response.
+#' A data set with scores of critical and public response.
 #'
 #' @format A data frame with 23 rows and 5 variables:
 #' \describe{
@@ -104,9 +104,9 @@ NULL
 
 #' Pixar awards and nominations
 #'
-#' A dataset with the awards and nominations each Pixar film has won.
+#' A data set with the awards and nominations each Pixar film has won.
 #'
-#' This dataset is put into a tidy format, where each row is a film-award data
+#' This data set is put into a tidy format, where each row is a film-award data
 #' point.
 #'
 #' Some films did not qualify for categories so there is no data for that film.
