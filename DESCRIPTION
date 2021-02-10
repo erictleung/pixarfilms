@@ -12,6 +12,8 @@ Description: Disney Pixar movies provided by Wikipedia. This package contains
 License: CC0
 Encoding: UTF-8
 LazyData: true
+URL: https://github.com/erictleung/pixar
+BugReports: https://github.com/erictleung/pixar/issues
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 Depends:
