@@ -67,7 +67,7 @@ films <-
 # Create table of just films
 pixar_films <-
   films %>%
-  select( number, film, release_date)
+  select(number, film, release_date)
 
 
 # Create table of film-people rows
