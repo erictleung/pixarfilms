@@ -128,6 +128,9 @@ for (film in 1:nrow(genres)) {
       content(GET(url = paste0(omdb_w_key, "t=", query_str)))
     }
   )
+  if ("Error" %in% names(omdb_data)) {
+    omdb_data$Genre <- NA
+  }
   genres[film, "genre"] <- omdb_data$Genre
 }
 
