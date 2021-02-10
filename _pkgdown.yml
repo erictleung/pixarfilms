@@ -1,0 +1,18 @@
+url: https://erictleung.com/pixar
+
+destination: docs
+
+navbar:
+  title: "pixar"
+
+reference:
+  - title: Pixar movies
+    contents:
+    - pixar_films
+    - pixar_people
+    - genres
+  - title: Film reception
+    contents:
+    - box_office
+    - public_response
+    - academy
