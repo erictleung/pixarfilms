@@ -21,4 +21,7 @@ pixar_films
 \description{
 A dataset containing Pixar films, their release order, and release date.
 }
+\examples{
+pixar_films
+}
 \keyword{datasets}

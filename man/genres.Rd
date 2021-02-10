@@ -25,4 +25,7 @@ This dataset is put into a tidy format, where each row is a film-genre data
 point. Each film can have multiple genres. For example, Toy Story is
 categorized into five genres.
 }
+\examples{
+genres
+}
 \keyword{datasets}

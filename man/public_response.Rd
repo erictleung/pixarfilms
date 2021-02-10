@@ -28,4 +28,7 @@ public_response
 \description{
 A dataset with scores of critical and public response.
 }
+\examples{
+public_response
+}
 \keyword{datasets}

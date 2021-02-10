@@ -26,4 +26,7 @@ box_office
 \description{
 A dataset with financial and box office gross numbers for each film.
 }
+\examples{
+box_office
+}
 \keyword{datasets}

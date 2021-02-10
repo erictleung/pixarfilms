@@ -1,3 +1,7 @@
+#' @importFrom tibble tibble
+NULL
+
+
 #' Pixar films
 #'
 #' A dataset containing Pixar films, their release order, and release date.
@@ -9,6 +13,8 @@
 #'   \item{release_date}{date film premiered}
 #' }
 #' @source \url{https://en.wikipedia.org/wiki/List_of_Pixar_films}
+#' @examples
+#' pixar_films
 "pixar_films"
 
 
@@ -28,6 +34,8 @@
 #'   \item{name}{individual's name}
 #' }
 #' @source \url{https://en.wikipedia.org/wiki/List_of_Pixar_films}
+#' @examples
+#' pixar_people
 "pixar_people"
 
 
@@ -45,6 +53,8 @@
 #'   \item{genre}{genre film is categorized into}
 #' }
 #' @source \url{https://www.omdbapi.com/}
+#' @examples
+#' genres
 "genres"
 
 
@@ -64,6 +74,8 @@
 #'     worldwide}
 #' }
 #' @source \url{https://en.wikipedia.org/wiki/List_of_Pixar_films}
+#' @examples
+#' box_office
 "box_office"
 
 
@@ -84,8 +96,9 @@
 #'     the American-Canadian Critics Choice Association (CCA); scored out of
 #'     100}
 #' }
-#'
 #' @source \url{https://en.wikipedia.org/wiki/List_of_Pixar_films}
+#' @examples
+#' public_response
 "public_response"
 
 
@@ -104,6 +117,7 @@
 #'   \item{award_type}{name of award}
 #'   \item{status}{status of award}
 #' }
-#'
 #' @source \url{https://en.wikipedia.org/wiki/List_of_Pixar_films}
+#' @examples
+#' academy
 "academy"

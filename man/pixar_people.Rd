@@ -27,4 +27,7 @@ This dataset is put into a tidy format, where each row is a film-role data
 point. Each film can have multiple individuals per role. For example, Toy
 Story has four screenwriters.
 }
+\examples{
+pixar_people
+}
 \keyword{datasets}

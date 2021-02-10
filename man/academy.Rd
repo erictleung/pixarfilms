@@ -27,4 +27,7 @@ point.
 
 Some films did not qualify for categories so there is no data for that film.
 }
+\examples{
+academy
+}
 \keyword{datasets}
