@@ -243,3 +243,10 @@ academy <-
 
 # Save out data for use ---------------------------------------------------
 
+use_data(
+  pixar_films,
+  pixar_people,
+  genres,
+  box_office,
+  academy,
+  overwrite = TRUE)
