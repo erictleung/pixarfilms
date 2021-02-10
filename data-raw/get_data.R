@@ -150,7 +150,7 @@ genres <-
 # - Format money
 
 box_office <-
-  box_office %>%
+  boxoffice %>%
   clean_names() %>%
   filter(film != "Film") %>%
   select(-ref_s) %>%
@@ -195,13 +195,13 @@ box_office <-
 # - Clean Critics' Choice
 # - Add IMDb score
 
-colnames(public_response) <-
-  public_response %>%
+colnames(publicresponse) <-
+  publicresponse %>%
   colnames() %>%
   str_replace_all("\\[|[0-9]|\\]", "")
 
 public_response <-
-  public_response %>%
+  publicresponse %>%
   clean_names() %>%
   mutate_all(function(x) { ifelse(x == "N/A", NA, x) }) %>%
   mutate(
