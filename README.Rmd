@@ -15,6 +15,15 @@ knitr::opts_chunk$set(
 
 > R data package to explore Pixar films, team, and reception data
 
+This package contains six datasets provided mostly in part by Wikipedia.
+
+- `pixar_films`
+- `pixar_people`
+- `genres`
+- `box_office`
+- `public_response`
+- `academy`
+
 ## Installation
 
 ```{r, eval = FALSE}
