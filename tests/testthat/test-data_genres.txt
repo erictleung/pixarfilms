@@ -1,0 +1,23 @@
+# A tibble: 20 x 2
+   film                                genre    
+   <chr>                               <chr>    
+ 1 Toy Story                           Animation
+ 2 Toy Story                           Adventure
+ 3 Toy Story                           Comedy   
+ 4 Toy Story                           Family   
+ 5 Toy Story                           Fantasy  
+ 6 A Bug's Life                        Animation
+ 7 A Bug's Life                        Adventure
+ 8 A Bug's Life                        Comedy   
+ 9 A Bug's Life                        Family   
+10 Toy Story 2                         Animation
+11 Turning Red                         Adventure
+12 Turning Red                         Comedy   
+13 Turning Red                         Family   
+14 Turning Red                         Fantasy  
+15 Lightyear                           Animation
+16 Lightyear                           Adventure
+17 Lightyear                           Family   
+18 Lightyear                           Fantasy  
+19 Lightyear                           Sci-Fi   
+20 Kobu and the Lost City of Elephants <NA>     
