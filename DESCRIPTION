@@ -7,18 +7,19 @@ Authors@R:
            role = c("aut", "cre"),
            email = "erictleung@outlook.com",
            comment = c(ORCID = "0000-0002-8724-1872"))
-Description: Disney Pixar films provided by Wikipedia. This package contains
-  data about the films, the people involved, and their awards.
+Description: Disney Pixar films provided by Wikipedia. This
+    package contains data about the films, the people involved, and their
+    awards.
 License: CC0
-Encoding: UTF-8
-LazyData: true
 URL: https://github.com/erictleung/pixarfilms
 BugReports: https://github.com/erictleung/pixarfilms/issues
-Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
 Depends:
     R (>= 2.10)
 Imports: 
     tibble
 Suggests: 
     testthat
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
