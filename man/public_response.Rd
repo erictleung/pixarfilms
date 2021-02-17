@@ -26,7 +26,7 @@ the American-Canadian Critics Choice Association (CCA); scored out of
 public_response
 }
 \description{
-A dataset with scores of critical and public response.
+A data set with scores of critical and public response.
 }
 \examples{
 public_response

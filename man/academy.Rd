@@ -19,10 +19,10 @@ A data frame with 72 rows and 3 variables:
 academy
 }
 \description{
-A dataset with the awards and nominations each Pixar film has won.
+A data set with the awards and nominations each Pixar film has won.
 }
 \details{
-This dataset is put into a tidy format, where each row is a film-award data
+This data set is put into a tidy format, where each row is a film-award data
 point.
 
 Some films did not qualify for categories so there is no data for that film.

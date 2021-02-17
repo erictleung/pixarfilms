@@ -19,7 +19,7 @@ A data frame with 27 rows and 3 variables:
 pixar_films
 }
 \description{
-A dataset containing Pixar films, their release order, and release date.
+A data set containing Pixar films, their release order, and release date.
 }
 \examples{
 pixar_films

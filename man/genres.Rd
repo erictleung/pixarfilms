@@ -18,10 +18,10 @@ A data frame with 128 rows and 2 variables:
 genres
 }
 \description{
-A dataset with the different genre categories for each Pixar film.
+A data set with the different genre categories for each Pixar film.
 }
 \details{
-This dataset is put into a tidy format, where each row is a film-genre data
+This data set is put into a tidy format, where each row is a film-genre data
 point. Each film can have multiple genres. For example, Toy Story is
 categorized into five genres.
 }

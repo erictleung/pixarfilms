@@ -20,10 +20,10 @@ Screenwriter, Storywriter}
 pixar_people
 }
 \description{
-A dataset containing the main people involved in each Pixar film.
+A data set containing the main people involved in each Pixar film.
 }
 \details{
-This dataset is put into a tidy format, where each row is a film-role data
+This data set is put into a tidy format, where each row is a film-role data
 point. Each film can have multiple individuals per role. For example, Toy
 Story has four screenwriters.
 }
