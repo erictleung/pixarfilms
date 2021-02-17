@@ -7,7 +7,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "erictleung@outlook.com",
            comment = c(ORCID = "0000-0002-8724-1872"))
-Description: Disney Pixar films provided by Wikipedia. This
+Description: Data about Disney Pixar films provided by Wikipedia. This
     package contains data about the films, the people involved, and their
     awards.
 License: CC0
