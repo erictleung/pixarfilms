@@ -3,6 +3,12 @@
 
 # pixarfilms
 
+<!-- badges: start -->
+
+[![CRAN
+status](https://www.r-pkg.org/badges/version/pixarfilms)](https://CRAN.R-project.org/package=pixarfilms)
+<!-- badges: end -->
+
 > R data package to explore Pixar films, the people, and reception data
 
 This package contains six data sets provided mostly in part by
