@@ -6,7 +6,7 @@ context("data regression tests")
 first_last <- function(x) {
   n <- nrow(x)
   if (n >= 20) {
-    x[c(1:10, (n - 9):n),]
+    x[c(1:10, (n - 9):n), ]
   } else {
     return(x)
   }

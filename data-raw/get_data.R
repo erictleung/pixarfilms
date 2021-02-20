@@ -24,10 +24,10 @@ page <- read_html("https://en.wikipedia.org/wiki/List_of_Pixar_films")
 tbls <- html_table(page, fill = TRUE)
 
 # Extract actual tables
-films <- tbls[[1]]           # Films
-boxoffice <- tbls[[2]]       #  Box office
-publicresponse <- tbls[[3]]  # Critical and public response
-academy <- tbls[[4]]         # Academy awards
+films <- tbls[[1]] # Films
+boxoffice <- tbls[[2]] #  Box office
+publicresponse <- tbls[[3]] # Critical and public response
+academy <- tbls[[4]] # Academy awards
 
 # Get OMDb key to query movie information
 config <- read.delim(here("config.txt"), header = FALSE)[1, 1]
@@ -54,10 +54,12 @@ films <-
   # Remove citations for data because unneeded for our data
   mutate_all(function(x) {
     str_replace_all(x, "\\[[A-Za-z0-9]\\]", "")
-    }) %>%
+  }) %>%
 
   # Replace TBA with NA for now
-  mutate_all(function(x) { ifelse(x == "TBA", NA, x) }) %>%
+  mutate_all(function(x) {
+    ifelse(x == "TBA", NA, x)
+  }) %>%
 
   # Clean up and format release date
   mutate(release_date = str_extract(release_date, "\\(.*\\)")) %>%
@@ -123,15 +125,13 @@ genres <-
   select(film) %>%
   mutate(genre = NA)
 pb <- progress_bar$new(total = nrow(genres))
-pb$tick(0)  # Start progress
+pb$tick(0) # Start progress
 for (film in 1:nrow(genres)) {
   pb$tick()
   query_str <- str_replace_all(genres$film[film], " ", "+")
-  omdb_data <- tryCatch(
-    {
-      content(GET(url = paste0(omdb_w_key, "t=", query_str)))
-    }
-  )
+  omdb_data <- tryCatch({
+    content(GET(url = paste0(omdb_w_key, "t=", query_str)))
+  })
   if ("Error" %in% names(omdb_data)) {
     omdb_data$Genre <- NA
   }
@@ -166,27 +166,36 @@ box_office <-
   mutate(budget = as.numeric(str_extract(budget, "[0-9-]+")) * 1e6) %>%
 
   # Convert US and Canada box office information
-  mutate(box_office_us_canada = str_replace_all(box_office_us_canada,
-                                                "(\\$)|(,)", "")) %>%
+  mutate(box_office_us_canada = str_replace_all(
+    box_office_us_canada,
+    "(\\$)|(,)", ""
+  )) %>%
   mutate(box_office_us_canada = if_else(box_office_us_canada == "N/A",
-                                        NA_character_,
-                                        box_office_us_canada)) %>%
+    NA_character_,
+    box_office_us_canada
+  )) %>%
   mutate(box_office_us_canada = as.numeric(box_office_us_canada)) %>%
 
   # Convert other territory information
-  mutate(box_office_other = str_replace_all(box_office_other,
-                                                "(\\$)|(,)", "")) %>%
+  mutate(box_office_other = str_replace_all(
+    box_office_other,
+    "(\\$)|(,)", ""
+  )) %>%
   mutate(box_office_other = if_else(box_office_other == "N/A",
-                                        NA_character_,
-                                        box_office_other)) %>%
+    NA_character_,
+    box_office_other
+  )) %>%
   mutate(box_office_other = as.numeric(box_office_other)) %>%
 
   # Convert worldwide box office information
-  mutate(box_office_worldwide = str_replace_all(box_office_worldwide,
-                                                "(\\$)|(,)", "")) %>%
+  mutate(box_office_worldwide = str_replace_all(
+    box_office_worldwide,
+    "(\\$)|(,)", ""
+  )) %>%
   mutate(box_office_worldwide = if_else(box_office_worldwide == "N/A",
-                                        NA_character_,
-                                        box_office_worldwide)) %>%
+    NA_character_,
+    box_office_worldwide
+  )) %>%
   mutate(box_office_worldwide = as.numeric(box_office_worldwide))
 
 # Convert to tibble for easier viewing
@@ -210,15 +219,19 @@ colnames(publicresponse) <-
 public_response <-
   publicresponse %>%
   clean_names() %>%
-  mutate_all(function(x) { ifelse(x == "N/A", NA, x) }) %>%
+  mutate_all(function(x) {
+    ifelse(x == "N/A", NA, x)
+  }) %>%
   mutate(
     rotten_tomatoes = str_replace(rotten_tomatoes, "%", ""),
     critics_choice = str_replace(critics_choice, "\\/100", ""),
-    metacritic = str_replace(metacritic, "\\/100", "")) %>%
+    metacritic = str_replace(metacritic, "\\/100", "")
+  ) %>%
   mutate(
     rotten_tomatoes = as.numeric(rotten_tomatoes),
     metacritic = as.numeric(metacritic),
-    critics_choice = as.numeric(critics_choice))
+    critics_choice = as.numeric(critics_choice)
+  )
 
 # Convert to tibble for easier viewing
 public_response <- as_tibble(public_response)
@@ -236,11 +249,14 @@ academy <-
   academy %>%
   clean_names() %>%
   filter(film != "Film") %>%
-  mutate_all(function(x) { ifelse(x == "", NA, x) }) %>%
+  mutate_all(function(x) {
+    ifelse(x == "", NA, x)
+  }) %>%
   pivot_longer(
     cols = -film,
     names_to = "award_type",
-    values_to = "status") %>%
+    values_to = "status"
+  ) %>%
   drop_na(status) %>%
   mutate(award_type = str_replace_all(award_type, "_", " ")) %>%
   mutate(award_type = str_to_title(award_type)) %>%
@@ -260,4 +276,5 @@ use_data(
   box_office,
   public_response,
   academy,
-  overwrite = TRUE)
+  overwrite = TRUE
+)
