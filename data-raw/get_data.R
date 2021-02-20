@@ -7,6 +7,7 @@ library(janitor)
 library(usethis)
 library(lubridate)
 library(progress)
+library(readr)
 
 # Data wrangling packages
 library(dplyr)
@@ -269,6 +270,22 @@ academy <-
 
 # Save out data for use ---------------------------------------------------
 
+
+# Save out for external use
+save_data <- function(x) {
+  # Notes on deparse() and substitute()
+  # https://stackoverflow.com/a/14577878/6873133
+  str_path <- paste0(deparse(substitute(x)), ".csv")
+  write_csv(x, here("data-raw", str_path))
+}
+save_data(pixar_films)
+save_data(pixar_people)
+save_data(genres)
+save_data(box_office)
+save_data(public_response)
+save_data(academy)
+
+# Save out for package use
 use_data(
   pixar_films,
   pixar_people,
