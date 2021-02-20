@@ -22,5 +22,5 @@ sticker(
   s_x = 1,
   s_y = 0.75,
   s_width = 0.35,
-  filename = "man/figures/logo_sticker.png"
+  filename = "man/figures/logo.png"
 )
