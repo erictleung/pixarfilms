@@ -1,9 +1,12 @@
-url: https://erictleung.com/pixar
+url: https://erictleung.com/pixarfilms, https://github.com/erictleung/pixarfilms
 
-destination: docs
+template:
+  params:
+    bootswatch: flatly
+    ganalytics: UA-66130577-1
 
 navbar:
-  title: "pixar"
+  title: "pixarfilms"
 
 reference:
   - title: Pixar movies
