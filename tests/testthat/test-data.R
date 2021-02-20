@@ -1,4 +1,5 @@
 context("data regression tests")
+options(tibble.print_min = 20)
 
 # convenience function for getting first and last 10 rows
 # source:
