@@ -37,3 +37,11 @@ install.packages("pixar")
 # Or install directly from GitHub
 remotes::install_github("erictleung/pixarfilms")
 ```
+
+## Example
+
+```{r}
+library(pixarfilms)
+pixar_films
+```
+

@@ -30,3 +30,24 @@ install.packages("pixar")
 # Or install directly from GitHub
 remotes::install_github("erictleung/pixarfilms")
 ```
+
+## Example
+
+``` r
+library(pixarfilms)
+pixar_films
+#> # A tibble: 27 x 3
+#>    number film            release_date
+#>    <chr>  <chr>           <date>      
+#>  1 1      Toy Story       1995-11-22  
+#>  2 2      A Bug's Life    1998-11-25  
+#>  3 3      Toy Story 2     1999-11-24  
+#>  4 4      Monsters, Inc.  2001-11-02  
+#>  5 5      Finding Nemo    2003-05-30  
+#>  6 6      The Incredibles 2004-11-05  
+#>  7 7      Cars            2006-06-09  
+#>  8 8      Ratatouille     2007-06-29  
+#>  9 9      WALL-E          2008-06-27  
+#> 10 10     Up              2009-05-29  
+#> # ... with 17 more rows
+```
