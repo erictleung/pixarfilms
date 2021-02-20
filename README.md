@@ -7,6 +7,8 @@
 
 [![CRAN
 status](https://www.r-pkg.org/badges/version/pixarfilms)](https://CRAN.R-project.org/package=pixarfilms)
+[![R build
+status](https://github.com/erictleung/pixarfilms/workflows/R-CMD-check/badge.svg)](https://github.com/erictleung/pixarfilms/actions)
 <!-- badges: end -->
 
 > R data package to explore Pixar films, the people, and reception data
