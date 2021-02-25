@@ -1,0 +1,23 @@
+# A tibble: 20 x 2
+   film                   budget
+   <chr>                   <dbl>
+ 1 Toy Story            30000000
+ 2 A Bug's Life        120000000
+ 3 Toy Story 2          90000000
+ 4 Monsters, Inc.      115000000
+ 5 Finding Nemo         94000000
+ 6 The Incredibles      92000000
+ 7 Cars                120000000
+ 8 Ratatouille         150000000
+ 9 WALL-E              180000000
+10 Up                  175000000
+11 Monsters University 200000000
+12 Inside Out          175000000
+13 The Good Dinosaur   175000000
+14 Finding Dory        200000000
+15 Cars 3              175000000
+16 Coco                175000000
+17 Incredibles 2       200000000
+18 Toy Story 4         200000000
+19 Onward              175000000
+20 Soul                150000000

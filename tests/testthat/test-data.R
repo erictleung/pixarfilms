@@ -37,10 +37,22 @@ test_that("Pixar genres head and tail", {
   )
 })
 
-test_that("Pixar box office head and tail", {
+# For too wide of data, the output of tibble makes some long column names
+# truncated. These next two tests are testing the same thing but need to be
+# split up so that there isn't any issue with comparing the truncation
+# character, which is sometimes the tilde character and sometimes an elipses,
+test_that("Pixar box office budget head and fail", {
   expect_known_output(
-    first_last(box_office),
-    "test-data_box_office.txt",
+    first_last(box_office[, c("film", "budget")]),
+    "test-data_box_office_budget.txt",
+    print = TRUE
+  )
+})
+
+test_that("Pixar box office numbers head and fail", {
+  expect_known_output(
+    first_last(box_office[, -2]),
+    "test-data_box_office_numbers.txt",
     print = TRUE
   )
 })
