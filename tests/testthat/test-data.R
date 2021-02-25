@@ -51,8 +51,16 @@ test_that("Pixar box office budget head and fail", {
 
 test_that("Pixar box office numbers head and fail", {
   expect_known_output(
-    first_last(box_office[, -2]),
+    first_last(box_office[, -c(2, 5)]),
     "test-data_box_office_numbers.txt",
+    print = TRUE
+  )
+})
+
+test_that("Pixar box office worldwide head and fail", {
+  expect_known_output(
+    first_last(box_office[, c("film", "box_office_worldwide")]),
+    "test-data_box_office_worldwide.txt",
     print = TRUE
   )
 })
