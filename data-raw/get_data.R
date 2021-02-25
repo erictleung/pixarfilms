@@ -234,6 +234,16 @@ public_response <-
     critics_choice = as.numeric(critics_choice)
   )
 
+# Some of the Cinema Scores use the em-dash instead of a simple dash when
+# rating, or at least on Wikipedia. So here let's replace those scores manually
+# with simple dashes.
+problem_films <- c("Cars 2", "Onward")
+public_response <-
+  public_response %>%
+  mutate(cinema_score = if_else(film %in% problem_films,
+                                "A-",
+                                cinema_score))
+
 # Convert to tibble for easier viewing
 public_response <- as_tibble(public_response)
 

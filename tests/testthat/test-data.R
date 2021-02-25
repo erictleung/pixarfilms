@@ -40,7 +40,7 @@ test_that("Pixar genres head and tail", {
 # For too wide of data, the output of tibble makes some long column names
 # truncated. These next two tests are testing the same thing but need to be
 # split up so that there isn't any issue with comparing the truncation
-# character, which is sometimes the tilde character and sometimes an elipses,
+# character, which is sometimes the tilde character and sometimes an ellipses.
 test_that("Pixar box office budget head and fail", {
   expect_known_output(
     first_last(box_office[, c("film", "budget")]),
