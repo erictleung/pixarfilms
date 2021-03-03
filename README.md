@@ -26,10 +26,7 @@ This package contains six data sets provided mostly in part by
 ## Installation
 
 ``` r
-# Install from CRAN (WIP)
-install.packages("pixar")
-
-# Or install directly from GitHub
+# Install directly from GitHub
 remotes::install_github("erictleung/pixarfilms")
 ```
 
