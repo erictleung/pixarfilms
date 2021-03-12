@@ -32,6 +32,9 @@ This package contains six data sets provided mostly in part by
 ## Installation
 
 ```{r, eval = FALSE}
+# Install from CRAN
+install.packages("pixarfilms")
+
 # Install directly from GitHub
 remotes::install_github("erictleung/pixarfilms")
 ```
