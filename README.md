@@ -10,6 +10,7 @@ status](https://www.r-pkg.org/badges/version/pixarfilms)](https://CRAN.R-project
 [![R build
 status](https://github.com/erictleung/pixarfilms/workflows/R-CMD-check/badge.svg)](https://github.com/erictleung/pixarfilms/actions)
 [![downloads](http://cranlogs.r-pkg.org/badges/pixarfilms)](http://cran.rstudio.com/web/packages/pixarfilms/index.html)
+[![total\_downloads](https://cranlogs.r-pkg.org/badges/grand-total/pixarfilms)](http://cran.rstudio.com/web/packages/pixarfilms/index.html)
 [![License
 CC0](https://img.shields.io/cran/l/pixarfilms)](https://img.shields.io/cran/l/pixarfilms)
 <!-- badges: end -->
