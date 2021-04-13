@@ -27,6 +27,10 @@ This package contains six data sets provided mostly in part by
   - `public_response` - critical and public response
   - `academy` - academy awards and nominations
 
+Feel free to explore the data immediately in your web browswer using
+[datasette](https://github.com/simonw/datasette) and SQL
+[here](https://pixarfilms-datasette.herokuapp.com/pixarfilms).
+
 ## Installation
 
 ``` r
