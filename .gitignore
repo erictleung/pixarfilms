@@ -5,3 +5,5 @@
 config.txt
 docs
 CRAN-RELEASE
+.Rprofile
+.Renviron
