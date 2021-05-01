@@ -8,6 +8,7 @@ library(usethis)
 library(lubridate)
 library(progress)
 library(readr)
+library(stringr)
 
 # Data wrangling packages
 library(dplyr)
