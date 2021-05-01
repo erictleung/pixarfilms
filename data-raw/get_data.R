@@ -1,5 +1,5 @@
 # Load packages and data --------------------------------------------------
-# Last run: 2021-02-09
+# Last run: 2021-05-01
 
 # Utility packages
 library(here)
@@ -125,24 +125,46 @@ omdb_w_key <- paste0(omdb_url, "?apikey=", config, "&")
 genres <-
   films %>%
   select(film) %>%
-  mutate(genre = NA)
+  mutate(genre = NA_character_,
+         run_time = NA_character_,
+         rated = NA_character_)
+
 pb <- progress_bar$new(total = nrow(genres))
 pb$tick(0) # Start progress
 for (film in 1:nrow(genres)) {
   pb$tick()
+
+  # Example:
+  # http://www.omdbapi.com/?apikey=<KEY>t=Toy+Story
   query_str <- str_replace_all(genres$film[film], " ", "+")
   omdb_data <- tryCatch({
     content(GET(url = paste0(omdb_w_key, "t=", query_str)))
   })
   if ("Error" %in% names(omdb_data)) {
-    omdb_data$Genre <- NA
+    omdb_data$Genre <- NA_character_
+    omdb_data$Runtime <- NA_character_
+    omdb_data$Rated <- NA_character_
   }
+
   genres[film, "genre"] <- omdb_data$Genre
+  genres[film, "run_time"] <- omdb_data$Runtime
+  genres[film, "rated"] <- omdb_data$Rated
 }
+
+# Move around data from OMDb to movie information before dealing with genres
+pixar_films <-
+  pixar_films %>%
+  left_join(
+    genres %>%
+      select(film, run_time, rated),
+    by = "film"
+  ) %>%
+  mutate(run_time = as.numeric(str_extract(run_time, "[0-9]*")))
 
 # Clean up multi-genre rows
 genres <-
   genres %>%
+  select(-c(run_time, rated)) %>%
   separate_rows(genre, sep = ", ") %>%
   drop_na(film)
 
