@@ -11,3 +11,4 @@
 ^CRAN-RELEASE$
 config.txt
 ^doc$
+^Meta$

@@ -8,3 +8,5 @@ CRAN-RELEASE
 .Rprofile
 .Renviron
 inst/doc
+/doc/
+/Meta/
