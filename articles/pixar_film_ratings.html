@@ -96,9 +96,7 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Pixar Film Ratings</h1>
-                        <h4 class="author">Eric Leung</h4>
             
-            <h4 class="date">2021-05-02</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/erictleung/pixarfilms/blob/master/vignettes/pixar_film_ratings.Rmd"><code>vignettes/pixar_film_ratings.Rmd</code></a></small>
       <div class="hidden name"><code>pixar_film_ratings.Rmd</code></div>
@@ -111,6 +109,10 @@
 <h2 class="hasAnchor">
 <a href="#overview" class="anchor"></a>Overview</h2>
 <p>This vignette is to recreate an analysis on Pixar ratings that can be found <a href="https://pierrecom.github.io/Pixars%20Movies.html">here</a>.</p>
+</div>
+<div id="setup" class="section level2">
+<h2 class="hasAnchor">
+<a href="#setup" class="anchor"></a>Setup</h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/erictleung/pixarfilms">pixarfilms</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
@@ -125,9 +127,14 @@
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org">tidyr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://forcats.tidyverse.org">forcats</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></code></pre></div>
-<p>Their first plot was comparing the Pixar films’ ratings over time.</p>
+</div>
+<div id="data-wrangling" class="section level2">
+<h2 class="hasAnchor">
+<a href="#data-wrangling" class="anchor"></a>Data wrangling</h2>
+<p>Before we can visualize our data, let’s wrangle our data to help us visualize it later on.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">public_response</span> <span class="op">%&gt;%</span>
+<code class="sourceCode R"><span class="va">df</span> <span class="op">&lt;-</span>
+  <span class="va">public_response</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">film</span>, <span class="va">rotten_tomatoes</span>, <span class="va">metacritic</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>film <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_inorder.html">fct_inorder</a></span><span class="op">(</span><span class="va">film</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"rotten_tomatoes"</span>, <span class="st">"metacritic"</span><span class="op">)</span>,
@@ -136,7 +143,14 @@
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>ratings <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span>
     <span class="va">ratings</span> <span class="op">==</span> <span class="st">"metacritic"</span> <span class="op">~</span> <span class="st">"Metacritic"</span>,
     <span class="va">ratings</span> <span class="op">==</span> <span class="st">"rotten_tomatoes"</span> <span class="op">~</span> <span class="st">"Rotten Tomatoes"</span>
-  <span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="op">)</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="ratings-over-time" class="section level2">
+<h2 class="hasAnchor">
+<a href="#ratings-over-time" class="anchor"></a>Ratings over time</h2>
+<p>Their first plot was comparing the Pixar films’ ratings over time.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">df</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">film</span>, y <span class="op">=</span> <span class="va">value</span>, col <span class="op">=</span> <span class="va">ratings</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>group <span class="op">=</span> <span class="va">ratings</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
@@ -148,19 +162,15 @@
         legend.position <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span> 
 <span class="co">#&gt; Warning: Removed 2 rows containing missing values (geom_point).</span>
 <span class="co">#&gt; Warning: Removed 2 row(s) containing missing values (geom_path).</span></code></pre></div>
-<p><img src="pixar_film_ratings_files/figure-html/unnamed-chunk-2-1.png" width="576"></p>
+<p><img src="pixar_film_ratings_files/figure-html/unnamed-chunk-3-1.png" width="576"></p>
 <p><strong>Verdict</strong>: people and critics generally agree that Cars 2 was not as good as the other Pixar films.</p>
+</div>
+<div id="ratings-by-rating-group" class="section level2">
+<h2 class="hasAnchor">
+<a href="#ratings-by-rating-group" class="anchor"></a>Ratings by rating group</h2>
 <p>Next, let’s group the rating categories to see if there is a consistency across.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">public_response</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">film</span>, <span class="va">rotten_tomatoes</span>, <span class="va">metacritic</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"rotten_tomatoes"</span>, <span class="st">"metacritic"</span><span class="op">)</span>,
-               names_to <span class="op">=</span> <span class="st">"ratings"</span>,
-               values_to <span class="op">=</span> <span class="st">"value"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>ratings <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span>
-    <span class="va">ratings</span> <span class="op">==</span> <span class="st">"metacritic"</span> <span class="op">~</span> <span class="st">"Metacritic"</span>,
-    <span class="va">ratings</span> <span class="op">==</span> <span class="st">"rotten_tomatoes"</span> <span class="op">~</span> <span class="st">"Rotten Tomatoes"</span>
-  <span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">df</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">ratings</span>, y <span class="op">=</span> <span class="va">value</span>, col <span class="op">=</span> <span class="va">ratings</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">ggbeeswarm</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggbeeswarm/man/geom_beeswarm.html">geom_beeswarm</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
@@ -177,9 +187,9 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span> 
 <span class="co">#&gt; Warning: Removed 2 rows containing non-finite values (stat_boxplot).</span>
 <span class="co">#&gt; Warning: Removed 2 rows containing missing values (position_beeswarm).</span></code></pre></div>
-<p><img src="pixar_film_ratings_files/figure-html/unnamed-chunk-3-1.png" width="384"></p>
+<p><img src="pixar_film_ratings_files/figure-html/unnamed-chunk-4-1.png" width="384"></p>
 <p><strong>Verdict</strong>: people at Rotten Tomatoes generally like Pixar films more than Metacritic, for the exception of Cars 2.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; R version 4.0.5 (2021-03-31)</span>
 <span class="co">#&gt; Platform: x86_64-apple-darwin17.0 (64-bit)</span>
