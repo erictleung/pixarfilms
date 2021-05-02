@@ -1,23 +1,23 @@
 # A tibble: 20 x 3
-   film                                role_type    name                  
-   <chr>                               <chr>        <chr>                 
- 1 Toy Story                           Director     John Lasseter         
- 2 Toy Story                           Screenwriter Joel Cohen            
- 3 Toy Story                           Screenwriter Alec Sokolow          
- 4 Toy Story                           Screenwriter Andrew Stanton        
- 5 Toy Story                           Screenwriter Joss Whedon           
- 6 Toy Story                           Storywriter  Pete Docter           
- 7 Toy Story                           Storywriter  Lasseter              
- 8 Toy Story                           Storywriter  Joe Ranft             
- 9 Toy Story                           Storywriter  Stanton               
-10 Toy Story                           Producer     Bonnie Arnold         
-11 Lightyear                           Storywriter  <NA>                  
-12 Lightyear                           Producer     Galyn Susman          
-13 Lightyear                           Musician     <NA>                  
-14 Kobu and the Lost City of Elephants Director     Sanjay Patel          
-15 Kobu and the Lost City of Elephants Director     Matthew A. Cherry     
-16 Kobu and the Lost City of Elephants Screenwriter <NA>                  
-17 Kobu and the Lost City of Elephants Storywriter  <NA>                  
-18 Kobu and the Lost City of Elephants Producer     Nicole Paradis Grindle
-19 Kobu and the Lost City of Elephants Producer     Kevin Reher           
-20 Kobu and the Lost City of Elephants Musician     <NA>                  
+   film        role_type    name           
+   <chr>       <chr>        <chr>          
+ 1 Toy Story   Director     John Lasseter  
+ 2 Toy Story   Screenwriter Joel Cohen     
+ 3 Toy Story   Screenwriter Alec Sokolow   
+ 4 Toy Story   Screenwriter Andrew Stanton 
+ 5 Toy Story   Screenwriter Joss Whedon    
+ 6 Toy Story   Storywriter  Pete Docter    
+ 7 Toy Story   Storywriter  Lasseter       
+ 8 Toy Story   Storywriter  Joe Ranft      
+ 9 Toy Story   Storywriter  Stanton        
+10 Toy Story   Producer     Bonnie Arnold  
+11 Turning Red Director     Domee Shi      
+12 Turning Red Screenwriter <NA>           
+13 Turning Red Storywriter  <NA>           
+14 Turning Red Producer     Lindsey Collins
+15 Turning Red Musician     <NA>           
+16 Lightyear   Director     Angus MacLane  
+17 Lightyear   Screenwriter <NA>           
+18 Lightyear   Storywriter  <NA>           
+19 Lightyear   Producer     Galyn Susman   
+20 Lightyear   Musician     <NA>           

@@ -1,23 +1,23 @@
 # A tibble: 20 x 2
-   film                box_office_worldwide
-   <chr>                              <dbl>
- 1 Toy Story                      373554033
- 2 A Bug's Life                   363258859
- 3 Toy Story 2                    497374776
- 4 Monsters, Inc.                 632316649
- 5 Finding Nemo                   871014978
- 6 The Incredibles                631606713
- 7 Cars                           461983149
- 8 Ratatouille                    623726085
- 9 WALL-E                         521311860
-10 Up                             735099082
-11 Monsters University            743559607
-12 Inside Out                     857611174
-13 The Good Dinosaur              332207671
-14 Finding Dory                  1028570889
-15 Cars 3                         383930656
-16 Coco                           807082196
-17 Incredibles 2                 1242805359
-18 Toy Story 4                   1073394593
-19 Onward                         141950121
-20 Soul                            96200000
+   film              box_office_worldwide
+   <chr>                            <dbl>
+ 1 Toy Story                    373554033
+ 2 A Bug's Life                 363258859
+ 3 Toy Story 2                  497374776
+ 4 Monsters, Inc.               632316649
+ 5 Finding Nemo                 871014978
+ 6 The Incredibles              631606713
+ 7 Cars                         461983149
+ 8 Ratatouille                  623726085
+ 9 WALL-E                       521311860
+10 Up                           735099082
+11 Inside Out                   857611174
+12 The Good Dinosaur            332207671
+13 Finding Dory                1028570889
+14 Cars 3                       383930656
+15 Coco                         807082196
+16 Incredibles 2               1242805359
+17 Toy Story 4                 1073394593
+18 Onward                       141950121
+19 Soul                         135435315
+20 Luca                                NA

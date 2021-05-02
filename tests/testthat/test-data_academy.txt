@@ -1,23 +1,23 @@
 # A tibble: 20 x 3
-   film          award_type          status                  
-   <chr>         <chr>               <chr>                   
- 1 Toy Story     Animated Feature    Award not yet introduced
- 2 Toy Story     Original Screenplay Nominated               
- 3 Toy Story     Adapted Screenplay  Ineligible              
- 4 Toy Story     Original Score      Nominated               
- 5 Toy Story     Original Song       Nominated               
- 6 Toy Story     Other               Won Special Achievement 
- 7 A Bug's Life  Animated Feature    Award not yet introduced
- 8 A Bug's Life  Adapted Screenplay  Ineligible              
- 9 A Bug's Life  Original Score      Nominated               
-10 Toy Story 2   Animated Feature    Award not yet introduced
-11 Coco          Animated Feature    Won                     
-12 Coco          Adapted Screenplay  Ineligible              
-13 Coco          Original Song       Won                     
-14 Incredibles 2 Animated Feature    Nominated               
-15 Incredibles 2 Original Screenplay Ineligible              
-16 Toy Story 4   Animated Feature    Won                     
-17 Toy Story 4   Original Screenplay Ineligible              
-18 Toy Story 4   Original Song       Nominated               
-19 Onward        Adapted Screenplay  Ineligible              
-20 Soul          Adapted Screenplay  Ineligible              
+   film         award_type          status                  
+   <chr>        <chr>               <chr>                   
+ 1 Toy Story    Animated Feature    Award not yet introduced
+ 2 Toy Story    Original Screenplay Nominated               
+ 3 Toy Story    Adapted Screenplay  Ineligible              
+ 4 Toy Story    Original Score      Nominated               
+ 5 Toy Story    Original Song       Nominated               
+ 6 Toy Story    Other               Won Special Achievement 
+ 7 A Bug's Life Animated Feature    Award not yet introduced
+ 8 A Bug's Life Adapted Screenplay  Ineligible              
+ 9 A Bug's Life Original Score      Nominated               
+10 Toy Story 2  Animated Feature    Award not yet introduced
+11 Toy Story 4  Animated Feature    Won                     
+12 Toy Story 4  Original Screenplay Ineligible              
+13 Toy Story 4  Original Song       Nominated               
+14 Onward       Animated Feature    Nominated               
+15 Onward       Adapted Screenplay  Ineligible              
+16 Soul         Animated Feature    Won                     
+17 Soul         Adapted Screenplay  Ineligible              
+18 Soul         Original Score      Won                     
+19 Soul         Sound Editing       Nominated               
+20 Soul         Sound Mixing        Nominated               

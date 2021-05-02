@@ -1,23 +1,23 @@
 # A tibble: 20 x 3
-   film                box_office_us_canada box_office_other
-   <chr>                              <dbl>            <dbl>
- 1 Toy Story                      191796233        181757800
- 2 A Bug's Life                   162798565        200460294
- 3 Toy Story 2                    245852179        251522597
- 4 Monsters, Inc.                 289916256        342400393
- 5 Finding Nemo                   339714978        531300000
- 6 The Incredibles                261441092        370165621
- 7 Cars                           244082982        217900167
- 8 Ratatouille                    206445654        417280431
- 9 WALL-E                         223808164        297503696
-10 Up                             293004164        442094918
-11 Monsters University            268492764        475066843
-12 Inside Out                     356461711        501149463
-13 The Good Dinosaur              123087120        209120551
-14 Finding Dory                   486295561        542275328
-15 Cars 3                         152901115        231029541
-16 Coco                           209726015        597356181
-17 Incredibles 2                  608581744        634223615
-18 Toy Story 4                    434038008        639356585
-19 Onward                          61555145         80394976
-20 Soul                                  NA         96200000
+   film              box_office_us_canada box_office_other
+   <chr>                            <dbl>            <dbl>
+ 1 Toy Story                    191796233        181757800
+ 2 A Bug's Life                 162798565        200460294
+ 3 Toy Story 2                  245852179        251522597
+ 4 Monsters, Inc.               289916256        342400393
+ 5 Finding Nemo                 339714978        531300000
+ 6 The Incredibles              261441092        370165621
+ 7 Cars                         244082982        217900167
+ 8 Ratatouille                  206445654        417280431
+ 9 WALL-E                       223808164        297503696
+10 Up                           293004164        442094918
+11 Inside Out                   356461711        501149463
+12 The Good Dinosaur            123087120        209120551
+13 Finding Dory                 486295561        542275328
+14 Cars 3                       152901115        231029541
+15 Coco                         209726015        597356181
+16 Incredibles 2                608581744        634223615
+17 Toy Story 4                  434038008        639356585
+18 Onward                        61555145         80394976
+19 Soul                                NA        135435315
+20 Luca                                NA               NA
