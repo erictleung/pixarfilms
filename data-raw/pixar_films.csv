@@ -1,4 +1,4 @@
-number,film,release_date,run_time,rated
+number,film,release_date,run_time,film_rating
 1,Toy Story,1995-11-22,81,G
 2,A Bug's Life,1998-11-25,95,G
 3,Toy Story 2,1999-11-24,92,G

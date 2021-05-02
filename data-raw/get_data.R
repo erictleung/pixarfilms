@@ -148,7 +148,7 @@ for (film in 1:nrow(genres)) {
 
   genres[film, "genre"] <- omdb_data$Genre
   genres[film, "run_time"] <- omdb_data$Runtime
-  genres[film, "rated"] <- omdb_data$Rated
+  genres[film, "film_rating"] <- omdb_data$Rated
 }
 
 # Move around data from OMDb to movie information before dealing with genres
