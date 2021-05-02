@@ -22,6 +22,7 @@ Suggests:
     spelling,
     knitr,
     rmarkdown,
+    markdown,
     dplyr,
     tidyr,
     forcats,
