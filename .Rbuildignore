@@ -10,3 +10,4 @@
 ^\.github$
 ^CRAN-RELEASE$
 config.txt
+^doc$
