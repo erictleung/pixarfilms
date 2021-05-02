@@ -9,8 +9,8 @@
 status](https://www.r-pkg.org/badges/version/pixarfilms)](https://CRAN.R-project.org/package=pixarfilms)
 [![R build
 status](https://github.com/erictleung/pixarfilms/workflows/R-CMD-check/badge.svg)](https://github.com/erictleung/pixarfilms/actions)
-[![downloads](http://cranlogs.r-pkg.org/badges/pixarfilms)](http://cran.rstudio.com/web/packages/pixarfilms/index.html)
-[![total\_downloads](https://cranlogs.r-pkg.org/badges/grand-total/pixarfilms)](http://cran.rstudio.com/web/packages/pixarfilms/index.html)
+[![downloads](https://cranlogs.r-pkg.org/badges/pixarfilms)](https://cran.rstudio.com/web/packages/pixarfilms/index.html)
+[![total\_downloads](https://cranlogs.r-pkg.org/badges/grand-total/pixarfilms)](https://cran.rstudio.com/web/packages/pixarfilms/index.html)
 [![License
 CC0](https://img.shields.io/cran/l/pixarfilms)](https://img.shields.io/cran/l/pixarfilms)
 <!-- badges: end -->
@@ -47,17 +47,17 @@ remotes::install_github("erictleung/pixarfilms")
 library(pixarfilms)
 pixar_films
 #> # A tibble: 27 x 5
-#>    number film            release_date run_time rated
-#>    <chr>  <chr>           <date>          <dbl> <chr>
-#>  1 1      Toy Story       1995-11-22         81 G    
-#>  2 2      A Bug's Life    1998-11-25         95 G    
-#>  3 3      Toy Story 2     1999-11-24         92 G    
-#>  4 4      Monsters, Inc.  2001-11-02         92 G    
-#>  5 5      Finding Nemo    2003-05-30        100 G    
-#>  6 6      The Incredibles 2004-11-05        115 PG   
-#>  7 7      Cars            2006-06-09        117 G    
-#>  8 8      Ratatouille     2007-06-29        111 G    
-#>  9 9      WALL-E          2008-06-27         98 G    
-#> 10 10     Up              2009-05-29         96 PG   
+#>    number film            release_date run_time film_rating
+#>    <chr>  <chr>           <date>          <dbl> <chr>      
+#>  1 1      Toy Story       1995-11-22         81 G          
+#>  2 2      A Bug's Life    1998-11-25         95 G          
+#>  3 3      Toy Story 2     1999-11-24         92 G          
+#>  4 4      Monsters, Inc.  2001-11-02         92 G          
+#>  5 5      Finding Nemo    2003-05-30        100 G          
+#>  6 6      The Incredibles 2004-11-05        115 PG         
+#>  7 7      Cars            2006-06-09        117 G          
+#>  8 8      Ratatouille     2007-06-29        111 G          
+#>  9 9      WALL-E          2008-06-27         98 G          
+#> 10 10     Up              2009-05-29         96 PG         
 #> # ... with 17 more rows
 ```
