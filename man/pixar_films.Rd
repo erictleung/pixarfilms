@@ -11,8 +11,8 @@ A data frame with 27 rows and 3 variables:
 \item{film}{name of film}
 \item{release_date}{date film premiered}
 \item{run_time}{film length in minutes}
-\item{rated}{rating based on Motion Picture Association (MPA) film rating
-system}
+\item{film_rating}{rating based on Motion Picture Association (MPA) film
+rating system}
 }
 }
 \source{
