@@ -48,7 +48,7 @@ df <-
   mutate(ratings = case_when(
     ratings == "metacritic" ~ "Metacritic",
     ratings == "rotten_tomatoes" ~ "Rotten Tomatoes"
-  )) %>%
+  ))
 ```
 
 
