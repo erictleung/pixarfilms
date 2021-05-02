@@ -38,7 +38,8 @@ Ratatouille,Sound Mixing,Nominated
 WALL-E,Animated Feature,Won
 WALL-E,Original Screenplay,Nominated
 WALL-E,Adapted Screenplay,Ineligible
-WALL-E,Original Score,Ineligible
+WALL-E,Original Score,Nominated
+WALL-E,Original Song,Nominated
 WALL-E,Sound Editing,Nominated
 WALL-E,Sound Mixing,Nominated
 Up,Best Picture,Nominated
@@ -46,12 +47,14 @@ Up,Animated Feature,Won
 Up,Original Screenplay,Nominated
 Up,Adapted Screenplay,Ineligible
 Up,Original Score,Won
+Up,Sound Editing,Nominated
 Toy Story 3,Best Picture,Nominated
 Toy Story 3,Animated Feature,Won
 Toy Story 3,Original Screenplay,Ineligible
 Toy Story 3,Adapted Screenplay,Nominated
-Toy Story 3,Sound Editing,Won
-Cars 2,Best Picture,Nominated
+Toy Story 3,Original Song,Won
+Toy Story 3,Sound Editing,Nominated
+Cars 2,Original Screenplay,Ineligible
 Brave,Animated Feature,Won
 Brave,Adapted Screenplay,Ineligible
 Monsters University,Original Screenplay,Ineligible
@@ -69,5 +72,10 @@ Incredibles 2,Original Screenplay,Ineligible
 Toy Story 4,Animated Feature,Won
 Toy Story 4,Original Screenplay,Ineligible
 Toy Story 4,Original Song,Nominated
+Onward,Animated Feature,Nominated
 Onward,Adapted Screenplay,Ineligible
+Soul,Animated Feature,Won
 Soul,Adapted Screenplay,Ineligible
+Soul,Original Score,Won
+Soul,Sound Editing,Nominated
+Soul,Sound Mixing,Nominated
