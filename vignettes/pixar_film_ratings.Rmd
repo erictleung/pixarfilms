@@ -1,7 +1,5 @@
 ---
 title: "Pixar Film Ratings"
-author: "Eric Leung"
-date: "2021-05-02"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{pixar_film_ratings}
@@ -23,6 +21,8 @@ knitr::opts_chunk$set(
 ```
 
 
+## Setup
+
 ```{r setup, warning=FALSE}
 library(pixarfilms)
 library(dplyr)
@@ -32,10 +32,14 @@ library(ggplot2)
 ```
 
 
-Their first plot was comparing the Pixar films' ratings over time.
+## Data wrangling
 
-```{r fig.height=5, fig.width=6}
-public_response %>%
+Before we can visualize our data, let's wrangle our data to help us visualize it
+later on.
+
+```{r}
+df <-
+  public_response %>%
   select(film, rotten_tomatoes, metacritic) %>%
   mutate(film = fct_inorder(film)) %>%
   pivot_longer(cols = c("rotten_tomatoes", "metacritic"),
@@ -45,6 +49,15 @@ public_response %>%
     ratings == "metacritic" ~ "Metacritic",
     ratings == "rotten_tomatoes" ~ "Rotten Tomatoes"
   )) %>%
+```
+
+
+## Ratings over time
+
+Their first plot was comparing the Pixar films' ratings over time.
+
+```{r fig.height=5, fig.width=6}
+df %>%
   ggplot(aes(x = film, y = value, col = ratings)) +
   geom_point() +
   geom_line(aes(group = ratings)) +
@@ -60,18 +73,13 @@ public_response %>%
 **Verdict**: people and critics generally agree that Cars 2 was not as good as
 the other Pixar films.
 
+
+## Ratings by rating group
+
 Next, let's group the rating categories to see if there is a consistency across.
 
 ```{r fig.height=6, fig.width=4}
-public_response %>%
-  select(film, rotten_tomatoes, metacritic) %>%
-  pivot_longer(cols = c("rotten_tomatoes", "metacritic"),
-               names_to = "ratings",
-               values_to = "value") %>%
-  mutate(ratings = case_when(
-    ratings == "metacritic" ~ "Metacritic",
-    ratings == "rotten_tomatoes" ~ "Rotten Tomatoes"
-  )) %>%
+df %>%
   ggplot(aes(x = ratings, y = value, col = ratings)) +
   geom_boxplot() +
   ggbeeswarm::geom_beeswarm() +
