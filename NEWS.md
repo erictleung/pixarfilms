@@ -1,3 +1,9 @@
+# pixarfilms 0.1.1
+
+* Rename `rating` to `film_rating` to be more clear on meaning
+* Update test data based on recent data updates
+* Re-knit README for updated data
+
 # pixarfilms 0.1.0
 
 * Update awards for Soul and Onward
