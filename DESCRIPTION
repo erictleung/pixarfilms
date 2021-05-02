@@ -21,7 +21,13 @@ Suggests:
     testthat,
     spelling,
     knitr,
-    rmarkdown
+    rmarkdown,
+    dplyr,
+    tidyr,
+    forcats,
+    ggplot2,
+    ggrepl,
+    ggbeeswarm
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
