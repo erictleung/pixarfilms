@@ -1,3 +1,9 @@
+# pixarfilms 0.2.0
+
+* Add vignette for Pixar film ratings
+* Add to suggested packages for vignettes
+* Update to HTTPS for README badges
+
 # pixarfilms 0.1.1
 
 * Rename `rating` to `film_rating` to be more clear on meaning
