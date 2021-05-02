@@ -7,3 +7,4 @@ docs
 CRAN-RELEASE
 .Rprofile
 .Renviron
+inst/doc
