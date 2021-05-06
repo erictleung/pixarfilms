@@ -68,7 +68,7 @@ df %>%
   labs(x = "Pixar film", y = "Rating value") +
   guides(col = guide_legend(title = "Ratings")) +
   theme_minimal() +
-  theme(axis.text.x = element_text(angle = 90),
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5),
         legend.position = "bottom") 
 ```
 
