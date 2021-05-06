@@ -28,7 +28,8 @@ Suggests:
     forcats,
     ggplot2,
     ggrepel,
-    ggbeeswarm
+    ggbeeswarm,
+    irr
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)

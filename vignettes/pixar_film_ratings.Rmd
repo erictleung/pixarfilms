@@ -29,6 +29,7 @@ library(dplyr)
 library(tidyr)
 library(forcats)
 library(ggplot2)
+library(irr)
 ```
 
 
@@ -40,15 +41,17 @@ later on.
 ```{r}
 df <-
   public_response %>%
-  select(film, rotten_tomatoes, metacritic) %>%
+  select(-cinema_score) %>%
   mutate(film = fct_inorder(film)) %>%
-  pivot_longer(cols = c("rotten_tomatoes", "metacritic"),
+  pivot_longer(cols = c("rotten_tomatoes", "metacritic", "critics_choice"),
                names_to = "ratings",
                values_to = "value") %>%
   mutate(ratings = case_when(
     ratings == "metacritic" ~ "Metacritic",
-    ratings == "rotten_tomatoes" ~ "Rotten Tomatoes"
-  ))
+    ratings == "rotten_tomatoes" ~ "Rotten Tomatoes",
+    ratings == "critics_choice" ~ "Critics Choice"
+  )) %>%
+  drop_na()
 ```
 
 
@@ -78,10 +81,10 @@ the other Pixar films.
 
 Next, let's group the rating categories to see if there is a consistency across.
 
-```{r fig.height=6, fig.width=4}
+```{r fig.height=6, fig.width=5}
 df %>%
   ggplot(aes(x = ratings, y = value, col = ratings)) +
-  geom_boxplot() +
+  geom_boxplot(width = 1.75 / length(unique(df$ratings))) +
   ggbeeswarm::geom_beeswarm() +
   ggrepel::geom_text_repel(data = . %>%
                              filter(film == "Cars 2" ) %>%
@@ -98,8 +101,29 @@ df %>%
 
 
 **Verdict**: people at Rotten Tomatoes generally like Pixar films more than
-Metacritic, for the exception of Cars 2.
+Metacritic and Critics Choice. The exception to this is Cars 2, which rated the
+lowest out of all critic groups.
 
+
+## Rating consistency
+
+Are the groups statistically consistent? Let's perform
+[an interclass correlation](https://en.wikipedia.org/wiki/Intraclass_correlation)
+among the different critic groups.
+
+```{r}
+public_response %>%
+  select(-c(cinema_score, film)) %>%
+  drop_na() %>%
+  icc(model = "twoway", type = "consistency")
+```
+
+**Verdict**: with a null hypothesis that all critic groups are not consistent,
+for the 21 Pixar films we have data for all critic groups, all groups are
+consistent in rating Pixar films (p < 0.001).
+
+
+## Session information
 
 ```{r}
 sessionInfo()
