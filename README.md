@@ -62,3 +62,42 @@ pixar_films
 #> 10 10     Up              2009-05-29         96 PG         
 #> # ... with 17 more rows
 ```
+
+## Documentation
+
+You can find information about the data sets and more
+[here](erictleung.com/pixarfilms/). The official CRAN release page can
+be found [here](https://cran.r-project.org/package=pixarfilms).
+
+## Data
+
+This data here within is not constrained to exploring just within R.
+
+Here are other accessible means of using this data.
+
+-   Through [your
+    browser](https://pixarfilms-datasette.herokuapp.com/pixarfilms)
+    using datasette and [a SQLite database](data-raw/pixarfilms.db)
+-   Through CSV files found within the [`data-raw/`
+    directory](data-raw/)
+
+Here are direct links to each data set.
+
+    https://raw.githubusercontent.com/erictleung/pixarfilms/master/data-raw/academy.csv
+    https://raw.githubusercontent.com/erictleung/pixarfilms/master/data-raw/box_office.csv
+    https://raw.githubusercontent.com/erictleung/pixarfilms/master/data-raw/genres.csv
+    https://raw.githubusercontent.com/erictleung/pixarfilms/master/data-raw/pixar_films.csv
+    https://raw.githubusercontent.com/erictleung/pixarfilms/master/data-raw/pixar_people.csv
+    https://raw.githubusercontent.com/erictleung/pixarfilms/master/data-raw/public_response.csv
+
+## Feedback
+
+If you have any feedback or suggestions on other data that can be added,
+please file an issue
+[here](https://github.com/erictleung/pixarfilms/issues).
+
+## Acknowledgements
+
+-   [Wikipedia](https://www.wikipedia.org)
+-   [OMDb API](https://www.omdbapi.com/)
+-   [babynames](https://github.com/hadley/babynames) (for inspiration)
