@@ -66,7 +66,7 @@ NULL
 #'
 #' A data set with financial and box office gross numbers for each film.
 #'
-#' @format A data frame with 23 rows and 5 variables:
+#' @format A data frame with 24 rows and 5 variables:
 #' \describe{
 #'   \item{film}{name of film}
 #'   \item{budget}{movie budget in U.S. dollars}
