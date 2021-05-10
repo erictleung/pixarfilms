@@ -304,7 +304,7 @@ academy <-
 # Save out data for use ---------------------------------------------------
 
 
-# Save out for external use
+# Save out for external use as CSV files
 save_data <- function(x) {
   # Notes on deparse() and substitute()
   # https://stackoverflow.com/a/14577878/6873133
@@ -318,7 +318,7 @@ save_data(box_office)
 save_data(public_response)
 save_data(academy)
 
-# Save out for package use
+# Save out for package use as RDA files in `data/` directory
 use_data(
   pixar_films,
   pixar_people,
