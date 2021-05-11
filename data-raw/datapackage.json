@@ -1,0 +1,238 @@
+{
+  "profile": "data-package",
+  "resources": [
+    {
+      "name": "pixar_films",
+      "path": "pixar_films.csv",
+      "profile": "tabular-data-resource",
+      "schema": {
+        "fields": [
+          {
+            "name": "number",
+            "type": "integer",
+            "format": "default",
+            "title": "Order of release"
+          },
+          {
+            "name": "film",
+            "type": "string",
+            "format": "default",
+            "title": "Film title"
+          },
+          {
+            "name": "release_date",
+            "type": "date",
+            "format": "default",
+            "title": "Date of film release"
+          },
+          {
+            "name": "run_time",
+            "type": "integer",
+            "format": "default",
+            "title": "Film run time",
+            "description": "Film length in minutes"
+          },
+          {
+            "name": "film_rating",
+            "type": "string",
+            "format": "default",
+            "title": "Film rating",
+            "description": "Rating based on Motion Picture Association (MPA) film rating system"
+          }
+        ]
+      }
+    },
+    {
+      "name": "academy",
+      "path": "academy.csv",
+      "profile": "tabular-data-resource",
+      "schema": {
+        "fields": [
+          {
+            "name": "film",
+            "type": "string",
+            "format": "default",
+            "title": "Film title"
+          },
+          {
+            "name": "award_type",
+            "type": "string",
+            "format": "default",
+            "title": "Name of award"
+          },
+          {
+            "name": "status",
+            "type": "string",
+            "format": "default",
+            "title": "Status of award"
+          }
+        ]
+      },
+      "format": "CSV",
+      "encoding": "UTF-8",
+      "title": "Pixar awards and nominations",
+      "description": "A data set with the awards and nominations each Pixar film has won."
+    },
+    {
+      "name": "box_office",
+      "path": "box_office.csv",
+      "profile": "tabular-data-resource",
+      "schema": {
+        "fields": [
+          {
+            "name": "film",
+            "type": "string",
+            "format": "default",
+            "title": "Film title"
+          },
+          {
+            "name": "budget",
+            "type": "integer",
+            "format": "default",
+            "title": "Movie budget in U.S. dollars"
+          },
+          {
+            "name": "box_office_us_canada",
+            "type": "integer",
+            "format": "default",
+            "title": "Box office gross amount for U.S. and Canada",
+            "description": "Amount in U.S. dollars"
+          },
+          {
+            "name": "box_office_other",
+            "type": "integer",
+            "format": "default",
+            "title": "Box office gross amount for other territories",
+            "description": "Amount in U.S. dollars"
+          },
+          {
+            "name": "box_office_worldwide",
+            "type": "integer",
+            "format": "default",
+            "title": "Box office gross amount worldwise",
+            "description": "Amount in U.S. dollars"
+          }
+        ]
+      }
+    },
+    {
+      "name": "genres",
+      "path": "genres.csv",
+      "profile": "tabular-data-resource",
+      "schema": {
+        "fields": [
+          {
+            "name": "film",
+            "type": "string",
+            "format": "default",
+            "title": "Film title"
+          },
+          {
+            "name": "genre",
+            "type": "string",
+            "format": "default",
+            "title": "Genre film is categorized into"
+          }
+        ]
+      }
+    },
+    {
+      "name": "pixar_people",
+      "path": "pixar_people.csv",
+      "profile": "tabular-data-resource",
+      "schema": {
+        "fields": [
+          {
+            "name": "film",
+            "type": "string",
+            "format": "default",
+            "title": "Film title"
+          },
+          {
+            "name": "role_type",
+            "type": "string",
+            "format": "default",
+            "title": "Role within movie",
+            "description": "One of five roles: Director, Musician, Producer, Screenwriter, Storywriter"
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "format": "default",
+            "title": "Individual's name"
+          }
+        ]
+      }
+    },
+    {
+      "name": "public_response",
+      "path": "public_response.csv",
+      "profile": "tabular-data-resource",
+      "schema": {
+        "fields": [
+          {
+            "name": "film",
+            "type": "string",
+            "format": "default",
+            "title": "Film title"
+          },
+          {
+            "name": "rotten_tomatoes",
+            "type": "integer",
+            "format": "default",
+            "title": "Rotten Tomatoes score",
+            "description": "Score from the American review-aggregation website Rotten Tomatoes; scored out of 100"
+          },
+          {
+            "name": "metacritic",
+            "type": "integer",
+            "format": "default",
+            "title": "Metacritic score",
+            "description": "Score from Metacritic where scores are weighted average of reviews; scored out of 100"
+          },
+          {
+            "name": "cinema_score",
+            "type": "string",
+            "format": "default",
+            "description": "Score from market research firm CinemaScore; scored by grades A, B, C, D, and F",
+            "title": "CinemaScore score"
+          },
+          {
+            "name": "critics_choice",
+            "type": "integer",
+            "format": "default",
+            "title": "Critics Choice score",
+            "description": "Score from Critics' Choice Movie Awards presented by the American-Canadian Critics Choice Association (CCA); scored out of 100"
+          }
+        ]
+      }
+    }
+  ],
+  "keywords": [
+    "pixar",
+    "disney",
+    "wikipedia",
+    "data",
+    "imdb",
+    "rstats",
+    "web scraping"
+  ],
+  "licenses": [
+    {
+      "name": "CC0-1.0",
+      "title": "CC0 1.0",
+      "path": "https://creativecommons.org/publicdomain/zero/1.0/"
+    }
+  ],
+  "name": "pixarfilms",
+  "title": "pixarfilms",
+  "description": "R data package to explore Pixar films, the people, and reception data ",
+  "homepage": "https://github.com/erictleung/pixarfilms",
+  "version": "0.2.0",
+  "contributors": [
+    {
+      "title": "Eric T Leung",
+      "role": "author"
+    }
+  ]
+}
