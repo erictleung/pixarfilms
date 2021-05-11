@@ -34,11 +34,16 @@ and SQL.
 
 ## Installation
 
-``` r
-# Install from CRAN
-install.packages("pixarfilms")
+Install `pixarfilms` from CRAN:
 
-# Install directly from GitHub
+``` r
+install.packages("pixarfilms")
+```
+
+Or you can install the development version of `pixarfilms` from GitHub
+with:
+
+``` r
 remotes::install_github("erictleung/pixarfilms")
 ```
 
@@ -95,6 +100,13 @@ Here are direct links to each data set.
 If you have any feedback or suggestions on other data that can be added,
 please file an issue
 [here](https://github.com/erictleung/pixarfilms/issues).
+
+## Code of Conduct
+
+Please note that the {pixarfilms} project is released with a
+[Contributor Code of
+Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html).
+By contributing to this project, you agree to abide by its terms.
 
 ## Acknowledgements
 
