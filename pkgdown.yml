@@ -3,7 +3,7 @@ pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   pixar_film_ratings: pixar_film_ratings.html
-last_built: 2021-05-08T15:01Z
+last_built: 2021-05-11T03:15Z
 urls:
   reference: https://erictleung.com/pixarfilms, https://github.com/erictleung/pixarfilms/reference
   article: https://erictleung.com/pixarfilms, https://github.com/erictleung/pixarfilms/articles
