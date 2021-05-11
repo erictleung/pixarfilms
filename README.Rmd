@@ -87,6 +87,11 @@ https://raw.githubusercontent.com/erictleung/pixarfilms/master/data-raw/pixar_pe
 https://raw.githubusercontent.com/erictleung/pixarfilms/master/data-raw/public_response.csv
 ```
 
+There's also [a `datapackage.json` file](data-raw/datapackage.json) to be a
+computer-readable data dictionary describing the contents of each data file as
+described in
+[the data package specifications](https://specs.frictionlessdata.io/data-package/).
+
 
 ## Feedback
 
