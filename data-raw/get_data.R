@@ -463,6 +463,16 @@ themes_vox <-
 
 # Save out data for use ---------------------------------------------------
 
+# Join all data into single data frame
+# TODO Test and save out accordingly
+all_pixar <-
+    pixar_films %>%
+    inner_join(pixar_people) %>%
+    inner_join(academy) %>%
+    inner_join(genres) %>%
+    inner_join(box_office) %>%
+    inner_join(public_response)
+
 # Save out for external use as CSV files
 save_data <- function(x) {
   # Notes on deparse() and substitute()
