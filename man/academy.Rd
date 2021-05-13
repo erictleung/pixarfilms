@@ -3,7 +3,7 @@
 \docType{data}
 \name{academy}
 \alias{academy}
-\title{Pixar awards and nominations}
+\title{Pixar Academy awards and nominations}
 \format{
 A data frame with 72 rows and 3 variables:
 \describe{
@@ -19,7 +19,8 @@ A data frame with 72 rows and 3 variables:
 academy
 }
 \description{
-A data set with the awards and nominations each Pixar film has won.
+A data set with the awards and nominations of the Academy Awards, popularly
+known as the Oscars, each Pixar film has won.
 }
 \details{
 This data set is put into a tidy format, where each row is a film-award data
