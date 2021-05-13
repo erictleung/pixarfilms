@@ -77,6 +77,66 @@ pixar_films <-
 pixar_films <- as_tibble(pixar_films)
 
 
+# WIP Add script and home video date information
+# https://public.tableau.com/en-us/gallery/storybook-pixar-movies
+added_dates <-
+  tribble(
+    ~film, ~script_date, ~home_video_date,
+
+    # https://en.wikipedia.org/wiki/Toy_Story
+    "Toy Story", "1993-01-19", "1996-10-29",
+
+    "A Bug's Life", "", "",
+
+    # https://en.wikipedia.org/wiki/Toy_Story_2
+    # http://www.raindance.co.uk/site/picture/upload/image/general/movies/toy_story_2.pdf
+    "Toy Story 2", "1996-12-20", "2000-10-17",
+
+    "Monsters, Inc.", "", "",
+
+    "Finding Nemo", "", "",
+
+    "The Incredibles", "", "",
+
+    "Cars", "", "",
+
+    "Ratatouille", "", "",
+
+    # https://en.wikipedia.org/wiki/WALL-E
+    "WALL-E", "", "2008-11-18",
+
+    "Up", "", "",
+
+    # https://en.wikipedia.org/wiki/Toy_Story_3
+    "Toy Story 3", "", "2010-11-02",
+
+    "Cars 2", "", "",
+
+    "Brave", "", "",
+
+    "Monsters University", "", "",
+
+    "Inside Out", "", "",
+
+    "The Good Dinosaur", "", "",
+
+    "Finding Dory", "", "",
+
+    "Cars 3", "", "",
+
+    "Coco", "", "",
+
+    "Incredibles 2", "", "",
+
+    # https://en.wikipedia.org/wiki/Toy_Story_4
+    "Toy Story 4", "", "2019-10-01",
+
+    "Onward", "", "",
+
+    "Soul", "", ""
+  )
+
+
 # Create table of film-people rows
 # - Directors
 # - Screenwriters
