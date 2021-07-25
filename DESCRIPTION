@@ -29,7 +29,7 @@ Suggests:
     markdown,
     rmarkdown,
     spelling,
-    testthat,
+    testthat (>= 3.0.0),
     tidyr
 VignetteBuilder: 
     knitr
@@ -39,3 +39,4 @@ LazyData: true
 LazyDataCompression: xz
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
+Config/testthat/edition: 3
