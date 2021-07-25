@@ -113,7 +113,7 @@ Please note that the {pixarfilms} project is released with a
 Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html).
 By contributing to this project, you agree to abide by its terms.
 
-## Acknowledgements
+## Acknowledgments
 
 -   [Wikipedia](https://www.wikipedia.org)
 -   [OMDb API](https://www.omdbapi.com/)
