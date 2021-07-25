@@ -88,31 +88,60 @@
 ---
 
     Code
-      first_last(box_office)
+      first_last(box_office[, c("film", "budget")])
     Output
-      # A tibble: 20 x 5
-         film            budget box_office_us_can~ box_office_other box_office_worldw~
-         <chr>            <dbl>              <dbl>            <dbl>              <dbl>
-       1 Toy Story       3.00e7          191796233        181757800          373554033
-       2 A Bug's Life    1.20e8          162798565        200460294          363258859
-       3 Toy Story 2     9.00e7          245852179        251522597          497374776
-       4 Monsters, In~   1.15e8          289916256        342400393          632316649
-       5 Finding Nemo    9.40e7          339714978        531300000          871014978
-       6 The Incredib~   9.20e7          261441092        370165621          631606713
-       7 Cars            1.20e8          244082982        217900167          461983149
-       8 Ratatouille     1.50e8          206445654        417280431          623726085
-       9 WALL-E          1.80e8          223808164        297503696          521311860
-      10 Up              1.75e8          293004164        442094918          735099082
-      11 Inside Out      1.75e8          356461711        501149463          857611174
-      12 The Good Din~   1.75e8          123087120        209120551          332207671
-      13 Finding Dory    2.00e8          486295561        542275328         1028570889
-      14 Cars 3          1.75e8          152901115        231029541          383930656
-      15 Coco            1.75e8          209726015        597356181          807082196
-      16 Incredibles 2   2.00e8          608581744        634223615         1242805359
-      17 Toy Story 4     2.00e8          434038008        639356585         1073394593
-      18 Onward          1.75e8           61555145         80394976          141950121
-      19 Soul            1.75e8                 NA        135435315          135435315
-      20 Luca           NA                      NA               NA                 NA
+      # A tibble: 20 x 2
+         film                 budget
+         <chr>                 <dbl>
+       1 Toy Story          30000000
+       2 A Bug's Life      120000000
+       3 Toy Story 2        90000000
+       4 Monsters, Inc.    115000000
+       5 Finding Nemo       94000000
+       6 The Incredibles    92000000
+       7 Cars              120000000
+       8 Ratatouille       150000000
+       9 WALL-E            180000000
+      10 Up                175000000
+      11 Inside Out        175000000
+      12 The Good Dinosaur 175000000
+      13 Finding Dory      200000000
+      14 Cars 3            175000000
+      15 Coco              175000000
+      16 Incredibles 2     200000000
+      17 Toy Story 4       200000000
+      18 Onward            175000000
+      19 Soul              175000000
+      20 Luca                     NA
+
+---
+
+    Code
+      first_last(box_office[, box_office_cols])
+    Output
+      # A tibble: 20 x 4
+         film              box_office_us_canada box_office_other box_office_worldwide
+         <chr>                            <dbl>            <dbl>                <dbl>
+       1 Toy Story                    191796233        181757800            373554033
+       2 A Bug's Life                 162798565        200460294            363258859
+       3 Toy Story 2                  245852179        251522597            497374776
+       4 Monsters, Inc.               289916256        342400393            632316649
+       5 Finding Nemo                 339714978        531300000            871014978
+       6 The Incredibles              261441092        370165621            631606713
+       7 Cars                         244082982        217900167            461983149
+       8 Ratatouille                  206445654        417280431            623726085
+       9 WALL-E                       223808164        297503696            521311860
+      10 Up                           293004164        442094918            735099082
+      11 Inside Out                   356461711        501149463            857611174
+      12 The Good Dinosaur            123087120        209120551            332207671
+      13 Finding Dory                 486295561        542275328           1028570889
+      14 Cars 3                       152901115        231029541            383930656
+      15 Coco                         209726015        597356181            807082196
+      16 Incredibles 2                608581744        634223615           1242805359
+      17 Toy Story 4                  434038008        639356585           1073394593
+      18 Onward                        61555145         80394976            141950121
+      19 Soul                                NA        135435315            135435315
+      20 Luca                                NA               NA                   NA
 
 ---
 
