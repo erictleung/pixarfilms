@@ -1,4 +1,5 @@
 ## Test environments
+- Local Windows x86_64-w64-mingw32, 3.6.1
 - R-hub windows-x86_64-devel (r-devel)
 - R-hub ubuntu-gcc-release (r-release)
 - R-hub fedora-clang-devel (r-devel)
