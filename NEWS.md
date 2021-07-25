@@ -1,6 +1,8 @@
 # pixarfilms 0.2.1
 
 * Fix for R CMD check change
+* Tidy DESCRIPTIon film
+* Add words to ignore list when spell checking
 
 # pixarfilms 0.2.0
 
