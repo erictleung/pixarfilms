@@ -1,3 +1,7 @@
+# pixarfilms 0.2.1
+
+* Fix for R CMD check change
+
 # pixarfilms 0.2.0
 
 * Add vignette for Pixar film ratings
