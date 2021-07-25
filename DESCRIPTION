@@ -12,7 +12,7 @@ Description: Data about Disney Pixar films provided by Wikipedia. This
     awards.
 License: CC0
 URL: https://github.com/erictleung/pixarfilms,
-    https://erictleung.com/pixarfilms
+    https://erictleung.com/pixarfilms/
 BugReports: https://github.com/erictleung/pixarfilms/issues
 Depends:
     R (>= 2.10)
