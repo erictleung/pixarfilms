@@ -82,9 +82,9 @@ Here are other accessible means of using this data.
 
 -   Through [your
     browser](https://pixarfilms-datasette.herokuapp.com/pixarfilms)
-    using datasette and [a SQLite database](./data-raw/pixarfilms.db)
--   Through CSV files found within the [`data-raw/`
-    directory](./data-raw/)
+    using datasette and a SQLite database (located at
+    `/data-raw/pixarfilms.db`).
+-   Through CSV files found within the `data-raw/` directory.
 
 Here are direct links to each data set.
 
@@ -95,9 +95,10 @@ Here are direct links to each data set.
     https://raw.githubusercontent.com/erictleung/pixarfilms/master/data-raw/pixar_people.csv
     https://raw.githubusercontent.com/erictleung/pixarfilms/master/data-raw/public_response.csv
 
-There’s also [a `datapackage.json` file](./data-raw/datapackage.json) to
-be a computer-readable data dictionary describing the contents of each
-data file as described in [the data package
+There’s also a `datapackage.json` file (located at
+`/data-raw/datapackage.json`) to be a computer-readable data dictionary
+describing the contents of each data file as described in [the data
+package
 specifications](https://specs.frictionlessdata.io/data-package/).
 
 ## Feedback

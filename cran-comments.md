@@ -8,6 +8,8 @@
 0 errors √ | 0 warnings √ | 0 notes √
 
 ## Errors addressed from previous submission
+The following warning was received:
+
 Found the following (possibly) invalid file URIs:
  URI: erictleung.com/pixarfilms/
    From: README.md
@@ -18,4 +20,6 @@ Found the following (possibly) invalid file URIs:
  URI: data-raw/datapackage.json
    From: README.md
 
-The above file URIs are updated to be valid in their corresponding files.
+The above file URIs are updated to be valid in their corresponding files and is
+reflected in the winbuilder report
+https://win-builder.r-project.org/c6PFgDQi2zOn/00check.log
