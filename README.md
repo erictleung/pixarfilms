@@ -11,6 +11,7 @@ status](https://www.r-pkg.org/badges/version/pixarfilms)](https://CRAN.R-project
 status](https://github.com/erictleung/pixarfilms/workflows/R-CMD-check/badge.svg)](https://github.com/erictleung/pixarfilms/actions)
 [![downloads](https://cranlogs.r-pkg.org/badges/pixarfilms)](https://cran.r-project.org/package=pixarfilms)
 [![total\_downloads](https://cranlogs.r-pkg.org/badges/grand-total/pixarfilms)](https://cran.r-project.org/package=pixarfilms)
+[![goodtables.io](https://goodtables.io/badge/github/erictleung/pixarfilms.svg)](https://goodtables.io/github/erictleung/pixarfilms)
 [![License
 CC0](https://img.shields.io/cran/l/pixarfilms)](https://img.shields.io/cran/l/pixarfilms)
 <!-- badges: end -->
