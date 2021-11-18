@@ -63,8 +63,10 @@ pixar_films
 ## Documentation
 
 You can find information about the data sets and more
-[here](https://erictleung.com/pixarfilms/). The official CRAN release page can be found
-[here](https://cran.r-project.org/package=pixarfilms).
+[here](https://erictleung.com/pixarfilms/). The official CRAN release page can
+be found [here](https://cran.r-project.org/package=pixarfilms). And last, a
+list of vignettes showcasing some analyses you can do with this package can be
+found [here](https://erictleung.com/pixarfilms/articles/).
 
 
 ## Data
