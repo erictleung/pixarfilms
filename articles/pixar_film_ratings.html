@@ -136,17 +136,17 @@
 <p>Before we can visualize our data, let’s wrangle our data to help us visualize it later on.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df</span> <span class="op">&lt;-</span>
-  <span class="va">public_response</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">cinema_score</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>film <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_inorder.html">fct_inorder</a></span><span class="op">(</span><span class="va">film</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="va">public_response</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">cinema_score</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>film <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_inorder.html">fct_inorder</a></span><span class="op">(</span><span class="va">film</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"rotten_tomatoes"</span>, <span class="st">"metacritic"</span>, <span class="st">"critics_choice"</span><span class="op">)</span>,
                names_to <span class="op">=</span> <span class="st">"ratings"</span>,
-               values_to <span class="op">=</span> <span class="st">"value"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+               values_to <span class="op">=</span> <span class="st">"value"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>ratings <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span>
     <span class="va">ratings</span> <span class="op">==</span> <span class="st">"metacritic"</span> <span class="op">~</span> <span class="st">"Metacritic"</span>,
     <span class="va">ratings</span> <span class="op">==</span> <span class="st">"rotten_tomatoes"</span> <span class="op">~</span> <span class="st">"Rotten Tomatoes"</span>,
     <span class="va">ratings</span> <span class="op">==</span> <span class="st">"critics_choice"</span> <span class="op">~</span> <span class="st">"Critics Choice"</span>
-  <span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="ratings-over-time" class="section level2">
@@ -154,7 +154,7 @@
 <a href="#ratings-over-time" class="anchor"></a>Ratings over time</h2>
 <p>Their first plot was comparing the Pixar films’ ratings over time.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">df</span> <span class="op">%&gt;%</span>
+<code class="sourceCode R"><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">film</span>, y <span class="op">=</span> <span class="va">value</span>, col <span class="op">=</span> <span class="va">ratings</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>group <span class="op">=</span> <span class="va">ratings</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
@@ -172,12 +172,12 @@
 <a href="#ratings-by-rating-group" class="anchor"></a>Ratings by rating group</h2>
 <p>Next, let’s group the rating categories to see if there is a consistency across.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">df</span> <span class="op">%&gt;%</span>
+<code class="sourceCode R"><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">ratings</span>, y <span class="op">=</span> <span class="va">value</span>, col <span class="op">=</span> <span class="va">ratings</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">1.75</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">ratings</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">ggbeeswarm</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggbeeswarm/man/geom_beeswarm.html">geom_beeswarm</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggrepel</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html">geom_text_repel</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">.</span> <span class="op">%&gt;%</span>
-                             <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">film</span> <span class="op">==</span> <span class="st">"Cars 2"</span> <span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">ggrepel</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html">geom_text_repel</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">.</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+                             <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">film</span> <span class="op">==</span> <span class="st">"Cars 2"</span> <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
                              <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">ratings</span> <span class="op">==</span> <span class="st">"Rotten Tomatoes"</span><span class="op">)</span>,
                            <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">film</span><span class="op">)</span>,
                            point.padding <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op">+</span>
@@ -195,9 +195,9 @@
 <a href="#rating-consistency" class="anchor"></a>Rating consistency</h2>
 <p>Are the groups statistically consistent? Let’s perform <a href="https://en.wikipedia.org/wiki/Intraclass_correlation">an interclass correlation</a> among the different critic groups.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">public_response</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">cinema_score</span>, <span class="va">film</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<code class="sourceCode R"><span class="va">public_response</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">cinema_score</span>, <span class="va">film</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/pkg/irr/man/icc.html">icc</a></span><span class="op">(</span>model <span class="op">=</span> <span class="st">"twoway"</span>, type <span class="op">=</span> <span class="st">"consistency"</span><span class="op">)</span>
 <span class="co">#&gt;  Single Score Intraclass Correlation</span>
 <span class="co">#&gt; </span>
@@ -220,7 +220,7 @@
 <a href="#session-information" class="anchor"></a>Session information</h2>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; R version 4.1.1 (2021-08-10)</span>
+<span class="co">#&gt; R version 4.1.2 (2021-11-01)</span>
 <span class="co">#&gt; Platform: x86_64-apple-darwin17.0 (64-bit)</span>
 <span class="co">#&gt; Running under: macOS Catalina 10.15.7</span>
 <span class="co">#&gt; </span>
@@ -240,18 +240,18 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; loaded via a namespace (and not attached):</span>
 <span class="co">#&gt;  [1] Rcpp_1.0.7         vipor_0.4.5        highr_0.9          RColorBrewer_1.1-2</span>
-<span class="co">#&gt;  [5] pillar_1.6.3       compiler_4.1.1     tools_4.1.1        digest_0.6.28     </span>
-<span class="co">#&gt;  [9] evaluate_0.14      memoise_2.0.0      lifecycle_1.0.1    tibble_3.1.5      </span>
-<span class="co">#&gt; [13] gtable_0.3.0       pkgconfig_2.0.3    rlang_0.4.11       ggrepel_0.9.1     </span>
-<span class="co">#&gt; [17] yaml_2.2.1         beeswarm_0.4.0     pkgdown_1.6.1      xfun_0.26         </span>
-<span class="co">#&gt; [21] fastmap_1.1.0      withr_2.4.2        stringr_1.4.0      knitr_1.36        </span>
-<span class="co">#&gt; [25] desc_1.4.0         generics_0.1.0     fs_1.5.0           vctrs_0.3.8       </span>
-<span class="co">#&gt; [29] systemfonts_1.0.2  rprojroot_2.0.2    grid_4.1.1         tidyselect_1.1.1  </span>
-<span class="co">#&gt; [33] glue_1.4.2         R6_2.5.1           textshaping_0.3.6  fansi_0.5.0       </span>
+<span class="co">#&gt;  [5] pillar_1.6.4       compiler_4.1.2     tools_4.1.2        digest_0.6.28     </span>
+<span class="co">#&gt;  [9] evaluate_0.14      memoise_2.0.1      lifecycle_1.0.1    tibble_3.1.6      </span>
+<span class="co">#&gt; [13] gtable_0.3.0       pkgconfig_2.0.3    rlang_0.4.12       ggrepel_0.9.1     </span>
+<span class="co">#&gt; [17] yaml_2.2.1         beeswarm_0.4.0     pkgdown_1.6.1      xfun_0.28         </span>
+<span class="co">#&gt; [21] fastmap_1.1.0      withr_2.4.3        stringr_1.4.0      knitr_1.36        </span>
+<span class="co">#&gt; [25] desc_1.4.0         generics_0.1.1     fs_1.5.0           vctrs_0.3.8       </span>
+<span class="co">#&gt; [29] systemfonts_1.0.2  rprojroot_2.0.2    grid_4.1.2         tidyselect_1.1.1  </span>
+<span class="co">#&gt; [33] glue_1.5.1         R6_2.5.1           textshaping_0.3.6  fansi_0.5.0       </span>
 <span class="co">#&gt; [37] ggbeeswarm_0.6.0   rmarkdown_2.11     farver_2.1.0       purrr_0.3.4       </span>
 <span class="co">#&gt; [41] magrittr_2.0.1     scales_1.1.1       ellipsis_0.3.2     htmltools_0.5.2   </span>
 <span class="co">#&gt; [45] colorspace_2.0-2   labeling_0.4.2     ragg_1.1.3         utf8_1.2.2        </span>
-<span class="co">#&gt; [49] stringi_1.7.5      munsell_0.5.0      cachem_1.0.6       crayon_1.4.1</span></code></pre></div>
+<span class="co">#&gt; [49] stringi_1.7.6      munsell_0.5.0      cachem_1.0.6       crayon_1.4.2</span></code></pre></div>
 </div>
   </div>
 
