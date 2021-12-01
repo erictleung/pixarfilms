@@ -2,7 +2,7 @@
 title: "Pixar Film Ratings"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{pixar_film_ratings}
+  %\VignetteIndexEntry{Pixar Film Ratings}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
