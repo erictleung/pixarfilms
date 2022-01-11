@@ -226,7 +226,7 @@
   ],
   "name": "pixarfilms",
   "title": "pixarfilms",
-  "description": "R data package to explore Pixar films, the people, and reception data ",
+  "description": "R data package to explore Pixar films, the people, and reception data",
   "homepage": "https://github.com/erictleung/pixarfilms",
   "version": "0.2.1",
   "contributors": [
