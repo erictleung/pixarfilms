@@ -1,9 +1,9 @@
 pandoc: 2.7.3
-pkgdown: 1.6.1
+pkgdown: 2.0.1
 pkgdown_sha: ~
 articles:
   pixar_film_ratings: pixar_film_ratings.html
-last_built: 2021-12-01T07:19Z
+last_built: 2022-01-11T06:14Z
 urls:
   reference: https://erictleung.com/pixarfilms, https://github.com/erictleung/pixarfilms/reference
   article: https://erictleung.com/pixarfilms, https://github.com/erictleung/pixarfilms/articles

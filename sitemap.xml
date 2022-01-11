@@ -1,7 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://erictleung.com/pixarfilms, https://github.com/erictleung/pixarfilms/404.html</loc>
+  </url>
+  <url>
+    <loc>https://erictleung.com/pixarfilms, https://github.com/erictleung/pixarfilms/CODE_OF_CONDUCT.html</loc>
+  </url>
+  <url>
+    <loc>https://erictleung.com/pixarfilms, https://github.com/erictleung/pixarfilms/CONTRIBUTING.html</loc>
+  </url>
+  <url>
+    <loc>https://erictleung.com/pixarfilms, https://github.com/erictleung/pixarfilms/LICENSE.html</loc>
+  </url>
+  <url>
+    <loc>https://erictleung.com/pixarfilms, https://github.com/erictleung/pixarfilms/articles/index.html</loc>
+  </url>
+  <url>
+    <loc>https://erictleung.com/pixarfilms, https://github.com/erictleung/pixarfilms/articles/pixar_film_ratings.html</loc>
+  </url>
+  <url>
+    <loc>https://erictleung.com/pixarfilms, https://github.com/erictleung/pixarfilms/authors.html</loc>
+  </url>
+  <url>
     <loc>https://erictleung.com/pixarfilms, https://github.com/erictleung/pixarfilms/index.html</loc>
+  </url>
+  <url>
+    <loc>https://erictleung.com/pixarfilms, https://github.com/erictleung/pixarfilms/news/index.html</loc>
   </url>
   <url>
     <loc>https://erictleung.com/pixarfilms, https://github.com/erictleung/pixarfilms/reference/academy.html</loc>
@@ -13,6 +37,9 @@
     <loc>https://erictleung.com/pixarfilms, https://github.com/erictleung/pixarfilms/reference/genres.html</loc>
   </url>
   <url>
+    <loc>https://erictleung.com/pixarfilms, https://github.com/erictleung/pixarfilms/reference/index.html</loc>
+  </url>
+  <url>
     <loc>https://erictleung.com/pixarfilms, https://github.com/erictleung/pixarfilms/reference/pixar_films.html</loc>
   </url>
   <url>
@@ -20,8 +47,5 @@
   </url>
   <url>
     <loc>https://erictleung.com/pixarfilms, https://github.com/erictleung/pixarfilms/reference/public_response.html</loc>
-  </url>
-  <url>
-    <loc>https://erictleung.com/pixarfilms, https://github.com/erictleung/pixarfilms/articles/pixar_film_ratings.html</loc>
   </url>
 </urlset>
