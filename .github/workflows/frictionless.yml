@@ -1,0 +1,21 @@
+name: frictionless
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkou@v2
+        with:
+          lfs: true # add this to download LFS files
+          submodules: true # add this to download submodules
+      - name: Validate data
+        uses: frictionlessdata/repository@v1
