@@ -2,6 +2,12 @@
 
 This outlines how to propose a change to pixarfilms.
 
+## Updating README.{md/Rmd}
+
+The README.md file is generated from the README.Rmd file. So any changes you
+want to see with the README.md should simply be made from README.Rmd first.
+Then either maintainers or yourself can knit the README.md file.
+
 ## Fixing typos
 
 Small typos or gramamtical errors in documentation may be edited directly using
