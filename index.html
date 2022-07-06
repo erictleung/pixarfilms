@@ -58,7 +58,7 @@
   <a href="reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -96,10 +96,7 @@
 <div class="page-header"><h1 id="pixarfilms-">pixarfilms <img src="reference/figures/logo.png" align="right" alt="" width="120"><a class="anchor" aria-label="anchor" href="#pixarfilms-"></a>
 </h1></div>
 <!-- badges: start -->
-
-<blockquote>
-<p>R data package to explore Pixar films, the people, and reception data</p>
-</blockquote>
+<blockquote><p>R data package to explore Pixar films, the people, and reception data</p></blockquote>
 <p>This package contains six data sets provided mostly in part by <a href="https://en.wikipedia.org/wiki/List_of_Pixar_films" class="external-link">Wikipedia</a>.</p>
 <ul>
 <li>
@@ -121,31 +118,31 @@
 </h2>
 <p>Install <code>pixarfilms</code> from CRAN:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"pixarfilms"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"pixarfilms"</span><span class="op">)</span></span></code></pre></div>
 <p>Or you can install the development version of <code>pixarfilms</code> from GitHub with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"erictleung/pixarfilms"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"erictleung/pixarfilms"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/erictleung/pixarfilms" class="external-link">pixarfilms</a></span><span class="op">)</span>
-<span class="va">pixar_films</span>
-<span class="co">#&gt; # A tibble: 27 x 5</span>
-<span class="co">#&gt;    number film            release_date run_time film_rating</span>
-<span class="co">#&gt;    &lt;chr&gt;  &lt;chr&gt;           &lt;date&gt;          &lt;dbl&gt; &lt;chr&gt;      </span>
-<span class="co">#&gt;  1 1      Toy Story       1995-11-22         81 G          </span>
-<span class="co">#&gt;  2 2      A Bug's Life    1998-11-25         95 G          </span>
-<span class="co">#&gt;  3 3      Toy Story 2     1999-11-24         92 G          </span>
-<span class="co">#&gt;  4 4      Monsters, Inc.  2001-11-02         92 G          </span>
-<span class="co">#&gt;  5 5      Finding Nemo    2003-05-30        100 G          </span>
-<span class="co">#&gt;  6 6      The Incredibles 2004-11-05        115 PG         </span>
-<span class="co">#&gt;  7 7      Cars            2006-06-09        117 G          </span>
-<span class="co">#&gt;  8 8      Ratatouille     2007-06-29        111 G          </span>
-<span class="co">#&gt;  9 9      WALL-E          2008-06-27         98 G          </span>
-<span class="co">#&gt; 10 10     Up              2009-05-29         96 PG         </span>
-<span class="co">#&gt; # ... with 17 more rows</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/erictleung/pixarfilms" class="external-link">pixarfilms</a></span><span class="op">)</span></span>
+<span><span class="va">pixar_films</span></span>
+<span><span class="co">#&gt; # A tibble: 27 x 5</span></span>
+<span><span class="co">#&gt;    number film            release_date run_time film_rating</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;  &lt;chr&gt;           &lt;date&gt;          &lt;dbl&gt; &lt;chr&gt;      </span></span>
+<span><span class="co">#&gt;  1 1      Toy Story       1995-11-22         81 G          </span></span>
+<span><span class="co">#&gt;  2 2      A Bug's Life    1998-11-25         95 G          </span></span>
+<span><span class="co">#&gt;  3 3      Toy Story 2     1999-11-24         92 G          </span></span>
+<span><span class="co">#&gt;  4 4      Monsters, Inc.  2001-11-02         92 G          </span></span>
+<span><span class="co">#&gt;  5 5      Finding Nemo    2003-05-30        100 G          </span></span>
+<span><span class="co">#&gt;  6 6      The Incredibles 2004-11-05        115 PG         </span></span>
+<span><span class="co">#&gt;  7 7      Cars            2006-06-09        117 G          </span></span>
+<span><span class="co">#&gt;  8 8      Ratatouille     2007-06-29        111 G          </span></span>
+<span><span class="co">#&gt;  9 9      WALL-E          2008-06-27         98 G          </span></span>
+<span><span class="co">#&gt; 10 10     Up              2009-05-29         96 PG         </span></span>
+<span><span class="co">#&gt; # ... with 17 more rows</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="documentation">Documentation<a class="anchor" aria-label="anchor" href="#documentation"></a>
@@ -256,7 +253,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer>
