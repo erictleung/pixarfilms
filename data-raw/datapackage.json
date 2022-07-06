@@ -39,7 +39,8 @@
             "title": "Film rating",
             "description": "Rating based on Motion Picture Association (MPA) film rating system"
           }
-        ]
+        ],
+        "missingValues": ["NA"]
       }
     },
     {
@@ -66,7 +67,8 @@
             "format": "default",
             "title": "Status of award"
           }
-        ]
+        ],
+        "missingValues": ["NA"]
       },
       "format": "CSV",
       "encoding": "UTF-8",
@@ -134,7 +136,8 @@
             "format": "default",
             "title": "Genre film is categorized into"
           }
-        ]
+        ],
+        "missingValues": ["NA"]
       }
     },
     {
@@ -162,7 +165,8 @@
             "format": "default",
             "title": "Individual's name"
           }
-        ]
+        ],
+        "missingValues": ["NA"]
       }
     },
     {
@@ -205,7 +209,8 @@
             "title": "Critics Choice score",
             "description": "Score from Critics' Choice Movie Awards presented by the American-Canadian Critics Choice Association (CCA); scored out of 100"
           }
-        ]
+        ],
+        "missingValues": ["NA"]
       }
     }
   ],
