@@ -112,7 +112,8 @@
             "title": "Box office gross amount worldwise",
             "description": "Amount in U.S. dollars"
           }
-        ]
+        ],
+        "missingValues": "NA"
       }
     },
     {
