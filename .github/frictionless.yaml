@@ -1,3 +1,8 @@
 main:
   tasks:
     - path: data-raw/academy.csv
+    - path: data-raw/box_office.csv
+    - path: data-raw/genres.csv
+    - path: data-raw/pixar_films.csv
+    - path: data-raw/pixar_people.csv
+    - path: data-raw/public_response.csv
