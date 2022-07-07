@@ -2,21 +2,21 @@
 # Last run: 2021-05-01
 
 # Utility packages
-library(here)
-library(janitor)
-library(usethis)
-library(lubridate)
-library(progress)
-library(readr)
-library(stringr)
+library(here)               # CRAN v1.0.1
+library(janitor)            # CRAN v2.1.0
+library(usethis)            # CRAN v2.0.1
+library(lubridate)          # CRAN v1.7.10
+library(progress)           # CRAN v1.2.2
+library(readr)              # CRAN v1.4.0
+library(stringr)            # CRAN v1.4.0
 
 # Data wrangling packages
-library(dplyr)
-library(tidyr)
+library(dplyr)              # CRAN v1.0.6
+library(tidyr)              # CRAN v1.1.4
 
 # Web scraping
-library(rvest)
-library(httr)
+library(rvest)              # CRAN v1.0.1
+library(httr)               # CRAN v1.4.2
 
 
 # Extract data ------------------------------------------------------------
