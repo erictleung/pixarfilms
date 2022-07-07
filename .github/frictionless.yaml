@@ -1,4 +1,4 @@
 main:
   tasks:
-    - source: data/datapackage.json
+    - source: data-raw/datapackage.json
       type: package
