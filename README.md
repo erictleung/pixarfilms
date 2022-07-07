@@ -14,6 +14,8 @@ status](https://github.com/erictleung/pixarfilms/workflows/R-CMD-check/badge.svg
 [![frictionless](https://github.com/erictleung/pixarfilms/actions/workflows/frictionless.yml/badge.svg)](https://github.com/erictleung/pixarfilms/actions/workflows/frictionless.yml)
 [![License
 CC0](https://img.shields.io/cran/l/pixarfilms)](https://img.shields.io/cran/l/pixarfilms)
+[![Project Type Toy
+Badge](https://img.shields.io/badge/project%20type-toy-blue)](https://project-types.github.io/#toy)
 <!-- badges: end -->
 
 > R data package to explore Pixar films, the people, and reception data
