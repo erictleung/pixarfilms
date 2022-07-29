@@ -28,7 +28,8 @@ also access the data by reading the data directly from GitHub using {readr}.
 ```{r}
 library(readr)
 
-pixar_films <- read_csv("https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/pixar_films.csv")
+url <- "https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/pixar_films.csv"
+pixar_films <- read_csv(url)
 ```
 
 
@@ -39,7 +40,8 @@ Similarly, you can read the data directly
 ```{python, eval=FALSE}
 import pandas as pd
 
-pixar_films = pd.read_csv("https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/pixar_films.csv")
+url = "https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/pixar_films.csv"
+pixar_films = pd.read_csv(url)
 ```
 
 
