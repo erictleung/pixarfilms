@@ -1,0 +1,57 @@
+---
+title: "Manually Load pixarfilms Data"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Manually Load pixarfilms Data}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Overview
+
+This vignette here demonstrates how to manually load data without using the
+{pixarfilms} package if you wish to explore and analyze this data elsewhere.
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+## Loading within R
+
+If for some reason, you don't wish to install the package officially, you can
+also access the data by reading the data directly from GitHub using {readr}.
+
+```{r}
+library(readr)
+
+pixar_films <- read_csv("https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/pixar_films.csv")
+```
+
+
+## Loading within Python and pandas
+
+Similarly, you can read the data directly
+
+```{python, eval=FALSE}
+import pandas as pd
+
+pixar_films = pd.read_csv("https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/pixar_films.csv")
+```
+
+
+## Data links
+
+Here are the URL links you can use using the above methods.
+
+```
+https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/academy.csv
+https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/box_office.csv
+https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/genres.csv
+https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/pixar_films.csv
+https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/pixar_people.csv
+https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/public_response.csv
+```
