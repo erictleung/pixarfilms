@@ -1,5 +1,7 @@
 ---
 title: "Pixar Film Ratings"
+description: |
+  Explore the variation in box office ratings of the films.
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Pixar Film Ratings}

@@ -1,5 +1,7 @@
 ---
 title: "Manually Load pixarfilms Data"
+description: |
+  Shows how to load pixarfilms data in R and Python.
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Manually Load pixarfilms Data}
