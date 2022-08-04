@@ -1,0 +1,62 @@
+---
+title: "Using pixarfilms with dm"
+description: |
+  Explore how to us the dm package with pixarfilms data.
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Using pixarfilms with dm}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Overview
+
+The {pixarfilms} R package has been added to the {dm} R package, which is a
+package "for working with multiple related tables, stored as data frames or in a
+relational database."
+
+Because all of the tables created in {pixarfilms} are connected by each film,
+this gives an interesting opportunity to explore these interconnected tables
+together.
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+## Setup
+
+```{r setup}
+library(dm)
+```
+
+
+## Explore
+
+```{r}
+dm <- dm_pixarfilms(consistent = TRUE)
+dm
+```
+
+```{r}
+dm %>%
+  dm_examine_cardinalities()
+```
+
+
+```{r}
+dm %>%
+  dm_examine_constraints()
+```
+
+
+## Visualize connections
+
+```{r}
+dm_pixarfilms() %>%
+  dm_draw()
+```
+

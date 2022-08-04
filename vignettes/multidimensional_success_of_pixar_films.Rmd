@@ -1,0 +1,70 @@
+---
+title: "The Multidimensional Success of Pixar Films Visualized"
+description: |
+  Recreation of another analysis of Pixar's porfolio of films.
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{The Multidimensional Success of Pixar Films Visualized}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Overview
+
+This vignette is to recreate an analysis on Pixar ratings that can be found
+[here](https://thelittledataset.com/2015/06/30/the-multidimensional-success-of-pixar-films-visualized/).
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+## Setup
+
+```{r setup}
+library(pixarfilms)
+library(dplyr)
+library(ggplot2)
+library(lubridate)
+library(patchwork)
+```
+
+
+## Ratings
+
+### Rotten Tomatoes
+
+```{r}
+pixar_films %>%
+  left_join(public_response) %>%
+  left_join(academy) # %>% 
+  # mutate(year = year(release_date)
+  #        # best = case_when(
+  #          
+  #        )) %>%
+  # ggplot(aes(x = ))
+```
+
+
+### IMDb
+
+```{r}
+
+```
+
+
+### Metacritic
+
+```{r}
+
+```
+
+
+## Session information
+
+```{r}
+sessionInfo()
+```

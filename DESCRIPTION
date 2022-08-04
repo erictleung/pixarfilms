@@ -19,6 +19,9 @@ Depends:
 Imports: 
     tibble
 Suggests: 
+    DBI,
+    dm,
+    dbplyr,
     dplyr,
     forcats,
     ggbeeswarm,
@@ -26,8 +29,12 @@ Suggests:
     ggrepel,
     irr,
     knitr,
+    lubridate,
     markdown,
+    patchwork,
+    readr,
     rmarkdown,
+    RSQLite,
     spelling,
     testthat (>= 3.0.0),
     tidyr
@@ -39,4 +46,4 @@ Language: en-US
 LazyData: true
 LazyDataCompression: xz
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.0

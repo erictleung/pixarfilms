@@ -1,0 +1,78 @@
+---
+title: "SQL Tutorial and Exploration"
+description: |
+  Brief introduction and overview of SQL using Pixar as a fun subject.
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{SQL Tutorial and Exploration}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Overview
+
+This vignette aims to be a brief introduction and overview of using SQL. The
+tutorial will illustrate common functions by answering questions around Pixar
+films and their performance.
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+## Setup
+
+Load packages.
+
+```{r setup}
+library(pixarfilms)
+library(dplyr)
+library(dbplyr)
+```
+
+
+Load data into temporary database to interact with.
+
+```{r}
+con <- DBI::dbConnect(RSQLite::SQLite(), ":memory:")
+copy_to(con, pixar_films)
+```
+
+
+## Top movies
+
+Develop query.
+
+```{r}
+query <- "
+select * from pixar_films
+"
+```
+
+
+Let's execute it now.
+
+```{r}
+DBI::dbGetQuery(conn = con, statement = query)
+```
+
+
+## 
+
+## Summary
+
+Here, let's review the functions of SQL covered above.
+
+- `SELECT` = text that follows this chooses the columns you want in your query,
+  and doing `SELECT *` will select all columns
+
+
+## Session information
+
+```{r}
+sessionInfo()
+```
+
