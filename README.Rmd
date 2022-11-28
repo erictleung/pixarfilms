@@ -34,12 +34,6 @@ This package contains six data sets provided mostly in part by
 - `public_response` - critical and public response
 - `academy` - academy awards and nominations
 
-Feel free to
-[explore the data immediately](https://pixarfilms-datasette.herokuapp.com/pixarfilms)
-in your web browser using
-[datasette](https://github.com/simonw/datasette) and SQL.
-
-
 ## Installation
 
 Install `pixarfilms` from CRAN:
@@ -73,12 +67,6 @@ found [here](https://erictleung.com/pixarfilms/articles/).
 ## Data
 
 This data here within is not constrained to exploring just within R.
-
-Here are other accessible means of using this data.
-
-- Through [your browser](https://pixarfilms-datasette.herokuapp.com/pixarfilms)
-  using datasette and a SQLite database (located at `/data-raw/pixarfilms.db`).
-- Through CSV files found within the `data-raw/` directory.
 
 Here are direct links to each data set.
 
