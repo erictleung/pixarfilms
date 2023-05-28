@@ -20,6 +20,7 @@ Imports:
     tibble
 Suggests: 
     DBI,
+    DiagrammeR,
     dm,
     dbplyr,
     dplyr,
