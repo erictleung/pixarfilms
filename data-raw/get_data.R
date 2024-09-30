@@ -18,6 +18,10 @@ library(tidyr)              # CRAN v1.1.4
 library(rvest)              # CRAN v1.0.1
 library(httr)               # CRAN v1.4.2
 
+# Image analysis
+library(imagick)
+library(imager)
+
 
 # Extract data ------------------------------------------------------------
 
@@ -26,13 +30,18 @@ page <- read_html("https://en.wikipedia.org/wiki/List_of_Pixar_films")
 tbls <- html_table(page, fill = TRUE)
 
 # Extract actual tables
-films <- tbls[[1]] # Films
-boxoffice <- tbls[[2]] #  Box office
-publicresponse <- tbls[[3]] # Critical and public response
-academy <- tbls[[4]] # Academy awards
+# Note: tbls[[2]] is upcoming films as of [2024-09-30]
+films <- tbls[[1]] # Films, release info, and top-level people
+boxoffice <- tbls[[3]] #  Box office
+publicresponse <- tbls[[4]] # Critical and public response
+academy <- tbls[[5]] # Academy awards
 
 # Get OMDb key to query movie information
-config <- read.delim(here("config.txt"), header = FALSE)[1, 1]
+if (file.exists(here("config.txt"))) {
+  config <- read.delim(here("config.txt"), header = FALSE)[1, 1]
+} else {
+  message("Need to have OMDb API key to query movie database")
+}
 
 
 # Clean films -------------------------------------------------------------
@@ -44,29 +53,40 @@ config <- read.delim(here("config.txt"), header = FALSE)[1, 1]
 # - Replace TBA with NA
 # - Process release date into dates
 
+# Replace first row with row names because writers columns have two rows
+colnames(films) <- head(films, 1)
+films <- tail(films, nrow(films) - 1)
 
 films <-
   films %>%
   # Clean column names
   clean_names() %>%
 
+  # 2024-09-30 Wikipedians have separated released films and upcoming
   # Remove rows that are odd because of how Wikipedia formats tables
-  filter(!number %in% c("Released films", "Upcoming films")) %>%
+  # filter(!number %in% c("Released films", "Upcoming films")) %>%
 
+  # 2024-09-30 Wikipedians have removed citations in the table
   # Remove citations for data because unneeded for our data
-  mutate_all(function(x) {
-    str_replace_all(x, "\\[[A-Za-z0-9]\\]", "")
-  }) %>%
+  # mutate_all(function(x) {
+  #   str_replace_all(x, "\\[[A-Za-z0-9]\\]", "")
+  # }) %>%
 
+  # 2024-09-30 Wikipedians have removed any missing values
   # Replace TBA with NA for now
-  mutate_all(function(x) {
-    ifelse(x == "TBA", NA, x)
-  }) %>%
+  # mutate_all(function(x) {
+  #   ifelse(x == "TBA", NA, x)
+  # }) %>%
 
-  # Clean up and format release date
-  mutate(release_date = str_extract(release_date, "\\(.*\\)")) %>%
-  mutate(release_date = str_replace_all(release_date, "\\(|\\)", "")) %>%
-  mutate(release_date = ymd(release_date))
+  # Clean up and format release date, like remove spaces and process into ymd()
+  # mutate(release_date = str_extract(release_date, "\\(.*\\)")) %>%
+  # mutate(release_date = str_replace_all(release_date, "\\(|\\)", "")) %>%
+  mutate(release_date = mdy(release_date)) %>%
+
+  # Arrange and add ordering
+  arrange(release_date) %>%
+  mutate(number = row_number())
+
 
 # Create table of just films
 pixar_films <-
