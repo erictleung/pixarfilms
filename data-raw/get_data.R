@@ -223,7 +223,11 @@ genres <-
   select(film) %>%
   mutate(genre = NA_character_,
          run_time = NA_character_,
-         rated = NA_character_)
+         film_rating = NA_character_,
+         poster_url = NA_character_,
+         plot = NA_character_,
+         imdb_rating = NA_character_,
+         imdb_votes = NA_character_)
 
 pb <- progress_bar$new(total = nrow(genres))
 pb$tick(0) # Start progress
@@ -240,11 +244,20 @@ for (film in 1:nrow(genres)) {
     omdb_data$Genre <- NA_character_
     omdb_data$Runtime <- NA_character_
     omdb_data$Rated <- NA_character_
+    omdb_data$Poster <- NA_character_
+    omdb_data$Plot <- NA_character_
+    omdb_data$imdbRating <- NA_character_
+    omdbc_data$imdbVotes <- NA_character_
   }
 
+  # Fill in data if we have it
   genres[film, "genre"] <- omdb_data$Genre
   genres[film, "run_time"] <- omdb_data$Runtime
   genres[film, "film_rating"] <- omdb_data$Rated
+  genres[film, "poster_url"] <- omdb_data$Poster
+  genres[film, "plot"] <- omdb_data$Plot
+  genres[film, "imdb_rating"] <- omdb_data$imdbRating
+  genres[film, "imdb_votes"] <- omdb_data$imdbVotes
 }
 
 # Move around data from OMDb to movie information before dealing with genres
@@ -252,15 +265,29 @@ pixar_films <-
   pixar_films %>%
   left_join(
     genres %>%
-      select(film, run_time, rated),
+      select(film, run_time, film_rating),
     by = "film"
   ) %>%
   mutate(run_time = as.numeric(str_extract(run_time, "[0-9]*")))
 
-# Clean up multi-genre rows
+# Save posters for another analysis
+posters <-
+  genres %>%
+  select(film, poster_url)
+
+# Save IMDb ratings for future
+imdb_ratings <-
+  genres %>%
+  select(film, starts_with("imdb")) %>%
+  mutate(
+    imdb_rating = as.numeric(imdb_rating),
+    imdb_votes = as.numeric(str_remove_all(imdb_votes, ","))
+  )
+
+# Clean up multi-genre rows to make tidy data
 genres <-
   genres %>%
-  select(-c(run_time, rated)) %>%
+  select(-c(run_time, film_rating)) %>%
   separate_rows(genre, sep = ", ") %>%
   drop_na(film)
 
