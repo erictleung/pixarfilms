@@ -13,6 +13,7 @@ library(stringr)            # CRAN v1.4.0
 # Data wrangling packages
 library(dplyr)              # CRAN v1.0.6
 library(tidyr)              # CRAN v1.1.4
+library(fuzzyjoin)
 
 # Web scraping
 library(rvest)              # CRAN v1.0.1
@@ -147,6 +148,51 @@ pixar_people <-
 
 
 # Fix people using just last names to ensure consistency
+full_names <-
+  pixar_people %>%
+  select(name) %>%
+  filter(str_detect(name, " ")) %>%
+  distinct(name) %>%
+  rename(full_name = name)
+
+single_names <-
+  pixar_people %>%
+  select(name) %>%
+  filter(!str_detect(name, " ")) %>%
+  distinct(name) %>%
+  rename(short_name = name)
+
+# Create mapping for short names that appear in table
+ci_str_detect <- function(x, y) {
+  # Note space before y is because the last name will have a space before it
+  str_detect(x, regex(str_c(" ", y), ignore_case = TRUE))
+}
+name_map <-
+  full_names %>%
+  fuzzy_left_join(
+    single_names,
+    by = c("full_name" = "short_name"),
+    match_fun = ci_str_detect
+  ) %>%
+  filter(!is.na(short_name))
+
+# NOTE Edge case with multiple people with the same last name
+name_map <-
+  name_map %>%
+  filter(!short_name %in% c("Andrews"))
+
+# Fill in names and address edge case(s) above
+pixar_people <-
+  pixar_people %>%
+  left_join(name_map, by = join_by(name == short_name)) %>%
+  mutate(full_name = case_when(
+    film == "Brave" ~ "Mark Andrews",
+    film == "Luca" ~ "Jesse Andrews",
+    is.na(full_name) ~ name,
+    TRUE ~ full_name
+  )) %>%
+  select(-name) %>%
+  rename(name = full_name)
 
 # Remove rows with no movie
 pixar_people <-
@@ -161,7 +207,8 @@ pixar_people <-
     role_type == "screenplay" ~ "Screenwriter",
     role_type == "story" ~ "Storywriter",
     role_type == "composer_s" ~ "Musician",
-    role_type == "producer_s" ~ "Producer"
+    role_type == "producer_s" ~ "Producer",
+    TRUE ~ role_type
   ))
 
 
