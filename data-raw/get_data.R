@@ -111,12 +111,42 @@ pixar_people <-
     names_to = "role_type",
     values_to = "name"
   ) %>%
-  separate_rows(name, sep = "(, )|( & )")
+  separate_rows(name, sep = ", ")
 
-# Fix abbreviation in table
+# Fix multiple co-directors per film
+all_directors <-
+  pixar_people %>%
+  filter(str_detect(name, "Co-directed by")) %>%
+  separate_rows(name, sep = "Co-directed ")
+
+# Process all co-directors
+co_directors <-
+  all_directors %>%
+  filter(str_detect(name, "by:")) %>%
+  rename(old_name = name) %>%
+  mutate(name = str_remove(old_name, "^by:")) %>%
+  select(-old_name) %>%
+  separate_rows(name, sep = " & ") %>%
+  mutate(role_type = "Co-director")
+
+# Remember the main directors
+directors <-
+  all_directors %>%
+  filter(!str_detect(name, "by:")) %>%
+  separate_rows(name, sep = " & ")
+
+# Pull non-directors first to then join in back with updated directors
 pixar_people <-
   pixar_people %>%
-  mutate(name = if_else(name == "Jeff", "Jeff Danna", name))
+  filter(!str_detect(name, "Co-directed by")) %>%
+  bind_rows(co_directors, directors) %>%
+  separate_rows(name, sep = " & ") %>%
+  rename(old_name = name) %>%
+  mutate(name = str_remove(old_name, "\\[[A-Za-z]\\]")) %>%
+  select(-old_name)
+
+
+# Fix people using just last names to ensure consistency
 
 # Remove rows with no movie
 pixar_people <-
@@ -127,11 +157,11 @@ pixar_people <-
 pixar_people <-
   pixar_people %>%
   mutate(role_type = case_when(
-    role_type == "directed_by" ~ "Director",
-    role_type == "screenplay_by" ~ "Screenwriter",
-    role_type == "story_by" ~ "Storywriter",
-    role_type == "music_by" ~ "Musician",
-    role_type == "produced_by" ~ "Producer"
+    role_type == "director_s" ~ "Director",
+    role_type == "screenplay" ~ "Screenwriter",
+    role_type == "story" ~ "Storywriter",
+    role_type == "composer_s" ~ "Musician",
+    role_type == "producer_s" ~ "Producer"
   ))
 
 
