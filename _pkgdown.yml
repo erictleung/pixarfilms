@@ -1,6 +1,7 @@
 url: https://erictleung.com/pixarfilms, https://github.com/erictleung/pixarfilms
 
 template:
+  bootstrap: 5
   params:
     bootswatch: flatly
     ganalytics: UA-66130577-1
