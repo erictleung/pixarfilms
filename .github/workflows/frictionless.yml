@@ -18,4 +18,4 @@ jobs:
           lfs: true # add this to download LFS files
           submodules: true # add this to download submodules
       - name: Validate data
-        uses: frictionlessdata/repository@v1
+        uses: frictionlessdata/frictionless-ci@v2.2.2
