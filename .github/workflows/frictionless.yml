@@ -19,3 +19,5 @@ jobs:
           submodules: true # add this to download submodules
       - name: Validate data
         uses: frictionlessdata/frictionless-ci@v2.2.2
+        with:
+          packages: "data-raw/datapackage.json"
