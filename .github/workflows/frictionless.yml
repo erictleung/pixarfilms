@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4.2.0
         with:
           lfs: true # add this to download LFS files
           submodules: true # add this to download submodules
