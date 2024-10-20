@@ -1,0 +1,94 @@
+---
+title: "Manually Load pixarfilms Data"
+description: |
+  Shows how to load pixarfilms data in R and Python.
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Manually Load pixarfilms Data}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Overview
+
+This vignette here demonstrates how to manually load data without using the
+{pixarfilms} package if you wish to explore and analyze this data elsewhere.
+
+
+
+
+## Loading within R
+
+If for some reason, you don't wish to install the package officially, you can
+also access the data by reading the data directly from GitHub using {readr}.
+
+
+```r
+library(readr)
+
+url <- "https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/pixar_films.csv"
+pixar_films <- read_csv(url)
+#> Rows: 27 Columns: 5
+#> ── Column specification ───────────────────────────────────────────────────────────────────────────
+#> Delimiter: ","
+#> chr  (2): film, film_rating
+#> dbl  (2): number, run_time
+#> date (1): release_date
+#> 
+#> ℹ Use `spec()` to retrieve the full column specification for this data.
+#> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+```
+
+
+```r
+pixar_films
+#> # A tibble: 27 × 5
+#>    number film            release_date run_time film_rating
+#>     <dbl> <chr>           <date>          <dbl> <chr>      
+#>  1      1 Toy Story       1995-11-22         81 G          
+#>  2      2 A Bug's Life    1998-11-25         95 G          
+#>  3      3 Toy Story 2     1999-11-24         92 G          
+#>  4      4 Monsters, Inc.  2001-11-02         92 G          
+#>  5      5 Finding Nemo    2003-05-30        100 G          
+#>  6      6 The Incredibles 2004-11-05        115 PG         
+#>  7      7 Cars            2006-06-09        117 G          
+#>  8      8 Ratatouille     2007-06-29        111 G          
+#>  9      9 WALL-E          2008-06-27         98 G          
+#> 10     10 Up              2009-05-29         96 PG         
+#> # ℹ 17 more rows
+```
+
+
+## Loading within Python and pandas
+
+Similarly, you can read the data directly
+
+
+```python
+import pandas as pd
+#> ModuleNotFoundError: No module named 'pandas'
+
+url = "https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/pixar_films.csv"
+pixar_films = pd.read_csv(url)
+#> NameError: name 'pd' is not defined
+```
+
+
+```python
+pixar_films.head()
+#> NameError: name 'pixar_films' is not defined
+```
+
+
+## Data links
+
+Here are the URL links you can use using the above methods.
+
+```
+https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/academy.csv
+https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/box_office.csv
+https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/genres.csv
+https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/pixar_films.csv
+https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/pixar_people.csv
+https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/public_response.csv
+```

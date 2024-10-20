@@ -34,16 +34,24 @@ url <- "https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/pi
 pixar_films <- read_csv(url)
 ```
 
+```{r}
+pixar_films
+```
+
 
 ## Loading within Python and pandas
 
 Similarly, you can read the data directly
 
-```python
+```{python}
 import pandas as pd
 
 url = "https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/pixar_films.csv"
 pixar_films = pd.read_csv(url)
+```
+
+```{python}
+pixar_films.head()
 ```
 
 
