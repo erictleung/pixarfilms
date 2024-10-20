@@ -18,6 +18,7 @@ library(fuzzyjoin)
 # Web scraping
 library(rvest)              # CRAN v1.0.1
 library(httr)               # CRAN v1.4.2
+library(gtrendsR)
 
 # Image analysis
 library(imagick)
@@ -598,6 +599,32 @@ themes_vox <-
     "Cars", theme_talking_cars,
     "Cars 2", theme_talking_cars
   )
+
+
+
+# Get Google Trends data --------------------------------------------------
+
+# Google Trends filters on the web interface:
+# - United States
+# - 2004 - Present
+# - Animated Films
+# - Web Search
+res <- gtrends(
+  "Cars",
+  # time = "all",
+  geo = "US",
+  category = 1104  # See data(categories) for other values
+)
+iot <- res$interest_over_time
+
+iot %>%
+  ggplot() + geom_line(aes(x = date,
+                           y = hits,
+                           color = keyword)) +
+  theme_minimal() +
+  labs(title = "Zoom vs Slack - in 2020",
+       subtitle = "Google Trends Report",
+       caption = "Courtesy: gtrendsR package")
 
 
 # Save out data for use ---------------------------------------------------
