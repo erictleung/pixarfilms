@@ -1,4 +1,5 @@
 # Load packages and data --------------------------------------------------
+# R version tested: 4.0.4
 # Last run: 2021-05-01
 
 # Utility packages
@@ -21,28 +22,49 @@ library(httr)               # CRAN v1.4.2
 library(gtrendsR)
 
 # Image analysis
-library(imagick)
-library(imager)
+# library(imagick)
+# library(imager)
 
 
 # Extract data ------------------------------------------------------------
 
-# Extract data
-page <- read_html("https://en.wikipedia.org/wiki/List_of_Pixar_films")
-tbls <- html_table(page, fill = TRUE)
+#' Get Wikipedia data and OMDb configuration file
+#'
+#' The exact code for extracting actual tables may change depending on the
+#' format of the Wikipedia tables themselves. Keep an eye out for those when
+#' updating the data.
+#'
+#' @return list
+#' @export
+#'
+#' @examples
+#' wiki_data <- get_wiki_data()
+get_wiki_data <- function() {
+  # Extract data
+  page <- read_html("https://en.wikipedia.org/wiki/List_of_Pixar_films")
+  tbls <- html_table(page, fill = TRUE)
 
-# Extract actual tables
-# Note: tbls[[2]] is upcoming films as of [2024-09-30]
-films <- tbls[[1]] # Films, release info, and top-level people
-boxoffice <- tbls[[3]] #  Box office
-publicresponse <- tbls[[4]] # Critical and public response
-academy <- tbls[[5]] # Academy awards
+  # Extract actual tables
+  # Note: tbls[[2]] is upcoming films as of [2024-09-30]
+  films <- tbls[[1]] # Films, release info, and top-level people
+  boxoffice <- tbls[[3]] #  Box office
+  publicresponse <- tbls[[4]] # Critical and public response
+  academy <- tbls[[5]] # Academy awards
 
-# Get OMDb key to query movie information
-if (file.exists(here("config.txt"))) {
-  config <- read.delim(here("config.txt"), header = FALSE)[1, 1]
-} else {
-  message("Need to have OMDb API key to query movie database")
+  # Get OMDb key to query movie information
+  if (file.exists(here("config.txt"))) {
+    config <- read.delim(here("config.txt"), header = FALSE)[1, 1]
+  } else {
+    message("Need to have OMDb API key to query movie database")
+  }
+
+  return(list(
+    films = films,
+    boxoffice = boxoffice,
+    publicresponse = publicresponse,
+    academy = academy,
+    config = config
+  ))
 }
 
 
@@ -663,3 +685,19 @@ use_data(
   academy,
   overwrite = TRUE
 )
+
+
+# Main --------------------------------------------------------------------
+
+main <- function(){
+  # Pull relevant data from Wikipedia and pull IMDb API key
+  wiki_data <- get_wiki_data()
+
+  # Unpack data
+  films <- wiki_data$films
+  boxoffice <- wiki_data$boxoffice
+  publicresponse <- wiki_data$publicresponse
+  academy <- wiki_data$academy
+  config = wiki_data$config
+}
+main()  # Run all steps
