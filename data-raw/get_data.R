@@ -46,10 +46,13 @@ get_wiki_data <- function() {
 
   # Extract actual tables
   # Note: tbls[[2]] is upcoming films as of [2024-09-30]
-  films <- tbls[[1]] # Films, release info, and top-level people
-  boxoffice <- tbls[[3]] #  Box office
-  publicresponse <- tbls[[4]] # Critical and public response
-  academy <- tbls[[5]] # Academy awards
+  # Note: Wikipedia page as of [2024-10-20] has a banner regarding a merge so
+  #   the table elements will be off by one
+  banner_offset <- 1  # Off set amount temporary
+  films <- tbls[[1 + banner_offset]] # Films, release info, top-level people
+  boxoffice <- tbls[[3 + banner_offset]] #  Box office
+  publicresponse <- tbls[[4 + banner_offset]] # Critical and public response
+  academy <- tbls[[5 + banner_offset]] # Academy awards
 
   # Get OMDb key to query movie information
   if (file.exists(here("config.txt"))) {
@@ -241,7 +244,7 @@ omdb_url <- "https://www.omdbapi.com/"
 omdb_w_key <- paste0(omdb_url, "?apikey=", config, "&")
 
 # Query genres and add to film table
-genres <-
+raw_genres <-
   films %>%
   select(film) %>%
   mutate(genre = NA_character_,
@@ -252,14 +255,15 @@ genres <-
          imdb_rating = NA_character_,
          imdb_votes = NA_character_)
 
-pb <- progress_bar$new(total = nrow(genres))
+pb <- progress_bar$new(total = nrow(raw_genres))
 pb$tick(0) # Start progress
-for (film in 1:nrow(genres)) {
+for (film in 1:nrow(raw_genres)) {  # Production use
+# for (film in 1:3) {  # Uncomment use for testing API and logic
   pb$tick()
 
   # Example:
   # http://www.omdbapi.com/?apikey=<KEY>t=Toy+Story
-  query_str <- str_replace_all(genres$film[film], " ", "+")
+  query_str <- str_replace_all(raw_genres$film[film], " ", "+")
   omdb_data <- tryCatch({
     content(GET(url = paste0(omdb_w_key, "t=", query_str)))
   })
@@ -274,33 +278,36 @@ for (film in 1:nrow(genres)) {
   }
 
   # Fill in data if we have it
-  genres[film, "genre"] <- omdb_data$Genre
-  genres[film, "run_time"] <- omdb_data$Runtime
-  genres[film, "film_rating"] <- omdb_data$Rated
-  genres[film, "poster_url"] <- omdb_data$Poster
-  genres[film, "plot"] <- omdb_data$Plot
-  genres[film, "imdb_rating"] <- omdb_data$imdbRating
-  genres[film, "imdb_votes"] <- omdb_data$imdbVotes
+  raw_genres[film, "genre"] <- omdb_data$Genre
+  raw_genres[film, "run_time"] <- omdb_data$Runtime
+  raw_genres[film, "film_rating"] <- omdb_data$Rated
+  raw_genres[film, "poster_url"] <- omdb_data$Poster
+  raw_genres[film, "plot"] <- omdb_data$Plot
+  raw_genres[film, "imdb_rating"] <- omdb_data$imdbRating
+  raw_genres[film, "imdb_votes"] <- omdb_data$imdbVotes
+
+  # Pause for a few seconds to be a little kind to the OMDb API
+  Sys.sleep(3)
 }
 
 # Move around data from OMDb to movie information before dealing with genres
 pixar_films <-
   pixar_films %>%
   left_join(
-    genres %>%
-      select(film, run_time, film_rating),
+    raw_genres %>%
+      select(film, run_time, film_rating, plot),
     by = "film"
   ) %>%
   mutate(run_time = as.numeric(str_extract(run_time, "[0-9]*")))
 
 # Save posters for another analysis
 posters <-
-  genres %>%
+  raw_genres %>%
   select(film, poster_url)
 
 # Save IMDb ratings for future
 imdb_ratings <-
-  genres %>%
+  raw_genres %>%
   select(film, starts_with("imdb")) %>%
   mutate(
     imdb_rating = as.numeric(imdb_rating),
@@ -309,8 +316,8 @@ imdb_ratings <-
 
 # Clean up multi-genre rows to make tidy data
 genres <-
-  genres %>%
-  select(-c(run_time, film_rating)) %>%
+  raw_genres %>%
+  select(-c(run_time, poster_url, film_rating, plot, imdb_rating, imdb_votes)) %>%
   separate_rows(genre, sep = ", ") %>%
   drop_na(film)
 
