@@ -28,46 +28,24 @@ library(gtrendsR)
 
 # Extract data ------------------------------------------------------------
 
-#' Get Wikipedia data and OMDb configuration file
-#'
-#' The exact code for extracting actual tables may change depending on the
-#' format of the Wikipedia tables themselves. Keep an eye out for those when
-#' updating the data.
-#'
-#' @return list
-#' @export
-#'
-#' @examples
-#' wiki_data <- get_wiki_data()
-get_wiki_data <- function() {
-  # Extract data
-  page <- read_html("https://en.wikipedia.org/wiki/List_of_Pixar_films")
-  tbls <- html_table(page, fill = TRUE)
+page <- read_html("https://en.wikipedia.org/wiki/List_of_Pixar_films")
+tbls <- html_table(page, fill = TRUE)
 
-  # Extract actual tables
-  # Note: tbls[[2]] is upcoming films as of [2024-09-30]
-  # Note: Wikipedia page as of [2024-10-20] has a banner regarding a merge so
-  #   the table elements will be off by one
-  banner_offset <- 1  # Off set amount temporary
-  films <- tbls[[1 + banner_offset]] # Films, release info, top-level people
-  boxoffice <- tbls[[3 + banner_offset]] #  Box office
-  publicresponse <- tbls[[4 + banner_offset]] # Critical and public response
-  academy <- tbls[[5 + banner_offset]] # Academy awards
+# Extract actual tables
+# Note: tbls[[2]] is upcoming films as of [2024-09-30]
+# Note: Wikipedia page as of [2024-10-20] has a banner regarding a merge so
+#   the table elements will be off by one
+banner_offset <- 1  # Off set amount temporary
+films <- tbls[[1 + banner_offset]] # Films, release info, top-level people
+boxoffice <- tbls[[3 + banner_offset]] #  Box office
+publicresponse <- tbls[[4 + banner_offset]] # Critical and public response
+academy <- tbls[[5 + banner_offset]] # Academy awards
 
-  # Get OMDb key to query movie information
-  if (file.exists(here("config.txt"))) {
-    config <- read.delim(here("config.txt"), header = FALSE)[1, 1]
-  } else {
-    message("Need to have OMDb API key to query movie database")
-  }
-
-  return(list(
-    films = films,
-    boxoffice = boxoffice,
-    publicresponse = publicresponse,
-    academy = academy,
-    config = config
-  ))
+# Get OMDb key to query movie information
+if (file.exists(here("config.txt"))) {
+  config <- read.delim(here("config.txt"), header = FALSE)[1, 1]
+} else {
+  message("Need to have OMDb API key to query movie database")
 }
 
 
