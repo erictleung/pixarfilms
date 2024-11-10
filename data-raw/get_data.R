@@ -90,8 +90,10 @@ films <-
 
   # Arrange and add ordering
   arrange(release_date) %>%
-  mutate(number = row_number())
+  mutate(number = row_number()) %>%
 
+  # 2024-11-10 Fix WALL·E name to be accurate to actual movie name
+  mutate(film = if_else(film == "WALL-E", "WALL·E", film))
 
 # Create table of just films
 pixar_films <-
