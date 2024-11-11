@@ -464,11 +464,7 @@ box_office <-
   mutate(box_office_worldwide = as.numeric(box_office_worldwide))
 
 # Convert to tibble for easier viewing
-box_office <-
-  box_office %>%
-  as_tibble() %>%
-  # 2024-11-10 Fix WALL·E name to be accurate to actual movie name
-  mutate(film = if_else(film == "WALL-E", "WALL·E", film))
+box_office <- as_tibble(box_office)
 
 
 # Clean public response data ----------------------------------------------
@@ -480,40 +476,69 @@ box_office <-
 # - Clean Critics' Choice
 # - Add IMDb score
 
-colnames(publicresponse) <-
+# Create data frame and adjust column names because first row is actual name
+public_response <- publicresponse
+colnames(public_response) <-
   publicresponse %>%
-  colnames() %>%
-  str_replace_all("\\[|[0-9]|\\]", "")
+  first() %>%
+  unlist(use.names=FALSE)
+public_response <- public_response[-1, ]  # Remove redundant column names
 
+# Clean up values
+# 2024-11-10 Look's like Critic's Choice got removed
 public_response <-
-  publicresponse %>%
+  public_response %>%
   clean_names() %>%
   mutate_all(function(x) {
     ifelse(x == "N/A", NA, x)
   }) %>%
   mutate(
-    rotten_tomatoes = str_replace(rotten_tomatoes, "%", ""),
-    critics_choice = str_replace(critics_choice, "\\/100", ""),
-    metacritic = str_replace(metacritic, "\\/100", "")
+    rotten_tomatoes = str_replace(rotten_tomatoes, "\\%", ""),
+    metacritic = str_replace(metacritic, "\\/100", ""),
+    cinema_score = str_replace(cinema_score, "\\[.*\\]", "")
   ) %>%
   mutate(
-    rotten_tomatoes = as.numeric(rotten_tomatoes),
-    metacritic = as.numeric(metacritic),
-    critics_choice = as.numeric(critics_choice)
+    rotten_tomatoes_score = str_extract(rotten_tomatoes, "^[0-9]+"),
+    metacritic_score = str_extract(metacritic, "^[0-9]+"),
+    rotten_tomatoes_counts = str_extract(
+      rotten_tomatoes,
+      "\\(([0-9]+) reviews\\)",
+      group = 1
+    ),
+    metacritic_counts = str_extract(
+      metacritic,
+      "\\(([0-9]+) reviews\\)",
+      group = 1)
   )
+
 
 # Some of the Cinema Scores use the em-dash instead of a simple dash when
 # rating, or at least on Wikipedia. So here let's replace those scores manually
 # with simple dashes.
-problem_films <- c("Cars 2", "Onward")
+problem_films <- c("Cars 2", "Onward", "Lightyear")
 public_response <-
   public_response %>%
   mutate(cinema_score = if_else(film %in% problem_films,
                                 "A-",
-                                cinema_score))
+                                cinema_score)) %>%
+  mutate(cinema_score = if_else(cinema_score == "—", NA, cinema_score))
 
 # Convert to tibble for easier viewing
-public_response <- as_tibble(public_response)
+public_response <-
+  public_response %>%
+  as_tibble() %>%
+  select(-c(rotten_tomatoes, metacritic)) %>%
+  select(
+    film,
+    starts_with("rotten"),
+    starts_with("metacritic"),
+    cinema_score
+  ) %>%
+  left_join(
+    imdb_ratings %>%
+      rename(imdb_score = imdb_rating, imdb_counts = imdb_votes),
+    by = "film"
+  )
 
 
 # Clean academy data ------------------------------------------------------
