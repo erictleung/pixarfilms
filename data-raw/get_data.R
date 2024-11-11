@@ -92,8 +92,6 @@ films <-
   arrange(release_date) %>%
   mutate(number = row_number()) %>%
 
-  # 2024-11-10 Fix WALL·E name to be accurate to actual movie name
-  mutate(film = if_else(film == "WALL-E", "WALL·E", film))
 
 # Create table of just films
 pixar_films <-
@@ -244,6 +242,10 @@ for (film in 1:nrow(raw_genres)) {  # Production use
   # Example:
   # http://www.omdbapi.com/?apikey=<KEY>t=Toy+Story
   query_str <- str_replace_all(raw_genres$film[film], " ", "+")
+
+  # Edge case for WALL-E / WALL·E
+  query_str <- str_replace(query_str, "WALL-E", "WALL·E")
+
   omdb_data <- tryCatch({
     content(GET(url = paste0(omdb_w_key, "t=", query_str)))
   })
