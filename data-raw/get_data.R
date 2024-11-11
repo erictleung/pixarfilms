@@ -297,11 +297,117 @@ imdb_ratings <-
   )
 
 # Clean up multi-genre rows to make tidy data
+# 2024-11-10 Genres from OMDb have been reduced to just animation, adventure,
+#   comedy. So I'm going to hard code these from IMDb
 genres <-
   raw_genres %>%
   select(-c(run_time, poster_url, film_rating, plot, imdb_rating, imdb_votes)) %>%
   separate_rows(genre, sep = ", ") %>%
-  drop_na(film)
+  drop_na(film) %>%
+  mutate(category = "Genre") %>%
+  rename(value = genre) %>%
+  select(film, category, value)
+
+subgenres <-
+  tribble(
+    ~film, ~raw_genre,
+    "Toy Story", "Buddy Comedy, Computer Animation, Supernatural Fantasy, Urban Adventure, Adventure, Animation, Comedy, Family, Fantasy",
+    # https://www.imdb.com/title/tt0114709/
+
+    "A Bug's Life", "Animal Adventure, Computer Animation, Quest, Adventure, Animation, Comedy, Family",
+    # https://www.imdb.com/title/tt0120623/
+
+    "Toy Story 2", "Computer Animation, Quest, Supernatural Fantasy, Urban Adventure, Adventure, Animation, Comedy, Family, Fantasy",
+    # https://www.imdb.com/title/tt0120363/
+
+    "Monsters, Inc.", "Buddy Comedy, Computer Animation, Supernatural Fantasy, Urban Adventure, Adventure, Animation, Comedy, Family, Fantasy",
+      # https://www.imdb.com/title/tt0198781/
+
+    "Finding Nemo", "Animal Adventure, Buddy Comedy, Computer Animation, Quest, Sea Adventure, Adventure, Animation, Comedy, Family",
+    # https://www.imdb.com/title/tt0266543/
+
+    "The Incredibles", "Computer Animation, Superhero, Urban Adventure, Action, Adventure, Animation, Family",
+    # https://www.imdb.com/title/tt0317705/
+
+    "Cars", "Computer Animation, Motorsport, Adventure, Animation, Comedy, Family, Sport",
+    # https://www.imdb.com/title/tt0317219/?
+
+    "Ratatouille", "Animal Adventure, Computer Animation, Adventure, Animation, Comedy, Family, Fantasy",
+    # https://www.imdb.com/title/tt0382932/?
+
+    "WALL·E", "Adventure Epic, Artificial Intelligence, Computer Animation, Dystopian Sci-Fi, Space Sci-Fi, Adventure, Animation, Family, Sci-Fi",
+    # https://www.imdb.com/title/tt0910970/?
+
+    "Up", "Coming-of-Age, Computer Animation, Globetrotting Adventure, Adventure, Animation, Comedy, Drama, Family",
+    # https://www.imdb.com/title/tt1049413/?
+
+    "Toy Story 3", "Computer Animation, Supernatural Fantasy, Urban Adventure, Adventure, Animation, Comedy, Family, Fantasy",
+    # https://www.imdb.com/title/tt0435761/
+
+    "Cars 2", "Car Action, Computer Animation, Motorsport, Spy, Adventure, Animation, Comedy, Crime, Family, Sport",
+    # https://www.imdb.com/title/tt1216475/
+
+    "Brave", "Coming-of-Age, Computer Animation, Fairy Tale, Quest, Sword & Sorcery, Teen Adventure, Action, Adventure, Animation",
+    # https://www.imdb.com/title/tt1217209/
+
+    "Monsters University", "Computer Animation, Adventure, Animation, Comedy, Family, Fantasy",
+    # https://www.imdb.com/title/tt1453405/
+
+    "Inside Out", "Coming-of-Age, Computer Animation, Adventure, Animation, Comedy, Drama, Family, Fantasy",
+    # https://www.imdb.com/title/tt2096673/
+
+    "The Good Dinosaur", "Animal Adventure, Buddy Comedy, Computer Animation, Dinosaur Adventure, Action, Adventure, Animation, Comedy, Drama, Family",
+    # https://www.imdb.com/title/tt1979388/
+
+    "Finding Dory", "Animal Adventure, Computer Animation, Sea Adventure, Adventure, Animation, Comedy, Family, Fantasy",
+    # https://www.imdb.com/title/tt2277860/
+
+    "Cars 3", "Car Action, Computer Animation, Motorsport, Adventure, Animation, Comedy, Family, Sport",
+    # https://www.imdb.com/title/tt3606752/
+
+    "Coco", "Computer Animation, Supernatural Fantasy, Adventure, Animation, Drama, Family, Fantasy, Music, Mystery",
+    # https://www.imdb.com/title/tt2380307/
+
+    "Incredibles 2", "Computer Animation, Superhero, Urban Adventure, Action, Adventure, Animation, Comedy, Family, Sci-Fi",
+    # https://www.imdb.com/title/tt3606756/
+
+    "Toy Story 4", "Computer Animation, Road Trip, Supernatural Fantasy, Urban Adventure, Adventure, Animation, Comedy, Family, Fantasy",
+    # https://www.imdb.com/title/tt1979376/
+
+    "Onward", "Computer Animation, Fantasy Epic, Quest, Supernatural Fantasy, Sword & Sorcery, Adventure, Animation, Comedy, Drama, Family",
+    # https://www.imdb.com/title/tt7146812/
+
+    "Soul", "Computer Animation, Adventure, Animation, Comedy, Drama, Family, Fantasy, Music",
+    # https://www.imdb.com/title/tt2948372/
+
+    "Luca", "Coming-of-Age, Computer Animation, Fairy Tale, Sea Adventure, Adventure, Animation, Comedy, Drama, Family, Fantasy",
+    # https://www.imdb.com/title/tt12801262/
+
+    "Turning Red", "Coming-of-Age, Computer Animation, Teen Comedy, Adventure, Animation, Comedy, Drama, Family, Fantasy, Music",
+    # https://www.imdb.com/title/tt8097030/
+
+    "Lightyear", "Computer Animation, Space Sci-Fi, Superhero, Time Travel, Action, Adventure, Animation, Comedy, Family, Sci-Fi",
+    # https://www.imdb.com/title/tt10298810/
+
+    "Elemental", "Computer Animation, Urban Adventure, Adventure, Animation, Comedy, Family, Fantasy, Romance",
+    # https://www.imdb.com/title/tt15789038/
+
+    "Inside Out 2", "Coming-of-Age, Computer Animation, Quest, Teen Comedy, Teen Drama, Adventure, Animation, Comedy, Drama, Family"
+    # https://www.imdb.com/title/tt22022452/
+  )
+
+# Separate row values so that data is tidy
+# Also remove overlap between genres and subgenres to make it cleaner
+subgenres <-
+  subgenres %>%
+    separate_longer_delim(raw_genre, delim = ", ") %>%
+    mutate(category = "Subgenre") %>%
+    rename(value = raw_genre) %>%
+    filter(!value %in% genres$value) %>%
+    select(film, category, value)
+
+# Put genres and subgenre categories into a single table
+genres <- bind_rows(genres, subgenres)
 
 
 # Clean box office information --------------------------------------------
@@ -316,7 +422,7 @@ box_office <-
   boxoffice %>%
   clean_names() %>%
   filter(film != "Film") %>%
-  select(-ref_s) %>%
+  select(-ref) %>%  # 2024-11-10 Rename of column from ref_s -> ref
   rename(
     box_office_us_canada = box_office_gross,
     box_office_other = box_office_gross_2,
@@ -327,7 +433,7 @@ box_office <-
   # Convert US and Canada box office information
   mutate(box_office_us_canada = str_replace_all(
     box_office_us_canada,
-    "(\\$)|(,)", ""
+    "(\\$)|(,)|(\\[.*\\])", ""
   )) %>%
   mutate(box_office_us_canada = if_else(box_office_us_canada == "N/A",
     NA_character_,
@@ -338,7 +444,7 @@ box_office <-
   # Convert other territory information
   mutate(box_office_other = str_replace_all(
     box_office_other,
-    "(\\$)|(,)", ""
+    "(\\$)|(,)|(\\[.*\\])", ""
   )) %>%
   mutate(box_office_other = if_else(box_office_other == "N/A",
     NA_character_,
@@ -349,7 +455,7 @@ box_office <-
   # Convert worldwide box office information
   mutate(box_office_worldwide = str_replace_all(
     box_office_worldwide,
-    "(\\$)|(,)", ""
+    "(\\$)|(,)|(\\[.*\\])", ""
   )) %>%
   mutate(box_office_worldwide = if_else(box_office_worldwide == "N/A",
     NA_character_,
@@ -358,7 +464,11 @@ box_office <-
   mutate(box_office_worldwide = as.numeric(box_office_worldwide))
 
 # Convert to tibble for easier viewing
-box_office <- as_tibble(box_office)
+box_office <-
+  box_office %>%
+  as_tibble() %>%
+  # 2024-11-10 Fix WALL·E name to be accurate to actual movie name
+  mutate(film = if_else(film == "WALL-E", "WALL·E", film))
 
 
 # Clean public response data ----------------------------------------------
