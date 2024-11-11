@@ -570,6 +570,16 @@ academy <-
     TRUE ~ award_type
   ))
 
+# Quality checks on if there are any typos or anomalous values
+academy %>%
+  group_by(award_type) %>%
+  count(award_type) %>%
+  arrange(n)
+
+academy %>%
+  group_by(status) %>%
+  count(status) %>%
+  arrange(n)
 
 # Convert Vox analysis matrix ---------------------------------------------
 
