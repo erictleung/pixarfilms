@@ -538,7 +538,15 @@ public_response <-
     imdb_ratings %>%
       rename(imdb_score = imdb_rating, imdb_counts = imdb_votes),
     by = "film"
+  ) %>%
+  mutate(
+    across(starts_with("rotten"), ~ as.numeric(.x)),
+    across(starts_with("metacritic"), ~ as.numeric(.x)),
+    across(starts_with("imdb"), ~ as.numeric(.x))
   )
+
+# Manual quality checks, scores should be 0-100 or 0-10 and counts >0
+summary(public_response)
 
 
 # Clean academy data ------------------------------------------------------
@@ -570,7 +578,7 @@ academy <-
     TRUE ~ award_type
   ))
 
-# Quality checks on if there are any typos or anomalous values
+# Manual quality checks on if there are any typos or anomalous values
 academy %>%
   group_by(award_type) %>%
   count(award_type) %>%
@@ -580,6 +588,7 @@ academy %>%
   group_by(status) %>%
   count(status) %>%
   arrange(n)
+
 
 # Convert Vox analysis matrix ---------------------------------------------
 
