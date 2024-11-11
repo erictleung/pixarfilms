@@ -674,19 +674,3 @@ use_data(
   academy,
   overwrite = TRUE
 )
-
-
-# Main --------------------------------------------------------------------
-
-main <- function(){
-  # Pull relevant data from Wikipedia and pull IMDb API key
-  wiki_data <- get_wiki_data()
-
-  # Unpack data
-  films <- wiki_data$films
-  boxoffice <- wiki_data$boxoffice
-  publicresponse <- wiki_data$publicresponse
-  academy <- wiki_data$academy
-  config = wiki_data$config
-}
-main()  # Run all steps
