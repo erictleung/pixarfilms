@@ -90,7 +90,7 @@ films <-
 
   # Arrange and add ordering
   arrange(release_date) %>%
-  mutate(number = row_number()) %>%
+  mutate(number = row_number())
 
 
 # Create table of just films
@@ -768,6 +768,7 @@ themes_vox <-
 
 
 # Get Google Trends data --------------------------------------------------
+# WIP
 
 # Google Trends filters on the web interface:
 # - United States
@@ -794,7 +795,7 @@ iot %>%
 
 # Save out data for use ---------------------------------------------------
 
-# Join all data into single data frame
+# Join all data into single, long data frame
 # TODO Test and save out accordingly
 all_pixar <-
     pixar_films %>%
@@ -802,7 +803,8 @@ all_pixar <-
     inner_join(academy) %>%
     inner_join(genres) %>%
     inner_join(box_office) %>%
-    inner_join(public_response)
+    inner_join(public_response) %>%
+    inner_join(theme_vox)
 
 # Save out for external use as CSV files
 save_data <- function(x) {
