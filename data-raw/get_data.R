@@ -476,6 +476,40 @@ box_office <- as_tibble(box_office)
 # - Clean Critics' Choice
 # - Add IMDb score
 
+# Manually input audience Rotten Tomatoes rating
+# https://editorial.rottentomatoes.com/article/audience-score-update/
+rt_audience <- tribble(
+  ~film, ~rt_popcorn_meter_score, ~rt_popcorn_meter_votes,
+  "Toy Story", 92, 250000,
+  "A Bug's Life", 73, 250000,
+  "Toy Story 2", 87, 250000,
+  "Monsters, Inc.", 90, 250000,
+  "Finding Nemo", 86, 250000,
+  "The Incredibles", 75, 250000,
+  "Cars", 80, 250000,
+  "Ratatouille", 87, 250000,
+  "WALL-E", 90, 250000,
+  "Up", 90, 250000,
+  "Toy Story 3", 90, 250000,
+  "Cars 2", 49, 100000,
+  "Brave", 75, 250000,
+  "Monsters University", 81, 250000,
+  "Inside Out", 89, 100000,
+  "The Good Dinosaur", 64, 50000,
+  "Finding Dory", 84, 100000,
+  "Cars 3", 68, 25000,
+  "Coco", 94, 25000,
+  "Incredibles 2", 84, 10000,
+  "Toy Story 4", 94, 50000,
+  "Onward", 95, 5000,
+  "Soul", 88, 5000,
+  "Luca", 84, 2500,
+  "Turning Red", 67, 5000,
+  "Lightyear", 84, 5000,
+  "Elemental", 93, 2500,
+  "Inside Out 2", 95, 5000
+)
+
 # Create data frame and adjust column names because first row is actual name
 public_response <- publicresponse
 colnames(public_response) <-
@@ -544,6 +578,12 @@ public_response <-
     across(starts_with("metacritic"), ~ as.numeric(.x)),
     across(starts_with("imdb"), ~ as.numeric(.x))
   )
+
+# Join with Rotten Tomatoes audience meter
+public_response <-
+  public_response %>%
+  left_join(rt_audience, by = "film")
+
 
 # Manual quality checks, scores should be 0-100 or 0-10 and counts >0
 summary(public_response)
