@@ -93,6 +93,8 @@ films <-
   mutate(number = row_number())
 
 
+## pixar_films ----
+
 # Create table of just films
 pixar_films <-
   films %>%
@@ -101,6 +103,8 @@ pixar_films <-
 # Convert to tibble for easier viewing
 pixar_films <- as_tibble(pixar_films)
 
+
+## pixar_people ----
 
 # Create table of film-people rows
 # - Directors
@@ -215,6 +219,15 @@ pixar_people <-
     TRUE ~ role_type
   ))
 
+# Reorder for polish
+pixar_people <-
+  pixar_people %>%
+  left_join(pixar_films %>% select(number, film)) %>%
+  arrange(number, role_type) %>%
+  select(-number)
+
+
+## IMDb information ----
 
 # Add IMDb information from OMDb
 # - Genres
