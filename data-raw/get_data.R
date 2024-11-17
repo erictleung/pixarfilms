@@ -834,6 +834,22 @@ iot %>%
 
 # Get rankings ------------------------------------------------------------
 
+# Some rankings are very similarly formatted, so here's a function to do that
+get_rankings_standard <- function(link) {
+  page <- read_html(link)
+  film_regex <- regex("^([0-9]{1,2}). ([A-Za-z0-9-’',. ]+?) \\(([0-9]{4,4})\\)$")
+
+  tibble(raw = page %>% html_elements("h2") %>% html_text()) %>%
+    filter(str_detect(raw, "^[0-9]")) %>%
+    mutate(raw = raw %>% trimws() %>% str_replace_all("“|”", "")) %>%
+    mutate(
+      ranking = str_extract(raw, film_regex, group = 1),
+      film = str_extract(raw, film_regex, group = 2)
+    ) %>%
+    select(film, ranking)
+}
+
+
 ## Get Rotten Tomatoes ranking ----
 link <- "https://editorial.rottentomatoes.com/guide/all-pixar-movies-ranked/"
 page <- read_html(link)
@@ -868,46 +884,22 @@ ign_ranking <-
 
 ## Get IndieWire ranking ----
 link <- "https://www.indiewire.com/features/best-of/pixar-movies-ranked-best-worst-96815/"
-page <- read_html(link)
-film_regex <- regex("^([0-9]{1,2}). ([A-Za-z0-9-’',. ]+?) \\(([0-9]{4,4})\\)$")
-indie_wire_ranking <-
-  tibble(raw = page %>% html_elements("h2") %>% html_text()) %>%
-  mutate(raw = raw %>% trimws() %>% str_replace_all("“|”", "")) %>%
-  filter(str_detect(raw, "[0-9]")) %>%  # Remove stray headings, not rankings
-  mutate(
-    ranking = str_extract(raw, film_regex, group = 1),
-    film = str_extract(raw, film_regex, group = 2)
-  ) %>%
-  mutate(film = trimws(film)) %>%  # One element had one more space around it
-  select(film, ranking)
+indie_wire_ranking <- get_rankings_standard(link)
 
 
 ## Get Slant ranking ----
 link <- "https://www.slantmagazine.com/film/every-pixar-movie-ranked-from-worst-to-best/"
-page <- read_html(link)
-slant_ranking <-
-  tibble(raw = page %>% html_elements("h2") %>% html_text()) %>%
-  filter(str_detect(raw, "^[0-9]")) %>%
-  mutate(raw = trimws(raw)) %>%
-  mutate(
-    ranking = str_extract(raw, film_regex, group = 1),
-    film = str_extract(raw, film_regex, group = 2)
-  ) %>%
-  select(film, ranking)
+slant_ranking <- get_rankings_standard(link)
 
 
 ## Get Vox ranking ----
 link <- "https://www.vox.com/culture/2019/6/27/18715845/pixar-movies-rankings"
-page <- read_html(link)
-vox_ranking <-
-  tibble(raw = page %>% html_elements("h2") %>% html_text()) %>%
-  filter(str_detect(raw, "^[0-9]")) %>%
-  mutate(raw = trimws(raw)) %>%
-  mutate(
-    ranking = str_extract(raw, film_regex, group = 1),
-    film = str_extract(raw, film_regex, group = 2)
-  ) %>%
-  select(film, ranking)
+vox_ranking <- get_rankings_standard(link)
+
+
+## Get WIRED ranking ----
+link <- "https://www.wired.com/story/best-pixar-movies/"
+vox_ranking <- get_rankings_standard(link)
 
 
 # Save out data for use ---------------------------------------------------
