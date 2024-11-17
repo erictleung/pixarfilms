@@ -876,13 +876,8 @@ rotten_tomatoes_ranking <-
 
 ## Get IGN ranking ----
 link <- "https://www.ign.com/articles/best-ranking-pixar-movies"
-page <- read_html(link)
-ign_ranking <-
-  tibble(raw = page %>% html_elements("h2") %>% html_text()) %>%
-  filter(!str_detect(raw, "Pixar")) %>%
-  mutate(raw = trimws(raw)) %>%
-  separate_wider_delim(raw, delim = ". ", names = c("ranking", "film")) %>%
-  select(film, ranking)
+film_regex <- regex("^([0-9]{1,2}). ([A-Za-z0-9-’',. ]+)")
+ign_ranking <- get_rankings_standard(link, film_regex)
 
 
 ## Get IndieWire ranking ----
@@ -931,6 +926,11 @@ thrillist_ranking <-
 link <- "https://screenrant.com/pixar-movies-ranked-best-worst/"
 film_regex <- regex("^([0-9]{1,2}). ([A-Za-z0-9-’',. ]+)")
 screenrant_ranking <- get_rankings_standard(link, film_regex)
+
+
+## Get Polygon ranking ----
+link <- "https://www.polygon.com/movies/22239548/best-pixar-movies-ranked"
+polygon_ranking <- get_rankings_standard(link)
 
 
 ## TEMP FOR TESTING IF A RANKING SCRAPE FAILS
