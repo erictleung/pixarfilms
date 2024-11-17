@@ -1,221 +1,261 @@
 film,role_type,name
 Toy Story,Director,John Lasseter
+Toy Story,Musician,Randy Newman
+Toy Story,Producer,Bonnie Arnold
+Toy Story,Producer,Ralph Guggenheim
 Toy Story,Screenwriter,Joel Cohen
 Toy Story,Screenwriter,Alec Sokolow
 Toy Story,Screenwriter,Andrew Stanton
 Toy Story,Screenwriter,Joss Whedon
 Toy Story,Storywriter,Pete Docter
-Toy Story,Storywriter,Lasseter
+Toy Story,Storywriter,John Lasseter
 Toy Story,Storywriter,Joe Ranft
-Toy Story,Storywriter,Stanton
-Toy Story,Producer,Bonnie Arnold
-Toy Story,Producer,Ralph Guggenheim
-Toy Story,Musician,Randy Newman
+Toy Story,Storywriter,Andrew Stanton
+A Bug's Life,Co-director,Andrew Stanton
 A Bug's Life,Director,John Lasseter
+A Bug's Life,Musician,Randy Newman
+A Bug's Life,Producer,Darla K. Anderson
+A Bug's Life,Producer,Kevin Reher
 A Bug's Life,Screenwriter,Donald McEnery
 A Bug's Life,Screenwriter,Bob Shaw
 A Bug's Life,Screenwriter,Andrew Stanton
-A Bug's Life,Storywriter,Lasseter
+A Bug's Life,Storywriter,John Lasseter
 A Bug's Life,Storywriter,Joe Ranft
-A Bug's Life,Storywriter,Stanton
-A Bug's Life,Producer,Darla K. Anderson
-A Bug's Life,Producer,Kevin Reher
-A Bug's Life,Musician,Randy Newman
+A Bug's Life,Storywriter,Andrew Stanton
+Toy Story 2,Co-director,Ash Brannon
+Toy Story 2,Co-director,Lee Unkrich
 Toy Story 2,Director,John Lasseter
+Toy Story 2,Musician,Randy Newman
+Toy Story 2,Producer,Karen Robert Jackson
+Toy Story 2,Producer,Helene Plotkin
 Toy Story 2,Screenwriter,Doug Chamberlin
 Toy Story 2,Screenwriter,Rita Hsiao
 Toy Story 2,Screenwriter,Andrew Stanton
 Toy Story 2,Screenwriter,Chris Webb
 Toy Story 2,Storywriter,Ash Brannon
 Toy Story 2,Storywriter,Pete Docter
-Toy Story 2,Storywriter,Lasseter
-Toy Story 2,Storywriter,Stanton
-Toy Story 2,Producer,Karen Robert Jackson
-Toy Story 2,Producer,Helene Plotkin
-Toy Story 2,Musician,Randy Newman
+Toy Story 2,Storywriter,John Lasseter
+Toy Story 2,Storywriter,Andrew Stanton
+"Monsters, Inc.",Co-director,David Silverman
+"Monsters, Inc.",Co-director,Lee Unkrich
 "Monsters, Inc.",Director,Pete Docter
+"Monsters, Inc.",Musician,Randy Newman
+"Monsters, Inc.",Producer,Darla K. Anderson
 "Monsters, Inc.",Screenwriter,Dan Gerson
 "Monsters, Inc.",Screenwriter,Andrew Stanton
 "Monsters, Inc.",Storywriter,Jill Culton
-"Monsters, Inc.",Storywriter,Docter
+"Monsters, Inc.",Storywriter,Pete Docter
 "Monsters, Inc.",Storywriter,Ralph Eggleston
 "Monsters, Inc.",Storywriter,Jeff Pidgeon
-"Monsters, Inc.",Producer,Darla K. Anderson
-"Monsters, Inc.",Musician,Randy Newman
+Finding Nemo,Co-director,Lee Unkrich
 Finding Nemo,Director,Andrew Stanton
+Finding Nemo,Musician,Thomas Newman
+Finding Nemo,Producer,Graham Walters
 Finding Nemo,Screenwriter,Bob Peterson
 Finding Nemo,Screenwriter,David Reynolds
-Finding Nemo,Screenwriter,Stanton
-Finding Nemo,Storywriter,Stanton
-Finding Nemo,Producer,Graham Walters
-Finding Nemo,Musician,Thomas Newman
+Finding Nemo,Screenwriter,Andrew Stanton
+Finding Nemo,Storywriter,Andrew Stanton
 The Incredibles,Director,Brad Bird
+The Incredibles,Musician,Michael Giacchino
+The Incredibles,Producer,John Walker
 The Incredibles,Screenwriter,Brad Bird
 The Incredibles,Storywriter,Brad Bird
-The Incredibles,Producer,John Walker
-The Incredibles,Musician,Michael Giacchino
+Cars,Co-director,Joe Ranft
 Cars,Director,John Lasseter
+Cars,Musician,Randy Newman
+Cars,Producer,Darla K. Anderson
 Cars,Screenwriter,Dan Fogelman
 Cars,Screenwriter,Jorgen Klubien
-Cars,Screenwriter,Lasseter
+Cars,Screenwriter,John Lasseter
 Cars,Screenwriter,Phil Lorin
 Cars,Screenwriter,Kiel Murray
 Cars,Screenwriter,Joe Ranft
-Cars,Storywriter,Lasseter
-Cars,Storywriter,Klubien
-Cars,Storywriter,Ranft
-Cars,Producer,Darla K. Anderson
-Cars,Musician,Randy Newman
+Cars,Storywriter,John Lasseter
+Cars,Storywriter,Jorgen Klubien
+Cars,Storywriter,Joe Ranft
+Ratatouille,Co-director,Jan Pinkava
 Ratatouille,Director,Brad Bird
+Ratatouille,Musician,Michael Giacchino
+Ratatouille,Producer,Brad Lewis
 Ratatouille,Screenwriter,Brad Bird
-Ratatouille,Storywriter,Bird
+Ratatouille,Storywriter,Brad Bird
 Ratatouille,Storywriter,Jim Capobianco
 Ratatouille,Storywriter,Jan Pinkava
-Ratatouille,Producer,Brad Lewis
-Ratatouille,Musician,Michael Giacchino
 WALL-E,Director,Andrew Stanton
-WALL-E,Screenwriter,Jim Reardon
-WALL-E,Screenwriter,Stanton
-WALL-E,Storywriter,Pete Docter
-WALL-E,Storywriter,Stanton
-WALL-E,Producer,Jim Morris
 WALL-E,Musician,Thomas Newman
+WALL-E,Producer,Jim Morris
+WALL-E,Screenwriter,Jim Reardon
+WALL-E,Screenwriter,Andrew Stanton
+WALL-E,Storywriter,Pete Docter
+WALL-E,Storywriter,Andrew Stanton
+Up,Co-director,Bob Peterson
 Up,Director,Pete Docter
-Up,Screenwriter,Docter
-Up,Screenwriter,Bob Peterson
-Up,Storywriter,Docter
-Up,Storywriter,Tom McCarthy
-Up,Storywriter,Peterson
-Up,Producer,Jonas Rivera
 Up,Musician,Michael Giacchino
+Up,Producer,Jonas Rivera
+Up,Screenwriter,Pete Docter
+Up,Screenwriter,Bob Peterson
+Up,Storywriter,Pete Docter
+Up,Storywriter,Tom McCarthy
+Up,Storywriter,Bob Peterson
 Toy Story 3,Director,Lee Unkrich
+Toy Story 3,Musician,Randy Newman
+Toy Story 3,Producer,Darla K. Anderson
 Toy Story 3,Screenwriter,Michael Arndt
 Toy Story 3,Storywriter,John Lasseter
 Toy Story 3,Storywriter,Andrew Stanton
-Toy Story 3,Storywriter,Unkrich
-Toy Story 3,Producer,Darla K. Anderson
-Toy Story 3,Musician,Randy Newman
+Toy Story 3,Storywriter,Lee Unkrich
+Cars 2,Co-director,Brad Lewis
 Cars 2,Director,John Lasseter
+Cars 2,Musician,Michael Giacchino
+Cars 2,Producer,Denise Ream
 Cars 2,Screenwriter,Ben Queen
 Cars 2,Storywriter,Dan Fogelman
-Cars 2,Storywriter,Lasseter
+Cars 2,Storywriter,John Lasseter
 Cars 2,Storywriter,Brad Lewis
-Cars 2,Producer,Denise Ream
-Cars 2,Musician,Michael Giacchino
+Brave,Co-director,Mark Andrews
 Brave,Director,Mark Andrews
-Brave,Director,Brenda Chapman
-Brave,Screenwriter,Andrews
-Brave,Screenwriter,Chapman
-Brave,Screenwriter,Irene Mecchi
-Brave,Screenwriter,Steve Purcell
-Brave,Storywriter,Chapman
-Brave,Producer,Katherine Sarafian
-Brave,Musician,Patrick Doyle
+Brave,Director,Mark Andrews
+Brave,Musician,Mark Andrews
+Brave,Producer,Mark Andrews
+Brave,Screenwriter,Mark Andrews
+Brave,Screenwriter,Mark Andrews
+Brave,Screenwriter,Mark Andrews
+Brave,Screenwriter,Mark Andrews
+Brave,Storywriter,Mark Andrews
 Monsters University,Director,Dan Scanlon
+Monsters University,Musician,Randy Newman
+Monsters University,Producer,Kori Rae
 Monsters University,Screenwriter,Robert L. Baird
 Monsters University,Screenwriter,Dan Gerson
-Monsters University,Screenwriter,Scanlon
+Monsters University,Screenwriter,Dan Scanlon
 Monsters University,Storywriter,Robert L. Baird
 Monsters University,Storywriter,Dan Gerson
-Monsters University,Storywriter,Scanlon
-Monsters University,Producer,Kori Rae
-Monsters University,Musician,Randy Newman
+Monsters University,Storywriter,Dan Scanlon
+Inside Out,Co-director,Ronnie del Carmen
 Inside Out,Director,Pete Docter
-Inside Out,Screenwriter,Josh Cooley
-Inside Out,Screenwriter,Docter
-Inside Out,Screenwriter,Meg LeFauve
-Inside Out,Storywriter,Docter
-Inside Out,Storywriter,Ronnie del Carmen
-Inside Out,Producer,Jonas Rivera
 Inside Out,Musician,Michael Giacchino
+Inside Out,Producer,Jonas Rivera
+Inside Out,Screenwriter,Josh Cooley
+Inside Out,Screenwriter,Pete Docter
+Inside Out,Screenwriter,Meg LeFauve
+Inside Out,Storywriter,del Carmen
+Inside Out,Storywriter,Pete Docter
 The Good Dinosaur,Director,Peter Sohn
+The Good Dinosaur,Musician,Mychael
+The Good Dinosaur,Musician,Jeff Danna
+The Good Dinosaur,Producer,Denise Ream
 The Good Dinosaur,Screenwriter,Meg LeFauve
-The Good Dinosaur,Storywriter,Sohn
 The Good Dinosaur,Storywriter,Erik Benson
-The Good Dinosaur,Storywriter,LeFauve
+The Good Dinosaur,Storywriter,Meg LeFauve
 The Good Dinosaur,Storywriter,Kelsey Mann
 The Good Dinosaur,Storywriter,Bob Peterson
-The Good Dinosaur,Producer,Denise Ream
-The Good Dinosaur,Musician,Jeff Danna
-The Good Dinosaur,Musician,Mychael Danna
+The Good Dinosaur,Storywriter,Peter Sohn
+Finding Dory,Co-director,Angus MacLane
 Finding Dory,Director,Andrew Stanton
-Finding Dory,Screenwriter,Stanton
-Finding Dory,Screenwriter,Victoria Strouse
-Finding Dory,Storywriter,Stanton
-Finding Dory,Producer,Lindsey Collins
 Finding Dory,Musician,Thomas Newman
+Finding Dory,Producer,Lindsey Collins
+Finding Dory,Screenwriter,Andrew Stanton
+Finding Dory,Screenwriter,Victoria Strouse
+Finding Dory,Storywriter,Andrew Stanton
 Cars 3,Director,Brian Fee
+Cars 3,Musician,Randy Newman
+Cars 3,Producer,Kevin Reher
 Cars 3,Screenwriter,Kiel Murray
 Cars 3,Screenwriter,Bob Peterson
 Cars 3,Screenwriter,Mike Rich
-Cars 3,Storywriter,Fee
+Cars 3,Storywriter,Brian Fee
 Cars 3,Storywriter,Eyal Podell
 Cars 3,Storywriter,Ben Queen
-Cars 3,Storywriter,Jonathon E. Stewart
-Cars 3,Producer,Kevin Reher
-Cars 3,Musician,Randy Newman
+Cars 3,Storywriter,Jonathan E. Stewart
+Coco,Co-director,Adrian Molina
 Coco,Director,Lee Unkrich
+Coco,Musician,Michael Giacchino
+Coco,Producer,Darla K. Anderson
 Coco,Screenwriter,Matthew Aldrich
 Coco,Screenwriter,Adrian Molina
-Coco,Storywriter,Aldrich
+Coco,Storywriter,Matthew Aldrich
 Coco,Storywriter,Jason Katz
-Coco,Storywriter,Molina
-Coco,Storywriter,Unkrich
-Coco,Producer,Darla K. Anderson
-Coco,Musician,Michael Giacchino
+Coco,Storywriter,Adrian Molina
+Coco,Storywriter,Lee Unkrich
 Incredibles 2,Director,Brad Bird
-Incredibles 2,Screenwriter,Brad Bird
-Incredibles 2,Storywriter,Brad Bird
+Incredibles 2,Musician,Michael Giacchino
 Incredibles 2,Producer,Nicole Paradis Grindle
 Incredibles 2,Producer,John Walker
-Incredibles 2,Musician,Michael Giacchino
+Incredibles 2,Screenwriter,Brad Bird
+Incredibles 2,Storywriter,Brad Bird
 Toy Story 4,Director,Josh Cooley
+Toy Story 4,Musician,Randy Newman
+Toy Story 4,Producer,Mark Nielsen
+Toy Story 4,Producer,Jonas Rivera
 Toy Story 4,Screenwriter,Stephany Folsom
 Toy Story 4,Screenwriter,Andrew Stanton
-Toy Story 4,Storywriter,Cooley
-Toy Story 4,Storywriter,Folsom
+Toy Story 4,Storywriter,Josh Cooley
+Toy Story 4,Storywriter,Stephany Folsom
 Toy Story 4,Storywriter,Martin Hynes
 Toy Story 4,Storywriter,Rashida Jones
 Toy Story 4,Storywriter,Valerie LaPointe
 Toy Story 4,Storywriter,John Lasseter
 Toy Story 4,Storywriter,Will McCormack
-Toy Story 4,Storywriter,Stanton
-Toy Story 4,Producer,Mark Nielsen
-Toy Story 4,Producer,Jonas Rivera
-Toy Story 4,Musician,Randy Newman
+Toy Story 4,Storywriter,Andrew Stanton
 Onward,Director,Dan Scanlon
+Onward,Musician,Mychael
+Onward,Musician,Jeff Danna
+Onward,Producer,Kori Rae
 Onward,Screenwriter,Keith Bunin
 Onward,Screenwriter,Jason Headley
-Onward,Screenwriter,Scanlon
+Onward,Screenwriter,Dan Scanlon
 Onward,Storywriter,Keith Bunin
 Onward,Storywriter,Jason Headley
-Onward,Storywriter,Scanlon
-Onward,Producer,Kori Rae
-Onward,Musician,Jeff Danna
-Onward,Musician,Mychael Danna
+Onward,Storywriter,Dan Scanlon
+Soul,Co-director,Kemp Powers
 Soul,Director,Pete Docter
-Soul,Screenwriter,Docter
-Soul,Screenwriter,Mike Jones
-Soul,Screenwriter,Kemp Powers
-Soul,Storywriter,Docter
-Soul,Storywriter,Mike Jones
-Soul,Storywriter,Kemp Powers
-Soul,Producer,Dana Murray
 Soul,Musician,Trent Reznor
 Soul,Musician,Atticus Ross
-Luca,Director,Enrico Casarosa
+Soul,Producer,Dana Murray
+Soul,Screenwriter,Pete Docter
+Soul,Screenwriter,Mike Jones
+Soul,Screenwriter,Kemp Powers
+Soul,Storywriter,Pete Docter
+Soul,Storywriter,Mike Jones
+Soul,Storywriter,Kemp Powers
+Luca,Director,Jesse Andrews
+Luca,Musician,Jesse Andrews
+Luca,Producer,Jesse Andrews
 Luca,Screenwriter,Jesse Andrews
-Luca,Screenwriter,Mike Jones
-Luca,Storywriter,NA
-Luca,Producer,Andrea Warren
-Luca,Musician,Dan Romer
+Luca,Screenwriter,Jesse Andrews
+Luca,Storywriter,Jesse Andrews
+Luca,Storywriter,Jesse Andrews
+Luca,Storywriter,Jesse Andrews
 Turning Red,Director,Domee Shi
-Turning Red,Screenwriter,NA
-Turning Red,Storywriter,NA
+Turning Red,Musician,Ludwig Göransson
 Turning Red,Producer,Lindsey Collins
-Turning Red,Musician,NA
+Turning Red,Screenwriter,Julia Cho
+Turning Red,Screenwriter,Domee Shi
+Turning Red,Storywriter,Julia Cho
+Turning Red,Storywriter,Domee Shi
+Turning Red,Storywriter,Sarah Streicher
 Lightyear,Director,Angus MacLane
-Lightyear,Screenwriter,NA
-Lightyear,Storywriter,NA
+Lightyear,Musician,Michael Giacchino
 Lightyear,Producer,Galyn Susman
-Lightyear,Musician,NA
+Lightyear,Screenwriter,Jason Headley
+Lightyear,Screenwriter,Angus MacLane
+Lightyear,Storywriter,Matthew Aldrich
+Lightyear,Storywriter,Jason Headley
+Lightyear,Storywriter,Angus MacLane
+Elemental,Director,Peter Sohn
+Elemental,Musician,Thomas Newman
+Elemental,Producer,Denise Ream
+Elemental,Screenwriter,John Hoberg
+Elemental,Screenwriter,Brenda Hsueh
+Elemental,Screenwriter,Kat Likkel
+Elemental,Storywriter,John Hoberg
+Elemental,Storywriter,Brenda Hsueh
+Elemental,Storywriter,Kat Likkel
+Elemental,Storywriter,Peter Sohn
+Inside Out 2,Director,Kelsey Mann
+Inside Out 2,Musician,Andrea Datzman
+Inside Out 2,Producer,Mark Nielsen
+Inside Out 2,Screenwriter,Dave Holstein
+Inside Out 2,Screenwriter,Meg LeFauve
+Inside Out 2,Storywriter,Meg LeFauve
+Inside Out 2,Storywriter,Kelsey Mann
