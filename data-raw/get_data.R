@@ -896,6 +896,20 @@ slant_ranking <-
   select(film, ranking)
 
 
+## Get Vox ranking ----
+link <- "https://www.vox.com/culture/2019/6/27/18715845/pixar-movies-rankings"
+page <- read_html(link)
+vox_ranking <-
+  tibble(raw = page %>% html_elements("h2") %>% html_text()) %>%
+  filter(str_detect(raw, "^[0-9]")) %>%
+  mutate(raw = trimws(raw)) %>%
+  mutate(
+    ranking = str_extract(raw, film_regex, group = 1),
+    film = str_extract(raw, film_regex, group = 2)
+  ) %>%
+  select(film, ranking)
+
+
 # Save out data for use ---------------------------------------------------
 
 # Join all data into single, long data frame
