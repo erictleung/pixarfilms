@@ -942,6 +942,17 @@ buzzfeed_ranking <- get_rankings_standard(link, film_regex)
 ## Get CNET ranking ----
 link <- "https://www.cnet.com/tech/services-and-software/the-best-pixar-movies-ranked-from-inside-out-2-to-toy-story/"
 page <- read_html(link)
+film_regex <- regex("^([0-9]{1,2}). ([A-Za-z0-9-’',. ]+?) \\(([0-9]{4,4})\\)$")
+cnet_ranking <-
+  tibble(raw = page %>% html_elements("h3") %>% html_text()) %>%
+  mutate(raw = raw %>% trimws() %>% str_replace_all("“|”", "")) %>%
+  filter(str_detect(raw, "^[0-9]")) %>%
+  # mutate(raw = stringi::stri_encode(raw, to = "UTF-8")) %>%
+  mutate(
+    ranking = str_extract(raw, film_regex, group = 1),
+    film = str_extract(raw, film_regex, group = 2),
+  ) %>%
+  select(film, ranking)
 
 
 ## TEMP FOR TESTING IF A RANKING SCRAPE FAILS
