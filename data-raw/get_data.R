@@ -806,7 +806,6 @@ themes_vox <-
   )
 
 
-
 # Get Google Trends data --------------------------------------------------
 # WIP
 
@@ -831,6 +830,39 @@ iot %>%
   labs(title = "Zoom vs Slack - in 2020",
        subtitle = "Google Trends Report",
        caption = "Courtesy: gtrendsR package")
+
+
+# Get rankings ------------------------------------------------------------
+
+# Get Rotten Tomatoes ranking
+link <- "https://editorial.rottentomatoes.com/guide/all-pixar-movies-ranked/"
+page <- read_html(link)
+rotten_tomatoes_ranking <-
+  tibble(
+    film = page %>%
+      html_element(".articleContentBody") %>%
+      html_elements(".countdown-item") %>%
+      html_elements(".article_movie_title") %>%
+      html_text() %>%
+      trimws() %>%
+      str_replace(" \\([0-9]+\\)\n.*", ""),
+    ranking = page %>%
+      html_element(".articleContentBody") %>%
+      html_elements(".countdown-item") %>%
+      html_elements(".countdown-index-resposive") %>%
+      html_text() %>%
+      str_replace("#", "")
+  )
+
+# Get IGN ranking
+link <- "https://www.ign.com/articles/best-ranking-pixar-movies"
+page <- read_html(link)
+ign_ranking <-
+  tibble(raw = page %>% html_elements("h2") %>% html_text()) %>%
+  filter(!str_detect(raw, "Pixar")) %>%
+  mutate(raw = trimws(raw)) %>%
+  separate_wider_delim(raw, delim = ". ", names = c("ranking", "film")) %>%
+  select(film, ranking)
 
 
 # Save out data for use ---------------------------------------------------
