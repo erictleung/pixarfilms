@@ -1040,8 +1040,25 @@ independent_ranking <-
   filter(!is.na(film))
 
 
+## Get Forbes ranking ----
+link <-
+  "https://www.forbes.com/sites/simonthompson/2019/06/24/with-toy-story-4-out-every-pixar-movie-box-office-opening-ranked-worst-to-best/?sh=5e14a401242e"
+page <- read_html(link)
+film_regex <- regex("^([0-9]{1,2}). ([A-Za-z0-9-’',. ]+) ")
+forbes_ranking <-
+  tibble(raw = page %>%
+           html_elements("strong") %>%
+           html_text()) %>%
+  mutate(raw = raw %>% trimws()) %>%
+  filter(str_detect(raw, "^[0-9]")) %>%
+  mutate(
+    ranking = str_extract(raw, film_regex, group = 1),
+    film = str_extract(raw, film_regex, group = 2),
+  ) %>%
+  select(film, ranking)
 
-## TEMP FOR TESTING IF A RANKING SCRAPE FAILS
+
+## TEMP FOR TESTING IF A RANKING SCRAPE FAILS ----
 page <- read_html(link)
 film_regex <- regex("^([0-9]{1,2}). ([A-Za-z0-9-’',. ]+?) \\(([0-9]{4,4})\\)$")
 film_regex <- regex("^([0-9]{1,2}).[\n ]+([A-Za-z0-9-’',. ]+) ")
