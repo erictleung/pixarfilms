@@ -834,7 +834,7 @@ iot %>%
 
 # Get rankings ------------------------------------------------------------
 
-# Get Rotten Tomatoes ranking
+## Get Rotten Tomatoes ranking ----
 link <- "https://editorial.rottentomatoes.com/guide/all-pixar-movies-ranked/"
 page <- read_html(link)
 rotten_tomatoes_ranking <-
@@ -854,7 +854,8 @@ rotten_tomatoes_ranking <-
       str_replace("#", "")
   )
 
-# Get IGN ranking
+
+## Get IGN ranking ----
 link <- "https://www.ign.com/articles/best-ranking-pixar-movies"
 page <- read_html(link)
 ign_ranking <-
@@ -862,6 +863,22 @@ ign_ranking <-
   filter(!str_detect(raw, "Pixar")) %>%
   mutate(raw = trimws(raw)) %>%
   separate_wider_delim(raw, delim = ". ", names = c("ranking", "film")) %>%
+  select(film, ranking)
+
+
+## Get from Indie Wire ----
+link <- "https://www.indiewire.com/features/best-of/pixar-movies-ranked-best-worst-96815/"
+page <- read_html(link)
+film_regex <- regex("^([0-9]{1,2}). ([A-Za-z0-9-’',. ]+?) \\(([0-9]{4,4})\\)$")
+indie_wire_ranking <-
+  tibble(raw = page %>% html_elements("h2") %>% html_text()) %>%
+  mutate(raw = raw %>% trimws() %>% str_replace_all("“|”", "")) %>%
+  filter(str_detect(raw, "[0-9]")) %>%  # Remove stray headings, not rankings
+  mutate(
+    ranking = str_extract(raw, film_regex, group = 1),
+    film = str_extract(raw, film_regex, group = 2)
+  ) %>%
+  mutate(film = trimws(film)) %>%  # One element had one more space around it
   select(film, ranking)
 
 
