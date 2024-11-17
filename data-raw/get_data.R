@@ -872,6 +872,13 @@ get_rankings_standard <- function(link, film_regex = NA) {
     select(film, ranking)
 }
 
+# Add source to data
+add_source <- function(data, name) {
+  data %>%
+    mutate(source = {{name}}) %>%
+    select(source, everything())
+}
+
 
 ## Get Rotten Tomatoes ranking ----
 link <-
@@ -879,6 +886,7 @@ link <-
 page <- read_html(link)
 rotten_tomatoes_ranking <-
   tibble(
+    source = "Rotten Tomatoes",
     film = page %>%
       html_element(".articleContentBody") %>%
       html_elements(".countdown-item") %>%
@@ -899,26 +907,31 @@ rotten_tomatoes_ranking <-
 link <- "https://www.ign.com/articles/best-ranking-pixar-movies"
 film_regex <- regex("^([0-9]{1,2}). ([A-Za-z0-9-’',. ]+)")
 ign_ranking <- get_rankings_standard(link, film_regex)
+ign_ranking <- add_source(ign_ranking, "IGN")
 
 
 ## Get IndieWire ranking ----
 link <- "https://www.indiewire.com/features/best-of/pixar-movies-ranked-best-worst-96815/"
 indie_wire_ranking <- get_rankings_standard(link)
+indie_wire_ranking <- add_source(ign_ranking, "IndieWire")
 
 
 ## Get Slant ranking ----
 link <- "https://www.slantmagazine.com/film/every-pixar-movie-ranked-from-worst-to-best/"
 slant_ranking <- get_rankings_standard(link)
+slant_ranking <- add_source(slant_ranking, "Slant")
 
 
 ## Get Vox ranking ----
 link <- "https://www.vox.com/culture/2019/6/27/18715845/pixar-movies-rankings"
 vox_ranking <- get_rankings_standard(link)
+vox_ranking <- add_source(vox_ranking, "Vox")
 
 
 ## Get WIRED ranking ----
 link <- "https://www.wired.com/story/best-pixar-movies/"
 wired_ranking <- get_rankings_standard(link)
+wired_ranking <- add_source(wired_ranking, "WIRED")
 
 
 ## Get Thrillist ranking ----
@@ -942,18 +955,21 @@ thrillist_ranking <-
   mutate(ranking = as.numeric(ranking)) %>%
   arrange(desc(ranking)) %>%
   mutate(ranking = as.character(ranking))
+thrillist_ranking <- add_source(thrillist_ranking, "Thrillist")
 
 
 ## Get ScreenRant ranking ----
 link <- "https://screenrant.com/pixar-movies-ranked-best-worst/"
 film_regex <- regex("^([0-9]{1,2}). ([A-Za-z0-9-’',. ]+)")
 screenrant_ranking <- get_rankings_standard(link, film_regex)
+screenrant_ranking <- add_source(screenrant_ranking, "ScreenRant")
 
 
 ## Get Polygon ranking ----
 link <-
   "https://www.polygon.com/movies/22239548/best-pixar-movies-ranked"
 polygon_ranking <- get_rankings_standard(link)
+polygon_ranking <- add_source(polygon_ranking, "Polygon")
 
 
 ## Get Buzzfeed ranking ----
@@ -961,6 +977,7 @@ link <-
   "https://www.buzzfeed.com/amatullahshaw/all-pixar-movies-ranked"
 film_regex <- regex("^([0-9]{1,2}).[\n ]+([A-Za-z0-9-’',. ]+) ")
 buzzfeed_ranking <- get_rankings_standard(link, film_regex)
+buzzfeed_ranking <- add_source(buzzfeed_ranking, "Buzzfeed")
 
 
 ## Get CNET ranking ----
@@ -978,6 +995,7 @@ cnet_ranking <-
     film = str_extract(raw, film_regex, group = 2),
   ) %>%
   select(film, ranking)
+cnet_ranking <- add_source(cnet_ranking, "CNET")
 
 
 ## Get Insider ranking ----
@@ -995,6 +1013,7 @@ insider_ranking <-
     film = str_extract(raw, film_regex, group = 2),
   ) %>%
   select(film, ranking)
+insider_ranking <- add_source(insider_ranking, "Insider")
 
 
 ## Get AV Club ranking ----
@@ -1013,6 +1032,7 @@ av_club_ranking <-
     film = str_extract(raw, film_regex, group = 2),
   ) %>%
   select(film, ranking)
+av_club_ranking <- add_source(av_club_ranking, "AV Club")
 
 
 ## Get Vulture ranking ----
@@ -1020,6 +1040,10 @@ link <-
   "https://www.vulture.com/article/best-pixar-movies-ranked.html"
 film_regex <- regex("([0-9]{1,2}).[\n ]+([A-Za-z0-9-’',. ]+?) \\(([0-9]{4,4})\\)")
 vulture_ranking <- get_rankings_standard(link, film_regex)
+vulture_ranking <-
+  vulture_ranking %>%
+  mutate(film = trimws(film)) %>%
+  add_source("Vulture")
 
 
 ## Get Independent ranking ----
@@ -1038,6 +1062,7 @@ independent_ranking <-
   ) %>%
   select(film, ranking) %>%
   filter(!is.na(film))
+independent_ranking <- add_source(independent_ranking, "Independent")
 
 
 ## Get Forbes ranking ----
@@ -1056,21 +1081,22 @@ forbes_ranking <-
     film = str_extract(raw, film_regex, group = 2),
   ) %>%
   select(film, ranking)
+forbes_ranking <- add_source(forbes_ranking, "Forbes")
 
 
 ## TEMP FOR TESTING IF A RANKING SCRAPE FAILS ----
-page <- read_html(link)
-film_regex <- regex("^([0-9]{1,2}). ([A-Za-z0-9-’',. ]+?) \\(([0-9]{4,4})\\)$")
-film_regex <- regex("^([0-9]{1,2}).[\n ]+([A-Za-z0-9-’',. ]+) ")
-tibble(raw = page %>% html_elements("h2") %>% html_text()) %>%
-  mutate(raw = raw %>% trimws() %>% str_replace_all("“|”", "")) %>%
-  filter(str_detect(raw, "^[0-9]")) %>%
-  # mutate(raw = stringi::stri_encode(raw, to = "UTF-8")) %>%
-  mutate(
-    ranking = str_extract(raw, film_regex, group = 1),
-    film = str_extract(raw, film_regex, group = 2),
-    encoding = Encoding(raw)
-  )
+# page <- read_html(link)
+# film_regex <- regex("^([0-9]{1,2}). ([A-Za-z0-9-’',. ]+?) \\(([0-9]{4,4})\\)$")
+# film_regex <- regex("^([0-9]{1,2}).[\n ]+([A-Za-z0-9-’',. ]+) ")
+# tibble(raw = page %>% html_elements("h2") %>% html_text()) %>%
+#   mutate(raw = raw %>% trimws() %>% str_replace_all("“|”", "")) %>%
+#   filter(str_detect(raw, "^[0-9]")) %>%
+#   # mutate(raw = stringi::stri_encode(raw, to = "UTF-8")) %>%
+#   mutate(
+#     ranking = str_extract(raw, film_regex, group = 1),
+#     film = str_extract(raw, film_regex, group = 2),
+#     encoding = Encoding(raw)
+#   )
 
 
 # Save out data for use ---------------------------------------------------
