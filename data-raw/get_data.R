@@ -835,13 +835,16 @@ iot %>%
 # Get rankings ------------------------------------------------------------
 
 # Some rankings are very similarly formatted, so here's a function to do that
-get_rankings_standard <- function(link) {
+get_rankings_standard <- function(link, film_regex=NA) {
   page <- read_html(link)
-  film_regex <- regex("^([0-9]{1,2}). ([A-Za-z0-9-’',. ]+?) \\(([0-9]{4,4})\\)$")
+
+  if (is.na(film_regex)) {
+    film_regex <- regex("^([0-9]{1,2}). ([A-Za-z0-9-’',. ]+?) \\(([0-9]{4,4})\\)$")
+  }
 
   tibble(raw = page %>% html_elements("h2") %>% html_text()) %>%
-    filter(str_detect(raw, "^[0-9]")) %>%
     mutate(raw = raw %>% trimws() %>% str_replace_all("“|”", "")) %>%
+    filter(str_detect(raw, "^[0-9]")) %>%
     mutate(
       ranking = str_extract(raw, film_regex, group = 1),
       film = str_extract(raw, film_regex, group = 2)
@@ -900,6 +903,49 @@ vox_ranking <- get_rankings_standard(link)
 ## Get WIRED ranking ----
 link <- "https://www.wired.com/story/best-pixar-movies/"
 wired_ranking <- get_rankings_standard(link)
+
+
+## Get Thrillist ranking ----
+# Some reason, the scraping of these movies will fail the regular expression
+thrillist_fillin <- tribble(
+  ~film, ~ranking,
+  "The Good Dinosaur", "20",
+  "A Bug's Life", "19",
+  "Luca", "17",
+  "Onward", "16",
+  "Toy Story 3", "5",
+  "WALL-E", "2"
+)
+link <- "https://www.thrillist.com/entertainment/nation/pixar-movies-ranked"
+thrillist_ranking <- get_rankings_standard(link)
+thrillist_ranking <-
+  thrillist_ranking %>%
+  filter(!is.na(film)) %>%
+  bind_rows(thrillist_fillin) %>%
+  mutate(ranking = as.numeric(ranking)) %>%
+  arrange(desc(ranking)) %>%
+  mutate(ranking = as.character(ranking))
+
+
+## Get ScreenRant ranking ----
+link <- "https://screenrant.com/pixar-movies-ranked-best-worst/"
+film_regex <- regex("^([0-9]{1,2}). ([A-Za-z0-9-’',. ]+)")
+screenrant_ranking <- get_rankings_standard(link, film_regex)
+
+
+## TEMP FOR TESTING IF A RANKING SCRAPE FAILS
+page <- read_html(link)
+# film_regex <- regex("^([0-9]{1,2}). ([A-Za-z0-9-’',. ]+?) \\(([0-9]{4,4})\\)$")
+film_regex <- regex("^([0-9]{1,2}). ([A-Za-z0-9-’',. ]+)")
+tibble(raw = page %>% html_elements("h2") %>% html_text()) %>%
+  mutate(raw = raw %>% trimws() %>% str_replace_all("“|”", "")) %>%
+  filter(str_detect(raw, "^[0-9]")) %>%
+  # mutate(raw = stringi::stri_encode(raw, to = "UTF-8")) %>%
+  mutate(
+    ranking = str_extract(raw, film_regex, group = 1),
+    film = str_extract(raw, film_regex, group = 2),
+    encoding = Encoding(raw)
+  )
 
 
 # Save out data for use ---------------------------------------------------
