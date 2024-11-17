@@ -1,25 +1,29 @@
-film,rotten_tomatoes,metacritic,cinema_score,critics_choice
-Toy Story,100,95,A,NA
-A Bug's Life,92,77,A,NA
-Toy Story 2,100,88,A+,100
-"Monsters, Inc.",96,79,A+,92
-Finding Nemo,99,90,A+,97
-The Incredibles,97,90,A+,88
-Cars,74,73,A,89
-Ratatouille,96,96,A,91
-WALL-E,95,95,A,90
-Up,98,88,A+,95
-Toy Story 3,98,92,A,97
-Cars 2,40,57,A-,67
-Brave,78,69,A,81
-Monsters University,80,65,A,79
-Inside Out,98,94,A,93
-The Good Dinosaur,76,66,A,75
-Finding Dory,94,77,A,89
-Cars 3,69,59,A,66
-Coco,97,81,A+,89
-Incredibles 2,93,80,A+,86
-Toy Story 4,97,84,A,94
-Onward,88,61,A-,79
-Soul,96,83,NA,93
-Luca,NA,NA,NA,NA
+film,rotten_tomatoes_score,rotten_tomatoes_counts,metacritic_score,metacritic_counts,cinema_score,imdb_score,imdb_counts
+Toy Story,100,96,95,26,A,8.3,1089101
+A Bug's Life,92,91,78,23,A,7.2,319596
+Toy Story 2,100,172,88,34,A+,7.9,630573
+"Monsters, Inc.",96,199,79,35,A+,8.1,1000657
+Finding Nemo,99,270,90,38,A+,8.2,1132877
+The Incredibles,97,250,90,41,A+,8,828986
+Cars,75,204,73,39,A,7.2,484034
+Ratatouille,96,253,96,37,A,8.1,851229
+WALL-E,95,261,95,39,A,8.4,1226415
+Up,98,297,88,37,A+,8.3,1151249
+Toy Story 3,98,313,92,39,A,8.3,908222
+Cars 2,40,220,57,38,A-,6.2,225724
+Brave,79,256,69,37,A,7.1,452012
+Monsters University,80,203,65,41,A,7.2,398903
+Inside Out,98,387,94,55,A,8.1,834268
+The Good Dinosaur,75,220,66,37,A,6.7,130324
+Finding Dory,94,339,77,48,A,7.2,311793
+Cars 3,69,234,59,41,A,6.7,128849
+Coco,97,357,81,48,A+,8.4,618005
+Incredibles 2,93,390,80,51,A+,7.5,341353
+Toy Story 4,97,459,84,57,A,7.6,288783
+Onward,88,350,64,56,A-,7.4,174917
+Soul,95,360,83,55,NA,8,392783
+Luca,91,303,71,52,NA,7.4,202404
+Turning Red,95,289,83,52,NA,7,158649
+Lightyear,74,319,60,57,A-,6.1,127045
+Elemental,73,262,58,45,A,7,140174
+Inside Out 2,90,313,73,59,A,7.6,168090
