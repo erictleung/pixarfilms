@@ -933,10 +933,16 @@ link <- "https://www.polygon.com/movies/22239548/best-pixar-movies-ranked"
 polygon_ranking <- get_rankings_standard(link)
 
 
+## Buzzfeed ranking ----
+link <- "https://www.buzzfeed.com/amatullahshaw/all-pixar-movies-ranked"
+film_regex <- regex("^([0-9]{1,2}).[\n ]+([A-Za-z0-9-’',. ]+) ")
+buzzfeed_ranking <- get_rankings_standard(link, film_regex)
+
+
 ## TEMP FOR TESTING IF A RANKING SCRAPE FAILS
 page <- read_html(link)
 # film_regex <- regex("^([0-9]{1,2}). ([A-Za-z0-9-’',. ]+?) \\(([0-9]{4,4})\\)$")
-film_regex <- regex("^([0-9]{1,2}). ([A-Za-z0-9-’',. ]+)")
+film_regex <- regex("^([0-9]{1,2}).[\n ]+([A-Za-z0-9-’',. ]+) ")
 tibble(raw = page %>% html_elements("h2") %>% html_text()) %>%
   mutate(raw = raw %>% trimws() %>% str_replace_all("“|”", "")) %>%
   filter(str_detect(raw, "^[0-9]")) %>%
