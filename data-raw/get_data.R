@@ -348,7 +348,7 @@ subgenres <-
     "Ratatouille", "Animal Adventure, Computer Animation, Adventure, Animation, Comedy, Family, Fantasy",
     # https://www.imdb.com/title/tt0382932/?
 
-    "WALL·E", "Adventure Epic, Artificial Intelligence, Computer Animation, Dystopian Sci-Fi, Space Sci-Fi, Adventure, Animation, Family, Sci-Fi",
+    "WALL-E", "Adventure Epic, Artificial Intelligence, Computer Animation, Dystopian Sci-Fi, Space Sci-Fi, Adventure, Animation, Family, Sci-Fi",
     # https://www.imdb.com/title/tt0910970/?
 
     "Up", "Coming-of-Age, Computer Animation, Globetrotting Adventure, Adventure, Animation, Comedy, Drama, Family",
