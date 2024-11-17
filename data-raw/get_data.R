@@ -419,8 +419,14 @@ subgenres <-
     filter(!value %in% genres$value) %>%
     select(film, category, value)
 
-# Put genres and subgenre categories into a single table
-genres <- bind_rows(genres, subgenres)
+# Put genres and subgenre categories into a single table and polish
+genres <-
+  genres %>%
+  bind_rows(subgenres) %>%
+  left_join(pixar_films %>% select(number, film), by = "film") %>%
+  arrange(number, category, value) %>%
+  select(-number) %>%
+  distinct()
 
 
 # Clean box office information --------------------------------------------
@@ -435,7 +441,7 @@ box_office <-
   boxoffice %>%
   clean_names() %>%
   filter(film != "Film") %>%
-  select(-ref) %>%  # 2024-11-10 Rename of column from ref_s -> ref
+  select(-c(ref, year)) %>%  # 2024-11-10 Rename of column from ref_s -> ref
   rename(
     box_office_us_canada = box_office_gross,
     box_office_other = box_office_gross_2,
