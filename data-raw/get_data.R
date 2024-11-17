@@ -866,7 +866,7 @@ ign_ranking <-
   select(film, ranking)
 
 
-## Get from Indie Wire ----
+## Get IndieWire ranking ----
 link <- "https://www.indiewire.com/features/best-of/pixar-movies-ranked-best-worst-96815/"
 page <- read_html(link)
 film_regex <- regex("^([0-9]{1,2}). ([A-Za-z0-9-’',. ]+?) \\(([0-9]{4,4})\\)$")
@@ -879,6 +879,20 @@ indie_wire_ranking <-
     film = str_extract(raw, film_regex, group = 2)
   ) %>%
   mutate(film = trimws(film)) %>%  # One element had one more space around it
+  select(film, ranking)
+
+
+## Get Slant ranking ----
+link <- "https://www.slantmagazine.com/film/every-pixar-movie-ranked-from-worst-to-best/"
+page <- read_html(link)
+slant_ranking <-
+  tibble(raw = page %>% html_elements("h2") %>% html_text()) %>%
+  filter(str_detect(raw, "^[0-9]")) %>%
+  mutate(raw = trimws(raw)) %>%
+  mutate(
+    ranking = str_extract(raw, film_regex, group = 1),
+    film = str_extract(raw, film_regex, group = 2)
+  ) %>%
   select(film, ranking)
 
 
