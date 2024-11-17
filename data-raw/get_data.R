@@ -899,7 +899,7 @@ vox_ranking <- get_rankings_standard(link)
 
 ## Get WIRED ranking ----
 link <- "https://www.wired.com/story/best-pixar-movies/"
-vox_ranking <- get_rankings_standard(link)
+wired_ranking <- get_rankings_standard(link)
 
 
 # Save out data for use ---------------------------------------------------
