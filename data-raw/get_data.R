@@ -933,10 +933,15 @@ link <- "https://www.polygon.com/movies/22239548/best-pixar-movies-ranked"
 polygon_ranking <- get_rankings_standard(link)
 
 
-## Buzzfeed ranking ----
+## Get Buzzfeed ranking ----
 link <- "https://www.buzzfeed.com/amatullahshaw/all-pixar-movies-ranked"
 film_regex <- regex("^([0-9]{1,2}).[\n ]+([A-Za-z0-9-’',. ]+) ")
 buzzfeed_ranking <- get_rankings_standard(link, film_regex)
+
+
+## Get CNET ranking ----
+link <- "https://www.cnet.com/tech/services-and-software/the-best-pixar-movies-ranked-from-inside-out-2-to-toy-story/"
+page <- read_html(link)
 
 
 ## TEMP FOR TESTING IF A RANKING SCRAPE FAILS
