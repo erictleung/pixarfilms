@@ -1099,6 +1099,51 @@ forbes_ranking <- add_source(forbes_ranking, "Forbes")
 #   )
 
 
+## Join all rankings together ----
+pixar_rankings <-
+  bind_rows(
+    rotten_tomatoes_ranking,
+    ign_ranking,
+    indie_wire_ranking,
+    slant_ranking,
+    vox_ranking,
+    wired_ranking,
+    thrillist_ranking,
+    screenrant_ranking,
+    polygon_ranking,
+    buzzfeed_ranking,
+    cnet_ranking,
+    insider_ranking,
+    av_club_ranking,
+    vulture_ranking,
+    independent_ranking,
+    forbes_ranking
+  ) %>%
+  mutate(
+    film = trimws(film),
+    ranking = as.numeric(ranking)
+  ) %>%
+  mutate(film = case_when(
+    film %in% c("Monsters Inc.", "Monsters, Inc") ~ "Monsters, Inc.",
+    film == "Monster’s University" ~ "Monsters University",
+    film == "Wall-E" ~ "WALL-E",
+    film == "A Bug’s Life" ~ "A Bug's Life",
+    film == "The Incredibles 2" ~ "Incredibles 2",
+    TRUE ~ film
+  ))
+
+
+## Visualize rankings ----
+pixar_rankings %>%
+  ggplot(aes(ranking, fct_reorder(film, ranking, .desc = TRUE))) +
+  geom_boxplot() +
+  theme_minimal() +
+  theme(text = element_text(size = 15)) +
+  ggtitle("Distribution of Pixar film rankings", "Ordered by median ranking") +
+  labs(x = "Ranking", y = "Film")
+ggsave("pixar_rankings.png", width = 10, height = 6)
+
+
 # Save out data for use ---------------------------------------------------
 
 # Join all data into single, long data frame
