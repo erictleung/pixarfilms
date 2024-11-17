@@ -854,11 +854,12 @@ iot %>%
 # Get rankings ------------------------------------------------------------
 
 # Some rankings are very similarly formatted, so here's a function to do that
-get_rankings_standard <- function(link, film_regex=NA) {
+get_rankings_standard <- function(link, film_regex = NA) {
   page <- read_html(link)
 
   if (is.na(film_regex)) {
-    film_regex <- regex("^([0-9]{1,2}). ([A-Za-z0-9-’',. ]+?) \\(([0-9]{4,4})\\)$")
+    film_regex <-
+      regex("^([0-9]{1,2}). ([A-Za-z0-9-’',. ]+?) \\(([0-9]{4,4})\\)$")
   }
 
   tibble(raw = page %>% html_elements("h2") %>% html_text()) %>%
@@ -873,7 +874,8 @@ get_rankings_standard <- function(link, film_regex=NA) {
 
 
 ## Get Rotten Tomatoes ranking ----
-link <- "https://editorial.rottentomatoes.com/guide/all-pixar-movies-ranked/"
+link <-
+  "https://editorial.rottentomatoes.com/guide/all-pixar-movies-ranked/"
 page <- read_html(link)
 rotten_tomatoes_ranking <-
   tibble(
@@ -930,7 +932,8 @@ thrillist_fillin <- tribble(
   "Toy Story 3", "5",
   "WALL-E", "2"
 )
-link <- "https://www.thrillist.com/entertainment/nation/pixar-movies-ranked"
+link <-
+  "https://www.thrillist.com/entertainment/nation/pixar-movies-ranked"
 thrillist_ranking <- get_rankings_standard(link)
 thrillist_ranking <-
   thrillist_ranking %>%
@@ -948,25 +951,28 @@ screenrant_ranking <- get_rankings_standard(link, film_regex)
 
 
 ## Get Polygon ranking ----
-link <- "https://www.polygon.com/movies/22239548/best-pixar-movies-ranked"
+link <-
+  "https://www.polygon.com/movies/22239548/best-pixar-movies-ranked"
 polygon_ranking <- get_rankings_standard(link)
 
 
 ## Get Buzzfeed ranking ----
-link <- "https://www.buzzfeed.com/amatullahshaw/all-pixar-movies-ranked"
+link <-
+  "https://www.buzzfeed.com/amatullahshaw/all-pixar-movies-ranked"
 film_regex <- regex("^([0-9]{1,2}).[\n ]+([A-Za-z0-9-’',. ]+) ")
 buzzfeed_ranking <- get_rankings_standard(link, film_regex)
 
 
 ## Get CNET ranking ----
-link <- "https://www.cnet.com/tech/services-and-software/the-best-pixar-movies-ranked-from-inside-out-2-to-toy-story/"
+link <-
+  "https://www.cnet.com/tech/services-and-software/the-best-pixar-movies-ranked-from-inside-out-2-to-toy-story/"
 page <- read_html(link)
-film_regex <- regex("^([0-9]{1,2}). ([A-Za-z0-9-’',. ]+?) \\(([0-9]{4,4})\\)$")
+film_regex <-
+  regex("^([0-9]{1,2}). ([A-Za-z0-9-’',. ]+?) \\(([0-9]{4,4})\\)$")
 cnet_ranking <-
   tibble(raw = page %>% html_elements("h3") %>% html_text()) %>%
   mutate(raw = raw %>% trimws() %>% str_replace_all("“|”", "")) %>%
   filter(str_detect(raw, "^[0-9]")) %>%
-  # mutate(raw = stringi::stri_encode(raw, to = "UTF-8")) %>%
   mutate(
     ranking = str_extract(raw, film_regex, group = 1),
     film = str_extract(raw, film_regex, group = 2),
@@ -974,9 +980,70 @@ cnet_ranking <-
   select(film, ranking)
 
 
+## Get Insider ranking ----
+link <-
+  "https://www.yahoo.com/entertainment/ranked-every-pixar-movie-worst-172845915.html"
+page <- read_html(link)
+film_regex <-
+  regex("^([0-9]{1,2}). [\"']([A-Za-z0-9-’',. ]+?)[\"'] \\(([0-9]{4,4})\\)$")
+insider_ranking <-
+  tibble(raw = page %>% html_elements("p") %>% html_text()) %>%
+  filter(str_detect(raw, "^[0-9]{1,2}\\.")) %>%
+  mutate(raw = raw %>% trimws()) %>%
+  mutate(
+    ranking = str_extract(raw, film_regex, group = 1),
+    film = str_extract(raw, film_regex, group = 2),
+  ) %>%
+  select(film, ranking)
+
+
+## Get AV Club ranking ----
+link <-
+  "https://www.avclub.com/pixar-movies-ranked-from-worst-to-best-1850545587"
+page <- read_html(link)
+film_regex <- regex("^([0-9]{1,2}). ([A-Za-z0-9-’',. ]+)")
+av_club_ranking <-
+  tibble(raw = page %>%
+           html_elements(".jezebel-slideshow__slide_title") %>%
+           html_text()) %>%
+  filter(str_detect(raw, "^[0-9]{1,2}\\.")) %>%
+  mutate(raw = raw %>% trimws()) %>%
+  mutate(
+    ranking = str_extract(raw, film_regex, group = 1),
+    film = str_extract(raw, film_regex, group = 2),
+  ) %>%
+  select(film, ranking)
+
+
+## Get Vulture ranking ----
+link <-
+  "https://www.vulture.com/article/best-pixar-movies-ranked.html"
+film_regex <- regex("([0-9]{1,2}).[\n ]+([A-Za-z0-9-’',. ]+?) \\(([0-9]{4,4})\\)")
+vulture_ranking <- get_rankings_standard(link, film_regex)
+
+
+## Get Independent ranking ----
+link <-
+  "https://www.independent.co.uk/arts-entertainment/films/features/pixar-movies-ranked-list-best-worst-soul-b1777684.html"
+page <- read_html(link)
+film_regex <- regex("^([0-9]{1,2}). ([A-Za-z0-9-’',. ]+)")
+independent_ranking <-
+  tibble(raw = page %>%
+           html_elements("strong") %>%
+           html_text()) %>%
+  filter(str_detect(raw, "^[0-9]{1,2}\\.")) %>%
+  mutate(raw = raw %>% trimws()) %>%
+  mutate(
+    ranking = str_extract(raw, film_regex, group = 1),
+    film = str_extract(raw, film_regex, group = 2),
+  ) %>%
+  select(film, ranking)
+
+
+
 ## TEMP FOR TESTING IF A RANKING SCRAPE FAILS
 page <- read_html(link)
-# film_regex <- regex("^([0-9]{1,2}). ([A-Za-z0-9-’',. ]+?) \\(([0-9]{4,4})\\)$")
+film_regex <- regex("^([0-9]{1,2}). ([A-Za-z0-9-’',. ]+?) \\(([0-9]{4,4})\\)$")
 film_regex <- regex("^([0-9]{1,2}).[\n ]+([A-Za-z0-9-’',. ]+) ")
 tibble(raw = page %>% html_elements("h2") %>% html_text()) %>%
   mutate(raw = raw %>% trimws() %>% str_replace_all("“|”", "")) %>%
