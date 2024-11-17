@@ -1031,13 +1031,13 @@ independent_ranking <-
   tibble(raw = page %>%
            html_elements("strong") %>%
            html_text()) %>%
-  filter(str_detect(raw, "^[0-9]{1,2}\\.")) %>%
   mutate(raw = raw %>% trimws()) %>%
   mutate(
     ranking = str_extract(raw, film_regex, group = 1),
     film = str_extract(raw, film_regex, group = 2),
   ) %>%
-  select(film, ranking)
+  select(film, ranking) %>%
+  filter(!is.na(film))
 
 
 
