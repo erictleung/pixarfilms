@@ -29,7 +29,7 @@ library(readr)
 url <- "https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/pixar_films.csv"
 pixar_films <- read_csv(url)
 #> Rows: 27 Columns: 5
-#> ── Column specification ───────────────────────────────────────────────────────────────────────────
+#> ── Column specification ────────────────────────────────────────────────────────────────────────────
 #> Delimiter: ","
 #> chr  (2): film, film_rating
 #> dbl  (2): number, run_time
