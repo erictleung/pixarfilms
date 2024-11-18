@@ -1168,6 +1168,31 @@ pixar_rankings %>%
 # ggsave("pixar_rankings_decade.png", width = 10, height = 6)
 
 
+
+# Create franchise data ---------------------------------------------------
+
+pixar_franchises <-
+  tribble(
+    ~film, ~franchise,
+    "Toy Story", "Toy Story",
+    "Toy Story 2", "Toy Story",
+    "Monsters, Inc.", "Monsters, Inc.",
+    "Finding Nemo", "Finding Nemo",
+    "The Incredibles", "The Incredibles",
+    "Cars", "Cars",
+    "Toy Story 3", "Toy Story",
+    "Cars 2", "Cars",
+    "Monsters University", "Monsters, Inc.",
+    "Inside Out", "Inside Out",
+    "Finding Dory", "Finding Nemo",
+    "Cars 3", "Cars",
+    "Incredibles 2", "The Incredibles",
+    "Toy Story 4", "Toy Story",
+    "Lightyear", "Toy Story",
+    "Inside Out 2", "Inside Out"
+  )
+
+
 # Calculate consensus ranking ---------------------------------------------
 
 # Get each source's ranking and order them
