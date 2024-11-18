@@ -21,7 +21,8 @@ library(rvest)              # CRAN v1.0.1
 library(httr)               # CRAN v1.4.2
 library(gtrendsR)
 
-# Image analysis
+# Other analysis
+library(votesys)
 # library(imagick)
 # library(imager)
 
@@ -1141,7 +1142,46 @@ pixar_rankings %>%
   theme(text = element_text(size = 15)) +
   ggtitle("Distribution of Pixar film rankings", "Ordered by median ranking") +
   labs(x = "Ranking", y = "Film")
-ggsave("pixar_rankings.png", width = 10, height = 6)
+# ggsave("pixar_rankings.png", width = 10, height = 6)
+
+
+
+# Calculate consensus ranking ---------------------------------------------
+
+# Get each source's ranking and order them
+get_film_ranking <- function(data, source) {
+  data  %>%
+    filter(source == {{source}}) %>%
+    arrange(ranking) %>%
+    pull(film)
+}
+
+raw_rankings <-
+  pixar_rankings %>%
+  pull(source) %>%
+  unique() %>%
+  lapply(function(x) {
+    pixar_rankings %>%
+      filter(source == {{x}}) %>%
+      arrange(ranking) %>%
+      pull(film)
+  })
+vote <- create_vote(raw_rankings, xtype = 3, candidate = pixar_films$film)
+
+
+## Borda method ----
+
+# In modified Borda, the rule changes. Suppose there are 5 candidates. A voter
+# writes down 5 candidates and his 1st choice gets 5 points. The one who gets
+# the largest total score wins. However, if the voter only write down 2 names,
+# then, his 1st choice gets only 2 points rather than 5 points.
+y <- borda_method(vote, modified = TRUE)  # Largest total wins
+y$other_info$count_max %>%
+  data.frame() %>%
+  rownames_to_column("film") %>%
+  as_tibble() %>%
+  rename("score" =  ".") %>%
+  arrange(desc(score))
 
 
 # Save out data for use ---------------------------------------------------
