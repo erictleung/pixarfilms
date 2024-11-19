@@ -16,8 +16,5 @@ if [ -f "$FILE" ]; then
 fi
 csvs-to-sqlite *.csv pixarfilms.db
 
-# Publish to Heroku
-datasette publish heroku pixarfilms.db -n pixarfilms-datasette
-
 # To serve locally
 # datasette serve pixarfilms.db
