@@ -1134,41 +1134,6 @@ pixar_rankings <-
   ))
 
 
-## Visualize rankings ----
-
-# Basic visualization
-pixar_rankings %>%
-  ggplot(aes(ranking, fct_reorder(film, ranking, .desc = TRUE))) +
-  geom_boxplot() +
-  theme_minimal() +
-  theme(text = element_text(size = 15)) +
-  ggtitle("Distribution of Pixar film rankings", "Ordered by median ranking") +
-  labs(x = "Ranking", y = "Film")
-# ggsave("pixar_rankings.png", width = 10, height = 6)
-
-# Add information by decade
-pixar_rankings %>%
-  left_join(
-    pixar_films %>%
-      select(film, release_date) %>%
-      mutate(release_decade = year(release_date) - year(release_date) %% 10) %>%
-      mutate(release_decade = as.factor(release_decade)),
-    by = "film"
-  ) %>%
-  ggplot(aes(
-    ranking,
-    fct_reorder(film, ranking, .desc = TRUE),
-    fill = release_decade
-  )) +
-  geom_boxplot() +
-  theme_minimal() +
-  theme(text = element_text(size = 15)) +
-  ggtitle("Distribution of Pixar film rankings", "Ordered by median ranking") +
-  labs(x = "Ranking", y = "Film", fill = "Release decade")
-# ggsave("pixar_rankings_decade.png", width = 10, height = 6)
-
-
-
 # Create franchise data ---------------------------------------------------
 
 pixar_franchises <-
