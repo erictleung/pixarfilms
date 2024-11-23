@@ -43,15 +43,16 @@ later on.
 ```{r}
 df <-
   public_response %>%
-  select(-cinema_score) %>%
+  select(-cinema_score, -ends_with("counts")) %>%
+  mutate(imdb_score = imdb_score * 10) %>%
   mutate(film = fct_inorder(film)) %>%
-  pivot_longer(cols = c("rotten_tomatoes", "metacritic", "critics_choice"),
+  pivot_longer(cols = c("rotten_tomatoes_score", "metacritic_score", "imdb_score"),
                names_to = "ratings",
                values_to = "value") %>%
   mutate(ratings = case_when(
-    ratings == "metacritic" ~ "Metacritic",
-    ratings == "rotten_tomatoes" ~ "Rotten Tomatoes",
-    ratings == "critics_choice" ~ "Critics Choice"
+    ratings == "imdb_score" ~ "IMDb (Scaled)",
+    ratings == "rotten_tomatoes_score" ~ "Rotten Tomatoes",
+    ratings == "metacritic_score" ~ "Metacritic"
   )) %>%
   drop_na()
 ```
@@ -70,6 +71,7 @@ df %>%
   labs(x = "Pixar film", y = "Rating value") +
   guides(col = guide_legend(title = "Ratings")) +
   theme_minimal() +
+  scale_y_continuous(limits = c(0, 100)) +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5),
         legend.position = "bottom") 
 ```
@@ -88,23 +90,24 @@ df %>%
   ggplot(aes(x = ratings, y = value, col = ratings)) +
   geom_boxplot(width = 1.75 / length(unique(df$ratings))) +
   ggbeeswarm::geom_beeswarm() +
-  ggrepel::geom_text_repel(data = . %>%
-                             filter(film == "Cars 2" ) %>%
-                             filter(ratings == "Rotten Tomatoes"),
-                           aes(label = film),
-                           point.padding = 0.4) +
+  ggrepel::geom_label_repel(
+    data = . %>% filter(film == "Cars 2" ),
+    aes(label = film),
+    point.padding = 0.5,
+    nudge_x = 0.1
+  ) +
   scale_color_brewer(palette = "Dark2") +
   guides(col = guide_legend(title = "Ratings")) +
   labs(x = "Rating group", y = "Rating value") +
-  ylim(c(30, 100)) +
+  ylim(c(0, 100)) +
   theme_minimal() +
   theme(legend.position = "bottom") 
 ```
 
 
 **Verdict**: people at Rotten Tomatoes generally like Pixar films more than
-Metacritic and Critics Choice. The exception to this is Cars 2, which rated the
-lowest out of all critic groups.
+Metacritic and IMDb. The exception to this is Cars 2, which is consistently
+lowly rated.
 
 
 ## Rating consistency
@@ -115,13 +118,13 @@ among the different critic groups.
 
 ```{r}
 public_response %>%
-  select(-c(cinema_score, film)) %>%
+  select(-c(film, cinema_score), -ends_with("counts")) %>%
   drop_na() %>%
   icc(model = "twoway", type = "consistency")
 ```
 
 **Verdict**: with a null hypothesis that all critic groups are not consistent,
-for the 21 Pixar films we have data for all critic groups, all groups are
+for the 28 Pixar films we have data for all critic groups, all groups are
 consistent in rating Pixar films (p < 0.001).
 
 
