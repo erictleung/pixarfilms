@@ -1196,6 +1196,44 @@ y$other_info$count_max %>%
   arrange(desc(score))
 
 
+## Other methods ----
+
+# Simple
+y_simple <- cdc_simple(vote)
+y_simple$winner  # NULL
+
+# Copeland
+# Pairwise comparisons
+y_copeland <- cdc_copeland(vote)
+y_copeland$other_info$copeland_score %>%
+  data.frame() %>%
+  rownames_to_column("film") %>%
+  as_tibble() %>%
+  rename("score" =  ".") %>%
+  arrange(desc(score))
+
+# Dodgson
+# Checks number of votes each film will need to get from others
+y_dodgson <- cdc_dodgson(vote)
+y_dodgson$other_info$tideman %>%
+  data.frame() %>%
+  rownames_to_column("film") %>%
+  as_tibble() %>%
+  rename("score" =  ".") %>%
+  arrange(score)
+y_dodgson$other_info$dodgson_quick %>%
+  data.frame() %>%
+  rownames_to_column("film") %>%
+  as_tibble() %>%
+  rename("score" =  ".") %>%
+  arrange(score)
+
+# Instant-Runoff voting method
+# Incremental rounds of removing the least popular film and continuing
+y_irv <- irv_method(vote)
+y_irv$other_info
+
+
 # Save out data for use ---------------------------------------------------
 
 # Join all data into single, long data frame
