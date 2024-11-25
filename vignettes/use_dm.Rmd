@@ -19,24 +19,22 @@ Because all of the tables created in {pixarfilms} are connected by each film,
 this gives an interesting opportunity to explore these interconnected tables
 together.
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
-```
+
 
 
 ## Setup
 
-```{r setup}
+
+```r
 library(dm)
+library(pixarfilms)
 ```
 
 
 ## Setup
 
-```{r}
+
+```r
 # Create dm object
 dm <- dm(pixar_films, pixar_people, academy, box_office, genres, public_response, pixar_rankings)
 
@@ -46,9 +44,9 @@ dm <-
   dm_add_pk(pixar_films, film) %>%
   dm_add_pk(academy, c(film, award_type)) %>%
   dm_add_pk(box_office, film) %>%
-  dm_add_pk(genres, c(film, category)) %>%
-  dm_add_pk(public_response, film) %>%
-  dm_add_pk(pixar_rankings, c(film, source))
+  dm_add_pk(genres, c(film, category, value)) %>%
+  # dm_add_pk(pixar_rankings, c(film, source)) %>%
+  dm_add_pk(public_response, film)
 
 # Create foreign keys
 dm <-
@@ -57,8 +55,8 @@ dm <-
   dm_add_fk(academy, film, pixar_films) %>%
   dm_add_fk(box_office, film, pixar_films) %>%
   dm_add_fk(genres, film, pixar_films) %>%
-  dm_add_fk(public_response, film, pixar_films) %>%
-  dm_add_fk(pixar_rankings, film, pixar_films)
+  # dm_add_fk(pixar_rankings, film, pixar_films) %>%
+  dm_add_fk(public_response, film, pixar_films)
 
 # Add splash of color
 dm <-
@@ -73,25 +71,84 @@ dm <-
 
 ## Explore
 
-```{r}
+
+```r
 dm
+#> ── Metadata ───────────────────────────────────────────────────────────────────────────────────
+#> Tables: `pixar_films`, `pixar_people`, `academy`, `box_office`, `genres`, … (7 total)
+#> Columns: 31
+#> Primary keys: 5
+#> Foreign keys: 5
 ```
 
-```{r}
+
+```r
 dm %>%
   dm_examine_cardinalities()
+#> • FK: pixar_people$(`film`) -> pixar_films$(`film`): surjective mapping (child: 1 to n -> parent: 1)
+#> • FK: academy$(`film`) -> pixar_films$(`film`): surjective mapping (child: 1 to n -> parent: 1)
+#> • FK: box_office$(`film`) -> pixar_films$(`film`): bijective mapping (child: 1 -> parent: 1)
+#> • FK: genres$(`film`) -> pixar_films$(`film`): surjective mapping (child: 1 to n -> parent: 1)
+#> • FK: public_response$(`film`) -> pixar_films$(`film`): bijective mapping (child: 1 -> parent: 1)
 ```
 
 
-```{r}
+
+```r
 dm %>%
   dm_examine_constraints()
+#> ℹ All constraints satisfied.
 ```
 
 
-## Visualize connections
+## System information
 
-```{r}
-dm_draw(dm)
+
+```r
+sessionInfo()
+#> R version 4.0.4 (2021-02-15)
+#> Platform: aarch64-unknown-linux-gnu (64-bit)
+#> Running under: Debian GNU/Linux 11 (bullseye)
+#> 
+#> Matrix products: default
+#> BLAS:   /usr/lib/aarch64-linux-gnu/blas/libblas.so.3.9.0
+#> LAPACK: /usr/lib/aarch64-linux-gnu/lapack/liblapack.so.3.9.0
+#> 
+#> locale:
+#>  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C               LC_TIME=en_US.UTF-8       
+#>  [4] LC_COLLATE=en_US.UTF-8     LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+#>  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                  LC_ADDRESS=C              
+#> [10] LC_TELEPHONE=C             LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+#> 
+#> attached base packages:
+#> [1] stats     graphics  grDevices utils     datasets  methods   base     
+#> 
+#> other attached packages:
+#>  [1] pixarfilms_1.0.0    dm_1.0.10           ggbeeswarm_0.7.2    irr_0.84.1         
+#>  [5] lpSolve_5.6.22      scales_1.3.0        votesys_0.1.1       gghighlight_0.4.1  
+#>  [9] ggrepel_0.9.6       forcats_1.0.0       purrr_1.0.2         tibble_3.2.1       
+#> [13] ggplot2_3.5.0       tidyverse_2.0.0     reticulate_1.39.0   knitr_1.46         
+#> [17] gtrendsR_1.5.1.9000 httr_1.4.7          rvest_1.0.4         fuzzyjoin_0.1.6    
+#> [21] tidyr_1.3.1         dplyr_1.1.4         stringr_1.5.1       readr_2.1.5        
+#> [25] progress_1.2.3      lubridate_1.9.3     usethis_3.0.0       janitor_2.2.0      
+#> [29] here_1.0.1         
+#> 
+#> loaded via a namespace (and not attached):
+#>  [1] fs_1.6.3           webshot_0.5.5      RColorBrewer_1.1-3 rprojroot_2.0.4   
+#>  [5] tools_4.0.4        backports_1.4.1    utf8_1.2.4         R6_2.5.1          
+#>  [9] vipor_0.4.7        DBI_1.2.2          colorspace_2.1-0   withr_3.0.0       
+#> [13] tidyselect_1.2.1   prettyunits_1.2.0  compiler_4.0.4     cli_3.6.2         
+#> [17] xml2_1.3.6         digest_0.6.35      rmarkdown_2.28     pkgconfig_2.0.3   
+#> [21] htmltools_0.5.8.1  sessioninfo_1.2.2  dbplyr_2.5.0       fastmap_1.2.0     
+#> [25] htmlwidgets_1.6.4  rlang_1.1.3        rstudioapi_0.16.0  shiny_1.9.1       
+#> [29] visNetwork_2.1.2   generics_0.1.3     jsonlite_1.8.8     gtools_3.9.5      
+#> [33] magrittr_2.0.3     Matrix_1.3-2       Rcpp_1.0.12        munsell_0.5.1     
+#> [37] fansi_1.0.6        lifecycle_1.0.4    stringi_1.8.3      yaml_2.3.8        
+#> [41] snakecase_0.11.1   grid_4.0.4         promises_1.3.0     crayon_1.5.2      
+#> [45] lattice_0.20-41    hms_1.1.3          pillar_1.9.0       igraph_2.0.3      
+#> [49] glue_1.7.0         evaluate_0.23      data.table_1.15.4  png_0.1-8         
+#> [53] vctrs_0.6.5        tzdb_0.4.0         httpuv_1.6.15      gtable_0.3.4      
+#> [57] cachem_1.1.0       xfun_0.43          mime_0.12          xtable_1.8-4      
+#> [61] later_1.3.2        beeswarm_0.4.0     memoise_2.0.1      timechange_0.3.0  
+#> [65] DiagrammeR_1.0.11
 ```
-
