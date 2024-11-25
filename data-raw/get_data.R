@@ -1131,7 +1131,8 @@ pixar_rankings <-
     film == "A Bug’s Life" ~ "A Bug's Life",
     film == "The Incredibles 2" ~ "Incredibles 2",
     TRUE ~ film
-  ))
+  )) %>%
+  select(film, source, ranking)
 
 
 # Create franchise data ---------------------------------------------------
