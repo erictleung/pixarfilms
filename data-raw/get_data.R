@@ -14,15 +14,15 @@ library(stringr)            # CRAN v1.4.0
 # Data wrangling packages
 library(dplyr)              # CRAN v1.0.6
 library(tidyr)              # CRAN v1.1.4
-library(fuzzyjoin)
+library(fuzzyjoin)          # CRAN v0.1.6
 
 # Web scraping
 library(rvest)              # CRAN v1.0.1
 library(httr)               # CRAN v1.4.2
-library(gtrendsR)
+library(gtrendsR)           # [github::PMassicotte/gtrendsR] v1.5.1.9000
 
 # Other analysis
-library(votesys)
+library(votesys)            # CRAN v0.1.1
 # library(imagick)
 # library(imager)
 
