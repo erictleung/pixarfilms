@@ -13,6 +13,7 @@ A data frame with 27 rows and 3 variables:
 \item{run_time}{film length in minutes}
 \item{film_rating}{rating based on Motion Picture Association (MPA) film
 rating system}
+\item{plot}{brief description of the movie plot}
 }
 }
 \source{

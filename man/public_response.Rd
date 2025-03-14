@@ -8,15 +8,19 @@
 A data frame with 23 rows and 5 variables:
 \describe{
 \item{film}{name of film}
-\item{rotten_tomatoes}{score from the American review-aggregation website
-Rotten Tomatoes; scored out of 100}
-\item{metacritic}{score from Metacritic where scores are weighted average
-of reviews; scored out of 100}
+\item{rotten_tomatoes_score}{score from the American review-aggregation
+website Rotten Tomatoes; scored out of 100}
+\item{rotten_tomatoes_counts}{number of critics contributing to Rotten
+Tomatoes score}
+\item{metacritic_score}{score from Metacritic where scores are weighted
+average of reviews; scored out of 100}
+\item{metacritic_counts}{number of critics contributing to Metacritic
+score}
 \item{cinema_score}{score from market research firm CinemaScore; scored by
 grades A, B, C, D, and F}
-\item{critics_choice}{score from Critics' Choice Movie Awards presented by
-the American-Canadian Critics Choice Association (CCA); scored out of
-100}
+\item{imdb_score}{score from IMDb where scores are weighted average of
+reviews; scored out of 100}
+\item{imdb_counts}{number of critics contributing to IMDb score}
 }
 }
 \source{

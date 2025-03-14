@@ -5,9 +5,10 @@
 \alias{genres}
 \title{Genres describing Pixar films}
 \format{
-A data frame with 128 rows and 2 variables:
+A data frame with 204 rows and 3 variables:
 \describe{
 \item{film}{name of film}
+\item{category}{classification of genre as either "Genre" or "Subgenre"}
 \item{genre}{genre film is categorized into}
 }
 }
@@ -23,7 +24,7 @@ A data set with the different genre categories for each Pixar film.
 \details{
 This data set is put into a tidy format, where each row is a film-genre data
 point. Each film can have multiple genres. For example, Toy Story is
-categorized into five genres.
+categorized into three genres. Moreover, Toy Story has five subgenres.
 }
 \examples{
 genres
