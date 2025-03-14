@@ -14,6 +14,7 @@ NULL
 #'   \item{run_time}{film length in minutes}
 #'   \item{film_rating}{rating based on Motion Picture Association (MPA) film
 #'   rating system}
+#'   \item{plot}{brief description of the movie plot}
 #' }
 #' @source \url{https://en.wikipedia.org/wiki/List_of_Pixar_films}
 #' @source \url{https://www.omdbapi.com}
@@ -49,11 +50,12 @@ NULL
 #'
 #' This data set is put into a tidy format, where each row is a film-genre data
 #' point. Each film can have multiple genres. For example, Toy Story is
-#' categorized into five genres.
+#' categorized into three genres. Moreover, Toy Story has five subgenres.
 #'
-#' @format A data frame with 128 rows and 2 variables:
+#' @format A data frame with 204 rows and 3 variables:
 #' \describe{
 #'   \item{film}{name of film}
+#'   \item{category}{classification of genre as either "Genre" or "Subgenre"}
 #'   \item{genre}{genre film is categorized into}
 #' }
 #' @source \url{https://www.omdbapi.com/}
@@ -90,15 +92,19 @@ NULL
 #' @format A data frame with 23 rows and 5 variables:
 #' \describe{
 #'   \item{film}{name of film}
-#'   \item{rotten_tomatoes}{score from the American review-aggregation website
-#'     Rotten Tomatoes; scored out of 100}
-#'   \item{metacritic}{score from Metacritic where scores are weighted average
-#'     of reviews; scored out of 100}
+#'   \item{rotten_tomatoes_score}{score from the American review-aggregation
+#'     website Rotten Tomatoes; scored out of 100}
+#'   \item{rotten_tomatoes_counts}{number of critics contributing to Rotten
+#'     Tomatoes score}
+#'   \item{metacritic_score}{score from Metacritic where scores are weighted
+#'     average of reviews; scored out of 100}
+#'   \item{metacritic_counts}{number of critics contributing to Metacritic
+#'     score}
 #'   \item{cinema_score}{score from market research firm CinemaScore; scored by
 #'     grades A, B, C, D, and F}
-#'   \item{critics_choice}{score from Critics' Choice Movie Awards presented by
-#'     the American-Canadian Critics Choice Association (CCA); scored out of
-#'     100}
+#'   \item{imdb_score}{score from IMDb where scores are weighted average of
+#'     reviews; scored out of 100}
+#'   \item{imdb_counts}{number of critics contributing to IMDb score}
 #' }
 #' @source \url{https://en.wikipedia.org/wiki/List_of_Pixar_films}
 #' @examples
