@@ -56,7 +56,7 @@ NULL
 #' \describe{
 #'   \item{film}{name of film}
 #'   \item{category}{classification of genre as either "Genre" or "Subgenre"}
-#'   \item{genre}{genre film is categorized into}
+#'   \item{value}{value for genre or subgenre film is categorized as}
 #' }
 #' @source \url{https://www.omdbapi.com/}
 #' @examples
