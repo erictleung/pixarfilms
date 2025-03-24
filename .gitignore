@@ -1,13 +1,20 @@
+# R project information
 .Rproj.user
-.Rhistory
-.RData
-.Ruserdata
-config.txt
-docs
-CRAN-RELEASE
-.Rprofile
-.Renviron
-inst/doc
+docs/
 /doc/
 /Meta/
+CRAN-RELEASE
+inst/doc
+
+# RStudio meta files
+.Rhistory
+.Renviron
+.Rprofile
+
+# Ignore files and data not necessary
+*.RData
+.Ruserdata
 *.png
+
+# Ignore configuration and secrets
+config.txt
