@@ -8,7 +8,7 @@
 [![CRAN
 status](https://www.r-pkg.org/badges/version/pixarfilms)](https://CRAN.R-project.org/package=pixarfilms)
 [![R build
-status](https://github.com/erictleung/pixarfilms/workflows/R-CMD-check/badge.svg)](https://github.com/erictleung/pixarfilms/actions)
+status](https://github.com/erictleung/pixarfilms/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/erictleung/pixarfilms/actions/workflows/R-CMD-check.yaml)
 [![downloads](https://cranlogs.r-pkg.org/badges/pixarfilms)](https://cran.r-project.org/package=pixarfilms)
 [![total\_downloads](https://cranlogs.r-pkg.org/badges/grand-total/pixarfilms)](https://cran.r-project.org/package=pixarfilms)
 [![frictionless](https://github.com/erictleung/pixarfilms/actions/workflows/frictionless.yml/badge.svg)](https://github.com/erictleung/pixarfilms/actions/workflows/frictionless.yml)
