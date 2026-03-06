@@ -1,4 +1,4 @@
-`# Load packages and data --------------------------------------------------
+# Load packages and data --------------------------------------------------
 # R version tested: 4.0.4
 # Last run: 2021-05-01
 
