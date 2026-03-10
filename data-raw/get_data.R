@@ -3,7 +3,7 @@
 # Last run: 2021-05-01
 
 # Utility packages
-library(here)               # CRAN v1.0.1
+library(here)               # CRAN v1.0.2
 library(janitor)            # CRAN v2.1.0
 library(usethis)            # CRAN v2.0.1
 library(lubridate)          # CRAN v1.7.10
@@ -21,11 +21,13 @@ library(fuzzyjoin)          # CRAN v0.1.6
 library(rvest)              # CRAN v1.0.1
 library(httr)               # CRAN v1.4.2
 library(gtrendsR)           # [github::PMassicotte/gtrendsR] v1.5.1.9000
+library(RSelenium)          # CRAN v1.7.9
 
 # Other analysis
 library(votesys)            # CRAN v0.1.1
 # library(imagick)
 # library(imager)
+
 
 
 # Extract data ------------------------------------------------------------
@@ -37,7 +39,7 @@ tbls <- html_table(page, fill = TRUE)
 # Note: tbls[[2]] is upcoming films as of [2024-09-30]
 # Note: Wikipedia page as of [2024-10-20] has a banner regarding a merge so
 #   the table elements will be off by one
-banner_offset <- 1  # Off set amount temporary
+banner_offset <- 0  # Off set amount temporary
 films <- tbls[[1 + banner_offset]] # Films, release info, top-level people
 boxoffice <- tbls[[3 + banner_offset]] #  Box office
 publicresponse <- tbls[[4 + banner_offset]] # Critical and public response
@@ -55,18 +57,22 @@ if (file.exists(here("config.txt"))) {
 
 # Steps
 # - Rename and clean column names
-# - Remove random rows
+# - Remove random rows and built-in header
+# - Remove citations for data because unneeded for our data
 # - Remove square brackets from all data
 # - Replace TBA with NA
 # - Process release date into dates
 
+# TODO CHECK ON WHETHER THIS IS STILL TRUE
 # Replace first row with row names because writers columns have two rows
 colnames(films) <- head(films, 1)
 films <- tail(films, nrow(films) - 1)
 
+
+## pixar_films ----
+
 films <-
-  films %>%
-  # Clean column names
+  raw_films %>%
   clean_names() %>%
 
   # 2024-09-30 Wikipedians have separated released films and upcoming
@@ -92,18 +98,27 @@ films <-
 
   # Arrange and add ordering
   arrange(release_date) %>%
-  mutate(number = row_number())
+  mutate(number = row_number()) %>%
+
+  # Polishing
+  filter(film != "Film") %>%
+  mutate_all(function(x) {
+    str_replace_all(x, "\\[[A-Za-z0-9]\\]", "")
+  }) %>%
+  mutate_all(function(x) {
+    ifelse(x == "TBA", NA, x)
+  }) %>%
+  mutate(release_date = mdy(release_date))
 
 
-## pixar_films ----
-
-# Create table of just films
+# Create tibble table of just films
 pixar_films <-
   films %>%
-  select(number, film, release_date)
-
-# Convert to tibble for easier viewing
-pixar_films <- as_tibble(pixar_films)
+  distinct(film, release_date) %>%
+  arrange(release_date) %>%
+  mutate(number = row_number()) %>%
+  select(number, film, release_date) %>%
+  as_tibble()
 
 
 ## pixar_people ----
@@ -114,6 +129,9 @@ pixar_films <- as_tibble(pixar_films)
 # - Story writer
 # - Producer
 # - Musician
+# Other steps:
+# - Remove "Co-directed by:" and other information
+# - Fix abbreviation in table
 pixar_people <-
   films %>%
   select(-c(number, release_date)) %>%
@@ -124,11 +142,13 @@ pixar_people <-
   ) %>%
   separate_rows(name, sep = ", ")
 
+
 # Fix multiple co-directors per film
 all_directors <-
   pixar_people %>%
   filter(str_detect(name, "Co-directed by")) %>%
   separate_rows(name, sep = "Co-directed ")
+
 
 # Process all co-directors
 co_directors <-
@@ -140,11 +160,13 @@ co_directors <-
   separate_rows(name, sep = " & ") %>%
   mutate(role_type = "Co-director")
 
+
 # Remember the main directors
 directors <-
   all_directors %>%
   filter(!str_detect(name, "by:")) %>%
   separate_rows(name, sep = " & ")
+
 
 # Pull non-directors first to then join in back with updated directors
 pixar_people <-
@@ -165,12 +187,14 @@ full_names <-
   distinct(name) %>%
   rename(full_name = name)
 
+
 single_names <-
   pixar_people %>%
   select(name) %>%
   filter(!str_detect(name, " ")) %>%
   distinct(name) %>%
   rename(short_name = name)
+
 
 # Create mapping for short names that appear in table
 ci_str_detect <- function(x, y) {
@@ -186,10 +210,12 @@ name_map <-
   ) %>%
   filter(!is.na(short_name))
 
+
 # NOTE Edge case with multiple people with the same last name
 name_map <-
   name_map %>%
   filter(!short_name %in% c("Andrews"))
+
 
 # Fill in names and address edge case(s) above
 pixar_people <-
@@ -204,20 +230,35 @@ pixar_people <-
   select(-name) %>%
   rename(name = full_name)
 
-# Remove rows with no movie
-pixar_people <-
-  pixar_people %>%
-  drop_na(film)
+# TODO CHECK WHETHER THIS STILL WORKS CORRECTLY
+#   separate_rows(name, sep = "(, )|( & )") %>%
+#   mutate(name = str_replace(name,
+#                             "^.*Co-directed by:",
+#                             "")) %>%
+#   mutate(name = str_replace(name,
+#                             "^.*Original Concept and Development by:",
+#                             "")) %>%
+#   mutate(name = case_when(
+#     name == "Jeff" ~ "Jeff Danna",
+#     name == "Lasseter" ~ "John Lasseter",
+#     name == "Stanton" ~ "Andrew Stanton",
+#     name == "Docter" ~ "Pete Docter",
+#     name == "Bird" ~ "Brad Bird",
+#     TRUE ~ name
+#   )) %>%
+#   drop_na(film) %>%  # Remove rows with no movie
+#   View()
+
 
 # Rename role types
 pixar_people <-
   pixar_people %>%
   mutate(role_type = case_when(
-    role_type == "director_s" ~ "Director",
-    role_type == "screenplay" ~ "Screenwriter",
-    role_type == "story" ~ "Storywriter",
-    role_type == "composer_s" ~ "Musician",
-    role_type == "producer_s" ~ "Producer",
+    role_type %in% c("directed_by", "director_s") ~ "Director",
+    role_type %in% c("screenplay_by") ~ "Screenwriter",
+    role_type %in% c("story_by", "writer_s", "writers_s_2") ~ "Storywriter",
+    role_type %in% c("music_by") ~ "Musician",
+    role_type %in% c("produced_by", "producers") ~ "Producer"
     TRUE ~ role_type
   ))
 
@@ -235,6 +276,7 @@ pixar_people <-
 # - Genres
 omdb_url <- "https://www.omdbapi.com/"
 omdb_w_key <- paste0(omdb_url, "?apikey=", config, "&")
+
 
 # Query genres and add to film table
 raw_genres <-
@@ -1236,18 +1278,89 @@ y_irv <- irv_method(vote)
 y_irv$other_info
 
 
+# Tropes ------------------------------------------------------------------
+
+parse_tropes <- function(x) {
+  # Parse HTML page
+  x %>%
+    html_element("#main-article") %>%
+    html_element("ul") %>%
+    html_elements("li") %>%
+    html_elements("a.twikilink") %>%
+    html_attr("title") %>%
+    str_remove("/pmwiki/pmwiki.php/Main/") %>%
+
+    # Convert to tibble to filter and wrangle as data frame
+    as_tibble() %>%
+    filter(!str_detect(value, "pmwiki")) %>%
+    distinct() %>%
+    mutate(value = str_replace_all(value, "([A-Z])", " \\1")) %>%
+    mutate(value = case_when(
+      str_detect(value, "C G I") ~ str_replace(value, "C G I", "CGI"),
+      str_detect(value, "P O V") ~ str_replace(value, "P O V", "POV"),
+      str_detect(value, "B S O D") ~ str_replace(value, "B S O D", "BSoD"),
+      TRUE ~ value
+    )) %>%
+    mutate(value = trimws(value)) %>%
+    pull(value)
+}
+
+
+# Vectorize how to construct web pages to scrape
+base_trope <- "https://tvtropes.org/pmwiki/pmwiki.php/WesternAnimation/"
+tropes_df <-
+  pixar_films %>%
+  mutate(slug = str_replace_all(film, "[ '-\\.]", "")) %>%
+  mutate(slug = case_when(
+    slug %in% c("ToyStory", "Cars", "TheIncredibles") ~ str_c(slug, "1"),
+    slug == "Elemental" ~ str_c(slug, "2023"),
+    TRUE ~ slug
+  )) %>%
+  mutate(url = paste0(base_trope, slug))
+
+
+all_tropes <- tibble()
+for (i in 1:nrow(tropes_df)) {
+  tmp_url <- tropes_df[[i, "url"]]
+  tmp_tropes <- tmp_url %>%
+    read_html() %>%
+    parse_tropes()
+
+  tmp_df <- data.frame(film = tropes_df[[i, "film"]], trope = tmp_tropes)
+  all_tropes <- bind_rows(all_tropes, tmp_df)
+
+  print(glue::glue("Scraped tropes for {tropes_df[[i, 'film']]}"))
+  readline("Press anything to continue: ")
+}
+
+# QA
+# count(all_tropes, film)
+
+rD <- rsDriver(browser = "firefox", port = 4545L, verbose = F)
+
+
+# Google Trends data ------------------------------------------------------
+
+# https://datascienceplus.com/analyzing-google-trends-data-in-r/
+d <- gtrends(keyword = "Coco (2017 Movie)", geo = "US")
+
+d$interest_over_time %>%
+  mutate(hits = ifelse(hits == "<1", "0", hits)) %>%
+  mutate(hits = as.integer(hits))
+
+
 # Save out data for use ---------------------------------------------------
 
 # Join all data into single, long data frame
 # TODO Test and save out accordingly
 all_pixar <-
-    pixar_films %>%
-    inner_join(pixar_people) %>%
-    inner_join(academy) %>%
-    inner_join(genres) %>%
-    inner_join(box_office) %>%
-    inner_join(public_response) %>%
-    inner_join(theme_vox)
+  pixar_films %>%
+  inner_join(pixar_people) %>%
+  inner_join(academy) %>%
+  inner_join(genres) %>%
+  inner_join(box_office) %>%
+  inner_join(public_response) %>%
+  inner_join(theme_vox)
 
 # Save out for external use as CSV files
 save_data <- function(x) {
@@ -1273,3 +1386,4 @@ use_data(
   academy,
   overwrite = TRUE
 )
+
