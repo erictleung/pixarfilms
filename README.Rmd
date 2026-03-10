@@ -84,6 +84,19 @@ to be a computer-readable data dictionary describing the contents of each data
 file as described in
 [the data package specifications](https://specs.frictionlessdata.io/data-package/).
 
+Below is some code to import the data into Python.
+
+```python
+import pandas as pd
+
+pixar_films = pd.read_csv("https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/pixar_films.csv")
+academy = pd.read_csv("https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/academy.csv")
+box_office = pd.read_csv("https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/box_office.csv")
+genres = pd.read_csv("https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/genres.csv")
+pixar_people = pd.read_csv("https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/pixar_people.csv")
+public_response = pd.read_csv("https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/public_response.csv")
+```
+
 
 ## Feedback
 
