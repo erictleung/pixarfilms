@@ -1,4 +1,6 @@
-# Load packages and data --------------------------------------------------
+# Clean Pixar films data
+
+# Load packages and data ----
 # R version tested: 4.2.2
 # Last run: 2026-03-22
 
