@@ -18,3 +18,6 @@ inst/doc
 
 # Ignore configuration and secrets
 config.txt
+
+# Python
+__pycache__/
