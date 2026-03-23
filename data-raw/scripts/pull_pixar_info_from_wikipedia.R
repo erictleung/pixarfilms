@@ -42,7 +42,7 @@ academy <- clean_names(academy)
 # Write out data
 write_csv(
   films,
-  file = here("data-raw", "data", "films_raw.csv")
+  file = here("data-raw", "data", "pixar_films_raw.csv")
 )
 write_csv(
   boxoffice,
