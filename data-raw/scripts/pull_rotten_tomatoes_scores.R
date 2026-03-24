@@ -6,7 +6,9 @@
 
 library(rvest)
 library(dplyr)
+library(readr)
 library(progress)
+library(here)
 library(chromote)
 
 #' Get Rotten Tomatoes' scores
@@ -15,27 +17,46 @@ library(chromote)
 #'
 #' @returns list of elements `tomatometer` and `popcornmeter`
 get_rt_scores <- function(url) {
-  page <- read_html(url)
+
+  # Navigate to page
+  message("Reading in URL...")
+  b$Page$navigate(url)
+  Sys.sleep(3) # wait for JS to render
+  rendered_html <- b$Runtime$evaluate(
+    "document.documentElement.outerHTML"
+  )$result$value
+  message("Saving rendered HTML!")
+
+  message("Extracting elements from rendered page...")
+  page <- read_html(rendered_html)
 
   title <- page |>
-    html_element("rt-text[slot='title']") |>
-    html_text2()
+    html_element("title") |>
+    html_text2() |>
+    gsub(" | Rotten Tomatoes", "", x = _, fixed = TRUE) |>
+    gsub(" \\(\\d{4}\\)", "", x = _)  # Remove year if present
 
   critics_score <- page |>
     html_element("rt-text[slot='critics-score']") |>
     html_text2()
 
   critics_reviews <- page |>
-    html_element("rt-text[slot='critics-reviews']") |>
-    html_text2()
+    html_element("rt-link[slot='critics-reviews']") |>
+    html_text2() |>
+    gsub(" Reviews", "", x = _, fixed = TRUE)
 
   audience_score <- page |>
     html_element("rt-text[slot='audience-score']") |>
     html_text2()
 
   audience_reviews <- page |>
-    html_element("rt-text[slot='audience-reviews']") |>
-    html_text2()
+    html_element("rt-link[slot='audience-reviews']") |>
+    html_text2() |>
+    gsub("+ Ratings", "", x = _, fixed = TRUE) |>
+    gsub("+ Verified Ratings", "", x = _, fixed = TRUE) |>
+    gsub(",", "", x = _, fixed = TRUE)
+
+  message("Completed extracting elements from page!")
 
   tibble(
     film = title,
@@ -50,6 +71,7 @@ get_rt_scores <- function(url) {
 url <- "https://editorial.rottentomatoes.com/guide/all-pixar-movies-ranked/"
 
 # Read in page and pull relevant links from the list
+message("Reading and extracting Rotten Tomatoes rankings list...")
 page <- read_html(url)
 movie_links <-
   page |>
@@ -58,23 +80,18 @@ movie_links <-
   html_attr("href") |>
   (\(x) x[grepl("^https://www\\.rottentomatoes\\.com/m/", x)])() |>
   unique()
+message("Completed extraction of Rotten Tomatoes ranking list!")
 
-get_rt_scores("https://www.rottentomatoes.com/m/toy_story_2")
+# Testing
+# get_rt_scores("https://www.rottentomatoes.com/m/toy_story_2")
 
 # Create browser session to loop through
+message("Opening Chrome session to help pull data")
 b <- ChromoteSession$new()
-url <- "https://www.rottentomatoes.com/m/toy_story_2"
-b$Page$navigate(url)
-Sys.sleep(3) # wait for JS to render
-
-rendered_html <- b$Runtime$evaluate(
-  "document.querySelector('score-board-deprecated').shadowRoot.innerHTML"
-)$result$value
 
 # Loop through links to pull ratings from
 rt_ratings <- tibble()
 pb <- progress_bar$new(total = length(movie_links))
-pb$tick(0) # Start progress
 for (film in 1:length(movie_links)) {
   # Production use
   # for (film in 1:3) {  # Uncomment use for testing API and logic
@@ -88,6 +105,7 @@ for (film in 1:length(movie_links)) {
   Sys.sleep(1)
 }
 
+# Close browser used to pull data
 b$close()
 
 # Write out data
