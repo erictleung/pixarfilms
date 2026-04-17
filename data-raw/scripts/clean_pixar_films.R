@@ -1,3 +1,4 @@
+# Load libraries
 library(DBI)
 library(RSQLite)
 library(dplyr)

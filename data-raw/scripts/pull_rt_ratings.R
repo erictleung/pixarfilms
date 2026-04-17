@@ -1,3 +1,4 @@
+# Load libraries
 library(rvest)
 library(dplyr)
 library(readr)
@@ -5,6 +6,7 @@ library(progress)
 library(here)
 library(DBI)
 library(RSQLite)
+
 
 #' Get Rotten Tomatoes' scores
 #'
@@ -58,6 +60,7 @@ get_rt_scores <- function(url) {
     popcornmeter_reviews = audience_reviews
   )
 }
+
 
 # Set page to pull all movies from
 url <- "https://editorial.rottentomatoes.com/guide/all-pixar-movies-ranked/"

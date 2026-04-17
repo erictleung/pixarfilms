@@ -1,3 +1,4 @@
+# Load libraries
 library(httr)
 library(stringr)
 library(dplyr)
@@ -6,16 +7,22 @@ library(RSQLite)
 library(here)
 library(janitor)
 
+
 # Connect to staging database
 message("Connecting to staging database...")
 con <- dbConnect(SQLite(), here("data-raw", "pixar_staging.db"))
+message("Done!")
+
 
 # Read film titles from Wikipedia data
 message("Reading film titles from Wikipedia data...")
-films <- dbReadTable(con, "raw_wiki_films") |> 
-  pull(film) |> 
+films <- dbReadTable(con, "raw_wiki_films") |>
+  pull(film) |>
   unique() |>
   setdiff("Film") # Remove header if present
+print(head(films))
+message("Done!")
+
 
 # Load API key
 if (file.exists(here("config.txt"))) {
