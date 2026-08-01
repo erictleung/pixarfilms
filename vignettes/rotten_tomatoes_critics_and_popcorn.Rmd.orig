@@ -1,0 +1,60 @@
+---
+title: "Rotten Tomatoes' Tomatometer and Popcornmeter"
+description: |
+  Explore the difference between Rotten Tomatoes'  Tomatometer from critics and
+  Popcornmeter from users. 
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Rotten Tomatoes' Tomatometer and Popcornmeter}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Overview
+
+This vignette is to explore Rotten Tomatoes' Tomatometer, which is an aggregate from critics' ratings on the site, and how it compares with the Popcornmeter, which in contrast is an aggregate from general users of the site's ratings.
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Setup
+
+```{r setup, warning=FALSE}
+library(pixarfilms)
+library(dplyr)
+library(tidyr)
+library(ggtext)
+library(ggplot2)
+library(extrafont)
+```
+
+
+## Wrangle data
+
+```{r}
+# Make data long for easier plotting
+rt_tbl_long <-
+  rt_tbl |>
+  mutate(critics_review = as.numeric(critics_review),
+	 audience_review = as.numeric(audience_review)) |>
+  mutate(film = fct_reorder(film, critics_review)) |>  # Order by critics
+  pivot_longer(cols = c(critics_review, audience_review),
+	       names_to = "review")
+
+# Split out data
+critics <- rt_tbl_long |>
+  filter(review == "critics_review")
+audience <- rt_tbl_long |>
+  filter(review == "audience_review")
+```
+
+
+## Session information
+
+```{r}
+sessionInfo()
+```
