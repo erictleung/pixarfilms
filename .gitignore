@@ -21,3 +21,6 @@ config.txt
 
 # Python
 __pycache__/
+
+# VSCode configurations
+.vscode/
