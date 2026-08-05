@@ -40,7 +40,7 @@ tbls <- html_table(page, fill = TRUE)
 # Note: Wikipedia page as of [2024-10-20] has a banner regarding a merge so
 #   the table elements will be off by one
 banner_offset <- 0  # Off set amount temporary
-films <- tbls[[1 + banner_offset]] # Films, release info, top-level people
+raw_films <- tbls[[1 + banner_offset]] # Films, release info, top-level people
 boxoffice <- tbls[[3 + banner_offset]] #  Box office
 publicresponse <- tbls[[4 + banner_offset]] # Critical and public response
 academy <- tbls[[5 + banner_offset]] # Academy awards
@@ -63,10 +63,9 @@ if (file.exists(here("config.txt"))) {
 # - Replace TBA with NA
 # - Process release date into dates
 
-# TODO CHECK ON WHETHER THIS IS STILL TRUE
 # Replace first row with row names because writers columns have two rows
-colnames(films) <- head(films, 1)
-films <- tail(films, nrow(films) - 1)
+colnames(raw_films) <- head(raw_films, 1)
+raw_films <- tail(raw_films, nrow(raw_films) - 1)
 
 
 ## pixar_films ----
@@ -107,8 +106,7 @@ films <-
   }) %>%
   mutate_all(function(x) {
     ifelse(x == "TBA", NA, x)
-  }) %>%
-  mutate(release_date = mdy(release_date))
+  })
 
 
 # Create tibble table of just films
