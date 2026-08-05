@@ -8,6 +8,7 @@ library(progress)
 library(here)
 library(DBI)
 library(RSQLite)
+library(stringr)
 
 
 # Get rankings ------------------------------------------------------------
