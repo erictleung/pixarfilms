@@ -20,6 +20,7 @@ Imports:
 Suggests: 
     DBI,
     DiagrammeR,
+    DiagrammeRsvg,
     dm,
     dbplyr,
     dplyr,
