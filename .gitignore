@@ -6,6 +6,9 @@ docs/
 CRAN-RELEASE
 inst/doc
 
+# pkgdown files
+pkgdown/
+
 # RStudio meta files
 .Rhistory
 .Renviron
