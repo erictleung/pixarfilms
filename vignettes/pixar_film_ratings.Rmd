@@ -62,7 +62,7 @@ df <-
 
 Their first plot was comparing the Pixar films' ratings over time.
 
-```{r fig.height=5, fig.width=6}
+```{r pixar_ratings_overview, fig.height=5, fig.width=6}
 df %>%
   ggplot(aes(x = film, y = value, col = ratings)) +
   geom_point() +
@@ -85,7 +85,7 @@ the other Pixar films.
 
 Next, let's group the rating categories to see if there is a consistency across.
 
-```{r fig.height=6, fig.width=5}
+```{r pixar_ratings_group, fig.height=6, fig.width=5}
 df %>%
   ggplot(aes(x = ratings, y = value, col = ratings)) +
   geom_boxplot(width = 1.75 / length(unique(df$ratings))) +
