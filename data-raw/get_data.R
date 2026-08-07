@@ -136,97 +136,110 @@ pixar_people <-
     names_to = "role_type",
     values_to = "name"
   ) %>%
-  separate_rows(name, sep = ", ")
+  separate_rows(name, sep = "(, ?)|( & ?)")
 
 
 # Fix multiple co-directors per film
-all_directors <-
+all_co_directors <-
   pixar_people %>%
-  filter(str_detect(name, "Co-directed by")) %>%
-  separate_rows(name, sep = "Co-directed ")
 
+  # Get all co-directors and separate them into their own rows
+  filter(str_detect(name, "Co-director")) %>%
 
-# Process all co-directors
-co_directors <-
-  all_directors %>%
-  filter(str_detect(name, "by:")) %>%
-  rename(old_name = name) %>%
-  mutate(name = str_remove(old_name, "^by:")) %>%
-  select(-old_name) %>%
-  separate_rows(name, sep = " & ") %>%
-  mutate(role_type = "Co-director")
+  # Deal with easier case
+  separate_wider_delim(
+    name,
+    delim = regex("Co-director(s)?:"),
+    names = c("directors", "co_director"),
+  ) |>
+
+  # Deal with edge cases
+  mutate(
+    co_director = str_replace(co_director, "BrannonLee", "Brannon & Lee")
+  ) |>
+  mutate(
+    co_director = str_replace(co_director, "UnkrichDavid", "Unkrich & David")
+  ) |>
+  separate_longer_delim(
+    co_director,
+    delim = regex(" & ")
+  ) |>
+
+  # Clean up
+  select(-role_type) |>
+  pivot_longer(
+    cols = c(co_director),
+    names_to = "role_type",
+    values_to = "name"
+  )
 
 
 # Remember the main directors
-directors <-
-  all_directors %>%
-  filter(!str_detect(name, "by:")) %>%
-  separate_rows(name, sep = " & ")
-
-
-# Pull non-directors first to then join in back with updated directors
 pixar_people <-
-  pixar_people %>%
-  filter(!str_detect(name, "Co-directed by")) %>%
-  bind_rows(co_directors, directors) %>%
-  separate_rows(name, sep = " & ") %>%
-  rename(old_name = name) %>%
-  mutate(name = str_remove(old_name, "\\[[A-Za-z]\\]")) %>%
-  select(-old_name)
+  pixar_people |>
+  filter(!str_detect(name, "Co-director")) %>%
+
+  bind_rows(
+    all_co_directors |>
+      select(film, role_type, name) |>
+      mutate(role_type = "Co-director"),
+    all_co_directors |>
+      select(film, directors) |>
+      mutate(role_type = "Director") |>
+      rename(name = directors) |>
+      select(film, role_type, name) |>
+      distinct()
+  )
 
 
 # Fix people using just last names to ensure consistency
-full_names <-
-  pixar_people %>%
-  select(name) %>%
-  filter(str_detect(name, " ")) %>%
-  distinct(name) %>%
-  rename(full_name = name)
+# full_names <-
+#   pixar_people %>%
+#   select(name) %>%
+#   filter(str_detect(name, " ")) %>%
+#   distinct(name) %>%
+#   rename(full_name = name)
 
-
-single_names <-
-  pixar_people %>%
-  select(name) %>%
-  filter(!str_detect(name, " ")) %>%
-  distinct(name) %>%
-  rename(short_name = name)
-
+# single_names <-
+#   pixar_people %>%
+#   select(name) %>%
+#   filter(!str_detect(name, " ")) %>%
+#   distinct(name) %>%
+#   rename(short_name = name)
 
 # Create mapping for short names that appear in table
-ci_str_detect <- function(x, y) {
-  # Note space before y is because the last name will have a space before it
-  str_detect(x, regex(str_c(" ", y), ignore_case = TRUE))
-}
-name_map <-
-  full_names %>%
-  fuzzy_left_join(
-    single_names,
-    by = c("full_name" = "short_name"),
-    match_fun = ci_str_detect
-  ) %>%
-  filter(!is.na(short_name))
-
+# ci_str_detect <- function(x, y) {
+#   # Note space before y is because the last name will have a space before it
+#   str_detect(x, regex(str_c(" ", y), ignore_case = TRUE))
+# }
+# name_map <-
+#   full_names %>%
+#   fuzzy_left_join(
+#     single_names,
+#     by = c("full_name" = "short_name"),
+#     match_fun = ci_str_detect
+#   ) %>%
+#   filter(!is.na(short_name))
 
 # NOTE Edge case with multiple people with the same last name
-name_map <-
-  name_map %>%
-  filter(!short_name %in% c("Andrews"))
-
+# name_map <-
+#   name_map %>%
+#   filter(!short_name %in% c("Andrews"))
 
 # Fill in names and address edge case(s) above
-pixar_people <-
-  pixar_people %>%
-  left_join(name_map, by = join_by(name == short_name)) %>%
-  mutate(
-    full_name = case_when(
-      film == "Brave" ~ "Mark Andrews",
-      film == "Luca" ~ "Jesse Andrews",
-      is.na(full_name) ~ name,
-      TRUE ~ full_name
-    )
-  ) %>%
-  select(-name) %>%
-  rename(name = full_name)
+# pixar_people <-
+#   pixar_people %>%
+#   left_join(name_map, by = join_by(name == short_name)) %>%
+#   mutate(
+#     full_name = case_when(
+#       film == "Brave" ~ "Mark Andrews",
+#       film == "Luca" ~ "Jesse Andrews",
+#       is.na(full_name) ~ name,
+#       TRUE ~ full_name
+#     )
+#   ) %>%
+#   select(-name) %>%
+#   rename(name = full_name)
 
 # TODO CHECK WHETHER THIS STILL WORKS CORRECTLY
 #   separate_rows(name, sep = "(, )|( & )") %>%
@@ -253,10 +266,11 @@ pixar_people <-
   mutate(
     role_type = case_when(
       role_type %in% c("directed_by", "director_s") ~ "Director",
-      role_type %in% c("screenplay_by") ~ "Screenwriter",
-      role_type %in% c("story_by", "writer_s", "writers_s_2") ~ "Storywriter",
-      role_type %in% c("music_by") ~ "Musician",
-      role_type %in% c("produced_by", "producers") ~ "Producer",
+      role_type %in% c("screenplay_by", "screenplay") ~ "Screenwriter",
+      role_type %in%
+        c("story", "story_by", "writer_s", "writers_s_2") ~ "Storywriter",
+      role_type %in% c("music_by", "composer_s") ~ "Musician",
+      role_type %in% c("produced_by", "producers", "producer_s") ~ "Producer",
       TRUE ~ role_type
     )
   )
@@ -264,7 +278,7 @@ pixar_people <-
 # Reorder for polish
 pixar_people <-
   pixar_people %>%
-  left_join(pixar_films %>% select(number, film)) %>%
+  left_join(pixar_films %>% select(number, film), by = "film") %>%
   arrange(number, role_type) %>%
   select(-number)
 
