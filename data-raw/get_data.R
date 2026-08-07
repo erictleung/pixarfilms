@@ -467,8 +467,17 @@ subgenres <-
     "Elemental"           , "Computer Animation, Urban Adventure, Adventure, Animation, Comedy, Family, Fantasy, Romance"                                       ,
     # https://www.imdb.com/title/tt15789038/
 
-    "Inside Out 2"        , "Coming-of-Age, Computer Animation, Quest, Teen Comedy, Teen Drama, Adventure, Animation, Comedy, Drama, Family"
+    "Inside Out 2"        , "Coming-of-Age, Computer Animation, Quest, Teen Comedy, Teen Drama, Adventure, Animation, Comedy, Drama, Family"                    ,
     # https://www.imdb.com/title/tt22022452/
+
+    "Elio"                , "Alien Invasion, Computer Animation, Space Sci-Fi, Adventure, Animation, Comedy, Drama, Family, Fantasy, Sci-Fi"                    ,
+    # https://www.imdb.com/title/tt4900148/
+
+    "Hoppers"             , "Animal Adventure, Body Swap Comedy, Computer Animation, High-Concept Comedy, Spy, Adventure, Animation, Comedy, Family, Sci-Fi"    ,
+    # https://www.imdb.com/title/tt26443616/
+
+    "Toy Story 5"         , "Buddy Comedy, Computer Animation, Urban Adventure, Adventure, Animation, Comedy, Drama, Family, Fantasy"
+    # https://www.imdb.com/title/tt29355505
   )
 
 # Separate row values so that data is tidy
