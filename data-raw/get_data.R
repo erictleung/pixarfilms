@@ -316,19 +316,20 @@ for (film in 1:nrow(raw_genres)) {
   query_str <- str_replace_all(raw_genres$film[film], " ", "+")
 
   # Edge case for WALL-E / WALL·E
-  query_str <- str_replace(query_str, "WALL-E", "WALL·E")
+  # query_str <- str_replace(query_str, "WALL-E", "WALL·E")
+  query_str <- str_replace(query_str, "WALL-E", "WALL%C2%B7E")
 
   omdb_data <- tryCatch({
     content(GET(url = paste0(omdb_w_key, "t=", query_str)))
   })
-  if ("Error" %in% names(omdb_data)) {
+  if ("Error" %in% names(omdb_data) | is.null(names(omdb_data))) {
     omdb_data$Genre <- NA_character_
     omdb_data$Runtime <- NA_character_
     omdb_data$Rated <- NA_character_
     omdb_data$Poster <- NA_character_
     omdb_data$Plot <- NA_character_
     omdb_data$imdbRating <- NA_character_
-    omdbc_data$imdbVotes <- NA_character_
+    omdb_data$imdbVotes <- NA_character_
   }
 
   # Fill in data if we have it
