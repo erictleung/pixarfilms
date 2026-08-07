@@ -27,6 +27,7 @@ library(RSelenium) # CRAN v1.7.9
 library(votesys) # CRAN v0.1.1
 # library(imagick)
 # library(imager)
+library(ggplot2)
 
 # Extract data ------------------------------------------------------------
 
