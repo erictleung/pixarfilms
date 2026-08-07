@@ -3,32 +3,30 @@
 # Last run: 2021-05-01
 
 # Utility packages
-library(here)               # CRAN v1.0.2
-library(janitor)            # CRAN v2.1.0
-library(usethis)            # CRAN v2.0.1
-library(lubridate)          # CRAN v1.7.10
-library(progress)           # CRAN v1.2.2
-library(readr)              # CRAN v1.4.0
-library(stringr)            # CRAN v1.4.0
+library(here) # CRAN v1.0.2
+library(janitor) # CRAN v2.1.0
+library(usethis) # CRAN v2.0.1
+library(lubridate) # CRAN v1.7.10
+library(progress) # CRAN v1.2.2
+library(readr) # CRAN v1.4.0
+library(stringr) # CRAN v1.4.0
 
 # Data wrangling packages
-library(dplyr)              # CRAN v1.0.6
-library(tibble)             # CRAN v3.2.1
-library(tidyr)              # CRAN v1.1.4
-library(fuzzyjoin)          # CRAN v0.1.6
+library(dplyr) # CRAN v1.0.6
+library(tibble) # CRAN v3.2.1
+library(tidyr) # CRAN v1.1.4
+library(fuzzyjoin) # CRAN v0.1.6
 
 # Web scraping
-library(rvest)              # CRAN v1.0.1
-library(httr)               # CRAN v1.4.2
-library(gtrendsR)           # [github::PMassicotte/gtrendsR] v1.5.1.9000
-library(RSelenium)          # CRAN v1.7.9
+library(rvest) # CRAN v1.0.1
+library(httr) # CRAN v1.4.2
+library(gtrendsR) # [github::PMassicotte/gtrendsR] v1.5.1.9000
+library(RSelenium) # CRAN v1.7.9
 
 # Other analysis
-library(votesys)            # CRAN v0.1.1
+library(votesys) # CRAN v0.1.1
 # library(imagick)
 # library(imager)
-
-
 
 # Extract data ------------------------------------------------------------
 
@@ -39,7 +37,7 @@ tbls <- html_table(page, fill = TRUE)
 # Note: tbls[[2]] is upcoming films as of [2024-09-30]
 # Note: Wikipedia page as of [2024-10-20] has a banner regarding a merge so
 #   the table elements will be off by one
-banner_offset <- 0  # Off set amount temporary
+banner_offset <- 0 # Off set amount temporary
 raw_films <- tbls[[1 + banner_offset]] # Films, release info, top-level people
 boxoffice <- tbls[[3 + banner_offset]] #  Box office
 publicresponse <- tbls[[4 + banner_offset]] # Critical and public response
@@ -219,12 +217,14 @@ name_map <-
 pixar_people <-
   pixar_people %>%
   left_join(name_map, by = join_by(name == short_name)) %>%
-  mutate(full_name = case_when(
-    film == "Brave" ~ "Mark Andrews",
-    film == "Luca" ~ "Jesse Andrews",
-    is.na(full_name) ~ name,
-    TRUE ~ full_name
-  )) %>%
+  mutate(
+    full_name = case_when(
+      film == "Brave" ~ "Mark Andrews",
+      film == "Luca" ~ "Jesse Andrews",
+      is.na(full_name) ~ name,
+      TRUE ~ full_name
+    )
+  ) %>%
   select(-name) %>%
   rename(name = full_name)
 
@@ -247,18 +247,19 @@ pixar_people <-
 #   drop_na(film) %>%  # Remove rows with no movie
 #   View()
 
-
 # Rename role types
 pixar_people <-
   pixar_people %>%
-  mutate(role_type = case_when(
-    role_type %in% c("directed_by", "director_s") ~ "Director",
-    role_type %in% c("screenplay_by") ~ "Screenwriter",
-    role_type %in% c("story_by", "writer_s", "writers_s_2") ~ "Storywriter",
-    role_type %in% c("music_by") ~ "Musician",
-    role_type %in% c("produced_by", "producers") ~ "Producer"
-    TRUE ~ role_type
-  ))
+  mutate(
+    role_type = case_when(
+      role_type %in% c("directed_by", "director_s") ~ "Director",
+      role_type %in% c("screenplay_by") ~ "Screenwriter",
+      role_type %in% c("story_by", "writer_s", "writers_s_2") ~ "Storywriter",
+      role_type %in% c("music_by") ~ "Musician",
+      role_type %in% c("produced_by", "producers") ~ "Producer",
+      TRUE ~ role_type
+    )
+  )
 
 # Reorder for polish
 pixar_people <-
@@ -280,18 +281,21 @@ omdb_w_key <- paste0(omdb_url, "?apikey=", config, "&")
 raw_genres <-
   films %>%
   select(film) %>%
-  mutate(genre = NA_character_,
-         run_time = NA_character_,
-         film_rating = NA_character_,
-         poster_url = NA_character_,
-         plot = NA_character_,
-         imdb_rating = NA_character_,
-         imdb_votes = NA_character_)
+  mutate(
+    genre = NA_character_,
+    run_time = NA_character_,
+    film_rating = NA_character_,
+    poster_url = NA_character_,
+    plot = NA_character_,
+    imdb_rating = NA_character_,
+    imdb_votes = NA_character_
+  )
 
 pb <- progress_bar$new(total = nrow(raw_genres))
 pb$tick(0) # Start progress
-for (film in 1:nrow(raw_genres)) {  # Production use
-# for (film in 1:3) {  # Uncomment use for testing API and logic
+for (film in 1:nrow(raw_genres)) {
+  # Production use
+  # for (film in 1:3) {  # Uncomment use for testing API and logic
   pb$tick()
 
   # Example:
@@ -356,7 +360,9 @@ imdb_ratings <-
 #   comedy. So I'm going to hard code these from IMDb
 genres <-
   raw_genres %>%
-  select(-c(run_time, poster_url, film_rating, plot, imdb_rating, imdb_votes)) %>%
+  select(
+    -c(run_time, poster_url, film_rating, plot, imdb_rating, imdb_votes)
+  ) %>%
   separate_rows(genre, sep = ", ") %>%
   drop_na(film) %>%
   mutate(category = "Genre") %>%
@@ -365,89 +371,89 @@ genres <-
 
 subgenres <-
   tribble(
-    ~film, ~raw_genre,
-    "Toy Story", "Buddy Comedy, Computer Animation, Supernatural Fantasy, Urban Adventure, Adventure, Animation, Comedy, Family, Fantasy",
+    ~film                 , ~raw_genre                                                                                                                          ,
+    "Toy Story"           , "Buddy Comedy, Computer Animation, Supernatural Fantasy, Urban Adventure, Adventure, Animation, Comedy, Family, Fantasy"            ,
     # https://www.imdb.com/title/tt0114709/
 
-    "A Bug's Life", "Animal Adventure, Computer Animation, Quest, Adventure, Animation, Comedy, Family",
+    "A Bug's Life"        , "Animal Adventure, Computer Animation, Quest, Adventure, Animation, Comedy, Family"                                                 ,
     # https://www.imdb.com/title/tt0120623/
 
-    "Toy Story 2", "Computer Animation, Quest, Supernatural Fantasy, Urban Adventure, Adventure, Animation, Comedy, Family, Fantasy",
+    "Toy Story 2"         , "Computer Animation, Quest, Supernatural Fantasy, Urban Adventure, Adventure, Animation, Comedy, Family, Fantasy"                   ,
     # https://www.imdb.com/title/tt0120363/
 
-    "Monsters, Inc.", "Buddy Comedy, Computer Animation, Supernatural Fantasy, Urban Adventure, Adventure, Animation, Comedy, Family, Fantasy",
-      # https://www.imdb.com/title/tt0198781/
+    "Monsters, Inc."      , "Buddy Comedy, Computer Animation, Supernatural Fantasy, Urban Adventure, Adventure, Animation, Comedy, Family, Fantasy"            ,
+    # https://www.imdb.com/title/tt0198781/
 
-    "Finding Nemo", "Animal Adventure, Buddy Comedy, Computer Animation, Quest, Sea Adventure, Adventure, Animation, Comedy, Family",
+    "Finding Nemo"        , "Animal Adventure, Buddy Comedy, Computer Animation, Quest, Sea Adventure, Adventure, Animation, Comedy, Family"                    ,
     # https://www.imdb.com/title/tt0266543/
 
-    "The Incredibles", "Computer Animation, Superhero, Urban Adventure, Action, Adventure, Animation, Family",
+    "The Incredibles"     , "Computer Animation, Superhero, Urban Adventure, Action, Adventure, Animation, Family"                                              ,
     # https://www.imdb.com/title/tt0317705/
 
-    "Cars", "Computer Animation, Motorsport, Adventure, Animation, Comedy, Family, Sport",
+    "Cars"                , "Computer Animation, Motorsport, Adventure, Animation, Comedy, Family, Sport"                                                       ,
     # https://www.imdb.com/title/tt0317219/?
 
-    "Ratatouille", "Animal Adventure, Computer Animation, Adventure, Animation, Comedy, Family, Fantasy",
+    "Ratatouille"         , "Animal Adventure, Computer Animation, Adventure, Animation, Comedy, Family, Fantasy"                                               ,
     # https://www.imdb.com/title/tt0382932/?
 
-    "WALL-E", "Adventure Epic, Artificial Intelligence, Computer Animation, Dystopian Sci-Fi, Space Sci-Fi, Adventure, Animation, Family, Sci-Fi",
+    "WALL-E"              , "Adventure Epic, Artificial Intelligence, Computer Animation, Dystopian Sci-Fi, Space Sci-Fi, Adventure, Animation, Family, Sci-Fi" ,
     # https://www.imdb.com/title/tt0910970/?
 
-    "Up", "Coming-of-Age, Computer Animation, Globetrotting Adventure, Adventure, Animation, Comedy, Drama, Family",
+    "Up"                  , "Coming-of-Age, Computer Animation, Globetrotting Adventure, Adventure, Animation, Comedy, Drama, Family"                           ,
     # https://www.imdb.com/title/tt1049413/?
 
-    "Toy Story 3", "Computer Animation, Supernatural Fantasy, Urban Adventure, Adventure, Animation, Comedy, Family, Fantasy",
+    "Toy Story 3"         , "Computer Animation, Supernatural Fantasy, Urban Adventure, Adventure, Animation, Comedy, Family, Fantasy"                          ,
     # https://www.imdb.com/title/tt0435761/
 
-    "Cars 2", "Car Action, Computer Animation, Motorsport, Spy, Adventure, Animation, Comedy, Crime, Family, Sport",
+    "Cars 2"              , "Car Action, Computer Animation, Motorsport, Spy, Adventure, Animation, Comedy, Crime, Family, Sport"                               ,
     # https://www.imdb.com/title/tt1216475/
 
-    "Brave", "Coming-of-Age, Computer Animation, Fairy Tale, Quest, Sword & Sorcery, Teen Adventure, Action, Adventure, Animation",
+    "Brave"               , "Coming-of-Age, Computer Animation, Fairy Tale, Quest, Sword & Sorcery, Teen Adventure, Action, Adventure, Animation"               ,
     # https://www.imdb.com/title/tt1217209/
 
-    "Monsters University", "Computer Animation, Adventure, Animation, Comedy, Family, Fantasy",
+    "Monsters University" , "Computer Animation, Adventure, Animation, Comedy, Family, Fantasy"                                                                 ,
     # https://www.imdb.com/title/tt1453405/
 
-    "Inside Out", "Coming-of-Age, Computer Animation, Adventure, Animation, Comedy, Drama, Family, Fantasy",
+    "Inside Out"          , "Coming-of-Age, Computer Animation, Adventure, Animation, Comedy, Drama, Family, Fantasy"                                           ,
     # https://www.imdb.com/title/tt2096673/
 
-    "The Good Dinosaur", "Animal Adventure, Buddy Comedy, Computer Animation, Dinosaur Adventure, Action, Adventure, Animation, Comedy, Drama, Family",
+    "The Good Dinosaur"   , "Animal Adventure, Buddy Comedy, Computer Animation, Dinosaur Adventure, Action, Adventure, Animation, Comedy, Drama, Family"       ,
     # https://www.imdb.com/title/tt1979388/
 
-    "Finding Dory", "Animal Adventure, Computer Animation, Sea Adventure, Adventure, Animation, Comedy, Family, Fantasy",
+    "Finding Dory"        , "Animal Adventure, Computer Animation, Sea Adventure, Adventure, Animation, Comedy, Family, Fantasy"                                ,
     # https://www.imdb.com/title/tt2277860/
 
-    "Cars 3", "Car Action, Computer Animation, Motorsport, Adventure, Animation, Comedy, Family, Sport",
+    "Cars 3"              , "Car Action, Computer Animation, Motorsport, Adventure, Animation, Comedy, Family, Sport"                                           ,
     # https://www.imdb.com/title/tt3606752/
 
-    "Coco", "Computer Animation, Supernatural Fantasy, Adventure, Animation, Drama, Family, Fantasy, Music, Mystery",
+    "Coco"                , "Computer Animation, Supernatural Fantasy, Adventure, Animation, Drama, Family, Fantasy, Music, Mystery"                            ,
     # https://www.imdb.com/title/tt2380307/
 
-    "Incredibles 2", "Computer Animation, Superhero, Urban Adventure, Action, Adventure, Animation, Comedy, Family, Sci-Fi",
+    "Incredibles 2"       , "Computer Animation, Superhero, Urban Adventure, Action, Adventure, Animation, Comedy, Family, Sci-Fi"                              ,
     # https://www.imdb.com/title/tt3606756/
 
-    "Toy Story 4", "Computer Animation, Road Trip, Supernatural Fantasy, Urban Adventure, Adventure, Animation, Comedy, Family, Fantasy",
+    "Toy Story 4"         , "Computer Animation, Road Trip, Supernatural Fantasy, Urban Adventure, Adventure, Animation, Comedy, Family, Fantasy"               ,
     # https://www.imdb.com/title/tt1979376/
 
-    "Onward", "Computer Animation, Fantasy Epic, Quest, Supernatural Fantasy, Sword & Sorcery, Adventure, Animation, Comedy, Drama, Family",
+    "Onward"              , "Computer Animation, Fantasy Epic, Quest, Supernatural Fantasy, Sword & Sorcery, Adventure, Animation, Comedy, Drama, Family"       ,
     # https://www.imdb.com/title/tt7146812/
 
-    "Soul", "Computer Animation, Adventure, Animation, Comedy, Drama, Family, Fantasy, Music",
+    "Soul"                , "Computer Animation, Adventure, Animation, Comedy, Drama, Family, Fantasy, Music"                                                   ,
     # https://www.imdb.com/title/tt2948372/
 
-    "Luca", "Coming-of-Age, Computer Animation, Fairy Tale, Sea Adventure, Adventure, Animation, Comedy, Drama, Family, Fantasy",
+    "Luca"                , "Coming-of-Age, Computer Animation, Fairy Tale, Sea Adventure, Adventure, Animation, Comedy, Drama, Family, Fantasy"                ,
     # https://www.imdb.com/title/tt12801262/
 
-    "Turning Red", "Coming-of-Age, Computer Animation, Teen Comedy, Adventure, Animation, Comedy, Drama, Family, Fantasy, Music",
+    "Turning Red"         , "Coming-of-Age, Computer Animation, Teen Comedy, Adventure, Animation, Comedy, Drama, Family, Fantasy, Music"                       ,
     # https://www.imdb.com/title/tt8097030/
 
-    "Lightyear", "Computer Animation, Space Sci-Fi, Superhero, Time Travel, Action, Adventure, Animation, Comedy, Family, Sci-Fi",
+    "Lightyear"           , "Computer Animation, Space Sci-Fi, Superhero, Time Travel, Action, Adventure, Animation, Comedy, Family, Sci-Fi"                    ,
     # https://www.imdb.com/title/tt10298810/
 
-    "Elemental", "Computer Animation, Urban Adventure, Adventure, Animation, Comedy, Family, Fantasy, Romance",
+    "Elemental"           , "Computer Animation, Urban Adventure, Adventure, Animation, Comedy, Family, Fantasy, Romance"                                       ,
     # https://www.imdb.com/title/tt15789038/
 
-    "Inside Out 2", "Coming-of-Age, Computer Animation, Quest, Teen Comedy, Teen Drama, Adventure, Animation, Comedy, Drama, Family"
+    "Inside Out 2"        , "Coming-of-Age, Computer Animation, Quest, Teen Comedy, Teen Drama, Adventure, Animation, Comedy, Drama, Family"
     # https://www.imdb.com/title/tt22022452/
   )
 
@@ -455,11 +461,11 @@ subgenres <-
 # Also remove overlap between genres and subgenres to make it cleaner
 subgenres <-
   subgenres %>%
-    separate_longer_delim(raw_genre, delim = ", ") %>%
-    mutate(category = "Subgenre") %>%
-    rename(value = raw_genre) %>%
-    filter(!value %in% genres$value) %>%
-    select(film, category, value)
+  separate_longer_delim(raw_genre, delim = ", ") %>%
+  mutate(category = "Subgenre") %>%
+  rename(value = raw_genre) %>%
+  filter(!value %in% genres$value) %>%
+  select(film, category, value)
 
 # Put genres and subgenre categories into a single table and polish
 genres <-
@@ -483,7 +489,7 @@ box_office <-
   boxoffice %>%
   clean_names() %>%
   filter(film != "Film") %>%
-  select(-c(ref, year)) %>%  # 2024-11-10 Rename of column from ref_s -> ref
+  select(-c(ref, year)) %>% # 2024-11-10 Rename of column from ref_s -> ref
   rename(
     box_office_us_canada = box_office_gross,
     box_office_other = box_office_gross_2,
@@ -492,36 +498,54 @@ box_office <-
   mutate(budget = as.numeric(str_extract(budget, "[0-9-]+")) * 1e6) %>%
 
   # Convert US and Canada box office information
-  mutate(box_office_us_canada = str_replace_all(
-    box_office_us_canada,
-    "(\\$)|(,)|(\\[.*\\])", ""
-  )) %>%
-  mutate(box_office_us_canada = if_else(box_office_us_canada == "N/A",
-    NA_character_,
-    box_office_us_canada
-  )) %>%
+  mutate(
+    box_office_us_canada = str_replace_all(
+      box_office_us_canada,
+      "(\\$)|(,)|(\\[.*\\])",
+      ""
+    )
+  ) %>%
+  mutate(
+    box_office_us_canada = if_else(
+      box_office_us_canada == "N/A",
+      NA_character_,
+      box_office_us_canada
+    )
+  ) %>%
   mutate(box_office_us_canada = as.numeric(box_office_us_canada)) %>%
 
   # Convert other territory information
-  mutate(box_office_other = str_replace_all(
-    box_office_other,
-    "(\\$)|(,)|(\\[.*\\])", ""
-  )) %>%
-  mutate(box_office_other = if_else(box_office_other == "N/A",
-    NA_character_,
-    box_office_other
-  )) %>%
+  mutate(
+    box_office_other = str_replace_all(
+      box_office_other,
+      "(\\$)|(,)|(\\[.*\\])",
+      ""
+    )
+  ) %>%
+  mutate(
+    box_office_other = if_else(
+      box_office_other == "N/A",
+      NA_character_,
+      box_office_other
+    )
+  ) %>%
   mutate(box_office_other = as.numeric(box_office_other)) %>%
 
   # Convert worldwide box office information
-  mutate(box_office_worldwide = str_replace_all(
-    box_office_worldwide,
-    "(\\$)|(,)|(\\[.*\\])", ""
-  )) %>%
-  mutate(box_office_worldwide = if_else(box_office_worldwide == "N/A",
-    NA_character_,
-    box_office_worldwide
-  )) %>%
+  mutate(
+    box_office_worldwide = str_replace_all(
+      box_office_worldwide,
+      "(\\$)|(,)|(\\[.*\\])",
+      ""
+    )
+  ) %>%
+  mutate(
+    box_office_worldwide = if_else(
+      box_office_worldwide == "N/A",
+      NA_character_,
+      box_office_worldwide
+    )
+  ) %>%
   mutate(box_office_worldwide = as.numeric(box_office_worldwide))
 
 # Convert to tibble for easier viewing
@@ -540,35 +564,35 @@ box_office <- as_tibble(box_office)
 # Manually input audience Rotten Tomatoes rating
 # https://editorial.rottentomatoes.com/article/audience-score-update/
 rt_audience <- tribble(
-  ~film, ~rt_popcorn_meter_score, ~rt_popcorn_meter_votes,
-  "Toy Story", 92, 250000,
-  "A Bug's Life", 73, 250000,
-  "Toy Story 2", 87, 250000,
-  "Monsters, Inc.", 90, 250000,
-  "Finding Nemo", 86, 250000,
-  "The Incredibles", 75, 250000,
-  "Cars", 80, 250000,
-  "Ratatouille", 87, 250000,
-  "WALL-E", 90, 250000,
-  "Up", 90, 250000,
-  "Toy Story 3", 90, 250000,
-  "Cars 2", 49, 100000,
-  "Brave", 75, 250000,
-  "Monsters University", 81, 250000,
-  "Inside Out", 89, 100000,
-  "The Good Dinosaur", 64, 50000,
-  "Finding Dory", 84, 100000,
-  "Cars 3", 68, 25000,
-  "Coco", 94, 25000,
-  "Incredibles 2", 84, 10000,
-  "Toy Story 4", 94, 50000,
-  "Onward", 95, 5000,
-  "Soul", 88, 5000,
-  "Luca", 84, 2500,
-  "Turning Red", 67, 5000,
-  "Lightyear", 84, 5000,
-  "Elemental", 93, 2500,
-  "Inside Out 2", 95, 5000
+  ~film                 , ~rt_popcorn_meter_score , ~rt_popcorn_meter_votes ,
+  "Toy Story"           ,                      92 ,                  250000 ,
+  "A Bug's Life"        ,                      73 ,                  250000 ,
+  "Toy Story 2"         ,                      87 ,                  250000 ,
+  "Monsters, Inc."      ,                      90 ,                  250000 ,
+  "Finding Nemo"        ,                      86 ,                  250000 ,
+  "The Incredibles"     ,                      75 ,                  250000 ,
+  "Cars"                ,                      80 ,                  250000 ,
+  "Ratatouille"         ,                      87 ,                  250000 ,
+  "WALL-E"              ,                      90 ,                  250000 ,
+  "Up"                  ,                      90 ,                  250000 ,
+  "Toy Story 3"         ,                      90 ,                  250000 ,
+  "Cars 2"              ,                      49 ,                  100000 ,
+  "Brave"               ,                      75 ,                  250000 ,
+  "Monsters University" ,                      81 ,                  250000 ,
+  "Inside Out"          ,                      89 ,                  100000 ,
+  "The Good Dinosaur"   ,                      64 ,                   50000 ,
+  "Finding Dory"        ,                      84 ,                  100000 ,
+  "Cars 3"              ,                      68 ,                   25000 ,
+  "Coco"                ,                      94 ,                   25000 ,
+  "Incredibles 2"       ,                      84 ,                   10000 ,
+  "Toy Story 4"         ,                      94 ,                   50000 ,
+  "Onward"              ,                      95 ,                    5000 ,
+  "Soul"                ,                      88 ,                    5000 ,
+  "Luca"                ,                      84 ,                    2500 ,
+  "Turning Red"         ,                      67 ,                    5000 ,
+  "Lightyear"           ,                      84 ,                    5000 ,
+  "Elemental"           ,                      93 ,                    2500 ,
+  "Inside Out 2"        ,                      95 ,                    5000
 )
 
 # Create data frame and adjust column names because first row is actual name
@@ -576,8 +600,8 @@ public_response <- publicresponse
 colnames(public_response) <-
   publicresponse %>%
   first() %>%
-  unlist(use.names=FALSE)
-public_response <- public_response[-1, ]  # Remove redundant column names
+  unlist(use.names = FALSE)
+public_response <- public_response[-1, ] # Remove redundant column names
 
 # Clean up values
 # 2024-11-10 Look's like Critic's Choice got removed
@@ -603,7 +627,8 @@ public_response <-
     metacritic_counts = str_extract(
       metacritic,
       "\\(([0-9]+) reviews\\)",
-      group = 1)
+      group = 1
+    )
   )
 
 
@@ -613,9 +638,9 @@ public_response <-
 problem_films <- c("Cars 2", "Onward", "Lightyear")
 public_response <-
   public_response %>%
-  mutate(cinema_score = if_else(film %in% problem_films,
-                                "A-",
-                                cinema_score)) %>%
+  mutate(
+    cinema_score = if_else(film %in% problem_films, "A-", cinema_score)
+  ) %>%
   mutate(cinema_score = if_else(cinema_score == "—", NA, cinema_score))
 
 # Convert to tibble for easier viewing
@@ -673,11 +698,13 @@ academy <-
   drop_na(status) %>%
   mutate(award_type = str_replace_all(award_type, "_", " ")) %>%
   mutate(award_type = str_to_title(award_type)) %>%
-  mutate(award_type = case_when(
-    award_type == "Sound A" ~ "Sound Editing",
-    award_type == "Sound A 2" ~ "Sound Mixing",
-    TRUE ~ award_type
-  ))
+  mutate(
+    award_type = case_when(
+      award_type == "Sound A" ~ "Sound Editing",
+      award_type == "Sound A 2" ~ "Sound Mixing",
+      TRUE ~ award_type
+    )
+  )
 
 # Manual quality checks on if there are any typos or anomalous values
 academy %>%
@@ -716,154 +743,154 @@ theme_talking_cars <- "Cars can talk"
 
 themes_vox <-
   tribble(
-    ~film, ~theme,
+    ~film                 , ~theme                 ,
     # Mismatched partners
-    "Toy Story", theme_mismatch,
-    "Toy Story 2", theme_mismatch,
-    "Monsters, Inc.", theme_mismatch,
-    "Finding Nemo", theme_mismatch,
-    "Ratatouille", theme_mismatch,
-    "WALL-E", theme_mismatch,
-    "Up", theme_mismatch,
-    "Toy Story 3", theme_mismatch,
-    "Cars 2", theme_mismatch,
-    "Brave", theme_mismatch,
-    "Monsters University", theme_mismatch,
-    "Inside Out", theme_mismatch,
-    "The Good Dinosaur", theme_mismatch,
-    "Finding Dory", theme_mismatch,
+    "Toy Story"           , theme_mismatch         ,
+    "Toy Story 2"         , theme_mismatch         ,
+    "Monsters, Inc."      , theme_mismatch         ,
+    "Finding Nemo"        , theme_mismatch         ,
+    "Ratatouille"         , theme_mismatch         ,
+    "WALL-E"              , theme_mismatch         ,
+    "Up"                  , theme_mismatch         ,
+    "Toy Story 3"         , theme_mismatch         ,
+    "Cars 2"              , theme_mismatch         ,
+    "Brave"               , theme_mismatch         ,
+    "Monsters University" , theme_mismatch         ,
+    "Inside Out"          , theme_mismatch         ,
+    "The Good Dinosaur"   , theme_mismatch         ,
+    "Finding Dory"        , theme_mismatch         ,
 
     # Philosophical differences
-    "Toy Story", theme_philsophy_diff,
-    "Toy Story 2", theme_philsophy_diff,
-    "Finding Nemo", theme_philsophy_diff,
-    "Brave", theme_philsophy_diff,
-    "Monsters University", theme_philsophy_diff,
-    "Inside Out", theme_philsophy_diff,
-    "The Good Dinosaur", theme_philsophy_diff,
-    "Finding Dory", theme_philsophy_diff,
+    "Toy Story"           , theme_philsophy_diff   ,
+    "Toy Story 2"         , theme_philsophy_diff   ,
+    "Finding Nemo"        , theme_philsophy_diff   ,
+    "Brave"               , theme_philsophy_diff   ,
+    "Monsters University" , theme_philsophy_diff   ,
+    "Inside Out"          , theme_philsophy_diff   ,
+    "The Good Dinosaur"   , theme_philsophy_diff   ,
+    "Finding Dory"        , theme_philsophy_diff   ,
 
     # Wacky journey
-    "Toy Story", theme_wacky_journey,
-    "Bug's Life", theme_wacky_journey,
-    "Toy Story 2", theme_wacky_journey,
-    "Monsters, Inc.", theme_wacky_journey,
-    "Finding Nemo", theme_wacky_journey,
-    "The Incredibles", theme_wacky_journey,
-    "WALL-E", theme_wacky_journey,
-    "Up", theme_wacky_journey,
-    "Toy Story 3", theme_wacky_journey,
-    "Cars 2", theme_wacky_journey,
-    "Inside Out", theme_wacky_journey,
-    "The Good Dinosaur", theme_wacky_journey,
-    "Finding Dory", theme_wacky_journey,
+    "Toy Story"           , theme_wacky_journey    ,
+    "Bug's Life"          , theme_wacky_journey    ,
+    "Toy Story 2"         , theme_wacky_journey    ,
+    "Monsters, Inc."      , theme_wacky_journey    ,
+    "Finding Nemo"        , theme_wacky_journey    ,
+    "The Incredibles"     , theme_wacky_journey    ,
+    "WALL-E"              , theme_wacky_journey    ,
+    "Up"                  , theme_wacky_journey    ,
+    "Toy Story 3"         , theme_wacky_journey    ,
+    "Cars 2"              , theme_wacky_journey    ,
+    "Inside Out"          , theme_wacky_journey    ,
+    "The Good Dinosaur"   , theme_wacky_journey    ,
+    "Finding Dory"        , theme_wacky_journey    ,
 
     # A loved one is lost
-    "Toy Story 2", theme_lost_love,
-    "Finding Nemo", theme_lost_love,
-    "Ratatouille", theme_lost_love,
-    "WALL-E", theme_lost_love,
-    "Up", theme_lost_love,
-    "Toy Story 3", theme_lost_love,
-    "Inside Out", theme_lost_love,
-    "The Good Dinosaur", theme_lost_love,
-    "Finding Dory", theme_lost_love,
+    "Toy Story 2"         , theme_lost_love        ,
+    "Finding Nemo"        , theme_lost_love        ,
+    "Ratatouille"         , theme_lost_love        ,
+    "WALL-E"              , theme_lost_love        ,
+    "Up"                  , theme_lost_love        ,
+    "Toy Story 3"         , theme_lost_love        ,
+    "Inside Out"          , theme_lost_love        ,
+    "The Good Dinosaur"   , theme_lost_love        ,
+    "Finding Dory"        , theme_lost_love        ,
 
     # A child comes of age
-    "Toy Story", theme_come_of_age,
-    "Toy Story 2", theme_come_of_age,
-    "Monsters, Inc.", theme_come_of_age,
-    "Finding Nemo", theme_come_of_age,
-    "The Incredibles", theme_come_of_age,
-    "Up", theme_come_of_age,
-    "Toy Story 3", theme_come_of_age,
-    "Brave", theme_come_of_age,
-    "Inside Out", theme_come_of_age,
-    "The Good Dinosaur", theme_come_of_age,
-    "Finding Dory", theme_come_of_age,
+    "Toy Story"           , theme_come_of_age      ,
+    "Toy Story 2"         , theme_come_of_age      ,
+    "Monsters, Inc."      , theme_come_of_age      ,
+    "Finding Nemo"        , theme_come_of_age      ,
+    "The Incredibles"     , theme_come_of_age      ,
+    "Up"                  , theme_come_of_age      ,
+    "Toy Story 3"         , theme_come_of_age      ,
+    "Brave"               , theme_come_of_age      ,
+    "Inside Out"          , theme_come_of_age      ,
+    "The Good Dinosaur"   , theme_come_of_age      ,
+    "Finding Dory"        , theme_come_of_age      ,
 
     # Their parents realize nothing is forever
-    "Toy Story 2", theme_nothing_forever,
-    "Monsters, Inc.", theme_nothing_forever,
-    "Finding Nemo", theme_nothing_forever,
-    "The Incredibles", theme_nothing_forever,
-    "Brave", theme_nothing_forever,
-    "Inside Out", theme_nothing_forever,
-    "Finding Dory", theme_nothing_forever,
+    "Toy Story 2"         , theme_nothing_forever  ,
+    "Monsters, Inc."      , theme_nothing_forever  ,
+    "Finding Nemo"        , theme_nothing_forever  ,
+    "The Incredibles"     , theme_nothing_forever  ,
+    "Brave"               , theme_nothing_forever  ,
+    "Inside Out"          , theme_nothing_forever  ,
+    "Finding Dory"        , theme_nothing_forever  ,
 
     # Sad music
-    "Toy Story 2", theme_sad_music,
-    "Finding Nemo", theme_sad_music,
-    "Cars", theme_sad_music,
-    "WALL-E", theme_sad_music,
-    "Up", theme_sad_music,
-    "Toy Story 3", theme_sad_music,
-    "Inside Out", theme_sad_music,
+    "Toy Story 2"         , theme_sad_music        ,
+    "Finding Nemo"        , theme_sad_music        ,
+    "Cars"                , theme_sad_music        ,
+    "WALL-E"              , theme_sad_music        ,
+    "Up"                  , theme_sad_music        ,
+    "Toy Story 3"         , theme_sad_music        ,
+    "Inside Out"          , theme_sad_music        ,
 
     # Wacky ensemble
-    "Toy Story", theme_wacky_ensemble,
-    "Bug's Life", theme_wacky_ensemble,
-    "Toy Story 2", theme_wacky_ensemble,
-    "Monsters, Inc.", theme_wacky_ensemble,
-    "Finding Nemo", theme_wacky_ensemble,
-    "The Incredibles", theme_wacky_ensemble,
-    "Cars", theme_wacky_ensemble,
-    "Up", theme_wacky_ensemble,
-    "Toy Story 3", theme_wacky_ensemble,
-    "Cars 2", theme_wacky_ensemble,
-    "Monsters University", theme_wacky_ensemble,
-    "Inside Out", theme_wacky_ensemble,
-    "Finding Dory", theme_wacky_ensemble,
+    "Toy Story"           , theme_wacky_ensemble   ,
+    "Bug's Life"          , theme_wacky_ensemble   ,
+    "Toy Story 2"         , theme_wacky_ensemble   ,
+    "Monsters, Inc."      , theme_wacky_ensemble   ,
+    "Finding Nemo"        , theme_wacky_ensemble   ,
+    "The Incredibles"     , theme_wacky_ensemble   ,
+    "Cars"                , theme_wacky_ensemble   ,
+    "Up"                  , theme_wacky_ensemble   ,
+    "Toy Story 3"         , theme_wacky_ensemble   ,
+    "Cars 2"              , theme_wacky_ensemble   ,
+    "Monsters University" , theme_wacky_ensemble   ,
+    "Inside Out"          , theme_wacky_ensemble   ,
+    "Finding Dory"        , theme_wacky_ensemble   ,
 
     # Everyday objects
-    "Toy Story", theme_everyday_objects,
-    "Bug's Life", theme_everyday_objects,
-    "Toy Story 2", theme_everyday_objects,
-    "Monsters, Inc.", theme_everyday_objects,
-    "Finding Nemo", theme_everyday_objects,
-    "Cars", theme_everyday_objects,
-    "Ratatouille", theme_everyday_objects,
-    "Toy Story 3", theme_everyday_objects,
-    "Cars 2", theme_everyday_objects,
-    "Monsters University", theme_everyday_objects,
-    "Inside Out", theme_everyday_objects,
-    "Finding Dory", theme_everyday_objects,
+    "Toy Story"           , theme_everyday_objects ,
+    "Bug's Life"          , theme_everyday_objects ,
+    "Toy Story 2"         , theme_everyday_objects ,
+    "Monsters, Inc."      , theme_everyday_objects ,
+    "Finding Nemo"        , theme_everyday_objects ,
+    "Cars"                , theme_everyday_objects ,
+    "Ratatouille"         , theme_everyday_objects ,
+    "Toy Story 3"         , theme_everyday_objects ,
+    "Cars 2"              , theme_everyday_objects ,
+    "Monsters University" , theme_everyday_objects ,
+    "Inside Out"          , theme_everyday_objects ,
+    "Finding Dory"        , theme_everyday_objects ,
 
     # Finds calling
-    "Toy Story", theme_finds_calling,
-    "Bug's Life", theme_finds_calling,
-    "Toy Story 2", theme_finds_calling,
-    "Monsters, Inc.", theme_finds_calling,
-    "The Incredibles", theme_finds_calling,
-    "Cars", theme_finds_calling,
-    "Ratatouille", theme_finds_calling,
-    "WALL-E", theme_finds_calling,
-    "Toy Story 3", theme_finds_calling,
-    "Brave", theme_finds_calling,
-    "Monsters University", theme_finds_calling,
-    "Inside Out", theme_finds_calling,
-    "The Good Dinosaur", theme_finds_calling,
-    "Finding Dory", theme_finds_calling,
+    "Toy Story"           , theme_finds_calling    ,
+    "Bug's Life"          , theme_finds_calling    ,
+    "Toy Story 2"         , theme_finds_calling    ,
+    "Monsters, Inc."      , theme_finds_calling    ,
+    "The Incredibles"     , theme_finds_calling    ,
+    "Cars"                , theme_finds_calling    ,
+    "Ratatouille"         , theme_finds_calling    ,
+    "WALL-E"              , theme_finds_calling    ,
+    "Toy Story 3"         , theme_finds_calling    ,
+    "Brave"               , theme_finds_calling    ,
+    "Monsters University" , theme_finds_calling    ,
+    "Inside Out"          , theme_finds_calling    ,
+    "The Good Dinosaur"   , theme_finds_calling    ,
+    "Finding Dory"        , theme_finds_calling    ,
 
     # Community formed
-    "Toy Story", theme_community_formed,
-    "Bug's Life", theme_community_formed,
-    "Toy Story 2", theme_community_formed,
-    "Monsters, Inc", theme_community_formed,
-    "Finding Nemo", theme_community_formed,
-    "The Incredibles", theme_community_formed,
-    "Cars", theme_community_formed,
-    "Ratatouille", theme_community_formed,
-    "WALL-E", theme_community_formed,
-    "Up", theme_community_formed,
-    "Toy Story 3", theme_community_formed,
-    "Monsters University", theme_community_formed,
-    "Inside Out", theme_community_formed,
-    "Finding Dory", theme_community_formed,
+    "Toy Story"           , theme_community_formed ,
+    "Bug's Life"          , theme_community_formed ,
+    "Toy Story 2"         , theme_community_formed ,
+    "Monsters, Inc"       , theme_community_formed ,
+    "Finding Nemo"        , theme_community_formed ,
+    "The Incredibles"     , theme_community_formed ,
+    "Cars"                , theme_community_formed ,
+    "Ratatouille"         , theme_community_formed ,
+    "WALL-E"              , theme_community_formed ,
+    "Up"                  , theme_community_formed ,
+    "Toy Story 3"         , theme_community_formed ,
+    "Monsters University" , theme_community_formed ,
+    "Inside Out"          , theme_community_formed ,
+    "Finding Dory"        , theme_community_formed ,
 
     # Talking cars
-    "Cars", theme_talking_cars,
-    "Cars 2", theme_talking_cars
+    "Cars"                , theme_talking_cars     ,
+    "Cars 2"              , theme_talking_cars
   )
 
 
@@ -879,18 +906,19 @@ res <- gtrends(
   "Cars",
   # time = "all",
   geo = "US",
-  category = 1104  # See data(categories) for other values
+  category = 1104 # See data(categories) for other values
 )
 iot <- res$interest_over_time
 
 iot %>%
-  ggplot() + geom_line(aes(x = date,
-                           y = hits,
-                           color = keyword)) +
+  ggplot() +
+  geom_line(aes(x = date, y = hits, color = keyword)) +
   theme_minimal() +
-  labs(title = "Zoom vs Slack - in 2020",
-       subtitle = "Google Trends Report",
-       caption = "Courtesy: gtrendsR package")
+  labs(
+    title = "Zoom vs Slack - in 2020",
+    subtitle = "Google Trends Report",
+    caption = "Courtesy: gtrendsR package"
+  )
 
 
 # Get rankings ------------------------------------------------------------
@@ -917,7 +945,7 @@ get_rankings_standard <- function(link, film_regex = NA) {
 # Add source to data
 add_source <- function(data, name) {
   data %>%
-    mutate(source = {{name}}) %>%
+    mutate(source = {{ name }}) %>%
     select(source, everything())
 }
 
@@ -979,13 +1007,13 @@ wired_ranking <- add_source(wired_ranking, "WIRED")
 ## Get Thrillist ranking ----
 # Some reason, the scraping of these movies will fail the regular expression
 thrillist_fillin <- tribble(
-  ~film, ~ranking,
-  "The Good Dinosaur", "20",
-  "A Bug's Life", "19",
-  "Luca", "17",
-  "Onward", "16",
-  "Toy Story 3", "5",
-  "WALL-E", "2"
+  ~film               , ~ranking ,
+  "The Good Dinosaur" , "20"     ,
+  "A Bug's Life"      , "19"     ,
+  "Luca"              , "17"     ,
+  "Onward"            , "16"     ,
+  "Toy Story 3"       , "5"      ,
+  "WALL-E"            , "2"
 )
 link <-
   "https://www.thrillist.com/entertainment/nation/pixar-movies-ranked"
@@ -1064,9 +1092,11 @@ link <-
 page <- read_html(link)
 film_regex <- regex("^([0-9]{1,2}). ([A-Za-z0-9-’',. ]+)")
 av_club_ranking <-
-  tibble(raw = page %>%
-           html_elements(".jezebel-slideshow__slide_title") %>%
-           html_text()) %>%
+  tibble(
+    raw = page %>%
+      html_elements(".jezebel-slideshow__slide_title") %>%
+      html_text()
+  ) %>%
   filter(str_detect(raw, "^[0-9]{1,2}\\.")) %>%
   mutate(raw = raw %>% trimws()) %>%
   mutate(
@@ -1080,7 +1110,9 @@ av_club_ranking <- add_source(av_club_ranking, "AV Club")
 ## Get Vulture ranking ----
 link <-
   "https://www.vulture.com/article/best-pixar-movies-ranked.html"
-film_regex <- regex("([0-9]{1,2}).[\n ]+([A-Za-z0-9-’',. ]+?) \\(([0-9]{4,4})\\)")
+film_regex <- regex(
+  "([0-9]{1,2}).[\n ]+([A-Za-z0-9-’',. ]+?) \\(([0-9]{4,4})\\)"
+)
 vulture_ranking <- get_rankings_standard(link, film_regex)
 vulture_ranking <-
   vulture_ranking %>%
@@ -1094,9 +1126,11 @@ link <-
 page <- read_html(link)
 film_regex <- regex("^([0-9]{1,2}). ([A-Za-z0-9-’',. ]+)")
 independent_ranking <-
-  tibble(raw = page %>%
-           html_elements("strong") %>%
-           html_text()) %>%
+  tibble(
+    raw = page %>%
+      html_elements("strong") %>%
+      html_text()
+  ) %>%
   mutate(raw = raw %>% trimws()) %>%
   mutate(
     ranking = str_extract(raw, film_regex, group = 1),
@@ -1113,9 +1147,11 @@ link <-
 page <- read_html(link)
 film_regex <- regex("^([0-9]{1,2}). ([A-Za-z0-9-’',. ]+) ")
 forbes_ranking <-
-  tibble(raw = page %>%
-           html_elements("strong") %>%
-           html_text()) %>%
+  tibble(
+    raw = page %>%
+      html_elements("strong") %>%
+      html_text()
+  ) %>%
   mutate(raw = raw %>% trimws()) %>%
   filter(str_detect(raw, "^[0-9]")) %>%
   mutate(
@@ -1139,7 +1175,6 @@ forbes_ranking <- add_source(forbes_ranking, "Forbes")
 #     film = str_extract(raw, film_regex, group = 2),
 #     encoding = Encoding(raw)
 #   )
-
 
 ## Join all rankings together ----
 pixar_rankings <-
@@ -1165,14 +1200,16 @@ pixar_rankings <-
     film = trimws(film),
     ranking = as.numeric(ranking)
   ) %>%
-  mutate(film = case_when(
-    film %in% c("Monsters Inc.", "Monsters, Inc") ~ "Monsters, Inc.",
-    film == "Monster’s University" ~ "Monsters University",
-    film == "Wall-E" ~ "WALL-E",
-    film == "A Bug’s Life" ~ "A Bug's Life",
-    film == "The Incredibles 2" ~ "Incredibles 2",
-    TRUE ~ film
-  )) %>%
+  mutate(
+    film = case_when(
+      film %in% c("Monsters Inc.", "Monsters, Inc") ~ "Monsters, Inc.",
+      film == "Monster’s University" ~ "Monsters University",
+      film == "Wall-E" ~ "WALL-E",
+      film == "A Bug’s Life" ~ "A Bug's Life",
+      film == "The Incredibles 2" ~ "Incredibles 2",
+      TRUE ~ film
+    )
+  ) %>%
   select(film, source, ranking)
 
 
@@ -1180,23 +1217,23 @@ pixar_rankings <-
 
 pixar_franchises <-
   tribble(
-    ~film, ~franchise,
-    "Toy Story", "Toy Story",
-    "Toy Story 2", "Toy Story",
-    "Monsters, Inc.", "Monsters, Inc.",
-    "Finding Nemo", "Finding Nemo",
-    "The Incredibles", "The Incredibles",
-    "Cars", "Cars",
-    "Toy Story 3", "Toy Story",
-    "Cars 2", "Cars",
-    "Monsters University", "Monsters, Inc.",
-    "Inside Out", "Inside Out",
-    "Finding Dory", "Finding Nemo",
-    "Cars 3", "Cars",
-    "Incredibles 2", "The Incredibles",
-    "Toy Story 4", "Toy Story",
-    "Lightyear", "Toy Story",
-    "Inside Out 2", "Inside Out"
+    ~film                 , ~franchise        ,
+    "Toy Story"           , "Toy Story"       ,
+    "Toy Story 2"         , "Toy Story"       ,
+    "Monsters, Inc."      , "Monsters, Inc."  ,
+    "Finding Nemo"        , "Finding Nemo"    ,
+    "The Incredibles"     , "The Incredibles" ,
+    "Cars"                , "Cars"            ,
+    "Toy Story 3"         , "Toy Story"       ,
+    "Cars 2"              , "Cars"            ,
+    "Monsters University" , "Monsters, Inc."  ,
+    "Inside Out"          , "Inside Out"      ,
+    "Finding Dory"        , "Finding Nemo"    ,
+    "Cars 3"              , "Cars"            ,
+    "Incredibles 2"       , "The Incredibles" ,
+    "Toy Story 4"         , "Toy Story"       ,
+    "Lightyear"           , "Toy Story"       ,
+    "Inside Out 2"        , "Inside Out"
   )
 
 
@@ -1204,8 +1241,8 @@ pixar_franchises <-
 
 # Get each source's ranking and order them
 get_film_ranking <- function(data, source) {
-  data  %>%
-    filter(source == {{source}}) %>%
+  data %>%
+    filter(source == {{ source }}) %>%
     arrange(ranking) %>%
     pull(film)
 }
@@ -1216,7 +1253,7 @@ raw_rankings <-
   unique() %>%
   lapply(function(x) {
     pixar_rankings %>%
-      filter(source == {{x}}) %>%
+      filter(source == {{ x }}) %>%
       arrange(ranking) %>%
       pull(film)
   })
@@ -1229,12 +1266,12 @@ vote <- create_vote(raw_rankings, xtype = 3, candidate = pixar_films$film)
 # writes down 5 candidates and his 1st choice gets 5 points. The one who gets
 # the largest total score wins. However, if the voter only write down 2 names,
 # then, his 1st choice gets only 2 points rather than 5 points.
-y <- borda_method(vote, modified = TRUE)  # Largest total wins
+y <- borda_method(vote, modified = TRUE) # Largest total wins
 y$other_info$count_max %>%
   data.frame() %>%
   rownames_to_column("film") %>%
   as_tibble() %>%
-  rename("score" =  ".") %>%
+  rename("score" = ".") %>%
   arrange(desc(score))
 
 
@@ -1242,7 +1279,7 @@ y$other_info$count_max %>%
 
 # Simple
 y_simple <- cdc_simple(vote)
-y_simple$winner  # NULL
+y_simple$winner # NULL
 
 # Copeland
 # Pairwise comparisons
@@ -1251,7 +1288,7 @@ y_copeland$other_info$copeland_score %>%
   data.frame() %>%
   rownames_to_column("film") %>%
   as_tibble() %>%
-  rename("score" =  ".") %>%
+  rename("score" = ".") %>%
   arrange(desc(score))
 
 # Dodgson
@@ -1261,13 +1298,13 @@ y_dodgson$other_info$tideman %>%
   data.frame() %>%
   rownames_to_column("film") %>%
   as_tibble() %>%
-  rename("score" =  ".") %>%
+  rename("score" = ".") %>%
   arrange(score)
 y_dodgson$other_info$dodgson_quick %>%
   data.frame() %>%
   rownames_to_column("film") %>%
   as_tibble() %>%
-  rename("score" =  ".") %>%
+  rename("score" = ".") %>%
   arrange(score)
 
 # Instant-Runoff voting method
@@ -1293,12 +1330,14 @@ parse_tropes <- function(x) {
     filter(!str_detect(value, "pmwiki")) %>%
     distinct() %>%
     mutate(value = str_replace_all(value, "([A-Z])", " \\1")) %>%
-    mutate(value = case_when(
-      str_detect(value, "C G I") ~ str_replace(value, "C G I", "CGI"),
-      str_detect(value, "P O V") ~ str_replace(value, "P O V", "POV"),
-      str_detect(value, "B S O D") ~ str_replace(value, "B S O D", "BSoD"),
-      TRUE ~ value
-    )) %>%
+    mutate(
+      value = case_when(
+        str_detect(value, "C G I") ~ str_replace(value, "C G I", "CGI"),
+        str_detect(value, "P O V") ~ str_replace(value, "P O V", "POV"),
+        str_detect(value, "B S O D") ~ str_replace(value, "B S O D", "BSoD"),
+        TRUE ~ value
+      )
+    ) %>%
     mutate(value = trimws(value)) %>%
     pull(value)
 }
@@ -1309,11 +1348,13 @@ base_trope <- "https://tvtropes.org/pmwiki/pmwiki.php/WesternAnimation/"
 tropes_df <-
   pixar_films %>%
   mutate(slug = str_replace_all(film, "[ '-\\.]", "")) %>%
-  mutate(slug = case_when(
-    slug %in% c("ToyStory", "Cars", "TheIncredibles") ~ str_c(slug, "1"),
-    slug == "Elemental" ~ str_c(slug, "2023"),
-    TRUE ~ slug
-  )) %>%
+  mutate(
+    slug = case_when(
+      slug %in% c("ToyStory", "Cars", "TheIncredibles") ~ str_c(slug, "1"),
+      slug == "Elemental" ~ str_c(slug, "2023"),
+      TRUE ~ slug
+    )
+  ) %>%
   mutate(url = paste0(base_trope, slug))
 
 
@@ -1384,4 +1425,3 @@ use_data(
   academy,
   overwrite = TRUE
 )
-
