@@ -136,9 +136,7 @@ pixar_people <-
     cols = -film,
     names_to = "role_type",
     values_to = "name"
-  ) %>%
-  separate_rows(name, sep = "(, ?)|( & ?)")
-
+  )
 
 # Fix multiple co-directors per film
 all_co_directors <-
@@ -155,15 +153,13 @@ all_co_directors <-
   ) |>
 
   # Deal with edge cases
-  mutate(
-    co_director = str_replace(co_director, "BrannonLee", "Brannon & Lee")
-  ) |>
-  mutate(
-    co_director = str_replace(co_director, "UnkrichDavid", "Unkrich & David")
-  ) |>
   separate_longer_delim(
     co_director,
-    delim = regex(" & ")
+    delim = regex(" &")
+  ) |>
+  separate_longer_delim(
+    directors,
+    delim = regex(" &")
   ) |>
 
   # Clean up
@@ -179,11 +175,13 @@ all_co_directors <-
 pixar_people <-
   pixar_people |>
   filter(!str_detect(name, "Co-director")) %>%
+  separate_rows(name, sep = "(, ?)|( & ?)") |>
 
   bind_rows(
     all_co_directors |>
       select(film, role_type, name) |>
-      mutate(role_type = "Co-director"),
+      mutate(role_type = "Co-director") |>
+      distinct(),
     all_co_directors |>
       select(film, directors) |>
       mutate(role_type = "Director") |>
