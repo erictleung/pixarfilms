@@ -13,6 +13,7 @@ reference:
   - title: Pixar movies
     contents:
     - pixar_films
+    - pixar_franchises
     - pixar_people
     - genres
   - title: Film reception
@@ -20,3 +21,5 @@ reference:
     - box_office
     - public_response
     - academy
+    - pixar_rankings
+    - themes_vox
