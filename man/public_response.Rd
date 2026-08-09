@@ -26,12 +26,14 @@ Rotten Tomatoes; scored out of 100}
 \item{rotten_tomatoes_score_top_critics_votes}{number of top critics
 contributing to Rotten Tomatoes score}
 \item{rotten_tomatoes_popcorn_meter_score}{percentage of users who rated
+this 3.5 stars or higher; scored out of 100}
 \item{rotten_tomatoes_popcorn_meter_votes}{number of users contributing to
-Rotten Tomatoes'}
+the Popcorn Meter score on Rotten Tomatoes}
 \item{rotten_tomatoes_popcorn_meter_verified}{percentage of users who made
 a verified movie ticket purchase rating this 3.5 stars or higher}
-\item{rotten_tomatoes_popcorn_meter_votes}{number of users contributing to
-Rotten Tomatoes' Popcorn Meter}
+\item{rotten_tomatoes_popcorn_meter_verified_votes}{number of users who
+made a verified movie ticket purchase rating this 3.5 stars or higher
+contributing to the Popcorn Meter score on Rotten Tomatoes}
 \item{letterboxd_rating}{score from Letterboxd where scores are weighted
 average of reviews; scored out of 5}
 \item{letterboxd_counts}{number of users contributing to Letterboxd score}
