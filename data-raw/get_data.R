@@ -587,61 +587,61 @@ box_office <- as_tibble(box_office)
 # Manually input audience Rotten Tomatoes rating
 # https://editorial.rottentomatoes.com/article/audience-score-update/
 rt_audience <- tribble(
-  ~film                 , ~rt_tomatometer_top_critics , ~rt_tomatometer_top_critics_votes , ~rt_popcorn_meter_score , ~rt_popcorn_meter_votes , ~rt_popcorn_meter_verified , ~rt_popcorn_meter_verified_votes ,
-  "Toy Story"           ,                         100 ,                                55 ,                      92 ,                  250000 , NA                         , NA                               ,
-  "A Bug's Life"        ,                          96 ,                                25 ,                      73 ,                  250000 , NA                         , NA                               ,
-  "Toy Story 2"         ,                         100 ,                                48 ,                      87 ,                  250000 , NA                         , NA                               ,
-  "Monsters, Inc."      ,                          92 ,                                50 ,                      90 ,                  250000 , NA                         , NA                               ,
-  "Finding Nemo"        ,                          99 ,                                67 ,                      86 ,                  250000 , NA                         , NA                               ,
-  "The Incredibles"     ,                          96 ,                                52 ,                      75 ,                  250000 , NA                         , NA                               ,
-  "Cars"                ,                          73 ,                                51 ,                      80 ,                  250000 , NA                         , NA                               ,
-  "Ratatouille"         ,                          98 ,                                61 ,                      87 ,                  250000 , NA                         , NA                               ,
-  "WALL-E"              ,                          97 ,                                65 ,                      90 ,                  250000 , NA                         , NA                               ,
-  "Up"                  ,                          97 ,                                69 ,                      90 ,                  250000 , NA                         , NA                               ,
-  "Toy Story 3"         ,                          99 ,                                71 ,                      90 ,                  250000 , NA                         , NA                               ,
-  "Cars 2"              ,                          42 ,                                59 ,                      49 ,                  100000 , NA                         , NA                               ,
-  "Brave"               ,                          69 ,                                62 ,                      75 ,                  250000 , NA                         , NA                               ,
-  "Monsters University" ,                          72 ,                                56 ,                      81 ,                  250000 , NA                         , NA                               ,
-  "Inside Out"          ,                          99 ,                                86 ,                      89 ,                  100000 , NA                         , NA                               ,
-  "The Good Dinosaur"   ,                          75 ,                                55 ,                      64 ,                   50000 , NA                         , NA                               ,
-  "Finding Dory"        ,                          94 ,                                85 ,                      84 ,                  100000 , NA                         , NA                               ,
-  "Cars 3"              ,                          64 ,                                55 ,                      68 ,                   25000 , NA                         , NA                               ,
-  "Coco"                ,                          95 ,                                78 ,                      94 ,                   25000 , NA                         , NA                               ,
-  "Incredibles 2"       ,                          88 ,                                86 ,                      84 ,                   10000 , NA                         , NA                               ,
-  "Toy Story 4"         ,                          96 ,                                80 ,                      94 ,                   50000 ,                         94 ,                            50000 ,
-  "Onward"              ,                          78 ,                                60 ,                      95 ,                    5000 ,                         95 ,                             5000 ,
-  "Soul"                ,                          89 ,                                71 ,                      88 ,                    5000 , NA                         , NA                               ,
-  "Luca"                ,                          90 ,                                60 ,                      85 ,                    2500 , NA                         , NA                               ,
-  "Turning Red"         ,                          95 ,                                57 ,                      67 ,                    5000 , NA                         , NA                               ,
-  "Lightyear"           ,                          62 ,                                65 ,                      84 ,                    5000 ,                         84 ,                             5000 ,
-  "Elemental"           ,                          63 ,                                57 ,                      93 ,                    2500 ,                         93 ,                             2500 ,
-  "Inside Out 2"        ,                          89 ,                                66 ,                      94 ,                   10000 ,                         94 ,                            10000 ,
-  "Elio"                ,                          82 ,                                45 ,                      89 ,                    2500 ,                         89 ,                             2500 ,
-  "Hoppers"             ,                          94 ,                                48 ,                      93 ,                    5000 ,                         93 ,                             5000 ,
-  "Toy Story 5"         ,                          85 ,                                59 ,                      94 ,                   10000 ,                         94 ,                            10000
+  ~film                 , ~rotten_tomatoes_score_top_critics , ~rotten_tomatoes_score_top_critics_votes , ~rotten_tomatoes_popcorn_meter_score , ~rotten_tomatoes_popcorn_meter_votes , ~rotten_tomatoes_popcorn_meter_verified , ~rotten_tomatoes_popcorn_meter_verified_votes ,
+  "Toy Story"           ,                                100 ,                                       55 ,                                   92 ,                               250000 , NA                                      , NA                                            ,
+  "A Bug's Life"        ,                                 96 ,                                       25 ,                                   73 ,                               250000 , NA                                      , NA                                            ,
+  "Toy Story 2"         ,                                100 ,                                       48 ,                                   87 ,                               250000 , NA                                      , NA                                            ,
+  "Monsters, Inc."      ,                                 92 ,                                       50 ,                                   90 ,                               250000 , NA                                      , NA                                            ,
+  "Finding Nemo"        ,                                 99 ,                                       67 ,                                   86 ,                               250000 , NA                                      , NA                                            ,
+  "The Incredibles"     ,                                 96 ,                                       52 ,                                   75 ,                               250000 , NA                                      , NA                                            ,
+  "Cars"                ,                                 73 ,                                       51 ,                                   80 ,                               250000 , NA                                      , NA                                            ,
+  "Ratatouille"         ,                                 98 ,                                       61 ,                                   87 ,                               250000 , NA                                      , NA                                            ,
+  "WALL-E"              ,                                 97 ,                                       65 ,                                   90 ,                               250000 , NA                                      , NA                                            ,
+  "Up"                  ,                                 97 ,                                       69 ,                                   90 ,                               250000 , NA                                      , NA                                            ,
+  "Toy Story 3"         ,                                 99 ,                                       71 ,                                   90 ,                               250000 , NA                                      , NA                                            ,
+  "Cars 2"              ,                                 42 ,                                       59 ,                                   49 ,                               100000 , NA                                      , NA                                            ,
+  "Brave"               ,                                 69 ,                                       62 ,                                   75 ,                               250000 , NA                                      , NA                                            ,
+  "Monsters University" ,                                 72 ,                                       56 ,                                   81 ,                               250000 , NA                                      , NA                                            ,
+  "Inside Out"          ,                                 99 ,                                       86 ,                                   89 ,                               100000 , NA                                      , NA                                            ,
+  "The Good Dinosaur"   ,                                 75 ,                                       55 ,                                   64 ,                                50000 , NA                                      , NA                                            ,
+  "Finding Dory"        ,                                 94 ,                                       85 ,                                   84 ,                               100000 , NA                                      , NA                                            ,
+  "Cars 3"              ,                                 64 ,                                       55 ,                                   68 ,                                25000 , NA                                      , NA                                            ,
+  "Coco"                ,                                 95 ,                                       78 ,                                   94 ,                                25000 , NA                                      , NA                                            ,
+  "Incredibles 2"       ,                                 88 ,                                       86 ,                                   84 ,                                10000 , NA                                      , NA                                            ,
+  "Toy Story 4"         ,                                 96 ,                                       80 ,                                   94 ,                                50000 ,                                      94 ,                                         50000 ,
+  "Onward"              ,                                 78 ,                                       60 ,                                   95 ,                                 5000 ,                                      95 ,                                          5000 ,
+  "Soul"                ,                                 89 ,                                       71 ,                                   88 ,                                 5000 , NA                                      , NA                                            ,
+  "Luca"                ,                                 90 ,                                       60 ,                                   85 ,                                 2500 , NA                                      , NA                                            ,
+  "Turning Red"         ,                                 95 ,                                       57 ,                                   67 ,                                 5000 , NA                                      , NA                                            ,
+  "Lightyear"           ,                                 62 ,                                       65 ,                                   84 ,                                 5000 ,                                      84 ,                                          5000 ,
+  "Elemental"           ,                                 63 ,                                       57 ,                                   93 ,                                 2500 ,                                      93 ,                                          2500 ,
+  "Inside Out 2"        ,                                 89 ,                                       66 ,                                   94 ,                                10000 ,                                      94 ,                                         10000 ,
+  "Elio"                ,                                 82 ,                                       45 ,                                   89 ,                                 2500 ,                                      89 ,                                          2500 ,
+  "Hoppers"             ,                                 94 ,                                       48 ,                                   93 ,                                 5000 ,                                      93 ,                                          5000 ,
+  "Toy Story 5"         ,                                 85 ,                                       59 ,                                   94 ,                                10000 ,                                      94 ,                                         10000
 )
 
 # Create data frame and adjust column names because first row is actual name
 public_response <- publicresponse
 colnames(public_response) <-
-  publicresponse %>%
-  first() %>%
+  publicresponse |>
+  first() |>
   unlist(use.names = FALSE)
 public_response <- public_response[-1, ] # Remove redundant column names
 
 # Clean up values
 # 2024-11-10 Look's like Critic's Choice got removed
 public_response <-
-  public_response %>%
-  clean_names() %>%
+  public_response |>
+  clean_names() |>
   mutate_all(function(x) {
-    ifelse(x == "N/A", NA, x)
-  }) %>%
+    ifelse(x == "—N/a", NA, x)
+  }) |>
   mutate(
     rotten_tomatoes = str_replace(rotten_tomatoes, "\\%", ""),
     metacritic = str_replace(metacritic, "\\/100", ""),
     cinema_score = str_replace(cinema_score, "\\[.*\\]", "")
-  ) %>%
+  ) |>
   mutate(
     rotten_tomatoes_score = str_extract(rotten_tomatoes, "^[0-9]+"),
     metacritic_score = str_extract(metacritic, "^[0-9]+"),
