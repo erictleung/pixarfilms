@@ -11,7 +11,7 @@ pixar_films
 
 ## Format
 
-A data frame with 27 rows and 3 variables:
+A data frame with 31 rows and 6 columns:
 
 - number:
 

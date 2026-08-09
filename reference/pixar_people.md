@@ -10,7 +10,7 @@ pixar_people
 
 ## Format
 
-A data frame with 228 rows and 3 variables:
+A data frame with 286 rows and 3 columns:
 
 - film:
 
@@ -18,8 +18,8 @@ A data frame with 228 rows and 3 variables:
 
 - role_type:
 
-  one of five roles: Director, Musician, Producer, Screenwriter,
-  Storywriter
+  one of six roles: Director, Musician, Producer, Screenwriter,
+  Storywriter, Co-director
 
 - name:
 
