@@ -5,7 +5,7 @@
 \alias{public_response}
 \title{Critical and public response}
 \format{
-A data frame with 23 rows and 5 variables:
+A data frame with 31 rows and 17 columns:
 \describe{
 \item{film}{name of film}
 \item{rotten_tomatoes_score}{score from the American review-aggregation
@@ -21,6 +21,22 @@ grades A, B, C, D, and F}
 \item{imdb_score}{score from IMDb where scores are weighted average of
 reviews; scored out of 100}
 \item{imdb_counts}{number of critics contributing to IMDb score}
+\item{rotten_tomatoes_score_top_critics}{score for only top critics from
+Rotten Tomatoes; scored out of 100}
+\item{rotten_tomatoes_score_top_critics_votes}{number of top critics
+contributing to Rotten Tomatoes score}
+\item{rotten_tomatoes_popcorn_meter_score}{percentage of users who rated
+\item{rotten_tomatoes_popcorn_meter_votes}{number of users contributing to
+Rotten Tomatoes'}
+\item{rotten_tomatoes_popcorn_meter_verified}{percentage of users who made
+a verified movie ticket purchase rating this 3.5 stars or higher}
+\item{rotten_tomatoes_popcorn_meter_votes}{number of users contributing to
+Rotten Tomatoes' Popcorn Meter}
+\item{letterboxd_rating}{score from Letterboxd where scores are weighted
+average of reviews; scored out of 5}
+\item{letterboxd_counts}{number of users contributing to Letterboxd score}
+\item{letterboxd_fans}{number of users this film as one of their four
+favorites on Letterboxd}
 }
 }
 \source{
