@@ -5,11 +5,11 @@
 \alias{pixar_people}
 \title{People behind Pixar}
 \format{
-A data frame with 228 rows and 3 variables:
+A data frame with 286 rows and 3 columns:
 \describe{
 \item{film}{name of film}
-\item{role_type}{one of five roles: Director, Musician, Producer,
-Screenwriter, Storywriter}
+\item{role_type}{one of six roles: Director, Musician, Producer,
+Screenwriter, Storywriter, Co-director}
 \item{name}{individual's name}
 }
 }

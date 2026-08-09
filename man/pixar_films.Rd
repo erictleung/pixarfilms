@@ -5,7 +5,7 @@
 \alias{pixar_films}
 \title{Pixar films}
 \format{
-A data frame with 27 rows and 3 variables:
+A data frame with 31 rows and 6 columns:
 \describe{
 \item{number}{order of release}
 \item{film}{name of film}

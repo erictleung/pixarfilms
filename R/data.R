@@ -6,7 +6,7 @@ NULL
 #'
 #' A data set containing Pixar films, their release order, and release date.
 #'
-#' @format A data frame with 27 rows and 3 variables:
+#' @format A data frame with 31 rows and 6 columns:
 #' \describe{
 #'   \item{number}{order of release}
 #'   \item{film}{name of film}
@@ -31,11 +31,11 @@ NULL
 #' point. Each film can have multiple individuals per role. For example, Toy
 #' Story has four screenwriters.
 #'
-#' @format A data frame with 228 rows and 3 variables:
+#' @format A data frame with 286 rows and 3 columns:
 #' \describe{
 #'   \item{film}{name of film}
-#'   \item{role_type}{one of five roles: Director, Musician, Producer,
-#'     Screenwriter, Storywriter}
+#'   \item{role_type}{one of six roles: Director, Musician, Producer,
+#'     Screenwriter, Storywriter, Co-director}
 #'   \item{name}{individual's name}
 #' }
 #' @source \url{https://en.wikipedia.org/wiki/List_of_Pixar_films}
