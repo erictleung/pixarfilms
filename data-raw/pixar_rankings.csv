@@ -1,0 +1,522 @@
+film,source,ranking
+Toy Story 2,Rotten Tomatoes,1
+Toy Story,Rotten Tomatoes,2
+Finding Nemo,Rotten Tomatoes,3
+Inside Out,Rotten Tomatoes,4
+Toy Story 3,Rotten Tomatoes,5
+Up,Rotten Tomatoes,6
+Toy Story 4,Rotten Tomatoes,7
+Coco,Rotten Tomatoes,8
+The Incredibles,Rotten Tomatoes,9
+Ratatouille,Rotten Tomatoes,10
+"Monsters, Inc.",Rotten Tomatoes,11
+Soul,Rotten Tomatoes,12
+Turning Red,Rotten Tomatoes,13
+WALL-E,Rotten Tomatoes,14
+Finding Dory,Rotten Tomatoes,15
+Hoppers,Rotten Tomatoes,16
+Toy Story 5,Rotten Tomatoes,17
+Incredibles 2,Rotten Tomatoes,18
+A Bug's Life,Rotten Tomatoes,19
+Inside Out 2,Rotten Tomatoes,20
+Luca,Rotten Tomatoes,21
+Onward,Rotten Tomatoes,22
+Elio,Rotten Tomatoes,23
+Monsters University,Rotten Tomatoes,24
+Brave,Rotten Tomatoes,25
+The Good Dinosaur,Rotten Tomatoes,26
+Lightyear,Rotten Tomatoes,27
+Cars,Rotten Tomatoes,28
+Elemental,Rotten Tomatoes,29
+Cars 3,Rotten Tomatoes,30
+Cars 2,Rotten Tomatoes,31
+Cars 3,IGN,29
+Lightyear,IGN,28
+Finding Dory,IGN,27
+Cars 2,IGN,26
+The Good Dinosaur,IGN,25
+Monsters University,IGN,24
+Onward,IGN,23
+Brave,IGN,22
+Incredibles 2,IGN,21
+Soul,IGN,20
+Luca,IGN,19
+Elio,IGN,18
+Toy Story 4,IGN,17
+A Bug's Life,IGN,16
+Cars,IGN,15
+Elemental,IGN,14
+Turning Red,IGN,13
+Inside Out 2,IGN,12
+Ratatouille,IGN,11
+Toy Story 2,IGN,10
+Up,IGN,9
+Finding Nemo,IGN,8
+"Monsters, Inc.",IGN,7
+Coco,IGN,6
+Inside Out,IGN,5
+Toy Story,IGN,4
+WALL-E,IGN,3
+Toy Story 3,IGN,2
+The Incredibles,IGN,1
+Cars 3,IndieWire,29
+Lightyear,IndieWire,28
+Finding Dory,IndieWire,27
+Cars 2,IndieWire,26
+The Good Dinosaur,IndieWire,25
+Monsters University,IndieWire,24
+Onward,IndieWire,23
+Brave,IndieWire,22
+Incredibles 2,IndieWire,21
+Soul,IndieWire,20
+Luca,IndieWire,19
+Elio,IndieWire,18
+Toy Story 4,IndieWire,17
+A Bug's Life,IndieWire,16
+Cars,IndieWire,15
+Elemental,IndieWire,14
+Turning Red,IndieWire,13
+Inside Out 2,IndieWire,12
+Ratatouille,IndieWire,11
+Toy Story 2,IndieWire,10
+Up,IndieWire,9
+Finding Nemo,IndieWire,8
+"Monsters, Inc.",IndieWire,7
+Coco,IndieWire,6
+Inside Out,IndieWire,5
+Toy Story,IndieWire,4
+WALL-E,IndieWire,3
+Toy Story 3,IndieWire,2
+The Incredibles,IndieWire,1
+Cars 2,Slant,31
+Cars,Slant,30
+The Good Dinosaur,Slant,29
+Lightyear,Slant,28
+Elemental,Slant,27
+Monsters University,Slant,26
+Cars 3,Slant,25
+Brave,Slant,24
+Onward,Slant,23
+Toy Story 5,Slant,22
+Hopperse,Slant,21
+Inside Out 2,Slant,20
+Turning Red,Slant,19
+Luca,Slant,18
+A Bug's Life,Slant,17
+Incredible 2,Slant,16
+Soul,Slant,15
+Elio,Slant,14
+Toy Story 4,Slant,13
+Finding Dory,Slant,12
+Inside Out,Slant,11
+Coco,Slant,10
+Finding Nemo,Slant,9
+Toy Story 2,Slant,8
+The Incredibles,Slant,7
+Toy Story 3,Slant,6
+WALL-E,Slant,5
+Toy Story,Slant,4
+"Monsters, Inc.",Slant,3
+Ratatouille,Slant,2
+Up,Slant,1
+Cars 2,Vox,23
+Cars 3,Vox,22
+The Good Dinosaur,Vox,21
+Cars,Vox,20
+Onward,Vox,19
+Finding Dory,Vox,18
+A Bug's Life,Vox,17
+Monsters University,Vox,16
+Brave,Vox,15
+"Monsters, Inc.",Vox,14
+Incredibles 2,Vox,13
+Toy Story 4,Vox,12
+Inside Out,Vox,11
+Toy Story 3,Vox,10
+Coco,Vox,9
+Toy Story 2,Vox,8
+Up,Vox,7
+Ratatouille,Vox,6
+Finding Nemo,Vox,5
+Soul,Vox,4
+Toy Story,Vox,3
+The Incredibles,Vox,2
+WALL-E,Vox,1
+Cars 2,WIRED,22
+Cars 3,WIRED,21
+Onward,WIRED,20
+Monsters University,WIRED,19
+Finding Dory,WIRED,18
+Toy Story 4,WIRED,17
+Incredibles 2,WIRED,16
+The Good Dinosaur,WIRED,15
+Cars,WIRED,14
+Brave,WIRED,13
+Coco,WIRED,12
+A Bug's Life,WIRED,11
+Toy Story 3,WIRED,10
+Toy Story 2,WIRED,9
+Ratatouille,WIRED,8
+Inside Out,WIRED,7
+The Incredibles,WIRED,6
+Up,WIRED,5
+"Monsters, Inc.",WIRED,4
+Toy Story,WIRED,3
+WALL-E,WIRED,2
+Finding Nemo,WIRED,1
+Cars 2,Thrillist,25
+Cars 3,Thrillist,24
+Brave,Thrillist,23
+Monsters University,Thrillist,22
+Cars,Thrillist,21
+The Good Dinosaur,Thrillist,20
+A Bug's Life,Thrillist,19
+Finding Dory,Thrillist,18
+Luca,Thrillist,17
+Onward,Thrillist,16
+Incredibles 2,Thrillist,15
+"Monsters, Inc.",Thrillist,13
+Toy Story 4,Thrillist,12
+Coco,Thrillist,11
+Toy Story 2,Thrillist,10
+Soul,Thrillist,9
+Finding Nemo,Thrillist,8
+Up,Thrillist,7
+Inside Out,Thrillist,6
+Toy Story 3,Thrillist,5
+The Incredibles,Thrillist,4
+Toy Story,Thrillist,3
+WALL-E,Thrillist,2
+Ratatouille,Thrillist,1
+Cars 2,ScreenRant,31
+Cars 3,ScreenRant,30
+The Good Dinosaur,ScreenRant,29
+Lightyear,ScreenRant,28
+Cars,ScreenRant,27
+Monsters University,ScreenRant,26
+Elemental,ScreenRant,25
+Finding Dory,ScreenRant,24
+Elio,ScreenRant,23
+Onward,ScreenRant,22
+Luca,ScreenRant,21
+A Bug's Life,ScreenRant,20
+The Incredibles,ScreenRant,19
+Brave,ScreenRant,18
+Hoppers,ScreenRant,17
+Soul,ScreenRant,16
+Toy Story 5,ScreenRant,15
+Turning Red,ScreenRant,14
+Inside Out 2,ScreenRant,13
+Toy Story 4,ScreenRant,12
+Coco,ScreenRant,11
+Ratatouille,ScreenRant,10
+"Monsters, Inc.",ScreenRant,9
+Finding Nemo,ScreenRant,8
+Up,ScreenRant,7
+Toy Story 2,ScreenRant,6
+The Incredibles,ScreenRant,5
+Toy Story 3,ScreenRant,4
+Inside Out,ScreenRant,3
+WALL-E,ScreenRant,2
+Toy Story,ScreenRant,1
+The Good Dinosaur,Polygon,28
+Monsters University,Polygon,27
+Toy Story 4,Polygon,26
+Cars 2,Polygon,25
+Cars 3,Polygon,24
+Onward,Polygon,23
+Brave,Polygon,22
+Finding Dory,Polygon,21
+Cars,Polygon,20
+Incredibles 2,Polygon,19
+A Bug's Life,Polygon,18
+Lightyear,Polygon,17
+Soul,Polygon,16
+Elemental,Polygon,15
+Luca,Polygon,14
+Toy Story 3,Polygon,13
+Up,Polygon,12
+Inside Out 2,Polygon,11
+Toy Story 2,Polygon,10
+Toy Story,Polygon,9
+Finding Nemo,Polygon,8
+Coco,Polygon,7
+Turning Red,Polygon,6
+WALL-E,Polygon,5
+Ratatouille,Polygon,4
+"Monsters, Inc.",Polygon,3
+Inside Out,Polygon,2
+The Incredibles,Polygon,1
+Toy Story 4,Buzzfeed,24
+The Good Dinosaur,Buzzfeed,23
+Cars 2,Buzzfeed,22
+Monsters University,Buzzfeed,21
+Cars 3,Buzzfeed,20
+Finding Dory,Buzzfeed,19
+Cars,Buzzfeed,18
+Up,Buzzfeed,17
+WALL-E,Buzzfeed,16
+Toy Story 2,Buzzfeed,15
+Luca,Buzzfeed,14
+Toy Story 3,Buzzfeed,13
+Onward,Buzzfeed,12
+Brave,Buzzfeed,11
+Finding Nemo,Buzzfeed,10
+Incredibles 2,Buzzfeed,9
+Inside Out,Buzzfeed,8
+Ratatouille,Buzzfeed,7
+Coco,Buzzfeed,6
+A Bug's Life,Buzzfeed,5
+Toy Story,Buzzfeed,4
+The Incredibles,Buzzfeed,3
+"Monsters, Inc.",Buzzfeed,2
+Soul,Buzzfeed,1
+Cars 2,CNET,29
+The Good Dinosaur,CNET,28
+Cars 3,CNET,27
+Finding Dory,CNET,26
+Lightyear,CNET,25
+Luca,CNET,24
+Inside Out 2,CNET,23
+Elemental,CNET,22
+Monsters University,CNET,21
+Incredibles 2,CNET,20
+Toy Story 4,CNET,19
+Cars,CNET,18
+A Bug's Life,CNET,17
+WALL-E,CNET,16
+Brave,CNET,15
+Onward,CNET,14
+Turning Red,CNET,13
+Elio,CNET,12
+Ratatouille,CNET,11
+Soul,CNET,10
+The Incredibles,CNET,9
+"Monsters, Inc.",CNET,8
+Coco,CNET,7
+Toy Story 2,CNET,6
+Finding Nemo,CNET,5
+Inside Out,CNET,4
+Toy Story 3,CNET,3
+Up,CNET,2
+Toy Story,CNET,1
+Cars 2,BusinessInsider,27
+A Bug's Life,BusinessInsider,26
+Cars 3,BusinessInsider,25
+The Good Dinosaur,BusinessInsider,24
+Brave,BusinessInsider,23
+Cars,BusinessInsider,22
+Onward,BusinessInsider,21
+Lightyear,BusinessInsider,20
+Monsters University,BusinessInsider,19
+Soul,BusinessInsider,18
+Turning Red,BusinessInsider,17
+Elemental,BusinessInsider,16
+Coco,BusinessInsider,15
+Luca,BusinessInsider,14
+"Monsters, Inc.",BusinessInsider,13
+Incredibles 2,BusinessInsider,12
+Finding Dory,BusinessInsider,11
+Inside Out,BusinessInsider,10
+Toy Story 2,BusinessInsider,9
+Up,BusinessInsider,8
+Toy Story 4,BusinessInsider,7
+Toy Story 3,BusinessInsider,6
+The Incredibles,BusinessInsider,5
+Ratatouille,BusinessInsider,4
+Finding Nemo,BusinessInsider,3
+Toy Story,BusinessInsider,2
+WALL-E,BusinessInsider,1
+Cars 2,AV Club,28
+The Good Dinosaur,AV Club,27
+Cars 3,AV Club,26
+Lightyear,AV Club,25
+Elemental,AV Club,24
+Onward,AV Club,23
+Toy Story 4,AV Club,22
+Finding Dory,AV Club,21
+Monsters University,AV Club,20
+Luca,AV Club,19
+Inside Out 2,AV Club,18
+Incredibles 2,AV Club,17
+Brave,AV Club,16
+Turning Red,AV Club,15
+Soul,AV Club,14
+Cars,AV Club,13
+A Bug's Life,AV Club,12
+Ratatouille,AV Club,11
+Coco,AV Club,10
+"Monsters, Inc.",AV Club,9
+Finding Nemo,AV Club,8
+Inside Out,AV Club,7
+Toy Story 3,AV Club,6
+The Incredibles,AV Club,5
+Up,AV Club,4
+Toy Story 2,AV Club,3
+WALL-E,AV Club,2
+Toy Story,AV Club,1
+Cars 3,Vulture,31
+Lightyear,Vulture,30
+Cars 2,Vulture,29
+Elemental,Vulture,28
+Brave,Vulture,27
+Monsters University,Vulture,26
+The Good Dinosaur,Vulture,25
+A Bug's Life,Vulture,24
+Onward,Vulture,23
+Elio,Vulture,22
+Cars,Vulture,21
+Soul,Vulture,20
+Hoppers,Vulture,19
+Coco,Vulture,18
+Incredibles 2,Vulture,17
+Luca,Vulture,16
+"Monsters, Inc.",Vulture,15
+Inside Out 2,Vulture,14
+Toy Story 5,Vulture,13
+Turning Red,Vulture,12
+Finding Dory,Vulture,11
+Up,Vulture,10
+Ratatouille,Vulture,9
+Toy Story 4,Vulture,8
+Inside Out,Vulture,7
+Toy Story 3,Vulture,6
+The Incredibles,Vulture,5
+Toy Story 2,Vulture,4
+Finding Nemo,Vulture,3
+Toy Story,Vulture,2
+WALL-E,Vulture,1
+Cars 2,Independent,23
+Brave,Independent,22
+The Good Dinosaur,Independent,21
+Cars 3,Independent,20
+Toy Story 4,Independent,19
+Incredibles 2,Independent,18
+A Bug's Life,Independent,17
+Monsters University,Independent,16
+Cars,Independent,15
+Finding Dory,Independent,14
+Up,Independent,13
+WALL-E,Independent,12
+Onward,Independent,11
+The Incredibles,Independent,10
+Finding Nemo,Independent,9
+Inside Out,Independent,8
+Coco,Independent,7
+Toy Story 3,Independent,6
+Soul,Independent,5
+"Monsters, Inc.",Independent,4
+Toy Story,Independent,3
+Ratatouille,Independent,2
+Toy Story 2,Independent,1
+Cars 2,MensHealth,21
+Cars 3,MensHealth,20
+The Good Dinosaur,MensHealth,19
+Lightyear,MensHealth,18
+Monsters University,MensHealth,17
+Finding Dory,MensHealth,16
+Incredibles 2,MensHealth,15
+Onward,MensHealth,14
+Luca,MensHealth,13
+Toy Story 4,MensHealth,12
+Toy Story 2,MensHealth,11
+Brave,MensHealth,10
+Cars,MensHealth,9
+A Bug's Life,MensHealth,8
+Turning Red,MensHealth,7
+"Monsters, Inc.",MensHealth,6
+NA,MensHealth,5
+Ratatouille,MensHealth,4
+Finding Nemo,MensHealth,3
+The Incredibles,MensHealth,2
+NA,MensHealth,1
+Lightyear,Time,31
+Cars 2,Time,30
+The Good Dinosaur,Time,29
+Onward,Time,28
+Elemental,Time,27
+Toy Story 5,Time,26
+Soul,Time,25
+A Bug's Life,Time,24
+Finding Dory,Time,23
+Inside Out 2,Time,22
+Luca,Time,21
+Incredibles 2,Time,20
+Cars 3,Time,19
+Elio,Time,18
+Brave,Time,17
+Up,Time,16
+Toy Story 4,Time,15
+Monsters University,Time,14
+Coco,Time,13
+Finding Nemo,Time,12
+Cars,Time,11
+Turning Red,Time,10
+Hoppers,Time,9
+Inside Out,Time,8
+The Incredibles,Time,7
+Toy Story,Time,6
+Toy Story 3,Time,5
+"Monsters, Inc.",Time,4
+Ratatouille,Time,3
+Toy Story 2,Time,2
+WALL-E,Time,1
+Monsters University,Esquire,31
+The Good Dinosaur,Esquire,30
+Cars 2,Esquire,29
+Elemental,Esquire,28
+Finding Dory,Esquire,27
+Cars 3,Esquire,26
+Elio,Esquire,25
+Soul,Esquire,24
+Lightyear,Esquire,23
+Inside Out 2,Esquire,22
+Hoppers,Esquire,21
+Incredibles 2,Esquire,20
+Turning Red,Esquire,19
+Brave,Esquire,18
+Onward,Esquire,17
+Luca,Esquire,16
+Cars,Esquire,15
+A Bug's Life,Esquire,14
+Toy Story 4,Esquire,13
+Toy Story 5,Esquire,12
+Inside Out,Esquire,11
+"Monsters, Inc.",Esquire,10
+Ratatouille,Esquire,9
+Toy Story 2,Esquire,8
+The Incredibles,Esquire,7
+Finding Nemo,Esquire,6
+Up,Esquire,5
+Toy Story 3,Esquire,4
+Coco,Esquire,3
+Toy Story,Esquire,2
+WALL-E,Esquire,1
+Cars 2,Mashable,28
+Brave,Mashable,27
+Cars 3,Mashable,26
+The Good Dinosaur,Mashable,25
+Monsters University,Mashable,24
+Cars,Mashable,23
+Lightyear,Mashable,22
+Incredibles 2,Mashable,21
+Toy Story 4,Mashable,20
+Toy Story 2,Mashable,19
+Finding Dory,Mashable,18
+Onward,Mashable,17
+Elemental,Mashable,16
+Luca,Mashable,15
+Inside Out 2,Mashable,14
+Ratatouille,Mashable,13
+Soul,Mashable,12
+The Incredibles,Mashable,11
+"Monsters, Inc.",Mashable,10
+A Bug's Life,Mashable,9
+Coco,Mashable,8
+Turning Red,Mashable,7
+WALL-E,Mashable,6
+Toy Story,Mashable,5
+Up,Mashable,4
+Finding Nemo,Mashable,3
+Inside Out,Mashable,2
+Toy Story 3,Mashable,1

@@ -147,3 +147,42 @@ NULL
 #' @examples
 #' themes_vox
 'themes_vox'
+
+
+#' Pixar film rankings
+#'
+#' A data set with the rankings of Pixar films from various sources.
+#'
+#' The sources include these websites:
+#'
+#' \enumerate{
+#'   \item Rotten Tomatoes
+#'   \item IGN
+#'   \item IndieWire
+#'   \item Slant
+#'   \item Vox
+#'   \item WIRED
+#'   \item Thrillist
+#'   \item ScreenRant
+#'   \item Polygon
+#'   \item Buzzfeed
+#'   \item CNET
+#'   \item BusinessInsider
+#'   \item AV Club
+#'   \item Vulture
+#'   \item Independent
+#'   \item MensHealth
+#'   \item Time
+#'   \item Esquire
+#'   \item Mashable
+#' }
+#'
+#' @format A data frame with 521 rows and 3 columns:
+#' \describe{
+#'   \item{film}{name of film}
+#'   \item{source}{name of internet ranking source}
+#'   \item{ranking}{numerical ranking of the film}
+#' }
+#' @examples
+#' pixar_rankings
+'pixar_rankings'

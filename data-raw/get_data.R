@@ -1049,12 +1049,20 @@ iot %>%
 # Get rankings ------------------------------------------------------------
 
 # Some rankings are very similarly formatted, so here's a function to do that
-get_rankings_standard <- function(link, film_regex = NA) {
+get_rankings_standard <- function(link, film_regex = NA, debug = FALSE) {
   page <- read_html(link)
 
   if (is.na(film_regex)) {
     film_regex <-
       regex("^([0-9]{1,2}). ([A-Za-z0-9-’',. ]+?) \\(([0-9]{4,4})\\)$")
+  }
+
+  if (debug) {
+    return(
+      tibble(raw = page %>% html_elements("h2") %>% html_text()) %>%
+        mutate(raw = raw %>% trimws() %>% str_replace_all("“|”", "")) %>%
+        filter(str_detect(raw, "^[0-9]"))
+    )
   }
 
   tibble(raw = page %>% html_elements("h2") %>% html_text()) %>%
@@ -1076,6 +1084,7 @@ add_source <- function(data, name) {
 
 
 ## Get Rotten Tomatoes ranking ----
+# Last updated: Toy Story 5
 link <-
   "https://editorial.rottentomatoes.com/guide/all-pixar-movies-ranked/"
 page <- read_html(link)
@@ -1083,22 +1092,19 @@ rotten_tomatoes_ranking <-
   tibble(
     source = "Rotten Tomatoes",
     film = page %>%
-      html_element(".articleContentBody") %>%
-      html_elements(".countdown-item") %>%
-      html_elements(".article_movie_title") %>%
+      html_elements(".meta-title") %>%
       html_text() %>%
       trimws() %>%
       str_replace(" \\([0-9]+\\)\n.*", ""),
     ranking = page %>%
-      html_element(".articleContentBody") %>%
-      html_elements(".countdown-item") %>%
-      html_elements(".countdown-index-resposive") %>%
+      html_elements(".indicator") %>%
       html_text() %>%
       str_replace("#", "")
   )
 
 
 ## Get IGN ranking ----
+# Last updated: 2026-03-06
 link <- "https://www.ign.com/articles/best-ranking-pixar-movies"
 film_regex <- regex("^([0-9]{1,2}). ([A-Za-z0-9-’',. ]+)")
 ign_ranking <- get_rankings_standard(link, film_regex)
@@ -1106,30 +1112,72 @@ ign_ranking <- add_source(ign_ranking, "IGN")
 
 
 ## Get IndieWire ranking ----
+# Last updated: 2026-06-22
 link <- "https://www.indiewire.com/features/best-of/pixar-movies-ranked-best-worst-96815/"
 indie_wire_ranking <- get_rankings_standard(link)
 indie_wire_ranking <- add_source(ign_ranking, "IndieWire")
 
 
 ## Get Slant ranking ----
+# Note: Adblocker, so just manually input for now.
+# Last updated:2026-06-16
 link <- "https://www.slantmagazine.com/film/every-pixar-movie-ranked-from-worst-to-best/"
-slant_ranking <- get_rankings_standard(link)
-slant_ranking <- add_source(slant_ranking, "Slant")
+# slant_ranking <- get_rankings_standard(link)
+# slant_ranking <- add_source(slant_ranking, "Slant")
+slant_ranking <-
+  tribble(
+    ~film                 , ~ranking , ~source ,
+    "Cars 2"              , "31"     , "Slant" ,
+    "Cars"                , "30"     , "Slant" ,
+    "The Good Dinosaur"   , "29"     , "Slant" ,
+    "Lightyear"           , "28"     , "Slant" ,
+    "Elemental"           , "27"     , "Slant" ,
+    "Monsters University" , "26"     , "Slant" ,
+    "Cars 3"              , "25"     , "Slant" ,
+    "Brave"               , "24"     , "Slant" ,
+    "Onward"              , "23"     , "Slant" ,
+    "Toy Story 5"         , "22"     , "Slant" ,
+    "Hopperse"            , "21"     , "Slant" ,
+    "Inside Out 2"        , "20"     , "Slant" ,
+    "Turning Red"         , "19"     , "Slant" ,
+    "Luca"                , "18"     , "Slant" ,
+    "A Bug's Life"        , "17"     , "Slant" ,
+    "Incredible 2"        , "16"     , "Slant" ,
+    "Soul"                , "15"     , "Slant" ,
+    "Elio"                , "14"     , "Slant" ,
+    "Toy Story 4"         , "13"     , "Slant" ,
+    "Finding Dory"        , "12"     , "Slant" ,
+    "Inside Out"          , "11"     , "Slant" ,
+    "Coco"                , "10"     , "Slant" ,
+    "Finding Nemo"        , "9"      , "Slant" ,
+    "Toy Story 2"         , "8"      , "Slant" ,
+    "The Incredibles"     , "7"      , "Slant" ,
+    "Toy Story 3"         , "6"      , "Slant" ,
+    "WALL-E"              , "5"      , "Slant" ,
+    "Toy Story"           , "4"      , "Slant" ,
+    "Monsters, Inc."      , "3"      , "Slant" ,
+    "Ratatouille"         , "2"      , "Slant" ,
+    "Up"                  , "1"      , "Slant"
+  ) |>
+  select(source, film, ranking)
 
 
 ## Get Vox ranking ----
+# Last updated: 2020-12-29
 link <- "https://www.vox.com/culture/2019/6/27/18715845/pixar-movies-rankings"
 vox_ranking <- get_rankings_standard(link)
 vox_ranking <- add_source(vox_ranking, "Vox")
 
 
 ## Get WIRED ranking ----
+# Last updated: 2020-04-04
 link <- "https://www.wired.com/story/best-pixar-movies/"
 wired_ranking <- get_rankings_standard(link)
 wired_ranking <- add_source(wired_ranking, "WIRED")
 
 
 ## Get Thrillist ranking ----
+# Last updated: 2022-03-11
 # Some reason, the scraping of these movies will fail the regular expression
 thrillist_fillin <- tribble(
   ~film               , ~ranking ,
@@ -1154,13 +1202,51 @@ thrillist_ranking <- add_source(thrillist_ranking, "Thrillist")
 
 
 ## Get ScreenRant ranking ----
-link <- "https://screenrant.com/pixar-movies-ranked-best-worst/"
-film_regex <- regex("^([0-9]{1,2}). ([A-Za-z0-9-’',. ]+)")
-screenrant_ranking <- get_rankings_standard(link, film_regex)
-screenrant_ranking <- add_source(screenrant_ranking, "ScreenRant")
+# Last updated: 2026-06-20
+link <- "https://screenrant.com/pixar-movies-ranked-every/"
+# film_regex <- regex("^([0-9]{1,2}). ([A-Za-z0-9-’',. ]+)")
+# screenrant_ranking <- get_rankings_standard(link)
+# screenrant_ranking <- add_source(screenrant_ranking, "ScreenRant")
+screenrant_ranking <-
+  tribble(
+    ~film                 , ~ranking , ~source      ,
+    "Cars 2"              , "31"     , "ScreenRant" ,
+    "Cars 3"              , "30"     , "ScreenRant" ,
+    "The Good Dinosaur"   , "29"     , "ScreenRant" ,
+    "Lightyear"           , "28"     , "ScreenRant" ,
+    "Cars"                , "27"     , "ScreenRant" ,
+    "Monsters University" , "26"     , "ScreenRant" ,
+    "Elemental"           , "25"     , "ScreenRant" ,
+    "Finding Dory"        , "24"     , "ScreenRant" ,
+    "Elio"                , "23"     , "ScreenRant" ,
+    "Onward"              , "22"     , "ScreenRant" ,
+    "Luca"                , "21"     , "ScreenRant" ,
+    "A Bug's Life"        , "20"     , "ScreenRant" ,
+    "The Incredibles"     , "19"     , "ScreenRant" ,
+    "Brave"               , "18"     , "ScreenRant" ,
+    "Hoppers"             , "17"     , "ScreenRant" ,
+    "Soul"                , "16"     , "ScreenRant" ,
+    "Toy Story 5"         , "15"     , "ScreenRant" ,
+    "Turning Red"         , "14"     , "ScreenRant" ,
+    "Inside Out 2"        , "13"     , "ScreenRant" ,
+    "Toy Story 4"         , "12"     , "ScreenRant" ,
+    "Coco"                , "11"     , "ScreenRant" ,
+    "Ratatouille"         , "10"     , "ScreenRant" ,
+    "Monsters, Inc."      , "9"      , "ScreenRant" ,
+    "Finding Nemo"        , "8"      , "ScreenRant" ,
+    "Up"                  , "7"      , "ScreenRant" ,
+    "Toy Story 2"         , "6"      , "ScreenRant" ,
+    "The Incredibles"     , "5"      , "ScreenRant" ,
+    "Toy Story 3"         , "4"      , "ScreenRant" ,
+    "Inside Out"          , "3"      , "ScreenRant" ,
+    "WALL-E"              , "2"      , "ScreenRant" ,
+    "Toy Story"           , "1"      , "ScreenRant"
+  ) |>
+  select(source, film, ranking)
 
 
 ## Get Polygon ranking ----
+# Last updated: 2024-06-18
 link <-
   "https://www.polygon.com/movies/22239548/best-pixar-movies-ranked"
 polygon_ranking <- get_rankings_standard(link)
@@ -1168,6 +1254,7 @@ polygon_ranking <- add_source(polygon_ranking, "Polygon")
 
 
 ## Get Buzzfeed ranking ----
+# Last updated: 2021-10-02
 link <-
   "https://www.buzzfeed.com/amatullahshaw/all-pixar-movies-ranked"
 film_regex <- regex("^([0-9]{1,2}).[\n ]+([A-Za-z0-9-’',. ]+) ")
@@ -1177,7 +1264,7 @@ buzzfeed_ranking <- add_source(buzzfeed_ranking, "Buzzfeed")
 
 ## Get CNET ranking ----
 link <-
-  "https://www.cnet.com/tech/services-and-software/the-best-pixar-movies-ranked-from-inside-out-2-to-toy-story/"
+  "https://www.cnet.com/culture/entertainment/ranking-pixars-best-films-our-favorite-movies-from-elio-to-toy-story/"
 page <- read_html(link)
 film_regex <-
   regex("^([0-9]{1,2}). ([A-Za-z0-9-’',. ]+?) \\(([0-9]{4,4})\\)$")
@@ -1194,6 +1281,7 @@ cnet_ranking <- add_source(cnet_ranking, "CNET")
 
 
 ## Get Insider ranking ----
+# Last updated: 2023-06-16
 link <-
   "https://www.yahoo.com/entertainment/ranked-every-pixar-movie-worst-172845915.html"
 page <- read_html(link)
@@ -1208,10 +1296,11 @@ insider_ranking <-
     film = str_extract(raw, film_regex, group = 2),
   ) %>%
   select(film, ranking)
-insider_ranking <- add_source(insider_ranking, "Insider")
+insider_ranking <- add_source(insider_ranking, "BusinessInsider")
 
 
 ## Get AV Club ranking ----
+# Last updated: 2024-06-14
 link <-
   "https://www.avclub.com/pixar-movies-ranked-from-worst-to-best-1850545587"
 page <- read_html(link)
@@ -1233,58 +1322,109 @@ av_club_ranking <- add_source(av_club_ranking, "AV Club")
 
 
 ## Get Vulture ranking ----
+# Last updated: 2026-06-24
 link <-
-  "https://www.vulture.com/article/best-pixar-movies-ranked.html"
-film_regex <- regex(
-  "([0-9]{1,2}).[\n ]+([A-Za-z0-9-’',. ]+?) \\(([0-9]{4,4})\\)"
-)
+  "https://web.archive.org/web/20260807081020/https://www.vulture.com/article/best-pixar-movies-ranked.html"
+film_regex <- regex("^([0-9]{1,2}).[\n ]+([A-Za-z0-9-’',. ]+)")
 vulture_ranking <- get_rankings_standard(link, film_regex)
-vulture_ranking <-
-  vulture_ranking %>%
-  mutate(film = trimws(film)) %>%
-  add_source("Vulture")
+vulture_ranking <- add_source(vulture_ranking, "Vulture")
 
 
 ## Get Independent ranking ----
+# Last updated: 2020-12-23
 link <-
-  "https://www.independent.co.uk/arts-entertainment/films/features/pixar-movies-ranked-list-best-worst-soul-b1777684.html"
-page <- read_html(link)
-film_regex <- regex("^([0-9]{1,2}). ([A-Za-z0-9-’',. ]+)")
+  "https://www.the-independent.com/arts-entertainment/films/features/pixar-movies-ranked-list-best-worst-soul-b1777684.html"
+# page <- read_html(link)
+# film_regex <- regex("^([0-9]{1,2}). ([A-Za-z0-9-’',. ]+)")
+# independent_ranking <-
+#   tibble(
+#     raw = page %>%
+#       html_elements("strong") %>%
+#       html_text()
+#   ) %>%
+#   filter(!str_detect(raw, "Director|Runtime|Year"))
+#   mutate(raw = raw %>% trimws()) %>%
+#   mutate(
+#     ranking = str_extract(raw, film_regex, group = 1),
+#     film = str_extract(raw, film_regex, group = 2),
+#   ) %>%
+#   select(film, ranking) %>%
+#   filter(!is.na(film))
+# independent_ranking <- add_source(independent_ranking, "Independent")
 independent_ranking <-
-  tibble(
-    raw = page %>%
-      html_elements("strong") %>%
-      html_text()
-  ) %>%
-  mutate(raw = raw %>% trimws()) %>%
+  tribble(
+    ~film                 ,
+    "Cars 2"              ,
+    "Brave"               ,
+    "The Good Dinosaur"   ,
+    "Cars 3"              ,
+    "Toy Story 4"         ,
+    "Incredibles 2"       ,
+    "A Bug's Life"        ,
+    "Monsters University" ,
+    "Cars"                ,
+    "Finding Dory"        ,
+    "Up"                  ,
+    "WALL-E"              ,
+    "Onward"              ,
+    "The Incredibles"     ,
+    "Finding Nemo"        ,
+    "Inside Out"          ,
+    "Coco"                ,
+    "Toy Story 3"         ,
+    "Soul"                ,
+    "Monsters, Inc."      ,
+    "Toy Story"           ,
+    "Ratatouille"         ,
+    "Toy Story 2"
+  ) |>
   mutate(
-    ranking = str_extract(raw, film_regex, group = 1),
-    film = str_extract(raw, film_regex, group = 2),
-  ) %>%
-  select(film, ranking) %>%
-  filter(!is.na(film))
-independent_ranking <- add_source(independent_ranking, "Independent")
+    source = "Independent",
+    ranking = as.character(n() + 1 - seq_len(n()))
+  ) |>
+  select(source, film, ranking)
 
 
-## Get Forbes ranking ----
-link <-
-  "https://www.forbes.com/sites/simonthompson/2019/06/24/with-toy-story-4-out-every-pixar-movie-box-office-opening-ranked-worst-to-best/?sh=5e14a401242e"
+## Men's Health ranking ----
+# Last updated: 2026-04-16
+link <- "https://www.menshealth.com/entertainment/g43876294/all-pixar-movies-ranked/"
+film_regex <- regex("^([A-Za-z0-9-’',. ]+) \\(([0-9]{4,4})\\)")
 page <- read_html(link)
-film_regex <- regex("^([0-9]{1,2}). ([A-Za-z0-9-’',. ]+) ")
-forbes_ranking <-
-  tibble(
-    raw = page %>%
-      html_elements("strong") %>%
-      html_text()
-  ) %>%
-  mutate(raw = raw %>% trimws()) %>%
-  filter(str_detect(raw, "^[0-9]")) %>%
+menshealth_ranking <-
+  tibble(raw = page %>% html_elements("h2") %>% html_text()) %>%
+  mutate(raw = raw %>% trimws() %>% str_replace_all("“|”", "")) |>
   mutate(
-    ranking = str_extract(raw, film_regex, group = 1),
-    film = str_extract(raw, film_regex, group = 2),
+    film = str_extract(raw, film_regex, group = 1)
   ) %>%
-  select(film, ranking)
-forbes_ranking <- add_source(forbes_ranking, "Forbes")
+  mutate(
+    source = "MensHealth",
+    ranking = as.character(n() + 1 - seq_len(n()))
+  ) |>
+  select(source, film, ranking)
+
+
+## Time ranking ----
+# Last updated: 2025-06-26
+link <- "https://time.com/7296051/pixar-movies-ranked/"
+film_regex <- regex("^([0-9]{1,2}).[\n ]+([A-Za-z0-9-’',. ]+) ")
+time_ranking <- get_rankings_standard(link, film_regex)
+time_ranking <- add_source(time_ranking, "Time")
+
+
+## Esquire ranking ----
+# Last updated: 2026-06-22
+link <- "https://www.esquire.com/entertainment/movies/a71628133/pixar-movies-ranked/"
+film_regex <- regex("^([0-9]{1,2}).[\n ]+([A-Za-z0-9-’',. ]+) ")
+esquire_ranking <- get_rankings_standard(link, film_regex)
+esquire_ranking <- add_source(esquire_ranking, "Esquire")
+
+
+## Mashable ranking ----
+# Last updated: 2024-06-14
+link <- "https://mashable.com/article/pixar-movies-ranked"
+film_regex <- regex("^([0-9]{1,2}).[\n ]+([A-Za-z0-9-’',. ]+)")
+mashable_ranking <- get_rankings_standard(link, film_regex)
+mashable_ranking <- add_source(mashable_ranking, "Mashable")
 
 
 ## TEMP FOR TESTING IF A RANKING SCRAPE FAILS ----
@@ -1319,7 +1459,10 @@ pixar_rankings <-
     av_club_ranking,
     vulture_ranking,
     independent_ranking,
-    forbes_ranking
+    menshealth_ranking,
+    time_ranking,
+    esquire_ranking,
+    mashable_ranking
   ) %>%
   mutate(
     film = trimws(film),
@@ -1540,8 +1683,10 @@ save_data(box_office)
 save_data(public_response)
 save_data(academy)
 save_data(themes_vox)
+save_data(pixar_rankings)
 
 # Save out for package use as RDA files in `data/` directory
+# Run just use_data(DATASET) for one-off saves
 use_data(
   pixar_films,
   pixar_people,
