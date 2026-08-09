@@ -132,3 +132,18 @@ NULL
 #' @examples
 #' academy
 "academy"
+
+
+#' Themes in Pixar films by Vox
+#'
+#' A data set with the themes in Pixar films as described by Vox.
+#'
+#' @format A data frame with 124 rows and 2 columns:
+#' \describe{
+#'   \item{film}{name of film}
+#'   \item{theme}{theme in film}
+#' }
+#' @source \url{https://www.vox.com/2015/11/23/9780818/pixar-chart-movies-toy-story-anniversary}
+#' @examples
+#' themes_vox
+'themes_vox'

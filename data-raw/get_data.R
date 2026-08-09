@@ -846,6 +846,7 @@ academy %>%
 
 # Source:
 # https://www.vox.com/2015/11/23/9780818/pixar-chart-movies-toy-story-anniversary
+# https://web.archive.org/web/20260615081252/https://www.vox.com/2015/11/23/9780818/pixar-chart-movies-toy-story-anniversary
 # Other:
 # - https://screencraft.org/2015/12/01/pixar-screenwriting-themes/
 # - https://screencraft.org/2014/06/30/pixars-22-rules-storytelling-with-movie-stills/
@@ -1538,6 +1539,7 @@ save_data(genres)
 save_data(box_office)
 save_data(public_response)
 save_data(academy)
+save_data(themes_vox)
 
 # Save out for package use as RDA files in `data/` directory
 use_data(
@@ -1547,5 +1549,6 @@ use_data(
   box_office,
   public_response,
   academy,
+  themes_vox,
   overwrite = TRUE
 )
