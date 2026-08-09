@@ -691,10 +691,108 @@ public_response <-
     across(starts_with("imdb"), ~ as.numeric(.x))
   )
 
+# Letterboxd numbers
+letterboxd_audience <- tribble(
+  ~film                 , ~letterboxd_rating , ~letterboxd_counts , ~letterboxd_num_fans ,
+  "Toy Story"           , 4.1                ,            2663870 ,                17000 ,
+  # https://letterboxd.com/film/toy-story/
+
+  "A Bug's Life"        , 3.5                ,             843874 ,                 2400 ,
+  # https://letterboxd.com/film/a-bugs-life/
+
+  "Toy Story 2"         , 3.9                ,            1745885 ,                 8100 ,
+  # https://letterboxd.com/film/toy-story-2/
+
+  "Monsters, Inc."      , 4.1                ,            2494430 ,                15000 ,
+  # https://letterboxd.com/film/monsters-inc/
+
+  "Finding Nemo"        , 4.0                ,            2525019 ,                12000 ,
+  # https://letterboxd.com/film/finding-nemo/
+
+  "The Incredibles"     , 4.1                ,            2470115 ,                20000 ,
+  # https://letterboxd.com/film/the-incredibles/
+
+  "Cars"                , 3.9                ,            2018334 ,                54000 ,
+  # https://letterboxd.com/film/cars/
+
+  "Ratatouille"         , 4.2                ,            3904354 ,                82000 ,
+  # https://letterboxd.com/film/ratatouille/
+
+  "WALL-E"              , 4.2                ,            2841436 ,                52000 ,
+  # https://letterboxd.com/film/walle/
+
+  "Up"                  , 4.1                ,            3198987 ,                17000 ,
+  # https://letterboxd.com/film/up/
+
+  "Toy Story 3"         , 4.1                ,            1854227 ,                14000 ,
+  # https://letterboxd.com/film/toy-story-3/
+
+  "Cars 2"              , 3.2                ,            1066794 ,                14000 ,
+  # https://letterboxd.com/film/cars-2/
+
+  "Brave"               , 3.5                ,            1343083 ,                 6300 ,
+  # https://letterboxd.com/film/brave-2012/
+
+  "Monsters University" , 3.5                ,            1187027 ,                 5500 ,
+  # https://letterboxd.com/film/monsters-university/
+
+  "Inside Out"          , 3.8                ,            3345686 ,                13000 ,
+  # https://letterboxd.com/film/inside-out-2015/
+
+  "The Good Dinosaur"   , 3.0                ,             451150 ,                  956 ,
+  # https://letterboxd.com/film/the-good-dinosaur/
+
+  "Finding Dory"        , 3.3                ,            1143479 ,                  808 ,
+  # https://letterboxd.com/film/finding-dory/
+
+  "Cars 3"              , 3.1                ,             692272 ,                 2700 ,
+  # https://letterboxd.com/film/cars-3/
+
+  "Coco"                , 4.1                ,            3188686 ,                31000 ,
+  # https://letterboxd.com/film/coco-2017/
+
+  "Incredibles 2"       , 3.4                ,            1541325 ,                  754 ,
+  # https://letterboxd.com/film/incredibles-2/
+
+  "Toy Story 4"         , 3.3                ,            1399444 ,                  928 ,
+  # https://letterboxd.com/film/toy-story-4/
+
+  "Onward"              , 3.3                ,             684325 ,                  949 ,
+  # https://letterboxd.com/film/onward-2020/
+
+  "Soul"                , 3.9                ,            2551470 ,                38000 ,
+  # https://letterboxd.com/film/soul-2020/
+
+  "Luca"                , 3.7                ,            1499531 ,                 9800 ,
+  # https://letterboxd.com/film/luca-2021/
+
+  "Turning Red"         , 3.3                ,            1266320 ,                 2900 ,
+  # https://letterboxd.com/film/turning-red/
+
+  "Lightyear"           , 2.7                ,             443123 ,                  121 ,
+  # https://letterboxd.com/film/lightyear-2022/
+
+  "Elemental"           , 3.3                ,            1129806 ,                 4000 ,
+  # https://letterboxd.com/film/elemental-2023/
+
+  "Inside Out 2"        , 3.5                ,            2826134 ,                 3400 ,
+  # https://letterboxd.com/film/inside-out-2-2024/
+
+  "Elio"                , 3.3                ,             306231 ,                  309 ,
+  # https://letterboxd.com/film/elio/
+
+  "Hoppers"             , 3.7                ,             906693 ,                 1900 ,
+  # https://letterboxd.com/film/hoppers/
+
+  "Toy Story 5"         , 3.7                ,             922617 ,                  691
+  # https://letterboxd.com/film/toy-story-5/
+)
+
 # Join with Rotten Tomatoes audience meter
 public_response <-
   public_response %>%
-  left_join(rt_audience, by = "film")
+  left_join(rt_audience, by = "film") |>
+  left_join(letterboxd_audience, by = "film")
 
 
 # Manual quality checks, scores should be 0-100 or 0-10 and counts >0
