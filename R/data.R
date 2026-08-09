@@ -121,7 +121,7 @@ NULL
 #'   \item{letterboxd_rating}{score from Letterboxd where scores are weighted
 #'     average of reviews; scored out of 5}
 #'   \item{letterboxd_counts}{number of users contributing to Letterboxd score}
-#'   \item{letterboxd_fans}{number of users this film as one of their four
+#'   \item{letterboxd_num_fans}{number of users this film as one of their four
 #'     favorites on Letterboxd}
 #' }
 #' @source \url{https://en.wikipedia.org/wiki/List_of_Pixar_films}
