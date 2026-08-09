@@ -20,8 +20,12 @@ test_that("Pixar films head and tail", {
 
   # Wide data frames truncate large numbers in inconsistent ways
   expect_snapshot(first_last(box_office[, c("film", "budget")]))
-  box_office_cols <- c("film", "box_office_us_canada", "box_office_other",
-                       "box_office_worldwide")
+  box_office_cols <- c(
+    "film",
+    "box_office_us_canada",
+    "box_office_other",
+    "box_office_worldwide"
+  )
   expect_snapshot(first_last(box_office[, box_office_cols]))
 
   expect_snapshot(first_last(public_response))
