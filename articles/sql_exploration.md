@@ -83,8 +83,11 @@ DBI::dbGetQuery(conn = con, statement = query)
 #> 26     26           Lightyear        19160      105          PG
 #> 27     27           Elemental        19524      101          PG
 #> 28     28        Inside Out 2        19888       96          PG
+#> 29     29                Elio        20259       98          PG
+#> 30     30             Hoppers        20518      104          PG
+#> 31     31         Toy Story 5        20623      102          PG
 #>                                                                                                                                                                                                                                         plot
-#> 1                                                                                                          A cowboy doll is profoundly threatened and jealous when a new spaceman action figure supplants him as top toy in a boy's bedroom.
+#> 1    A cowboy doll is profoundly jealous when a new spaceman action figure supplants him as the top toy in a boy's bedroom. When circumstances separate them from their owner, the duo have to put aside their differences to return to him.
 #> 2                                                                                     A misfit ant, looking for "warriors" to save his colony from greedy grasshoppers, recruits a group of bugs that turn out to be an inept circus troupe.
 #> 3                                    When Woody is stolen by a toy collector, Buzz and his friends set out on a rescue mission to save Woody before he becomes a museum toy property with his roundup gang Jessie, Prospector, and Bullseye.
 #> 4                  In order to power the city, monsters have to scare children so that they scream. However, the children are toxic to the monsters, and after a child gets through, two monsters realize things may not be what they think.
@@ -98,20 +101,23 @@ DBI::dbGetQuery(conn = con, statement = query)
 #> 12 Star race car Lightning McQueen and his pal Mater head overseas to compete in the World Grand Prix race. But the road to the championship becomes rocky as Mater gets caught up in an intriguing adventure of his own: international e...
 #> 13                              Determined to make her own path in life, Princess Merida defies a custom that brings chaos to her kingdom. Granted one wish, Merida must rely on her bravery and her archery skills to undo a beastly curse.
 #> 14                                                               A look at the relationship between Mike Wazowski and James P. "Sully" Sullivan during their days at Monsters University, when they weren't necessarily the best of friends.
-#> 15                                    After young Riley is uprooted from her Midwest life and moved to San Francisco, her emotions - Joy, Fear, Anger, Disgust and Sadness - conflict on how best to navigate a new city, house, and school.
+#> 15                                     After young Riley is uprooted from her Midwest life and moved to San Francisco, her emotions, Joy, Fear, Anger, Disgust, and Sadness, conflict on how best to navigate a new city, house, and school.
 #> 16                                                                                                                        In a world where dinosaurs and humans live side-by-side, an Apatosaurus named Arlo makes an unlikely human friend.
 #> 17                                                                          Friendly but forgetful blue tang Dory begins a search for her long-lost parents and everyone learns a few things about the real meaning of family along the way.
 #> 18                                                                                                                         Lightning McQueen sets out to prove to a new generation of racers that he's still the best race car in the world.
 #> 19                                                                       Aspiring musician Miguel, confronted with his family's ancestral ban on music, enters the Land of the Dead to find his great-great-grandfather, a legendary singer.
 #> 20                                      The Incredibles family takes on a new mission which involves a change in family roles: Bob Parr (Mr. Incredible) must manage the house while his wife Helen (Elastigirl) goes out to save the world.
-#> 21                                                                                             When a new toy called "Forky" joins Woody and the gang, a road trip alongside old and new friends reveals how big the world can be for a toy.
+#> 21                                                                  When Woody, Buzz, and the gang join Bonnie on a road trip with her new craft project turned toy, Forky, the innocent little spork's antics launch Woody on a wild quest.
 #> 22        Teenage elf brothers Ian and Barley embark on a magical quest to spend one more day with their late father. Like any good adventure, their journey is filled with cryptic maps, impossible obstacles and unimaginable discoveries.
 #> 23    Joe is a middle-school band teacher whose life hasn't quite gone the way he expected. His true passion is jazz. But when he travels to another realm to help someone find their passion, he soon discovers what it means to have soul.
 #> 24                                                                                                             On the Italian Riviera, an unlikely but strong friendship grows between a human being and a sea monster disguised as a human.
-#> 25 A thirteen-year-old girl named Mei Lee is torn between staying her mother's dutiful daughter and the changes of adolescence. And as if the challenges were not enough, whenever she gets overly excited she transforms into a giant re...
-#> 26                                                 While spending years attempting to return home, marooned Space Ranger Buzz Lightyear encounters an army of ruthless robots commanded by Zurg who are attempting to steal his fuel source.
-#> 27                                                                                                                                            Follows Ember and Wade, in a city where fire-, water-, earth- and air-residents live together.
+#> 25 A thirteen-year-old girl named Mei Lee is torn between staying her mother's dutiful daughter and the changes of adolescence. And as if the challenges were not enough, whenever she gets overly excited Mei transforms into a giant re...
+#> 26                                     While spending years attempting to return home, marooned Space Ranger Buzz Lightyear encounters an army of ruthless robots commanded by Zurg who are attempting to steal the fuel source of his ship.
+#> 27                                                                                                                                                          Follow Ember and Wade, in a city where fire, water, earth and air live together.
 #> 28            A sequel that features Riley entering puberty and experiencing brand new, more complex emotions as a result. As Riley tries to adapt to her teenage years, her old emotions try to adapt to the possibility of being replaced.
+#> 29 Elio, a space fanatic with an active imagination, finds himself on a cosmic misadventure where he must form new bonds with alien lifeforms, navigate a crisis of intergalactic proportions and somehow discover who he is truly meant ...
+#> 30                                                                       A 19-year-old animal lover uses technology that places her consciousness into a robotic beaver to uncover mysteries within the animal world beyond her imagination.
+#> 31                                                                                                      Woody, Buzz, Jessie and the rest of the gang's jobs are challenged when they're introduced to electronics, a new threat to playtime.
 ```
 
 ## 

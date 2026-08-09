@@ -47,7 +47,7 @@ A data frame with 31 rows and 6 columns:
 
 ``` r
 pixar_films
-#> # A tibble: 28 × 6
+#> # A tibble: 31 × 6
 #>    number film            release_date run_time film_rating plot                
 #>     <int> <chr>           <date>          <dbl> <chr>       <chr>               
 #>  1      1 Toy Story       1995-11-22         81 G           "A cowboy doll is p…
@@ -60,5 +60,5 @@ pixar_films
 #>  8      8 Ratatouille     2007-06-29        111 G           "A rat who can cook…
 #>  9      9 WALL-E          2008-06-27         98 G           "A robot who is res…
 #> 10     10 Up              2009-05-29         96 PG          "78-year-old Carl F…
-#> # ℹ 18 more rows
+#> # ℹ 21 more rows
 ```

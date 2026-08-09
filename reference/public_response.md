@@ -86,7 +86,7 @@ A data frame with 31 rows and 17 columns:
 
   number of users contributing to Letterboxd score
 
-- letterboxd_fans:
+- letterboxd_num_fans:
 
   number of users this film as one of their four favorites on Letterboxd
 

@@ -163,17 +163,15 @@ interconnected tables together.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dm</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dm.cynkra.com/reference/dm_examine_cardinalities.html" class="external-link">dm_examine_cardinalities</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #000000;">•</span> FK: pixar_people$(`film`) -&gt; pixar_films$(`film`): surjective mapping (child: 1 to n -&gt; parent: 1)</span></span>
-<span><span class="co">#&gt; <span style="color: #000000;">•</span> FK: academy$(`film`) -&gt; pixar_films$(`film`): surjective mapping (child: 1 to n -&gt; parent: 1)</span></span>
-<span><span class="co">#&gt; <span style="color: #000000;">•</span> FK: box_office$(`film`) -&gt; pixar_films$(`film`): bijective mapping (child: 1 -&gt; parent: 1)</span></span>
-<span><span class="co">#&gt; <span style="color: #000000;">•</span> FK: genres$(`film`) -&gt; pixar_films$(`film`): surjective mapping (child: 1 to n -&gt; parent: 1)</span></span>
-<span><span class="co">#&gt; <span style="color: #BB0000;">•</span> FK: public_response$(`film`) -&gt; pixar_films$(`film`): Column (`film`) of table `public_response` not a subset of column (`film`) of table `pixar_films`.</span></span>
-<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> Not all FK constraints satisfied, call `dm_examine_constraints()` for details.</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #000000;">•</span> FK: pixar_people$(`film`) -&gt; pixar_films$(`film`): generic mapping (child: 0 to n -&gt; parent: 1)</span></span>
+<span><span class="co">#&gt; <span style="color: #000000;">•</span> FK: academy$(`film`) -&gt; pixar_films$(`film`): generic mapping (child: 0 to n -&gt; parent: 1)</span></span>
+<span><span class="co">#&gt; <span style="color: #000000;">•</span> FK: box_office$(`film`) -&gt; pixar_films$(`film`): injective mapping (child: 0 or 1 -&gt; parent: 1)</span></span>
+<span><span class="co">#&gt; <span style="color: #000000;">•</span> FK: genres$(`film`) -&gt; pixar_films$(`film`): generic mapping (child: 0 to n -&gt; parent: 1)</span></span>
+<span><span class="co">#&gt; <span style="color: #000000;">•</span> FK: public_response$(`film`) -&gt; pixar_films$(`film`): bijective mapping (child: 1 -&gt; parent: 1)</span></span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dm</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dm.cynkra.com/reference/dm_examine_constraints.html" class="external-link">dm_examine_constraints</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> Unsatisfied constraints:</span></span>
-<span><span class="co">#&gt; <span style="color: #BB0000;">•</span> Table `public_response`: foreign key `film` into table `pixar_films`: values of `public_response$film` not in `pixar_films$film`: Elio (1), Hoppers (1), Toy Story 5 (1)</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> All constraints satisfied.</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="system-information">System information<a class="anchor" aria-label="anchor" href="#system-information"></a>

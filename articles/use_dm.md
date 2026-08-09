@@ -88,20 +88,18 @@ dm
 
 dm %>%
   dm_examine_cardinalities()
-#> • FK: pixar_people$(`film`) -> pixar_films$(`film`): surjective mapping (child: 1 to n -> parent: 1)
-#> • FK: academy$(`film`) -> pixar_films$(`film`): surjective mapping (child: 1 to n -> parent: 1)
-#> • FK: box_office$(`film`) -> pixar_films$(`film`): bijective mapping (child: 1 -> parent: 1)
-#> • FK: genres$(`film`) -> pixar_films$(`film`): surjective mapping (child: 1 to n -> parent: 1)
-#> • FK: public_response$(`film`) -> pixar_films$(`film`): Column (`film`) of table `public_response` not a subset of column (`film`) of table `pixar_films`.
-#> ! Not all FK constraints satisfied, call `dm_examine_constraints()` for details.
+#> • FK: pixar_people$(`film`) -> pixar_films$(`film`): generic mapping (child: 0 to n -> parent: 1)
+#> • FK: academy$(`film`) -> pixar_films$(`film`): generic mapping (child: 0 to n -> parent: 1)
+#> • FK: box_office$(`film`) -> pixar_films$(`film`): injective mapping (child: 0 or 1 -> parent: 1)
+#> • FK: genres$(`film`) -> pixar_films$(`film`): generic mapping (child: 0 to n -> parent: 1)
+#> • FK: public_response$(`film`) -> pixar_films$(`film`): bijective mapping (child: 1 -> parent: 1)
 ```
 
 ``` r
 
 dm %>%
   dm_examine_constraints()
-#> ! Unsatisfied constraints:
-#> • Table `public_response`: foreign key `film` into table `pixar_films`: values of `public_response$film` not in `pixar_films$film`: Elio (1), Hoppers (1), Toy Story 5 (1)
+#> ℹ All constraints satisfied.
 ```
 
 ## System information
