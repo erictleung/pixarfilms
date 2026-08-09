@@ -1,29 +1,32 @@
-film,rotten_tomatoes_score,rotten_tomatoes_counts,metacritic_score,metacritic_counts,cinema_score,imdb_score,imdb_counts
-Toy Story,100,96,95,26,A,8.3,1089101
-A Bug's Life,92,91,78,23,A,7.2,319596
-Toy Story 2,100,172,88,34,A+,7.9,630573
-"Monsters, Inc.",96,199,79,35,A+,8.1,1000657
-Finding Nemo,99,270,90,38,A+,8.2,1132877
-The Incredibles,97,250,90,41,A+,8,828986
-Cars,75,204,73,39,A,7.2,484034
-Ratatouille,96,253,96,37,A,8.1,851229
-WALL-E,95,261,95,39,A,8.4,1226415
-Up,98,297,88,37,A+,8.3,1151249
-Toy Story 3,98,313,92,39,A,8.3,908222
-Cars 2,40,220,57,38,A-,6.2,225724
-Brave,79,256,69,37,A,7.1,452012
-Monsters University,80,203,65,41,A,7.2,398903
-Inside Out,98,387,94,55,A,8.1,834268
-The Good Dinosaur,75,220,66,37,A,6.7,130324
-Finding Dory,94,339,77,48,A,7.2,311793
-Cars 3,69,234,59,41,A,6.7,128849
-Coco,97,357,81,48,A+,8.4,618005
-Incredibles 2,93,390,80,51,A+,7.5,341353
-Toy Story 4,97,459,84,57,A,7.6,288783
-Onward,88,350,64,56,A-,7.4,174917
-Soul,95,360,83,55,NA,8,392783
-Luca,91,303,71,52,NA,7.4,202404
-Turning Red,95,289,83,52,NA,7,158649
-Lightyear,74,319,60,57,A-,6.1,127045
-Elemental,73,262,58,45,A,7,140174
-Inside Out 2,90,313,73,59,A,7.6,168090
+film,rotten_tomatoes_score,rotten_tomatoes_counts,metacritic_score,metacritic_counts,cinema_score,imdb_score,imdb_counts,rotten_tomatoes_score_top_critics,rotten_tomatoes_score_top_critics_votes,rotten_tomatoes_popcorn_meter_score,rotten_tomatoes_popcorn_meter_votes,rotten_tomatoes_popcorn_meter_verified,rotten_tomatoes_popcorn_meter_verified_votes
+Toy Story,100,163,96,26,A,8.3,1163069,100,55,92,250000,NA,NA
+A Bug's Life,92,90,78,23,A,7.2,334363,96,25,73,250000,NA,NA
+Toy Story 2,100,176,88,34,A+,7.9,663076,100,48,87,250000,NA,NA
+"Monsters, Inc.",96,191,79,35,A+,8.1,1072549,92,50,90,250000,NA,NA
+Finding Nemo,99,266,90,38,A+,8.2,1196544,99,67,86,250000,NA,NA
+The Incredibles,97,248,90,41,A+,8,891503,96,52,75,250000,NA,NA
+Cars,74,198,73,39,A,7.3,528959,73,51,80,250000,NA,NA
+Ratatouille,96,251,96,37,A,8.1,940588,98,61,87,250000,NA,NA
+WALL-E,95,258,95,39,A,8.4,1306354,97,65,90,250000,NA,NA
+Up,98,291,88,37,A+,8.3,1225827,97,69,90,250000,NA,NA
+Toy Story 3,98,312,94,39,A,8.3,961588,99,71,90,250000,NA,NA
+Cars 2,40,216,57,38,A-,6.2,251842,42,59,49,100000,NA,NA
+Brave,78,254,69,37,A,7.1,475578,69,62,75,250000,NA,NA
+Monsters University,80,200,65,41,A,7.2,421121,72,56,81,250000,NA,NA
+Inside Out,98,381,94,55,A,8.1,905131,99,86,89,100000,NA,NA
+The Good Dinosaur,76,219,66,37,A,6.7,138579,75,55,64,50000,NA,NA
+Finding Dory,94,340,77,48,A,7.2,331036,94,85,84,100000,NA,NA
+Cars 3,70,233,59,41,A,6.7,148184,64,55,68,25000,NA,NA
+Coco,97,358,81,48,A+,8.4,704092,95,78,94,25000,NA,NA
+Incredibles 2,93,384,80,51,A+,7.5,366471,88,86,84,10000,NA,NA
+Toy Story 4,96,461,84,57,A,7.6,310352,96,80,94,50000,94,50000
+Onward,88,346,61,56,A-,7.4,184850,78,60,95,5000,95,5000
+Soul,95,361,83,55,NA,8,441986,89,71,88,5000,NA,NA
+Luca,91,307,71,52,NA,7.4,222432,90,60,85,2500,NA,NA
+Turning Red,95,291,83,52,NA,6.9,171863,95,57,67,5000,NA,NA
+Lightyear,74,322,60,57,A-,6.1,134805,62,65,84,5000,84,5000
+Elemental,73,268,58,45,A,7,163663,63,57,93,2500,93,2500
+Inside Out 2,91,329,73,59,A,7.5,245290,89,66,94,10000,94,10000
+Elio,83,229,66,40,A,6.6,45380,82,45,89,2500,89,2500
+Hoppers,94,225,73,46,A,7.4,37622,94,48,93,5000,93,5000
+Toy Story 5,92,317,73,54,A,7.5,40356,85,59,94,10000,94,10000
