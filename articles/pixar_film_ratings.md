@@ -121,15 +121,15 @@ public_response %>%
 #>    Model: twoway 
 #>    Type : consistency 
 #> 
-#>    Subjects = 28 
-#>      Raters = 3 
-#>    ICC(C,1) = 0.449
+#>    Subjects = 8 
+#>      Raters = 11 
+#>    ICC(C,1) = 0.0971
 #> 
 #>  F-Test, H0: r0 = 0 ; H1: r0 > 0 
-#>    F(27,54) = 3.45 , p = 5.35e-05 
+#>     F(7,70) = 2.18 , p = 0.0461 
 #> 
 #>  95%-Confidence Interval for ICC Population Values:
-#>   0.219 < ICC < 0.665
+#>   -0.011 < ICC < 0.429
 ```
 
 **Verdict**: with a null hypothesis that all critic groups are not

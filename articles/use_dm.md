@@ -79,7 +79,7 @@ dm <-
 dm
 #> ── Metadata ────────────────────────────────────────────────────────────────────
 #> Tables: `pixar_films`, `pixar_people`, `academy`, `box_office`, `genres`, `public_response`
-#> Columns: 28
+#> Columns: 37
 #> Primary keys: 5
 #> Foreign keys: 5
 ```
@@ -92,14 +92,16 @@ dm %>%
 #> • FK: academy$(`film`) -> pixar_films$(`film`): surjective mapping (child: 1 to n -> parent: 1)
 #> • FK: box_office$(`film`) -> pixar_films$(`film`): bijective mapping (child: 1 -> parent: 1)
 #> • FK: genres$(`film`) -> pixar_films$(`film`): surjective mapping (child: 1 to n -> parent: 1)
-#> • FK: public_response$(`film`) -> pixar_films$(`film`): bijective mapping (child: 1 -> parent: 1)
+#> • FK: public_response$(`film`) -> pixar_films$(`film`): Column (`film`) of table `public_response` not a subset of column (`film`) of table `pixar_films`.
+#> ! Not all FK constraints satisfied, call `dm_examine_constraints()` for details.
 ```
 
 ``` r
 
 dm %>%
   dm_examine_constraints()
-#> ℹ All constraints satisfied.
+#> ! Unsatisfied constraints:
+#> • Table `public_response`: foreign key `film` into table `pixar_films`: values of `public_response$film` not in `pixar_films$film`: Elio (1), Hoppers (1), Toy Story 5 (1)
 ```
 
 ## System information
