@@ -1483,6 +1483,9 @@ pixar_rankings <-
 
 # Create franchise data ---------------------------------------------------
 
+# Only some Pixar films are part of a franchise, so this is a mapping of which
+# films belong to which franchise.
+
 pixar_franchises <-
   tribble(
     ~film                 , ~franchise        ,
@@ -1501,7 +1504,8 @@ pixar_franchises <-
     "Incredibles 2"       , "The Incredibles" ,
     "Toy Story 4"         , "Toy Story"       ,
     "Lightyear"           , "Toy Story"       ,
-    "Inside Out 2"        , "Inside Out"
+    "Inside Out 2"        , "Inside Out"      ,
+    "Toy Story 5"         , "Toy Story"
   )
 
 
@@ -1684,6 +1688,7 @@ save_data(public_response)
 save_data(academy)
 save_data(themes_vox)
 save_data(pixar_rankings)
+save_data(pixar_franchises)
 
 # Save out for package use as RDA files in `data/` directory
 # Run just use_data(DATASET) for one-off saves

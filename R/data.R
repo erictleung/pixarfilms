@@ -186,3 +186,22 @@ NULL
 #' @examples
 #' pixar_rankings
 'pixar_rankings'
+
+
+#' Pixar film franchises
+#'
+#' A data set with the Pixar films that are part of a franchise and the name of
+#' the franchise.
+#'
+#' Note, not all Pixar films are part of a franchise. For example, "A Bug's
+#' Life" is not part of a franchise, but "Toy Story 2" is part of the "Toy Story"
+#' franchise.
+#'
+#' @format A data frame with 17 rows and 2 columns:
+#' \describe{
+#'   \item{film}{name of film}
+#'   \item{franchise}{name of franchise the film is part of}
+#' }
+#' @examples
+#' pixar_franchises
+'pixar_franchises'
