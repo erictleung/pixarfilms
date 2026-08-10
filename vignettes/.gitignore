@@ -2,3 +2,5 @@
 
 /.quarto/
 **/*.quarto_ipynb
+
+*.png
