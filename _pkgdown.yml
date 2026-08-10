@@ -23,3 +23,22 @@ reference:
     - academy
     - pixar_rankings
     - themes_vox
+
+articles:
+- title: Basics
+  navbar: Basics
+  contents:
+  - pixar_film_ratings
+
+- title: Explorations
+  navbar: Explorations
+  contents:
+  - multidimensional_success_of_pixar_films
+  - pixar_rankings
+
+- title: Developer
+  navbar: Developer
+  contents:
+  - manually_load
+  - use_dm
+  - sql_exploration

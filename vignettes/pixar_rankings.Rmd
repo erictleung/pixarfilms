@@ -17,6 +17,7 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(pixarfilms)
 library(ggplot2)
+library(dplyr)
 library(forcats)
 library(gghighlight)
 ```
