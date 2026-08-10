@@ -2,12 +2,13 @@ pandoc: 3.8.3
 pkgdown: 2.2.1
 pkgdown_sha: ~
 articles:
-  maunally_load: maunally_load.html
+  manually_load: manually_load.html
   multidimensional_success_of_pixar_films: multidimensional_success_of_pixar_films.html
   pixar_film_ratings: pixar_film_ratings.html
+  pixar_rankings: pixar_rankings.html
   sql_exploration: sql_exploration.html
   use_dm: use_dm.html
-last_built: 2026-08-10T01:14Z
+last_built: 2026-08-10T04:48Z
 urls:
   reference: https://erictleung.com/pixarfilms, https://github.com/erictleung/pixarfilms/reference
   article: https://erictleung.com/pixarfilms, https://github.com/erictleung/pixarfilms/articles

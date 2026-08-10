@@ -43,11 +43,18 @@
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="articles/maunally_load.html">Manually Load pixarfilms Data</a></li>
-    <li><a class="dropdown-item" href="articles/multidimensional_success_of_pixar_films.html">The Multidimensional Success of Pixar Films Visualized</a></li>
+<li><hr class="dropdown-divider"></li>
+    <li><h6 class="dropdown-header" data-toc-skip>Basics</h6></li>
     <li><a class="dropdown-item" href="articles/pixar_film_ratings.html">Pixar Film Ratings</a></li>
-    <li><a class="dropdown-item" href="articles/sql_exploration.html">SQL Tutorial and Exploration</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><h6 class="dropdown-header" data-toc-skip>Explorations</h6></li>
+    <li><a class="dropdown-item" href="articles/multidimensional_success_of_pixar_films.html">The Multidimensional Success of Pixar Films Visualized</a></li>
+    <li><a class="dropdown-item" href="articles/pixar_rankings.html">Exploration of Pixar Films Rankings</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><h6 class="dropdown-header" data-toc-skip>Developer</h6></li>
+    <li><a class="dropdown-item" href="articles/manually_load.html">Manually Load pixarfilms Data</a></li>
     <li><a class="dropdown-item" href="articles/use_dm.html">Using pixarfilms with dm</a></li>
+    <li><a class="dropdown-item" href="articles/sql_exploration.html">SQL Tutorial and Exploration</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="news/index.html">Changelog</a></li>
@@ -105,7 +112,7 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/erictleung/pixarfilms" class="external-link">pixarfilms</a></span><span class="op">)</span></span>
 <span><span class="va">pixar_films</span></span>
-<span><span class="co">#&gt; # A tibble: 28 × 6</span></span>
+<span><span class="co">#&gt; # A tibble: 31 × 6</span></span>
 <span><span class="co">#&gt;    number film            release_date run_time film_rating plot                </span></span>
 <span><span class="co">#&gt;     &lt;int&gt; &lt;chr&gt;           &lt;date&gt;          &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;               </span></span>
 <span><span class="co">#&gt;  1      1 Toy Story       1995-11-22         81 G           "A cowboy doll is p…</span></span>
@@ -118,7 +125,7 @@
 <span><span class="co">#&gt;  8      8 Ratatouille     2007-06-29        111 G           "A rat who can cook…</span></span>
 <span><span class="co">#&gt;  9      9 WALL-E          2008-06-27         98 G           "A robot who is res…</span></span>
 <span><span class="co">#&gt; 10     10 Up              2009-05-29         96 PG          "78-year-old Carl F…</span></span>
-<span><span class="co">#&gt; # ℹ 18 more rows</span></span></code></pre></div>
+<span><span class="co">#&gt; # ℹ 21 more rows</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="documentation">Documentation<a class="anchor" aria-label="anchor" href="#documentation"></a>
