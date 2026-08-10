@@ -1,19 +1,33 @@
+# Data
 ^data-raw$
-^LICENSE\.md$
-^_pkgdown\.yml$
-^docs$
-^pkgdown$
+
+# Package files
 ^README\.Rmd$
-^.*\.Rproj$
-^\.Rproj\.user$
-^cran-comments\.md$
-^\.github$
-^CRAN-RELEASE$
-config.txt
-^doc$
-^Meta$
+^LICENSE\.md$
 ^CODE_OF_CONDUCT\.md$
 ^CONTRIBUTING\.md$
-^revdep$
 ^CITATION.cff
+
+# pkgdown files
+^_pkgdown\.yml$
+^pkgdown$
+^docs$
+^doc$
+
+# RStudio files
+^.*\.Rproj$
+^\.Rproj\.user$
+
+# CRAN files
+^cran-comments\.md$
+^CRAN-RELEASE$
+
+# Testing
 pixarfilms*
+^revdep$
+
+# Misc
+^\.github$
+config.txt
+^Meta$
+^.vscode
