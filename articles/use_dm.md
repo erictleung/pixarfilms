@@ -88,10 +88,10 @@ dm
 
 dm %>%
   dm_examine_cardinalities()
-#> • FK: pixar_people$(`film`) -> pixar_films$(`film`): generic mapping (child: 0 to n -> parent: 1)
+#> • FK: pixar_people$(`film`) -> pixar_films$(`film`): surjective mapping (child: 1 to n -> parent: 1)
 #> • FK: academy$(`film`) -> pixar_films$(`film`): generic mapping (child: 0 to n -> parent: 1)
-#> • FK: box_office$(`film`) -> pixar_films$(`film`): injective mapping (child: 0 or 1 -> parent: 1)
-#> • FK: genres$(`film`) -> pixar_films$(`film`): generic mapping (child: 0 to n -> parent: 1)
+#> • FK: box_office$(`film`) -> pixar_films$(`film`): bijective mapping (child: 1 -> parent: 1)
+#> • FK: genres$(`film`) -> pixar_films$(`film`): surjective mapping (child: 1 to n -> parent: 1)
 #> • FK: public_response$(`film`) -> pixar_films$(`film`): bijective mapping (child: 1 -> parent: 1)
 ```
 

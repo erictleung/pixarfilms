@@ -39,7 +39,7 @@ subgenres.
 
 ``` r
 genres
-#> # A tibble: 204 × 3
+#> # A tibble: 228 × 3
 #>    film         category value               
 #>    <chr>        <chr>    <chr>               
 #>  1 Toy Story    Genre    Adventure           
@@ -52,5 +52,5 @@ genres
 #>  8 Toy Story    Subgenre Urban Adventure     
 #>  9 A Bug's Life Genre    Adventure           
 #> 10 A Bug's Life Genre    Animation           
-#> # ℹ 194 more rows
+#> # ℹ 218 more rows
 ```

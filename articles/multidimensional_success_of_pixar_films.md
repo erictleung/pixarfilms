@@ -41,7 +41,7 @@ pixar_films %>%
   left_join(academy) # %>% 
 #> Joining with `by = join_by(film)`
 #> Joining with `by = join_by(film)`
-#> # A tibble: 91 × 24
+#> # A tibble: 93 × 24
 #>    number film     release_date run_time film_rating plot  rotten_tomatoes_score
 #>     <int> <chr>    <date>          <dbl> <chr>       <chr>                 <dbl>
 #>  1      1 Toy Sto… 1995-11-22         81 G           "A c…                   100
@@ -54,7 +54,7 @@ pixar_films %>%
 #>  8      2 A Bug's… 1998-11-25         95 G           "A m…                    92
 #>  9      2 A Bug's… 1998-11-25         95 G           "A m…                    92
 #> 10      3 Toy Sto… 1999-11-24         92 G           "Whe…                   100
-#> # ℹ 81 more rows
+#> # ℹ 83 more rows
 #> # ℹ 17 more variables: rotten_tomatoes_counts <dbl>, metacritic_score <dbl>,
 #> #   metacritic_counts <dbl>, cinema_score <chr>, imdb_score <dbl>,
 #> #   imdb_counts <dbl>, rotten_tomatoes_score_top_critics <dbl>,

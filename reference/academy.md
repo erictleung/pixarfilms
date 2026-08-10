@@ -41,7 +41,7 @@ film.
 
 ``` r
 academy
-#> # A tibble: 88 × 3
+#> # A tibble: 91 × 3
 #>    film         award_type          status                  
 #>    <chr>        <chr>               <chr>                   
 #>  1 Toy Story    Animated Feature    Award not yet introduced
@@ -54,5 +54,5 @@ academy
 #>  8 A Bug's Life Adapted Screenplay  Ineligible              
 #>  9 A Bug's Life Original Score      Nominated               
 #> 10 Toy Story 2  Animated Feature    Award not yet introduced
-#> # ℹ 78 more rows
+#> # ℹ 81 more rows
 ```

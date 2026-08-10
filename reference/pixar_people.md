@@ -39,18 +39,18 @@ example, Toy Story has four screenwriters.
 
 ``` r
 pixar_people
-#> # A tibble: 260 × 3
+#> # A tibble: 286 × 3
 #>    film      role_type    name            
 #>    <chr>     <chr>        <chr>           
 #>  1 Toy Story Director     John Lasseter   
 #>  2 Toy Story Musician     Randy Newman    
 #>  3 Toy Story Producer     Bonnie Arnold   
 #>  4 Toy Story Producer     Ralph Guggenheim
-#>  5 Toy Story Screenwriter Joel Cohen      
-#>  6 Toy Story Screenwriter Alec Sokolow    
-#>  7 Toy Story Screenwriter Andrew Stanton  
-#>  8 Toy Story Screenwriter Joss Whedon     
-#>  9 Toy Story Storywriter  Pete Docter     
-#> 10 Toy Story Storywriter  John Lasseter   
-#> # ℹ 250 more rows
+#>  5 Toy Story Screenwriter Joss Whedon     
+#>  6 Toy Story Screenwriter Andrew Stanton  
+#>  7 Toy Story Screenwriter Joel Cohen      
+#>  8 Toy Story Screenwriter Alec Sokolow    
+#>  9 Toy Story Storywriter  John Lasseter   
+#> 10 Toy Story Storywriter  Pete Docter     
+#> # ℹ 276 more rows
 ```
