@@ -1,0 +1,104 @@
+---
+title: "Manually Load pixarfilms Data"
+description: |
+  Shows how to load pixarfilms data in R and Python.
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Manually Load pixarfilms Data}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Overview
+
+This vignette here demonstrates how to manually load data without using the
+{pixarfilms} package if you wish to explore and analyze this data elsewhere.
+
+
+
+
+## Loading within R
+
+If for some reason, you don't wish to install the package officially, you can
+also access the data by reading the data directly from GitHub using {readr}.
+
+
+``` r
+library(readr)
+
+url <- "https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/pixar_films.csv"
+pixar_films <- read_csv(url)
+#> Rows: 31 Columns: 6
+#> ── Column specification ─────────────────────────────────────────────────────────────────────────────────────────────────────
+#> Delimiter: ","
+#> chr  (3): film, film_rating, plot
+#> dbl  (2): number, run_time
+#> date (1): release_date
+#> 
+#> ℹ Use `spec()` to retrieve the full column specification for this data.
+#> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+```
+
+
+``` r
+pixar_films
+#> # A tibble: 31 × 6
+#>    number film                release_date run_time film_rating plot                                                         
+#>     <dbl> <chr>               <date>          <dbl> <chr>       <chr>                                                        
+#>  1      1 Toy Story           1995-11-22         81 G           "A cowboy doll is profoundly jealous when a new spaceman act…
+#>  2      2 A Bug's Life        1998-11-25         95 G           "A misfit ant, looking for \"warriors\" to save his colony f…
+#>  3      3 Toy Story 2         1999-11-24         92 G           "When Woody is stolen by a toy collector, Buzz and his frien…
+#>  4      4 Monsters, Inc.      2001-11-02         92 G           "In order to power the city, monsters have to scare children…
+#>  5      5 Finding Nemo        2003-05-30        100 G           "After his son is captured in the Great Barrier Reef and tak…
+#>  6      6 The Incredibles     2004-11-05        115 PG          "While trying to lead a quiet suburban life, a family of und…
+#>  7      7 Cars                2006-06-09        116 G           "On the way to the biggest race of his life, a hotshot rooki…
+#>  8      8 Ratatouille         2007-06-29        111 G           "A rat who can cook makes an unusual alliance with a young k…
+#>  9      9 WALL-E              2008-06-27         98 G           "A robot who is responsible for cleaning a waste-covered Ear…
+#> 10     10 Up                  2009-05-29         96 PG          "78-year-old Carl Fredricksen travels to South America in hi…
+#> 11     11 Toy Story 3         2010-06-18        103 G           "The toys are mistakenly delivered to a day-care center inst…
+#> 12     12 Cars 2              2011-06-24        106 G           "Star race car Lightning McQueen and his pal Mater head over…
+#> 13     13 Brave               2012-06-22         93 PG          "Determined to make her own path in life, Princess Merida de…
+#> 14     14 Monsters University 2013-06-21        104 G           "A look at the relationship between Mike Wazowski and James …
+#> 15     15 Inside Out          2015-06-19         95 PG          "After young Riley is uprooted from her Midwest life and mov…
+#> 16     16 The Good Dinosaur   2015-11-25         93 PG          "In a world where dinosaurs and humans live side-by-side, an…
+#> 17     17 Finding Dory        2016-06-17         97 PG          "Friendly but forgetful blue tang Dory begins a search for h…
+#> 18     18 Cars 3              2017-06-16        102 G           "Lightning McQueen sets out to prove to a new generation of …
+#> 19     19 Coco                2017-11-22        105 PG          "Aspiring musician Miguel, confronted with his family's ance…
+#> 20     20 Incredibles 2       2018-06-15        118 PG          "The Incredibles family takes on a new mission which involve…
+#> # ℹ 11 more rows
+```
+
+
+## Loading within Python and pandas
+
+Similarly, you can read the data directly
+
+
+``` python
+import pandas as pd
+#> ModuleNotFoundError: No module named 'pandas'
+
+url = "https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/pixar_films.csv"
+pixar_films = pd.read_csv(url)
+#> NameError: name 'pd' is not defined
+```
+
+
+``` python
+pixar_films.head()
+#> NameError: name 'pixar_films' is not defined
+```
+
+
+## Data links
+
+Here are the URL links you can use using the above methods.
+
+```
+https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/academy.csv
+https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/box_office.csv
+https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/genres.csv
+https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/pixar_films.csv
+https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/pixar_people.csv
+https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/public_response.csv
+```
