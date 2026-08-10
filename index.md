@@ -75,12 +75,6 @@ https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/pixar_peop
 https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/public_response.csv
 ```
 
-There’s also a `datapackage.json` file (located at
-`/data-raw/datapackage.json`) to be a computer-readable data dictionary
-describing the contents of each data file as described in [the data
-package
-specifications](https://specs.frictionlessdata.io/data-package/).
-
 Below is some code to import the data into Python.
 
 ``` python
