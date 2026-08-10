@@ -1397,6 +1397,26 @@ menshealth_ranking <-
     film = str_extract(raw, film_regex, group = 1)
   ) %>%
   mutate(
+    film = case_when(
+      str_detect(raw, "^WALL") ~ "WALL-E",
+      TRUE ~ film
+    )
+  ) |>
+  filter(raw != "Readers Also Read") |>
+  select(film) |>
+  bind_rows(
+    data.frame(
+      film = c(
+        "Toy Story",
+        "Coco",
+        "Inside Out",
+        "Up",
+        "Soul",
+        "Toy Story 3"
+      )
+    )
+  ) |>
+  mutate(
     source = "MensHealth",
     ranking = as.character(n() + 1 - seq_len(n()))
   ) |>
@@ -1700,5 +1720,7 @@ use_data(
   public_response,
   academy,
   themes_vox,
+  pixar_rankings,
+  pixar_franchises,
   overwrite = TRUE
 )
