@@ -5,6 +5,7 @@ docs/
 /Meta/
 CRAN-RELEASE
 inst/doc
+pixarfilms*
 
 # pkgdown files
 pkgdown/

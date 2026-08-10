@@ -16,3 +16,4 @@ config.txt
 ^CONTRIBUTING\.md$
 ^revdep$
 ^CITATION.cff
+pixarfilms*
