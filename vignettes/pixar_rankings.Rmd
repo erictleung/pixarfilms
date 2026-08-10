@@ -67,7 +67,7 @@ summary_ranks <-
 print(summary_ranks)
 ```
 
-We can see that `r head(low_sd_ranks$film)` have the lowest variance in their rankings. We can highlight these films in the boxplot above to see how they compare to the other films.
+We can see that `r head(summary_ranks$film)` have the lowest variance in their rankings. We can highlight these films in the boxplot above to see how they compare to the other films.
 
 ```{r}
 pixar_rankings |>
