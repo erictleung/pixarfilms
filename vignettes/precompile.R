@@ -5,8 +5,8 @@
 library(knitr)
 
 knit(
-  "vignettes/pixar_film_ratings.Rmd.orig",
-  "vignettes/pixar_film_ratings.Rmd"
+  "vignettes/manually_load.Rmd.orig",
+  "vignettes/manually_load.Rmd"
 )
 
 fs::dir_copy("figure", "vignettes/figure", overwrite = TRUE)
