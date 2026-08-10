@@ -70,7 +70,7 @@ The sources include these websites:
 
 ``` r
 pixar_rankings
-#> # A tibble: 521 × 3
+#> # A tibble: 526 × 3
 #>    film            source          ranking
 #>    <chr>           <chr>             <dbl>
 #>  1 Toy Story 2     Rotten Tomatoes       1
@@ -83,5 +83,5 @@ pixar_rankings
 #>  8 Coco            Rotten Tomatoes       8
 #>  9 The Incredibles Rotten Tomatoes       9
 #> 10 Ratatouille     Rotten Tomatoes      10
-#> # ℹ 511 more rows
+#> # ℹ 516 more rows
 ```

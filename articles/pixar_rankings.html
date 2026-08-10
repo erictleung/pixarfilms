@@ -143,23 +143,24 @@ each film to see which films have the lowest variance.</p>
 <span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">sd</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">summary_ranks</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 32 × 7</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 31 × 7</span></span></span>
 <span><span class="co">#&gt;    film             sd    q1    q3   iqr lower_bound upper_bound</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> Toy Story      1.99  2      4    2          -<span style="color: #BB0000;">1</span>            7  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> <span style="color: #BB0000;">NA</span>             2.83  2      4    2          -<span style="color: #BB0000;">1</span>            7  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> Inside Out     2.97  4.25   8    3.75       -<span style="color: #BB0000;">1.38</span>        13.6</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> Finding Nemo   3.02  3      8    5          -<span style="color: #BB0000;">4.5</span>         15.5</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> Luca           3.20 14.8   19.5  4.75        7.62        26.6</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> Cars 2         3.30 24     29    5          16.5         36.5</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> Incredibles 2  3.39 15.2   20    4.75        8.12        27.1</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> Toy Story 3    3.49  4      6    2           1            9  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> Coco           3.66  7     11    4           1           17  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> Ratatouille    3.78  4     10.5  6.5        -<span style="color: #BB0000;">5.75</span>        20.2</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 22 more rows</span></span></span></code></pre></div>
-<p>We can see that Toy Story, NA, Inside Out, Finding Nemo, Luca, Cars 2
-have the lowest variance in their rankings. We can highlight these films
-in the boxplot above to see how they compare to the other films.</p>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> Toy Story      2.04   2     4    2          -<span style="color: #BB0000;">1</span>           7   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> Finding Nemo   2.93   4     8    4          -<span style="color: #BB0000;">2</span>          14   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> Inside Out     2.95   4     8    4          -<span style="color: #BB0000;">2</span>          14   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> Luca           2.96  15.8  19.5  3.75       10.1        25.1 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> Cars 2         3.02  25    29    4          19          35   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> Incredibles 2  3.42  16    20    4          10          26   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> Toy Story 3    3.58   3.5   6    2.5        -<span style="color: #BB0000;">0.25</span>        9.75</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> Cars 3         3.63  23    28    5          15.5        35.5 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> Coco           3.69   6.5  11    4.5        -<span style="color: #BB0000;">0.25</span>       17.8 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> Ratatouille    3.72   4    10.5  6.5        -<span style="color: #BB0000;">5.75</span>       20.2 </span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 21 more rows</span></span></span></code></pre></div>
+<p>We can see that Toy Story, Finding Nemo, Inside Out, Luca, Cars 2,
+Incredibles 2 have the lowest variance in their rankings. We can
+highlight these films in the boxplot above to see how they compare to
+the other films.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pixar_rankings</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>film <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_reorder.html" class="external-link">fct_reorder</a></span><span class="op">(</span><span class="va">film</span>, <span class="va">ranking</span>, .fun <span class="op">=</span> <span class="va">median</span>, .desc <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -186,10 +187,10 @@ in the boxplot above to see how they compare to the other films.</p>
 <span><span class="co">#   width = 8,</span></span>
 <span><span class="co">#   height = 5</span></span>
 <span><span class="co"># )</span></span></code></pre></div>
-<p>We can also see that Toy Story, NA, Toy Story 3, Inside Out, Coco
-have the smallest IQR ranges in their rankings. We can highlight these
-films in the boxplot above to see how they compare to the other
-films.</p>
+<p>We can also see that Toy Story, Toy Story 3, Turning Red, Luca, The
+Incredibles have the smallest IQR ranges in their rankings. We can
+highlight these films in the boxplot above to see how they compare to
+the other films.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pixar_rankings</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>film <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_reorder.html" class="external-link">fct_reorder</a></span><span class="op">(</span><span class="va">film</span>, <span class="va">ranking</span>, .fun <span class="op">=</span> <span class="va">median</span>, .desc <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -217,7 +218,7 @@ films.</p>
 <span><span class="co">#   height = 5</span></span>
 <span><span class="co"># )</span></span></code></pre></div>
 <p>Now let’s highlight the highest variation in rankings. We can see
-that Soul, Elemental, Cars, A Bug’s Life, Toy Story 4 have the highest
+that Soul, Elemental, Toy Story 5, Toy Story 4, WALL-E have the highest
 variance in their rankings. We can highlight these films in the boxplot
 above to see how they compare to the other films.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
