@@ -19,6 +19,7 @@ pkgdown/
 *.RData
 .Ruserdata
 *.png
+README.html
 
 # Ignore configuration and secrets
 config.txt
