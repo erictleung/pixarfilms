@@ -1222,7 +1222,7 @@ screenrant_ranking <-
     "Onward"              , "22"     , "ScreenRant" ,
     "Luca"                , "21"     , "ScreenRant" ,
     "A Bug's Life"        , "20"     , "ScreenRant" ,
-    "The Incredibles"     , "19"     , "ScreenRant" ,
+    "Incredibles 2"       , "19"     , "ScreenRant" ,
     "Brave"               , "18"     , "ScreenRant" ,
     "Hoppers"             , "17"     , "ScreenRant" ,
     "Soul"                , "16"     , "ScreenRant" ,
