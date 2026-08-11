@@ -71,25 +71,25 @@ summary_ranks <-
   arrange(sd)
 print(summary_ranks)
 #> # A tibble: 31 × 7
-#>    film             sd    q1    q3   iqr lower_bound upper_bound
-#>    <chr>         <dbl> <dbl> <dbl> <dbl>       <dbl>       <dbl>
-#>  1 Toy Story      2.04   2     4    2          -1           7   
-#>  2 Finding Nemo   2.93   4     8    4          -2          14   
-#>  3 Inside Out     2.95   4     8    4          -2          14   
-#>  4 Luca           2.96  15.8  19.5  3.75       10.1        25.1 
-#>  5 Cars 2         3.02  25    29    4          19          35   
-#>  6 Incredibles 2  3.42  16    20    4          10          26   
-#>  7 Toy Story 3    3.58   3.5   6    2.5        -0.25        9.75
-#>  8 Cars 3         3.63  23    28    5          15.5        35.5 
-#>  9 Coco           3.69   6.5  11    4.5        -0.25       17.8 
-#> 10 Ratatouille    3.72   4    10.5  6.5        -5.75       20.2 
+#>    film               sd    q1    q3   iqr lower_bound upper_bound
+#>    <chr>           <dbl> <dbl> <dbl> <dbl>       <dbl>       <dbl>
+#>  1 Toy Story        2.04   2     4    2          -1           7   
+#>  2 Finding Nemo     2.93   4     8    4          -2          14   
+#>  3 Inside Out       2.95   4     8    4          -2          14   
+#>  4 Luca             2.96  15.8  19.5  3.75       10.1        25.1 
+#>  5 Cars 2           3.02  25    29    4          19          35   
+#>  6 The Incredibles  3.04   3.5   7    3.5        -1.75       12.2 
+#>  7 Incredibles 2    3.34  16    20    4          10          26   
+#>  8 Toy Story 3      3.58   3.5   6    2.5        -0.25        9.75
+#>  9 Cars 3           3.63  23    28    5          15.5        35.5 
+#> 10 Coco             3.69   6.5  11    4.5        -0.25       17.8 
 #> # ℹ 21 more rows
 ```
 
-We can see that Toy Story, Finding Nemo, Inside Out, Luca, Cars 2,
-Incredibles 2 have the lowest variance in their rankings. We can
-highlight these films in the boxplot above to see how they compare to
-the other films.
+We can see that Toy Story, Finding Nemo, Inside Out, Luca, Cars 2, The
+Incredibles have the lowest variance in their rankings. We can highlight
+these films in the boxplot above to see how they compare to the other
+films.
 
 ``` r
 
@@ -124,8 +124,8 @@ pixar_rankings |>
 # )
 ```
 
-We can also see that Toy Story, Toy Story 3, Turning Red, Luca, The
-Incredibles have the smallest IQR ranges in their rankings. We can
+We can also see that Toy Story, Toy Story 3, Turning Red, The
+Incredibles, Luca have the smallest IQR ranges in their rankings. We can
 highlight these films in the boxplot above to see how they compare to
 the other films.
 
