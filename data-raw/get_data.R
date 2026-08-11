@@ -1605,6 +1605,17 @@ y_irv <- irv_method(vote)
 y_irv$other_info
 
 
+# By box office
+box_office |>
+  select(film, box_office_worldwide) |>
+  arrange(desc(box_office_worldwide))
+
+# By median ranking
+pixar_rankings |>
+  group_by(film) |>
+  summarize(med_rank = median(ranking)) |>
+  arrange(med_rank)
+
 # Tropes ------------------------------------------------------------------
 
 parse_tropes <- function(x) {
