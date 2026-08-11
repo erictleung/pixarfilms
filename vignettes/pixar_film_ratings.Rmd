@@ -43,18 +43,24 @@ later on.
 ```{r}
 df <-
   public_response %>%
-  select(-cinema_score, -ends_with("counts")) %>%
-  mutate(imdb_score = imdb_score * 10) %>%
+  select(-cinema_score, -ends_with("counts"), -ends_with("votes"), -letterboxd_num_fans) %>%
+  mutate(
+    imdb_score = imdb_score * 10,
+    letterboxd_rating = letterboxd_rating * 20
+  ) %>%
   mutate(film = fct_inorder(film)) %>%
-  pivot_longer(cols = c("rotten_tomatoes_score", "metacritic_score", "imdb_score"),
+  pivot_longer(cols = -film,
                names_to = "ratings",
                values_to = "value") %>%
   mutate(ratings = case_when(
     ratings == "imdb_score" ~ "IMDb (Scaled)",
     ratings == "rotten_tomatoes_score" ~ "Rotten Tomatoes",
-    ratings == "metacritic_score" ~ "Metacritic"
-  )) %>%
-  drop_na()
+    ratings == "metacritic_score" ~ "Metacritic",
+    ratings == "rotten_tomatoes_score_top_critics" ~ "Rotten Tomatoes Top Critics",
+    ratings == "rotten_tomatoes_popcorn_meter_score" ~ "Rotten Tomatoes Popcornmeter",
+    ratings == "rotten_tomatoes_popcorn_meter_verified" ~ "Rotten Tomatoes Popcornmeter (Verified)",
+    ratings == "letterboxd_rating" ~ "Letterboxd Rating (Scaled)"
+  ))
 ```
 
 
@@ -76,6 +82,24 @@ df %>%
         legend.position = "bottom") 
 ```
 
+We can even facet the plots to see these patterns separately.
+
+```{r pixar_ratings_overview_facet, fig.height=5, fig.width=6}
+df %>%
+  ggplot(aes(x = film, y = value, col = ratings)) +
+  geom_point() +
+  geom_line(aes(group = ratings)) +
+  scale_color_brewer(palette = "Dark2") +
+  labs(x = "Pixar film", y = "Rating value") +
+  guides(col = guide_legend(title = "Ratings")) +
+  theme_minimal() +
+  scale_y_continuous(limits = c(0, 100)) +
+  theme(
+    axis.text.x = element_text(angle = 90, vjust = 0.5),
+    legend.position = "bottom"
+  ) +
+  facet_wrap(~ ratings, ncol = 2)
+```
 
 **Verdict**: people and critics generally agree that Cars 2 was not as good as
 the other Pixar films.
@@ -101,9 +125,9 @@ df %>%
   labs(x = "Rating group", y = "Rating value") +
   ylim(c(0, 100)) +
   theme_minimal() +
-  theme(legend.position = "bottom") 
+  theme(legend.position = "bottom") +
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 10))
 ```
-
 
 **Verdict**: people at Rotten Tomatoes generally like Pixar films more than
 Metacritic and IMDb. The exception to this is Cars 2, which is consistently
@@ -118,13 +142,12 @@ among the different critic groups.
 
 ```{r}
 public_response %>%
-  select(-c(film, cinema_score), -ends_with("counts")) %>%
-  drop_na() %>%
+  select(-c(film, cinema_score, letterboxd_num_fans), -ends_with("counts"), -ends_with("votes")) %>%
   icc(model = "twoway", type = "consistency")
 ```
 
 **Verdict**: with a null hypothesis that all critic groups are not consistent,
-for the 28 Pixar films we have data for all critic groups, all groups are
+for the 31 Pixar films we have data for all critic groups, all groups are
 consistent in rating Pixar films (p < 0.001).
 
 
