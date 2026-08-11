@@ -26,7 +26,7 @@ Suggests:
     dplyr,
     forcats,
     ggbeeswarm,
-    gghighlight
+    gghighlight,
     ggplot2,
     ggrepel,
     irr,
@@ -38,9 +38,9 @@ Suggests:
     rmarkdown,
     RSQLite,
     spelling,
-    stringr
+    stringr,
     testthat (>= 3.0.0),
-    tidyr,
+    tidyr
 VignetteBuilder: 
     knitr
 Config/testthat/edition: 3
