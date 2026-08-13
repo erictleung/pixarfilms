@@ -108,6 +108,10 @@ public_response = pd.read_csv("https://raw.githubusercontent.com/erictleung/pixa
 themes_vox = pd.read_csv("https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/themes_vox.csv")
 ```
 
+You can also immediately explore the data using
+[here](https://pixarfilms-datasette.vercel.app/) using SQL, thanks to
+[Datasette](https://datasette.io/).
+
 ## Feedback
 
 If you have any feedback or suggestions on other data that can be added,
