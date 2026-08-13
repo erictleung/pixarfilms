@@ -19,8 +19,10 @@ Badge](https://img.shields.io/badge/project%20type-toy-blue)](https://project-ty
 
 > R data package to explore Pixar films, the people, and reception data
 
-This package contains six data sets provided mostly in part by
+This package contains nine data sets provided mostly in part by
 [Wikipedia](https://en.wikipedia.org/wiki/List_of_Pixar_films).
+
+Here area a few of them:
 
 - `pixar_films` - released and upcoming films
 - `pixar_people` - main people involved in creating films
@@ -84,8 +86,11 @@ Here are direct links to each data set.
     https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/box_office.csv
     https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/genres.csv
     https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/pixar_films.csv
+    https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/pixar_franchises.csv
     https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/pixar_people.csv
+    https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/pixar_rankings.csv
     https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/public_response.csv
+    https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/themes_vox.csv
 
 Below is some code to import the data into Python.
 
@@ -96,8 +101,11 @@ pixar_films = pd.read_csv("https://raw.githubusercontent.com/erictleung/pixarfil
 academy = pd.read_csv("https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/academy.csv")
 box_office = pd.read_csv("https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/box_office.csv")
 genres = pd.read_csv("https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/genres.csv")
+pixar_franchises = pd.read_csv("https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/pixar_franchises.csv")
 pixar_people = pd.read_csv("https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/pixar_people.csv")
+pixar_rankings = pd.read_csv("https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/pixar_rankings.csv")
 public_response = pd.read_csv("https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/public_response.csv")
+themes_vox = pd.read_csv("https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/themes_vox.csv")
 ```
 
 ## Feedback
@@ -118,3 +126,5 @@ By contributing to this project, you agree to abide by its terms.
 - [Wikipedia](https://www.wikipedia.org)
 - [OMDb API](https://www.omdbapi.com/)
 - [babynames](https://github.com/hadley/babynames) (for inspiration)
+- [The Numbers](https://www.the-numbers.com/)
+- [Box Office Mojo](https://www.boxofficemojo.com/)
