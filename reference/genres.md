@@ -53,4 +53,26 @@ genres
 #>  9 A Bug's Life Genre    Adventure           
 #> 10 A Bug's Life Genre    Animation           
 #> # ℹ 218 more rows
+unique(genres$value)
+#>  [1] "Adventure"               "Animation"              
+#>  [3] "Comedy"                  "Buddy Comedy"           
+#>  [5] "Computer Animation"      "Fantasy"                
+#>  [7] "Supernatural Fantasy"    "Urban Adventure"        
+#>  [9] "Animal Adventure"        "Quest"                  
+#> [11] "Sea Adventure"           "Action"                 
+#> [13] "Superhero"               "Motorsport"             
+#> [15] "Sport"                   "Family"                 
+#> [17] "Adventure Epic"          "Artificial Intelligence"
+#> [19] "Dystopian Sci-Fi"        "Sci-Fi"                 
+#> [21] "Space Sci-Fi"            "Coming-of-Age"          
+#> [23] "Globetrotting Adventure" "Car Action"             
+#> [25] "Crime"                   "Spy"                    
+#> [27] "Fairy Tale"              "Sword & Sorcery"        
+#> [29] "Teen Adventure"          "Dinosaur Adventure"     
+#> [31] "Drama"                   "Music"                  
+#> [33] "Mystery"                 "Road Trip"              
+#> [35] "Fantasy Epic"            "Teen Comedy"            
+#> [37] "Time Travel"             "Romance"                
+#> [39] "Teen Drama"              "Alien Invasion"         
+#> [41] "Body Swap Comedy"        "High-Concept Comedy"    
 ```

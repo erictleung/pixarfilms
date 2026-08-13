@@ -2,6 +2,15 @@
 
 This outlines how to propose a change to pixarfilms.
 
+*Contents*
+
+- [Updating README.{md/Rmd}](#updating-readmemdrmd)
+- [Fixing typos](#fixing-typos)
+- [New data](#new-data)
+- [New vignette](#new-vignette)
+- [Out of date information](#out-of-date-information)
+- [Code of conduct](#code-of-conduct)
+
 ## Updating README.{md/Rmd}
 
 The README.md file is generated from the README.Rmd file. So any changes

@@ -61,4 +61,10 @@ pixar_films
 #>  9      9 WALL-E          2008-06-27         98 G           "A robot who is res…
 #> 10     10 Up              2009-05-29         96 PG          "78-year-old Carl F…
 #> # ℹ 21 more rows
+mean(pixar_films$run_time)
+#> [1] 100.4839
+table(pixar_films$film_rating)
+#> 
+#>  G PG 
+#> 13 18 
 ```

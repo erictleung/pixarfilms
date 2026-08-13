@@ -81,7 +81,8 @@
 <blockquote>
 <p>R data package to explore Pixar films, the people, and reception data</p>
 </blockquote>
-<p>This package contains six data sets provided mostly in part by <a href="https://en.wikipedia.org/wiki/List_of_Pixar_films" class="external-link">Wikipedia</a>.</p>
+<p>This package contains nine data sets provided mostly in part by <a href="https://en.wikipedia.org/wiki/List_of_Pixar_films" class="external-link">Wikipedia</a>.</p>
+<p>Here area a few of them:</p>
 <ul>
 <li>
 <code>pixar_films</code> - released and upcoming films</li>
@@ -141,8 +142,11 @@
 <span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>https<span class="sc">:</span><span class="er">//</span>raw.githubusercontent.com<span class="sc">/</span>erictleung<span class="sc">/</span>pixarfilms<span class="sc">/</span>main<span class="sc">/</span>data<span class="sc">-</span>raw<span class="sc">/</span>box_office.csv</span>
 <span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>https<span class="sc">:</span><span class="er">//</span>raw.githubusercontent.com<span class="sc">/</span>erictleung<span class="sc">/</span>pixarfilms<span class="sc">/</span>main<span class="sc">/</span>data<span class="sc">-</span>raw<span class="sc">/</span>genres.csv</span>
 <span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>https<span class="sc">:</span><span class="er">//</span>raw.githubusercontent.com<span class="sc">/</span>erictleung<span class="sc">/</span>pixarfilms<span class="sc">/</span>main<span class="sc">/</span>data<span class="sc">-</span>raw<span class="sc">/</span>pixar_films.csv</span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>https<span class="sc">:</span><span class="er">//</span>raw.githubusercontent.com<span class="sc">/</span>erictleung<span class="sc">/</span>pixarfilms<span class="sc">/</span>main<span class="sc">/</span>data<span class="sc">-</span>raw<span class="sc">/</span>pixar_people.csv</span>
-<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>https<span class="sc">:</span><span class="er">//</span>raw.githubusercontent.com<span class="sc">/</span>erictleung<span class="sc">/</span>pixarfilms<span class="sc">/</span>main<span class="sc">/</span>data<span class="sc">-</span>raw<span class="sc">/</span>public_response.csv</span></code></pre></div>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>https<span class="sc">:</span><span class="er">//</span>raw.githubusercontent.com<span class="sc">/</span>erictleung<span class="sc">/</span>pixarfilms<span class="sc">/</span>main<span class="sc">/</span>data<span class="sc">-</span>raw<span class="sc">/</span>pixar_franchises.csv</span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>https<span class="sc">:</span><span class="er">//</span>raw.githubusercontent.com<span class="sc">/</span>erictleung<span class="sc">/</span>pixarfilms<span class="sc">/</span>main<span class="sc">/</span>data<span class="sc">-</span>raw<span class="sc">/</span>pixar_people.csv</span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>https<span class="sc">:</span><span class="er">//</span>raw.githubusercontent.com<span class="sc">/</span>erictleung<span class="sc">/</span>pixarfilms<span class="sc">/</span>main<span class="sc">/</span>data<span class="sc">-</span>raw<span class="sc">/</span>pixar_rankings.csv</span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>https<span class="sc">:</span><span class="er">//</span>raw.githubusercontent.com<span class="sc">/</span>erictleung<span class="sc">/</span>pixarfilms<span class="sc">/</span>main<span class="sc">/</span>data<span class="sc">-</span>raw<span class="sc">/</span>public_response.csv</span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a>https<span class="sc">:</span><span class="er">//</span>raw.githubusercontent.com<span class="sc">/</span>erictleung<span class="sc">/</span>pixarfilms<span class="sc">/</span>main<span class="sc">/</span>data<span class="sc">-</span>raw<span class="sc">/</span>themes_vox.csv</span></code></pre></div>
 <p>Below is some code to import the data into Python.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a></span>
@@ -150,8 +154,12 @@
 <span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>academy <span class="op">=</span> pd.read_csv(<span class="st">"https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/academy.csv"</span>)</span>
 <span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>box_office <span class="op">=</span> pd.read_csv(<span class="st">"https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/box_office.csv"</span>)</span>
 <span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>genres <span class="op">=</span> pd.read_csv(<span class="st">"https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/genres.csv"</span>)</span>
-<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>pixar_people <span class="op">=</span> pd.read_csv(<span class="st">"https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/pixar_people.csv"</span>)</span>
-<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>public_response <span class="op">=</span> pd.read_csv(<span class="st">"https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/public_response.csv"</span>)</span></code></pre></div>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>pixar_franchises <span class="op">=</span> pd.read_csv(<span class="st">"https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/pixar_franchises.csv"</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>pixar_people <span class="op">=</span> pd.read_csv(<span class="st">"https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/pixar_people.csv"</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a>pixar_rankings <span class="op">=</span> pd.read_csv(<span class="st">"https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/pixar_rankings.csv"</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a>public_response <span class="op">=</span> pd.read_csv(<span class="st">"https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/public_response.csv"</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a>themes_vox <span class="op">=</span> pd.read_csv(<span class="st">"https://raw.githubusercontent.com/erictleung/pixarfilms/main/data-raw/themes_vox.csv"</span>)</span></code></pre></div>
+<p>You can also immediately explore the data using <a href="https://pixarfilms-datasette.vercel.app/" class="external-link">here</a> using SQL, thanks to <a href="https://datasette.io/" class="external-link">Datasette</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="feedback">Feedback<a class="anchor" aria-label="anchor" href="#feedback"></a>
@@ -171,6 +179,8 @@
 <li><a href="https://www.omdbapi.com/" class="external-link">OMDb API</a></li>
 <li>
 <a href="https://github.com/hadley/babynames" class="external-link">babynames</a> (for inspiration)</li>
+<li><a href="https://www.the-numbers.com/" class="external-link">The Numbers</a></li>
+<li><a href="https://www.boxofficemojo.com/" class="external-link">Box Office Mojo</a></li>
 </ul>
 </div>
 </div>

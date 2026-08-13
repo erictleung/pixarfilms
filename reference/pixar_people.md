@@ -53,4 +53,7 @@ pixar_people
 #>  9 Toy Story Storywriter  John Lasseter   
 #> 10 Toy Story Storywriter  Pete Docter     
 #> # ℹ 276 more rows
+unique(pixar_people$role_type)
+#> [1] "Director"     "Musician"     "Producer"     "Screenwriter" "Storywriter" 
+#> [6] "Co-director" 
 ```

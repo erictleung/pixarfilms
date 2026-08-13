@@ -36,6 +36,11 @@ A data frame with 24 rows and 5 variables:
 
 <https://en.wikipedia.org/wiki/List_of_Pixar_films>
 
+## Details
+
+Note: box office numbers are not adjusted for inflation, unless
+specified.
+
 ## Examples
 
 ``` r
