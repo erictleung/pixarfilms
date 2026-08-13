@@ -9,6 +9,7 @@ This outlines how to propose a change to pixarfilms.
 - [New data](#new-data)
 - [New vignette](#new-vignette)
 - [Out of date information](#out-of-date-information)
+- [Development checks](#development-checks)
 - [Code of conduct](#code-of-conduct)
 
 ## Updating README.{md/Rmd}
