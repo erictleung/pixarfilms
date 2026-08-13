@@ -20,6 +20,8 @@ NULL
 #' @source \url{https://www.omdbapi.com}
 #' @examples
 #' pixar_films
+#' mean(pixar_films$run_time)
+#' table(pixar_films$film_rating)
 "pixar_films"
 
 
@@ -41,6 +43,7 @@ NULL
 #' @source \url{https://en.wikipedia.org/wiki/List_of_Pixar_films}
 #' @examples
 #' pixar_people
+#' unique(pixar_people$role_type)
 "pixar_people"
 
 
@@ -61,12 +64,15 @@ NULL
 #' @source \url{https://www.omdbapi.com/}
 #' @examples
 #' genres
+#' unique(genres$value)
 "genres"
 
 
 #' Box office reception numbers
 #'
 #' A data set with financial and box office gross numbers for each film.
+#'
+#' Note: box office numbers are not adjusted for inflation, unless specified.
 #'
 #' @format A data frame with 24 rows and 5 variables:
 #' \describe{

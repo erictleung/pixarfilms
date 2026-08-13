@@ -28,5 +28,6 @@ categorized into three genres. Moreover, Toy Story has five subgenres.
 }
 \examples{
 genres
+unique(genres$value)
 }
 \keyword{datasets}

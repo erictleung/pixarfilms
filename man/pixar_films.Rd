@@ -29,5 +29,7 @@ A data set containing Pixar films, their release order, and release date.
 }
 \examples{
 pixar_films
+mean(pixar_films$run_time)
+table(pixar_films$film_rating)
 }
 \keyword{datasets}

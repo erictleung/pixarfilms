@@ -29,5 +29,6 @@ Story has four screenwriters.
 }
 \examples{
 pixar_people
+unique(pixar_people$role_type)
 }
 \keyword{datasets}

@@ -26,6 +26,9 @@ box_office
 \description{
 A data set with financial and box office gross numbers for each film.
 }
+\details{
+Note: box office numbers are not adjusted for inflation, unless specified.
+}
 \examples{
 box_office
 }
