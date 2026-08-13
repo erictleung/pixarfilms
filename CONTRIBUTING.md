@@ -10,6 +10,7 @@ This outlines how to propose a change to pixarfilms.
 - [New vignette](#new-vignette)
 - [Out of date information](#out-of-date-information)
 - [Development checks](#development-checks)
+- [Versioning](#versioning)
 - [Code of conduct](#code-of-conduct)
 
 ## Updating README.{md/Rmd}
@@ -68,6 +69,20 @@ devtools::check()
 ```
 
 If anything fails, please address them before making additional changes.
+
+## Versioning
+
+Package development here subscribes to semantic versioning, as described
+[here](https://semver.org/).
+
+Given a version number MAJOR.MINOR.PATCH, increment the:
+
+- MAJOR version when you make incompatible API changes, like changing a
+  column name or removing data
+- MINOR version when you add functionality in a backward compatible
+  manner, like adding new data to existing data
+- PATCH version when you make backward compatible bug fixes, like typos
+  or other
 
 ## Code of Conduct
 
