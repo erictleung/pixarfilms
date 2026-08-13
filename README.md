@@ -22,7 +22,7 @@ Badge](https://img.shields.io/badge/project%20type-toy-blue)](https://project-ty
 This package contains nine data sets provided mostly in part by
 [Wikipedia](https://en.wikipedia.org/wiki/List_of_Pixar_films).
 
-Here area a few of them:
+Here are a few of them:
 
 - `pixar_films` - released and upcoming films
 - `pixar_people` - main people involved in creating films
