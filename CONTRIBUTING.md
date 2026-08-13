@@ -9,6 +9,7 @@ This outlines how to propose a change to pixarfilms.
 - [New data](#new-data)
 - [New vignette](#new-vignette)
 - [Out of date information](#out-of-date-information)
+- [Development checks](#development-checks)
 - [Code of conduct](#code-of-conduct)
 
 ## Updating README.{md/Rmd}
@@ -51,6 +52,22 @@ otherwise if this is brought up.
 It the manual data entry information is out-of-date or incorrect, feel
 free to make those edits and please make a comment within the script
 with your source of update so that we can verify it.
+
+## Development checks
+
+Before pushing changes, please run the following within R and make sure
+they pass.
+
+``` r
+
+# Update documentation and commit any changes
+devtools::document()
+
+# Check package
+devtools::check()
+```
+
+If anything fails, please address them before making additional changes.
 
 ## Code of Conduct
 

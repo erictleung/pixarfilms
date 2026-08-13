@@ -61,6 +61,7 @@
 <li><a href="#new-data">New data</a></li>
 <li><a href="#new-vignette">New vignette</a></li>
 <li><a href="#out-of-date-information">Out of date information</a></li>
+<li><a href="#development-checks">Development checks</a></li>
 <li><a href="#code-of-conduct">Code of conduct</a></li>
 </ul><div class="section level2">
 <h2 id="updating-readmemdrmd">Updating README.{md/Rmd}<a class="anchor" aria-label="anchor" href="#updating-readmemdrmd"></a></h2>
@@ -85,6 +86,17 @@
 <p>The data within this package is scraped or manually entered from websites like Wikipedia. Take a look at the scripts in <code>data-raw/*.R</code> to see how the data was collected.</p>
 <p>If it was from Wikipedia or other open resources, feel free to edit Wikipedia itself (when appropriate) to update the data. You are welcome to run the data gathering script yourself, but I will personally run it otherwise if this is brought up.</p>
 <p>It the manual data entry information is out-of-date or incorrect, feel free to make those edits and please make a comment within the script with your source of update so that we can verify it.</p>
+</div>
+<div class="section level2">
+<h2 id="development-checks">Development checks<a class="anchor" aria-label="anchor" href="#development-checks"></a></h2>
+<p>Before pushing changes, please run the following within R and make sure they pass.</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Update documentation and commit any changes</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">document</span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Check package</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">check</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>If anything fails, please address them before making additional changes.</p>
 </div>
 <div class="section level2">
 <h2 id="code-of-conduct">Code of Conduct<a class="anchor" aria-label="anchor" href="#code-of-conduct"></a></h2>
