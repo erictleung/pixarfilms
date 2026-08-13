@@ -5,7 +5,6 @@
 # - Public response
 # - Academy awards
 
-
 # Load libraries
 library(rvest)
 library(dplyr)
@@ -31,12 +30,34 @@ message("Done!")
 # Extract and save tables
 message("Saving raw tables to staging database pixar_staging.db...")
 banner_offset <- 0 # Adjust if Wikipedia adds banners
-dbWriteTable(con, "raw_wiki_films", tbls[[1 + banner_offset]] |> clean_names(), overwrite = TRUE)
-dbWriteTable(con, "raw_wiki_box_office", tbls[[3 + banner_offset]] |> clean_names(), overwrite = TRUE)
-dbWriteTable(con, "raw_wiki_public_response", tbls[[4 + banner_offset]] |> clean_names(), overwrite = TRUE)
-dbWriteTable(con, "raw_wiki_academy", tbls[[5 + banner_offset]] |> clean_names(), overwrite = TRUE)
+dbWriteTable(
+  con,
+  "raw_wiki_films",
+  tbls[[1 + banner_offset]] |> clean_names(),
+  overwrite = TRUE
+)
+dbWriteTable(
+  con,
+  "raw_wiki_box_office",
+  tbls[[3 + banner_offset]] |> clean_names(),
+  overwrite = TRUE
+)
+dbWriteTable(
+  con,
+  "raw_wiki_public_response",
+  tbls[[4 + banner_offset]] |> clean_names(),
+  overwrite = TRUE
+)
+dbWriteTable(
+  con,
+  "raw_wiki_academy",
+  tbls[[5 + banner_offset]] |> clean_names(),
+  overwrite = TRUE
+)
 message("Success! Tables written to staging database.")
-message("Wrote films, box office, public response, and academy response datasets.")
+message(
+  "Wrote films, box office, public response, and academy response datasets."
+)
 
 
 # Clean up
