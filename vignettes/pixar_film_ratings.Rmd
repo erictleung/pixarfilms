@@ -43,16 +43,16 @@ later on.
 
 ```{r}
 df <-
-  public_response %>%
-  select(-cinema_score, -ends_with("counts"), -ends_with("votes"), -letterboxd_num_fans) %>%
+  public_response|>
+  select(-cinema_score, -ends_with("counts"), -ends_with("votes"), -letterboxd_num_fans) |>
   mutate(
     imdb_score = imdb_score * 10,
     letterboxd_rating = letterboxd_rating * 20
-  ) %>%
-  mutate(film = fct_inorder(film)) %>%
+  ) |>
+  mutate(film = fct_inorder(film)) |>
   pivot_longer(cols = -film,
                names_to = "ratings",
-               values_to = "value") %>%
+               values_to = "value") |>
   mutate(ratings = case_when(
     ratings == "imdb_score" ~ "IMDb (Scaled)",
     ratings == "rotten_tomatoes_score" ~ "Rotten Tomatoes",
@@ -69,24 +69,9 @@ df <-
 
 Their first plot was comparing the Pixar films' ratings over time.
 
-```{r pixar_ratings_overview, fig.height=5, fig.width=6}
-df %>%
-  ggplot(aes(x = film, y = value, col = ratings)) +
-  geom_point() +
-  geom_line(aes(group = ratings)) +
-  scale_color_brewer(palette = "Dark2") +
-  labs(x = "Pixar film", y = "Rating value") +
-  guides(col = guide_legend(title = "Ratings")) +
-  theme_minimal() +
-  scale_y_continuous(limits = c(0, 100)) +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5),
-        legend.position = "bottom") 
-```
-
-We can even facet the plots to see these patterns separately.
-
-```{r pixar_ratings_overview_facet, fig.height=5, fig.width=6}
-df %>%
+```{r pixar_ratings_overview, fig.height=8, fig.width=4}
+df |>
+  na.omit() |>
   ggplot(aes(x = film, y = value, col = ratings)) +
   geom_point() +
   geom_line(aes(group = ratings)) +
@@ -97,7 +82,30 @@ df %>%
   scale_y_continuous(limits = c(0, 100)) +
   theme(
     axis.text.x = element_text(angle = 90, vjust = 0.5),
-    legend.position = "bottom"
+    legend.position = "bottom",
+    legend.title = element_text(size = 3),
+    legend.text = element_text(size = 3)
+  )
+```
+
+We can even facet the plots to see these patterns separately.
+
+```{r pixar_ratings_overview_facet, fig.height=8, fig.width=4}
+df |>
+  na.omit() |>
+  ggplot(aes(x = film, y = value, col = ratings)) +
+  geom_point() +
+  geom_line(aes(group = ratings)) +
+  scale_color_brewer(palette = "Dark2") +
+  labs(x = "Pixar film", y = "Rating value") +
+  guides(col = guide_legend(title = "Ratings")) +
+  theme_minimal() +
+  scale_y_continuous(limits = c(0, 100)) +
+  theme(
+    axis.text.x = element_text(angle = 90, vjust = 0.5),
+    legend.position = "bottom",
+    legend.title = element_text(size = 3),
+    legend.text = element_text(size = 3)
   ) +
   facet_wrap(~ ratings, ncol = 2)
 ```
@@ -110,13 +118,14 @@ the other Pixar films.
 
 Next, let's group the rating categories to see if there is a consistency across.
 
-```{r pixar_ratings_group, fig.height=6, fig.width=5}
-df %>%
+```{r pixar_ratings_group, fig.height=8, fig.width=4}
+df |>
+  na.omit() |>
   ggplot(aes(x = ratings, y = value, col = ratings)) +
   geom_boxplot(width = 1.75 / length(unique(df$ratings))) +
   ggbeeswarm::geom_beeswarm() +
   ggrepel::geom_label_repel(
-    data = . %>% filter(film == "Cars 2" ),
+    data = df |> na.omit() |> filter(film == "Cars 2" ),
     aes(label = film),
     point.padding = 0.5,
     nudge_x = 0.1
@@ -126,7 +135,11 @@ df %>%
   labs(x = "Rating group", y = "Rating value") +
   ylim(c(0, 100)) +
   theme_minimal() +
-  theme(legend.position = "bottom") +
+  theme(
+    legend.position = "bottom", 
+    legend.title = element_text(size = 3),
+    legend.text = element_text(size = 3)
+  ) +
   scale_x_discrete(labels = function(x) str_wrap(x, width = 10))
 ```
 
@@ -142,8 +155,12 @@ Are the groups statistically consistent? Let's perform
 among the different critic groups.
 
 ```{r}
-public_response %>%
-  select(-c(film, cinema_score, letterboxd_num_fans), -ends_with("counts"), -ends_with("votes")) %>%
+public_response |>
+  select(
+    -c(film, cinema_score, letterboxd_num_fans),
+    -ends_with("counts"),
+    -ends_with("votes")
+  ) |>
   icc(model = "twoway", type = "consistency")
 ```
 
@@ -157,4 +174,3 @@ consistent in rating Pixar films (p < 0.001).
 ```{r}
 sessionInfo()
 ```
-
