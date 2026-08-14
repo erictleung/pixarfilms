@@ -35,16 +35,16 @@ visualize it later on.
 ``` r
 
 df <-
-  public_response %>%
-  select(-cinema_score, -ends_with("counts"), -ends_with("votes"), -letterboxd_num_fans) %>%
+  public_response|>
+  select(-cinema_score, -ends_with("counts"), -ends_with("votes"), -letterboxd_num_fans) |>
   mutate(
     imdb_score = imdb_score * 10,
     letterboxd_rating = letterboxd_rating * 20
-  ) %>%
-  mutate(film = fct_inorder(film)) %>%
+  ) |>
+  mutate(film = fct_inorder(film)) |>
   pivot_longer(cols = -film,
                names_to = "ratings",
-               values_to = "value") %>%
+               values_to = "value") |>
   mutate(ratings = case_when(
     ratings == "imdb_score" ~ "IMDb (Scaled)",
     ratings == "rotten_tomatoes_score" ~ "Rotten Tomatoes",
@@ -62,30 +62,8 @@ Their first plot was comparing the Pixar films’ ratings over time.
 
 ``` r
 
-df %>%
-  ggplot(aes(x = film, y = value, col = ratings)) +
-  geom_point() +
-  geom_line(aes(group = ratings)) +
-  scale_color_brewer(palette = "Dark2") +
-  labs(x = "Pixar film", y = "Rating value") +
-  guides(col = guide_legend(title = "Ratings")) +
-  theme_minimal() +
-  scale_y_continuous(limits = c(0, 100)) +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5),
-        legend.position = "bottom") 
-#> Warning: Removed 23 rows containing missing values or values outside the scale range
-#> (`geom_point()`).
-#> Warning: Removed 20 rows containing missing values or values outside the scale range
-#> (`geom_line()`).
-```
-
-![](pixar_film_ratings_files/figure-html/pixar_ratings_overview-1.png)
-
-We can even facet the plots to see these patterns separately.
-
-``` r
-
-df %>%
+df |>
+  na.omit() |>
   ggplot(aes(x = film, y = value, col = ratings)) +
   geom_point() +
   geom_line(aes(group = ratings)) +
@@ -96,13 +74,35 @@ df %>%
   scale_y_continuous(limits = c(0, 100)) +
   theme(
     axis.text.x = element_text(angle = 90, vjust = 0.5),
-    legend.position = "bottom"
+    legend.position = "bottom",
+    legend.title = element_text(size = 3),
+    legend.text = element_text(size = 3)
+  )
+```
+
+![](pixar_film_ratings_files/figure-html/pixar_ratings_overview-1.png)
+
+We can even facet the plots to see these patterns separately.
+
+``` r
+
+df |>
+  na.omit() |>
+  ggplot(aes(x = film, y = value, col = ratings)) +
+  geom_point() +
+  geom_line(aes(group = ratings)) +
+  scale_color_brewer(palette = "Dark2") +
+  labs(x = "Pixar film", y = "Rating value") +
+  guides(col = guide_legend(title = "Ratings")) +
+  theme_minimal() +
+  scale_y_continuous(limits = c(0, 100)) +
+  theme(
+    axis.text.x = element_text(angle = 90, vjust = 0.5),
+    legend.position = "bottom",
+    legend.title = element_text(size = 3),
+    legend.text = element_text(size = 3)
   ) +
   facet_wrap(~ ratings, ncol = 2)
-#> Warning: Removed 23 rows containing missing values or values outside the scale range
-#> (`geom_point()`).
-#> Warning: Removed 20 rows containing missing values or values outside the scale range
-#> (`geom_line()`).
 ```
 
 ![](pixar_film_ratings_files/figure-html/pixar_ratings_overview_facet-1.png)
@@ -117,12 +117,13 @@ across.
 
 ``` r
 
-df %>%
+df |>
+  na.omit() |>
   ggplot(aes(x = ratings, y = value, col = ratings)) +
   geom_boxplot(width = 1.75 / length(unique(df$ratings))) +
   ggbeeswarm::geom_beeswarm() +
   ggrepel::geom_label_repel(
-    data = . %>% filter(film == "Cars 2" ),
+    data = df |> na.omit() |> filter(film == "Cars 2" ),
     aes(label = film),
     point.padding = 0.5,
     nudge_x = 0.1
@@ -132,14 +133,12 @@ df %>%
   labs(x = "Rating group", y = "Rating value") +
   ylim(c(0, 100)) +
   theme_minimal() +
-  theme(legend.position = "bottom") +
+  theme(
+    legend.position = "bottom", 
+    legend.title = element_text(size = 3),
+    legend.text = element_text(size = 3)
+  ) +
   scale_x_discrete(labels = function(x) str_wrap(x, width = 10))
-#> Warning: Removed 23 rows containing non-finite outside the scale range
-#> (`stat_boxplot()`).
-#> Warning: Removed 23 rows containing missing values or values outside the scale range
-#> (`geom_point()`).
-#> Warning: Removed 1 row containing missing values or values outside the scale range
-#> (`geom_label_repel()`).
 ```
 
 ![](pixar_film_ratings_files/figure-html/pixar_ratings_group-1.png)
@@ -156,8 +155,12 @@ the different critic groups.
 
 ``` r
 
-public_response %>%
-  select(-c(film, cinema_score, letterboxd_num_fans), -ends_with("counts"), -ends_with("votes")) %>%
+public_response |>
+  select(
+    -c(film, cinema_score, letterboxd_num_fans),
+    -ends_with("counts"),
+    -ends_with("votes")
+  ) |>
   icc(model = "twoway", type = "consistency")
 #>  Single Score Intraclass Correlation
 #> 
