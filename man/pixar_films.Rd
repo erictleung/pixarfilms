@@ -8,7 +8,7 @@
 A data frame with 31 rows and 6 columns:
 \describe{
 \item{number}{order of release}
-\item{film}{name of film}
+\item{film}{name of film (primary key)}
 \item{release_date}{date film premiered}
 \item{run_time}{film length in minutes}
 \item{film_rating}{rating based on Motion Picture Association (MPA) film
@@ -26,6 +26,13 @@ pixar_films
 }
 \description{
 A data set containing Pixar films, their release order, and release date.
+}
+\details{
+Order of release, film name, and release date come from Wikipedia. The rest
+of the columns (run time, film rating, and plot) come from OMDb.
+
+The column \code{film} is the primary key that joins with all the rest of the
+datasets in this package.
 }
 \examples{
 pixar_films
