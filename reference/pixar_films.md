@@ -19,7 +19,7 @@ A data frame with 31 rows and 6 columns:
 
 - film:
 
-  name of film
+  name of film (primary key)
 
 - release_date:
 
@@ -42,6 +42,14 @@ A data frame with 31 rows and 6 columns:
 <https://en.wikipedia.org/wiki/List_of_Pixar_films>
 
 <https://www.omdbapi.com>
+
+## Details
+
+Order of release, film name, and release date come from Wikipedia. The
+rest of the columns (run time, film rating, and plot) come from OMDb.
+
+The column `film` is the primary key that joins with all the rest of the
+datasets in this package.
 
 ## Examples
 

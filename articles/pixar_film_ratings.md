@@ -69,14 +69,16 @@ df |>
   geom_line(aes(group = ratings)) +
   scale_color_brewer(palette = "Dark2") +
   labs(x = "Pixar film", y = "Rating value") +
-  guides(col = guide_legend(title = "Ratings")) +
+  guides(col = guide_legend(
+    title = "Ratings",
+    ncol = 2,
+    byrow = TRUE
+  )) +
   theme_minimal() +
   scale_y_continuous(limits = c(0, 100)) +
   theme(
     axis.text.x = element_text(angle = 90, vjust = 0.5),
-    legend.position = "bottom",
-    legend.title = element_text(size = 3),
-    legend.text = element_text(size = 3)
+    legend.position = "bottom"
   )
 ```
 
@@ -99,10 +101,14 @@ df |>
   theme(
     axis.text.x = element_text(angle = 90, vjust = 0.5),
     legend.position = "bottom",
-    legend.title = element_text(size = 3),
-    legend.text = element_text(size = 3)
+    ncol = 2,
+    byrow = TRUE
   ) +
   facet_wrap(~ ratings, ncol = 2)
+#> Warning in plot_theme(plot): The `ncol` theme element is not defined in
+#> the element hierarchy.
+#> Warning in plot_theme(plot): The `byrow` theme element is not defined in
+#> the element hierarchy.
 ```
 
 ![](pixar_film_ratings_files/figure-html/pixar_ratings_overview_facet-1.png)
@@ -134,11 +140,15 @@ df |>
   ylim(c(0, 100)) +
   theme_minimal() +
   theme(
-    legend.position = "bottom", 
-    legend.title = element_text(size = 3),
-    legend.text = element_text(size = 3)
+    legend.position = "bottom",
+    ncol = 2,
+    byrow = TRUE
   ) +
   scale_x_discrete(labels = function(x) str_wrap(x, width = 10))
+#> Warning in plot_theme(plot): The `ncol` theme element is not defined in
+#> the element hierarchy.
+#> Warning in plot_theme(plot): The `byrow` theme element is not defined in
+#> the element hierarchy.
 ```
 
 ![](pixar_film_ratings_files/figure-html/pixar_ratings_group-1.png)

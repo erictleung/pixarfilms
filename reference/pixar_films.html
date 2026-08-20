@@ -68,7 +68,7 @@
 <dd><p>order of release</p></dd>
 
 <dt>film</dt>
-<dd><p>name of film</p></dd>
+<dd><p>name of film (primary key)</p></dd>
 
 <dt>release_date</dt>
 <dd><p>date film premiered</p></dd>
@@ -89,6 +89,13 @@ rating system</p></dd>
     <h2 id="source">Source<a class="anchor" aria-label="anchor" href="#source"></a></h2>
     <p><a href="https://en.wikipedia.org/wiki/List_of_Pixar_films" class="external-link">https://en.wikipedia.org/wiki/List_of_Pixar_films</a></p>
 <p><a href="https://www.omdbapi.com" class="external-link">https://www.omdbapi.com</a></p>
+    </div>
+    <div class="section level2">
+    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
+    <p>Order of release, film name, and release date come from Wikipedia. The rest
+of the columns (run time, film rating, and plot) come from OMDb.</p>
+<p>The column <code>film</code> is the primary key that joins with all the rest of the
+datasets in this package.</p>
     </div>
 
     <div class="section level2">
