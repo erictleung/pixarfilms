@@ -69,7 +69,7 @@ df <-
 
 Their first plot was comparing the Pixar films' ratings over time.
 
-```{r pixar_ratings_overview, fig.height=6, fig.width=5}
+```{r pixar_ratings_overview}
 df |>
   na.omit() |>
   ggplot(aes(x = film, y = value, col = ratings)) +
@@ -92,7 +92,7 @@ df |>
 
 We can even facet the plots to see these patterns separately.
 
-```{r pixar_ratings_overview_facet, fig.height=8, fig.width=4}
+```{r pixar_ratings_overview_facet}
 df |>
   na.omit() |>
   ggplot(aes(x = film, y = value, col = ratings)) +
@@ -100,14 +100,16 @@ df |>
   geom_line(aes(group = ratings)) +
   scale_color_brewer(palette = "Dark2") +
   labs(x = "Pixar film", y = "Rating value") +
-  guides(col = guide_legend(title = "Ratings")) +
+  guides(col = guide_legend(
+    title = "Ratings",
+    ncol = 2,
+    byrow = TRUE
+  )) +
   theme_minimal() +
   scale_y_continuous(limits = c(0, 100)) +
   theme(
     axis.text.x = element_text(angle = 90, vjust = 0.5),
-    legend.position = "bottom",
-    ncol = 2,
-    byrow = TRUE
+    legend.position = "bottom"
   ) +
   facet_wrap(~ ratings, ncol = 2)
 ```
@@ -120,7 +122,7 @@ the other Pixar films.
 
 Next, let's group the rating categories to see if there is a consistency across.
 
-```{r pixar_ratings_group, fig.height=8, fig.width=4}
+```{r pixar_ratings_group}
 df |>
   na.omit() |>
   ggplot(aes(x = ratings, y = value, col = ratings)) +
@@ -133,14 +135,16 @@ df |>
     nudge_x = 0.1
   ) +
   scale_color_brewer(palette = "Dark2") +
-  guides(col = guide_legend(title = "Ratings")) +
+  guides(col = guide_legend(
+    title = "Ratings",
+    ncol = 2,
+    byrow = TRUE
+  )) +
   labs(x = "Rating group", y = "Rating value") +
   ylim(c(0, 100)) +
   theme_minimal() +
   theme(
     legend.position = "bottom",
-    ncol = 2,
-    byrow = TRUE
   ) +
   scale_x_discrete(labels = function(x) str_wrap(x, width = 10))
 ```
